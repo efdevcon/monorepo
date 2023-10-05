@@ -1,0 +1,188 @@
+@import 'styles/variables.scss';
+
+.card {
+  &:hover {
+    box-shadow: 0px 4px 11px rgba(255, 255, 255, 0.2);
+  }
+
+  box-shadow: 0px 4px 11px rgba(255, 255, 255, 0.1);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  [data-type="link-text"] {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100%;
+  }
+
+  &.slide {
+    &:active {
+      > * {
+        cursor: grabbing !important;
+      }
+    }
+
+    .img {
+      cursor: grab;
+    }
+
+    .body {
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing !important;
+      }
+    }
+  }
+
+  // Whole card should trigger hover effect
+  &.expand-link {
+    &:hover .read-more {
+      // color: var(--theme-color-hover, $colors-main-light) !important;
+      // --color-icon: var(--theme-color-hover, #{$colors-main-light}) !important;
+    }
+  }
+
+  @media (min-width: $screen-lg + 1) {
+    &:hover {
+      .img-wrapper {
+        .img {
+          transform: scale(1.15);
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    .read-more {
+      display: none !important;
+    }
+  }
+
+  .img-wrapper {
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+
+    .img {
+      transition: transform 0.5s;
+      // Kinda tragic positioning strategy here, but this constellation was the only way to make it work in safari
+      position: absolute !important;
+      top: 0;
+      min-width: 100%;
+      overflow: hidden;
+      height: 100%;
+      object-fit: cover;
+
+      &.not-gatsby {
+        position: relative !important;
+      }
+    }
+  }
+
+  &.img {
+    .body {
+      padding-top: 0px;
+      flex-grow: 0;
+    }
+  }
+
+  .body {
+    padding: 20px;
+    padding-bottom: 0px;
+    border: 1px solid $monochrome-5;
+    border-top: none;
+
+    &.with-link {
+      cursor: pointer;
+
+      &:hover {
+        .title {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    @media (max-width: $screen-lg) {
+      padding: 16px;
+      padding-bottom: 0px;
+    }
+
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+
+    .title {
+      @include large-text;
+      font-weight: 700;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-bottom: 0px;
+    }
+
+    .text {
+      @include small-text;
+      margin-top: 16px;
+      font-weight: 400;
+      overflow: hidden;
+      // color: rgb(152, 152, 152);
+    }
+
+    .bottom-section {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      flex-direction: column;
+
+      .metadata {
+        @include small-text;
+        // color: $colors-main-light;
+        color: rgb(143, 143, 143);
+        display: flex;
+        text-transform: uppercase;
+        margin-top: 4px;
+        margin-bottom: 12px;
+
+        > * {
+          margin-right: 12px;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+
+      .read-more {
+        // @include fonts-section-link;
+        font-weight: 700;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 12px;
+        padding-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // color: var(--theme-color, $colors-main);
+        // --color-icon: var(--theme-color, $colors-main);
+
+        > svg {
+          margin-left: 12px;
+          font-size: 1em;
+        }
+
+        // &:hover {
+        //   color: var(--theme-color-hover, $colors-main-light) !important;
+        //   --color-icon: var(--theme-color-hover, #{$colors-main-light}) !important;
+        // }
+      }
+    }
+  }
+}

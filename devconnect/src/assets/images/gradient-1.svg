@@ -1,0 +1,30 @@
+<svg id="vibra-space-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1000">
+			  <defs>
+			    <style>
+			      .cp {clip-path: url(#clip-path);}
+			      .bg {fill: url(#bg);}
+			      .obj1 {opacity:0.8;mix-blend-mode: hard-light;}
+			      .obj2 {opacity:0.8;mix-blend-mode: hard-light;}
+			      .obj3 {opacity:0.8;mix-blend-mode: hard-light;}
+			      .bgobj1 {opacity:0.3;mix-blend-mode: hard-light;}
+			      .bgobj2 {opacity:0.3;mix-blend-mode: hard-light;}
+			    </style>
+			    <clipPath id="clip-path"><rect width="2000" height="1000"/></clipPath>
+			    <linearGradient id="bg" x1="0" y1="0" x2="2000" y2="1000" gradientUnits="userSpaceOnUse">
+			      <stop id="bgcolor1" offset="0" stop-color="#E4D"/>
+			      <stop id="bgcolor2" offset="1" stop-color="#11d"/>
+			    </linearGradient>
+			     <filter id="eblur" filterUnits="userSpaceOnUse">
+			      <feGaussianBlur stdDeviation="180" />
+			     </filter>
+			  </defs>
+
+			  <g class="cp">
+			      <rect class="bg" x="0" y="0" width="2000" height="1000"/>
+			      <circle class="obj1" cx="700" cy="800" r="750" fill="#FE2" filter="url(#eblur)">
+			      </circle>
+
+			      <circle class="obj2" cx="1400" cy="-100" r="850" fill="#2FD" filter="url(#eblur)">
+			      </circle>
+			  </g>
+			</svg>

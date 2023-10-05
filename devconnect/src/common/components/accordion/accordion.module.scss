@@ -1,0 +1,66 @@
+@import 'styles/variables.scss';
+
+.accordions {
+  padding-top: 8px;
+  margin-top: 32px;
+  // border-top: 1px solid $standard-border-color;
+  display: flex;
+  flex-direction: column;
+
+  .accordion {
+    &.always-open {
+      > .toggle {
+        cursor: auto;
+        > svg {
+          display: none;
+        }
+      }
+    }
+
+    &:first-child {
+      margin-top: 0px;
+    }
+
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    // background: #fcfcfc;
+
+    border: 1px solid $standard-border-color;
+    border-radius: 8px;
+
+    .toggle {
+      &:hover {
+        background: rgb(245, 245, 245);
+      }
+
+      user-select: none;
+      cursor: pointer;
+      padding: 18px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      svg {
+        font-size: 0.7em;
+        flex-shrink: 0;
+        margin-left: 32px;
+        fill: black;
+      }
+    }
+
+    .content {
+      background: white;
+      padding: 20px 16px;
+      // padding-right: 15%;
+      border-top: 1px solid $standard-border-color;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+
+      @media (min-width: 800px) {
+        padding-right: 5%;
+      }
+    }
+  }
+}

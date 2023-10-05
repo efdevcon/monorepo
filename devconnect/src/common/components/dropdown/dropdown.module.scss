@@ -1,0 +1,90 @@
+@import 'styles/variables.scss';
+
+.dropdown-box {
+  background: $monochrome-1;
+  border: 1px solid $monochrome-6;
+}
+
+$padding: 4px 10px 4px 10px;
+
+.container {
+  @extend .dropdown-box;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: $padding;
+  border-radius: 2px;
+
+  &:hover {
+    background: $monochrome-3;
+  }
+
+  svg {
+    margin-left: 16px;
+    font-size: 0.8em;
+  }
+
+  &.clearable {
+    * {
+      fill: #ff2424;
+    }
+  }
+
+  .placeholder {
+    color: $monochrome-7;
+    font-size: 14px;
+
+    * {
+      fill: $monochrome-6;
+    }
+  }
+}
+
+.dropdown {
+  background: $monochrome-1;
+  border: 1px solid #f3f3f3;
+  position: absolute;
+  list-style-type: none;
+  right: 1px;
+  min-width: calc(100% + 4px);
+  top: calc(100% + 2px);
+  margin: 0;
+  padding: 0;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+
+  // Just to assist on mobile when space is restricted
+  &.push-from-left {
+    left: 1px;
+    right: auto;
+
+    li {
+      text-align: left;
+    }
+  }
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  li {
+    white-space: nowrap;
+    user-select: none;
+    padding: $padding;
+    text-align: right;
+    border-top: 1px solid $monochrome-3;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:hover {
+      background: $monochrome-3;
+    }
+  }
+}

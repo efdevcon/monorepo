@@ -1,0 +1,60 @@
+
+.columns {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0px;
+
+    @media (max-width: $screen-lg) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left {
+        flex-basis: 50%;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+
+        &.fill-45 {
+            flex-basis: 45%;
+        }
+
+        &.fill-65 {
+            flex-basis: 70%;
+        }
+    
+        .big-description {
+            margin-bottom: 20px;
+        }
+    
+        .when-where {
+            font-weight: 700;
+        }
+    
+        @media (max-width: $screen-lg) {
+            flex-basis: auto;
+            width: 100%;
+            margin-left: 0px;
+
+            &.fill-45, &.fill-65 {
+                flex-basis: auto;
+            }
+        }
+    }
+    
+    .right {
+        flex-basis: 50%;
+        flex-shrink: 1;
+        margin-left: 50px;
+    
+        @media (max-width: $screen-lg) {
+            margin-top: 2em;
+            flex-basis: auto;
+            width: 100%;
+            margin-left: 0px;
+        }
+    }
+}
+

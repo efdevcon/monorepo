@@ -1,0 +1,35 @@
+.wrap {
+  max-width: 100%;
+}
+
+.marquee {
+  animation: marquee var(--animation-speed) linear infinite;
+  white-space: nowrap;
+  display: inline-block;
+
+  --animation-speed: 60s;
+
+  &.slow {
+    --animation-speed: 80s;
+  }
+
+  &.unpadded {
+    > * {
+      padding-right: 0px !important;
+    }
+  }
+
+  > * {
+    display: inline-block;
+    padding-right: 50px;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

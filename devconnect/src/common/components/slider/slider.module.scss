@@ -1,0 +1,75 @@
+@import 'styles/variables.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 32px;
+  position: relative;
+
+  .top-section {
+    width: 100%;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .controls {
+      display: flex;
+      align-items: center;
+
+      .arrows {
+        margin-left: 32px;
+
+        @media (max-width: $screen-lg) {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: calc(100% + #{4px * 2}) !important;
+  left: -4px;
+
+  .card {
+    &:not(.no-swipe) {
+      cursor: move; /* fallback if grab cursor is unsupported */
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+    }
+
+    height: 100%;
+    // margin-right: 16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 16px;
+    background: white;
+  }
+}
+
+.arrows {
+  display: flex;
+  flex-wrap: nowrap;
+
+  .arrow-button {
+    flex-shrink: 0;
+    padding: 8px;
+    touch-action: none;
+
+    &:last-child {
+      margin-left: 20px;
+    }
+
+    // &:not(.always-buttons) {
+    //   @media (max-width: $breakpoints-lg) {
+    //     display: none;
+    //   }
+    // }
+  }
+}

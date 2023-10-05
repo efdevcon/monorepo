@@ -1,0 +1,162 @@
+@import 'styles/variables.scss';
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.hide-bg-mobile {
+    &:before {
+      @media (max-width: $screen-lg) {
+        background: none !important;
+      }
+    }
+  }
+
+  &:before {
+
+    content: '';
+    width: 100%;
+    top: 0px;
+    position: absolute;
+    height: 150px;
+    z-index: 1;
+    opacity: 1;
+    background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #F93B3B 59.35%, #29F4C1 100%);
+    -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  }
+
+  .background {
+    z-index: -2;
+    position: absolute;
+    object-fit: cover;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .background-fill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #8999B3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right;
+
+      @media (max-width: $screen-lg) {
+        object-fit: cover;
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &:global(.istanbul) {
+    .background {
+      // background: linear-gradient(120deg, rgb(25, 147, 240) 0%, hsla(43, 80%, 52%, 0) 70%),
+      // linear-gradient(555deg, rgb(134, 45, 139) 10%, hsla(297, 83%, 60%, 0) 80%),
+      // linear-gradient(25deg, hsla(171, 100%, 52%, 1) 10%, hsla(171, 100%, 52%, 0) 80%),
+      // linear-gradient(335deg, hsla(240, 86%, 47%, 1) 100%, hsla(240, 86%, 47%, 0) 70%);
+      background: linear-gradient(120deg, #226497 0%, rgba(231, 175, 35, 0) 70%), linear-gradient(555deg, #a54da9 10%, rgba(229, 68, 238, 0) 80%), linear-gradient(25deg, #0affda 10%, rgba(10, 255, 218, 0) 80%), linear-gradient(335deg, #acdf11 100%, rgba(17, 17, 223, 0) 70%);
+    }
+  }
+
+  &:global(.amsterdam) {
+    .background {
+      background: linear-gradient(120deg, hsla(43, 88%, 52%, 1) 0%, hsla(43, 80%, 52%, 0) 70%),
+      linear-gradient(555deg, hsla(297, 83%, 60%, 1) 10%, hsla(297, 83%, 60%, 0) 80%),
+      linear-gradient(25deg, hsla(171, 100%, 52%, 1) 10%, hsla(171, 100%, 52%, 0) 80%),
+      linear-gradient(335deg, hsla(240, 86%, 47%, 1) 100%, hsla(240, 86%, 47%, 0) 70%);
+    }
+  }
+
+  // &:after {
+  //   content: '';
+  //   z-index: -1;
+  //   position: absolute;
+  //   left: 0px;
+  //   right: 0px;
+  //   height: 100%;
+  //   width: 100%;
+  //   background-image: url('../../../assets/images/tile.png');
+  //   background-repeat: repeat-x;
+  //   mix-blend-mode: overlay;
+  //   background-size: var(--tile-size, 60px);
+  //   background-position: bottom;
+
+  //   @media (min-width: $screen-lg) {
+  //     background-size: var(--tile-size, 100px);
+  //   }
+  // }
+
+  .content {
+    position: relative;
+    // flex-grow: 1;
+    // display: flex;
+    // width: 100%;
+
+    .background-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 60px;
+      position: absolute;
+      left: 0px;
+      top: -36px;
+      opacity: 0.2;
+      // top: 0px;
+      // bottom: 0px;
+      font-weight: 700;
+      font-size: min(220px, 23vw);
+      line-height: 1em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      -webkit-text-fill-color: rgb(0, 0, 0, 0); /* Will override color (regardless of order) */
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: rgb(255, 255, 255);
+    }
+
+    .children {
+      flex-grow: 1;
+      display: flex;
+      height: 425px;
+      justify-content: space-between;
+
+      &.auto-height {
+        height: auto;
+      }
+
+      > * {
+        z-index: 1;
+      }
+
+      @media (max-width: $screen-md) {
+        height: auto;
+      }
+    }
+
+    .image {
+      position: absolute;
+      right: 0px;
+      bottom: 32px;
+      width: 52%;
+      height: 100%;
+      grid-column: 2 / 4;
+
+      @media (max-width: $screen-md) {
+        bottom: 0px;
+      }
+
+      .image-inner {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

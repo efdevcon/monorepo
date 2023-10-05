@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+
+.list {
+    text-decoration:  none;
+    list-style: none;
+
+    li {
+        text-decoration: none;
+        padding: 8px 0px;
+        border-bottom: 1px solid $standard-border-color;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

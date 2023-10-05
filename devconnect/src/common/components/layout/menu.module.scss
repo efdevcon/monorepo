@@ -1,0 +1,291 @@
+@import 'styles/variables.scss';
+
+$width-right-column: 190px;
+
+.streameth-highlight {
+  color: #8D75FF;
+  stroke: black;
+}
+
+.menu,
+.footer-menu {
+  --icon-color: white;
+  a {
+    &:hover {
+      [data-type='link-text'] {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .multi-link {
+    position: relative;
+    // z-index: 10;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    align-self: flex-start;
+
+    .hover-to-open,
+    .click-to-open {
+      font-size: 12px;
+    }
+
+    .hover-to-open {
+      display: none;
+
+      @media (hover: hover) {
+        display: flex;
+      }
+    }
+
+    .click-to-open {
+      display: none;
+
+      svg {
+        font-size: 0.8em;
+      }
+
+      @media (hover: none) {
+        display: flex;
+      }
+    }
+
+    @media (hover: none) {
+      &.open {
+        display: flex;
+      }
+    }
+
+    svg {
+      margin-left: 8px;
+
+      * {
+        fill: white;
+      }
+    }
+
+    .dropdown {
+      position: absolute;
+      z-index: 1;
+      top: 100%;
+      left: 0px;
+      white-space: nowrap;
+      display: none;
+
+      .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 16px;
+        color: $monochrome-10;
+        background-color: $monochrome-1;
+        box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+
+        svg {
+          margin-left: 0px;
+
+          * {
+            fill: $monochrome-10;
+          }
+        }
+
+        a {
+          padding: 4px 0px;
+        }
+      }
+
+      // On mobile we allow tap to open (because we can't hover)
+      @media (hover: none) {
+        &.open {
+          display: flex;
+        }
+      }
+
+      a {
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    // Desktop hover allows open
+    @media (hover: hover) {
+      &:hover {
+        .dropdown {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  // align-items: center;
+  z-index: 10;
+  text-transform: uppercase;
+  color: white;
+
+  .multi-link,
+  >a {
+    padding: 8px 0px;
+  }
+
+  .multi-link,
+  .social-media,
+  >a {
+    display: none;
+
+    @media (min-width: $screen-lg-2) {
+      white-space: nowrap;
+      display: flex;
+    }
+  }
+
+  // > a {
+  //   &:not(.twitter) {
+  //     @media (max-width: $screen-sm) {
+  //       display: none;
+  //     }
+  //   }
+  // }
+
+  >* {
+    margin-right: 40px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: $width-right-column;
+
+  @media (max-width: $screen-md) {
+    margin-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+  }
+
+  .back-to-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 16px;
+    opacity: 0.6;
+
+    svg {
+      margin-left: 8px;
+    }
+
+    >* {
+      &:nth-child(1) {
+        @media (max-width: $screen-md) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  >a,
+  .social-media,
+  .multi-link {
+    align-self: flex-start;;
+    margin-top: 20px;
+  }
+
+  .social-media {
+    >* {
+      margin-right: 4px;
+    }
+  }
+
+  .multi-link {
+    .dropdown {
+      padding-top: 8px;
+
+      @media (max-width: $screen-md) {
+        left: 0px;
+        right: auto;
+      }
+    }
+  }
+}
+
+// Mobile foldout
+.mobile-menu {
+  margin-right: 0px;
+  z-index: 5;
+}
+
+.foldout-toggle {
+  z-index: 1000000000000;
+  margin-right: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  .icon {
+    display: flex;
+    align-items: center;
+    padding: 4px 20px;
+    position: relative;
+    right: -10px;
+  }
+
+  * {
+    fill: white;
+  }
+
+  @media (min-width: $screen-lg-2) {
+    display: none;
+  }
+}
+
+.foldout {
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  padding-top: 24px;
+  // background: #0d0d36;
+  background: linear-gradient(60deg, #323232 30%, #1e1c1c);
+  // background: radial-gradient(circle at 0% 200%,rgba(28, 42, 76, 0.7) 30%,rgba(2,0,36,0) 70%);
+  bottom: 0px;
+  z-index: 19;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 400ms ease-out;
+
+  @media (min-width: $screen-lg-2) {
+    display: none !important;
+  }
+
+  &.open {
+    transform: translateY(0px); //translateY(calc(0px + var(--headerHeight)));
+  }
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  transform: translateX(-8px);
+  font-size: 20px;
+
+  >* {
+    padding: 8px;
+    margin-right: 4px;
+  }
+}

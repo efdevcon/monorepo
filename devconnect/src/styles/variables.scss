@@ -1,0 +1,150 @@
+// colors
+$black: black;
+$white: white;
+
+// Core colors
+$color-primary: $black;
+$color-secondary: $white;
+$color-grey: #cccccc;
+$color-dark-grey: #666666;
+$color-blue: #0085ff;
+$color-orange: #ed8000;
+$color-orange-2: #FF4E26;
+$color-link: #488def;
+$color-purple: #6D4FFA;
+
+$color-background: #111111;
+
+$monochrome-1: #ffffff;
+$monochrome-2: #f8f8f8;
+$monochrome-3: #f3f3f3;
+$monochrome-4: #eeeeee;
+$monochrome-5: #dddddd;
+$monochrome-6: #999999;
+$monochrome-7: #666666;
+$monochrome-8: #444444;
+$monochrome-9: #333333;
+$monochrome-10: #000000;
+
+$standard-border-color: $monochrome-5;
+
+// Fonts
+$font-primary: 'Montserrat', sans-serif;
+$font-secondary: 'Roboto', serif;
+$font-tertiary: 'Space Mono', monospace;
+
+// Sizes relative to root font-size
+$size-1: 0.125rem; // 2px (assuming root font-size is 16px)
+
+$gap-1: 4px;
+
+// Screens
+$screen-tiny: 410px;
+$screen-sm: 640px;
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-lg-2: 1100px;
+$screen-xl: 1280px;
+$screen-xxl: 1536px;
+
+$layout-width: 1880px;
+$layout-side-gap: 32px;
+$standard-gap: 32px;
+
+// Mixins
+
+// Font-sizes
+@mixin small-text {
+  font-size: 14px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 12px;
+  }
+
+  &-em {
+    font-size: 0.88em;
+  }
+}
+
+@mixin tiny-text {
+  font-size: 12px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 10px;
+  }
+
+  &-em {
+    font-size: 0.66em;
+  }
+}
+
+@mixin medium-text {
+  font-size: 16px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 14px;
+  }
+
+  &-em {
+    font-size: 1em;
+  }
+}
+@mixin big-text {
+  font-size: 20px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 16px;
+  }
+
+  &-em {
+    font-size: 1.25em;
+  }
+}
+@mixin large-text {
+  font-size: 24px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 18px;
+  }
+
+  &-em {
+    font-size: 1.5em;
+  }
+}
+@mixin extra-large-text {
+  font-size: 36px;
+
+  @media (max-width: $screen-sm) {
+    font-size: 24px;
+  }
+
+  &.title {
+    letter-spacing: 0.05em;
+  }
+
+  &-em {
+    font-size: 2em;
+  }
+}
+
+@mixin alert-blue {
+  background: #ece9ff;
+
+  .title {
+    --icon-color: #6664d3;
+    color: #6664d3;
+  }
+}
+
+@mixin slick-purple {
+  background: #ECE9FF;
+  --icon-color: #6664D3;
+  border: 1px solid #6664D3;
+
+  &:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+    --icon-color: black;
+  }
+}
