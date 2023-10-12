@@ -1,4 +1,6 @@
 import React from 'react'
+// Typescript blows up if react-slick types are installed (seems typescript starts respecting slicks internal @types/react instead of our own installed version?), so we just ts-ignore as a bandaid
+// @ts-ignore
 import SlickSlider from 'react-slick'
 import css from './slider.module.scss'
 

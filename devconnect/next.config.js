@@ -4,7 +4,7 @@ const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin')
 module.exports = {
   reactStrictMode: true,
   experimental: {
-    // Need this for webpack to parse files outside this directory, e.g. from the "common" folder in the monorepo
+    // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
     externalDir: true,
   },
   // Add redirects to netlify.toml - netlify doesn't seem to pick up next.config.js redirects

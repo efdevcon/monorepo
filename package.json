@@ -1,7 +1,10 @@
 {
     "private": true,
-    "workspaces": [
-        "lib",
-        "devconnect"
-    ]
+    "workspaces": {
+        "nohoist": ["devconnect/**"],
+        "packages": [
+            "lib",
+            "devconnect"
+        ]
+    }
 }
