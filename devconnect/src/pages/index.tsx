@@ -21,10 +21,12 @@ import bgMerged from 'assets/images/landscape.png'
 import Hehe from 'assets/images/hehe.png'
 import Observer from 'common/components/observer'
 import ErrorBoundary from 'common/components/error-boundary/ErrorBoundary'
+// @ts-ignore
 import Spline from '@splinetool/react-spline'
 import FooterBackground from 'assets/images/footer-background-triangles.png'
 import PlayIcon from 'assets/icons/play.svg'
 import Parser from 'rss-parser'
+// @ts-ignore
 import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
