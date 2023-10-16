@@ -1,0 +1,65 @@
+@use 'assets/css/partials/index' as *;
+
+.filter {
+  background: $colors-monochrome-2;
+
+  padding-top: $gaps-gap-4;
+  position: relative;
+
+  button {
+    margin-left: $gaps-gap-2;
+  }
+
+  &.no-sort {
+    padding-bottom: $gaps-gap-4;
+  }
+
+  // &.no-filter {
+  //   form {
+  //     margin-right: 0px !important;
+  //   }
+  // }
+
+  .search-filter-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    form {
+      flex-grow: 1;
+      // margin-right: $gaps-gap-2;
+
+      input {
+        height: 36px;
+      }
+    }
+  }
+
+  .filter-container {
+    margin-bottom: $gaps-gap-3;
+  }
+
+  .n-filters-indicator {
+    flex-grow: 1;
+    margin-left: $gaps-gap-2;
+    position: relative;
+    align-self: stretch;
+
+    // Absolute positioning to prevent expanding size of container
+    > * {
+      position: absolute;
+    }
+  }
+
+  .filter-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: $gaps-gap-3;
+
+    .clear {
+      padding: $gaps-gap-3;
+      margin-right: $gaps-gap-2;
+    }
+  }
+}

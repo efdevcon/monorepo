@@ -1,0 +1,28 @@
+@use 'assets/css/partials/index' as *;
+
+.space-between {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  align-items: flex-start;
+}
+
+.snapshot-container {
+  [data-type="snapshot-item"] {
+    @include fonts-md;
+    span {
+      &:first-of-type {
+        text-transform: none;
+      }
+    }
+  }
+}
+
+.devcon-separator {
+  margin: 16px 0px;
+  display: flex;
+  width: 100%;
+  // justify-content: center;
+  // background: blue;
+  text-align: center;
+}

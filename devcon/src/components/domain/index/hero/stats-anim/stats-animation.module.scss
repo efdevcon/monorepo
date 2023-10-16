@@ -1,0 +1,75 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  // z-index: 1;
+  // background: black;
+
+  :global(canvas) {
+    background: transparent !important;
+  }
+
+  .element {
+    font-size: 2vw;
+    padding: 1em 0.75em;
+    position: absolute;
+    pointer-events: none;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    white-space: nowrap;
+
+    @media (max-width: 600px) {
+      font-size: 12px !important;
+    }
+
+    @media (max-width: 900px) {
+      font-size: 14px !important;
+    }
+
+    @media (max-width: 1200px) {
+      font-size: 20px;
+    }
+
+    .number {
+      font-size: 1.25em;
+    }
+
+    &.teal {
+      background: #00B3A4;
+    }
+
+    &.white {
+      background:#E4F6FA;
+      color: #0FADCF;
+    }
+
+    &.blue {
+      background: #1B6FAE;
+    }
+
+    &.orange {
+      background: #F69022;
+    }
+
+    &.red {
+      background: #E55066;
+    }
+
+    &.yellow {
+      background: #F5D222;
+    }
+
+    &.green {
+      background: #88C43F;
+    }
+
+    &.blue-2 {
+      background: #0FADCF;
+    }
+
+    &.purple {
+      background: #7958A5;
+    }
+  }
+}

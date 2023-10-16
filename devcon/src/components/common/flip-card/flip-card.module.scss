@@ -1,0 +1,43 @@
+@use 'assets/css/partials/index' as *;
+
+.card {
+  display: flex;
+  margin-right: 8px;
+  margin-left: 8px;
+  perspective: 1000px;
+  width: 300px;
+  height: 300px;
+
+  cursor: pointer;
+
+  &:active {
+    cursor: grabbing !important;
+  }
+}
+
+.content {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .content {
+  transform: rotateY( 180deg ) ;
+  transition: transform 0.5s;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY( 180deg );
+}

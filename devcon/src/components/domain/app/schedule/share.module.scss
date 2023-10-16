@@ -1,0 +1,43 @@
+@use 'assets/css/partials/index' as *;
+
+.modal {
+    [data-type="modal-content"] {
+        min-height: 200px;
+        padding: 32px;
+    }
+
+    h4 { 
+        padding-bottom: 8px;
+        border-bottom: 1px solid $colors-monochrome-5;
+    }
+
+    a { 
+        text-decoration: underline;
+    }
+
+    .setting {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: $gaps-gap-4;
+    }
+
+    .link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 16px 0;
+
+        .input {
+            @include fonts-md-fixed;
+            border: 1px solid $colors-monochrome-5;
+            width: 100%;
+            padding: 8px 4px;
+            flex-grow: 1;
+        }
+
+        .icon { 
+            padding: 8px;
+        }
+    }
+}

@@ -1,0 +1,164 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  position: relative;
+
+  .speakers {
+    display: flex;
+    flex-direction: row;
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.speaker {
+  position: relative;
+  padding: 0px 12px;
+
+  .text {
+    z-index: 1;
+  }
+
+  img {
+    height: 280px;
+    width: auto;
+    transition: .2s ease;
+  }
+
+  &:hover {
+    img {
+      transform: perspective(1000px) scale(0.95) rotateX(1deg) rotateY(-4deg);
+    }
+  }
+
+  &:nth-child(1) {
+    padding-top: 90px;
+
+    .text {
+      bottom: 16px;
+    }
+  }
+
+  &:nth-child(2) {
+    .text {
+      top: 16px;
+    }
+  }
+
+  &:nth-child(3) {
+    padding-top: 80px;
+
+    .text {
+      left: 16px;
+      bottom: 32px;
+    }
+  }
+  
+  &:nth-child(4) {
+    padding-top: 40px;
+
+    .text {
+      left: 16px;
+    }
+  }
+
+  &:nth-child(5) {
+    padding-top: 80px;
+
+    .text {
+      bottom: 16px;
+      right: 16px;
+    }
+  }
+
+  &:nth-child(6) {
+    padding-top: 30px;
+
+    .text {
+      left: 16px;
+    }
+  }
+
+  &:nth-child(7) {
+    padding-top: 70px;
+
+    .text {
+      right: 24px;
+    }
+  }
+
+  &:nth-child(9) {
+    padding-top: 50px;
+
+    .text {
+      left: 0px;
+      bottom: 16px;
+    }
+  }
+
+  &:nth-child(11) {
+    padding-top: 70px;
+  }
+
+  .text {
+    position: absolute;
+    right: 0px;
+    color: $colors-track-red;
+    font-size: 25px;
+    @include fonts-bold;
+    text-shadow: 1px 1px rgb(61, 61, 61);
+  }
+}
+
+.description {
+  margin-top: 16px;
+  max-width: 800px;
+}
+
+.background-title {
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  left: 0px;
+  top: -36px;
+  opacity: 0.06;
+  font-weight: 700;
+  font-size: min(240px, 23vw);
+  line-height: 1em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  -webkit-text-fill-color: rgb(0, 0, 0, 0); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+
+  @media (max-width: 800px) {
+    top: 0px;
+  }
+}
+
+.background-logo {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  img {
+    // margin-right: 120px;
+    transform: translateY(16%);
+    opacity: 0.3;
+    // transform: scale(1.2);
+    // transform: translateX(-300px);
+    // margin-top: -50%;
+    // transform: translateY(50%);
+  }
+  // background-color: yellow;
+  // background-repeat: no-repeat;
+  // background-position: right;
+  // opacity: 0.1;
+  // background-size: 30%;
+}

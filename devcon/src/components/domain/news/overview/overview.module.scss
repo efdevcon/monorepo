@@ -1,0 +1,11 @@
+@use 'assets/css/partials/index' as *;
+
+.pagination-buttons {
+  margin-bottom: $gaps-gap-8;
+
+  > * {
+    &:nth-child(2) {
+      margin-left: $gaps-gap-4;
+    }
+  }
+}

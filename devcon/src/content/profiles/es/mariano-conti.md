@@ -1,0 +1,7 @@
+---
+name: "Mariano Conti"
+role: "Head of Oracles"
+description: "Mariano Conti is the Head of Oracles at MakerDAO. For the past two years he helped build a secure, decentralized network of price feed oracles that provide accurate and realtime data of collateral price feeds that power the Dai Credit System.He also works at DappHub, helping build the tools we use everyday to make working with the Ethereum blockchain a delight."
+organization: "MakerDAO"
+country: "Argentina"
+---

@@ -1,0 +1,139 @@
+@use './breakpoints';
+@use 'sass:math';
+
+$gap-1: 4px;
+$gap-2: $gap-1 * 2; // 8px
+$gap-3: $gap-1 * 3;
+$gap-4: $gap-1 * 4; // 16px
+$gap-5: $gap-1 * 5;
+$gap-6: $gap-1 * 6;
+$gap-7: $gap-1 * 7;
+$gap-8: $gap-1 * 8; // 32px
+$gap-9: $gap-1 * 9;
+$gap-10: $gap-1 * 10; // 40px
+$gap-11: $gap-1 * 11;
+$gap-12: $gap-1 * 12; // 48px
+$gap-13: $gap-1 * 13;
+$gap-14: $gap-1 * 14;
+$gap-15: $gap-1 * 15;
+$gap-16: $gap-1 * 16; // 64px
+$gap-32: $gap-1 * 32; // 128px
+
+// Here are some common gap constellations with responsiveness built in
+@mixin lg($sidesOnly: false) {
+  @if ($sidesOnly == true) {
+    padding-left: $gap-16;
+    padding-right: $gap-16;
+
+    @media (max-width: breakpoints.$lg) {
+      padding-left: $gap-4;
+      padding-right: $gap-4;
+    }
+  } @else {
+    padding: $gap-16;
+
+    @media (max-width: breakpoints.$lg) {
+      padding: $gap-4;
+    }
+  }
+}
+
+@mixin sm($sidesOnly: false) {
+  @if ($sidesOnly == true) {
+    padding-left: $gap-8;
+    padding-right: $gap-8;
+
+    @media (max-width: breakpoints.$md) {
+      padding-left: $gap-2;
+      padding-right: $gap-2;
+    }
+  } @else {
+    padding: $gap-8;
+
+    @media (max-width: breakpoints.$md) {
+      padding: $gap-2;
+    }
+  }
+}
+
+/*
+  Responsive gap is a utility for auto-scaling margin/padding, example usage:
+
+  @include gaps.responsive-gap($attribute: padding, $gap: $gap-4, $min-gap: $gap-2, $top: $gap-16);
+
+  => 
+
+  padding: 16px;
+  padding-top: 64px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    padding-top: 32px;
+  }
+
+  @media (max-width: 410px) {
+    padding: 8px;
+    padding-top: 16px;
+  }
+*/
+@mixin responsive-gap($attribute: margin, $gap: '', $min-gap: $gap-1, $top: '', $right: '', $bottom: '', $left: '') {
+  @if not($gap == '') {
+    #{$attribute}: $gap;
+  }
+  @if not($top == '') {
+    #{$attribute}-top: $top;
+  }
+  @if not($right == '') {
+    #{$attribute}-right: $right;
+  }
+  @if not($bottom == '') {
+    #{$attribute}-bottom: $bottom;
+  }
+  @if not($left == '') {
+    #{$attribute}-left: $left;
+  }
+
+  @media (max-width: breakpoints.$md) {
+    @if not($gap == '') {
+      #{$attribute}: max($min-gap, math.div($gap, 2));
+    }
+    @if not($top == '') {
+      #{$attribute}-top: max($min-gap, math.div($top, 2));
+    }
+    @if not($right == '') {
+      #{$attribute}-right: max($min-gap, math.div($right, 2));
+    }
+    @if not($bottom == '') {
+      #{$attribute}-bottom: max($min-gap, math.div($bottom, 2));
+    }
+    @if not($left == '') {
+      #{$attribute}-left: max($min-gap, math.div($left, 2));
+    }
+  }
+
+  @media (max-width: breakpoints.$tiny) {
+    @if not($gap == '') {
+      #{$attribute}: max($min-gap, math.div($gap, 4));
+    }
+    @if not($top == '') {
+      #{$attribute}-top: max($min-gap, math.div($top, 4));
+    }
+    @if not($right == '') {
+      #{$attribute}-right: max($min-gap, math.div($right, 4));
+    }
+    @if not($bottom == '') {
+      #{$attribute}-bottom: max($min-gap, math.div($bottom, 4));
+    }
+    @if not($left == '') {
+      #{$attribute}-left: max($min-gap, math.div($left, 4));
+    }
+  }
+}
+
+@mixin margin-bottom($initial, $breakpoint) {
+  margin-bottom: $initial;
+
+  @media (max-width: breakpoints.$lg) {
+    margin-bottom: $breakpoint;
+  }
+}

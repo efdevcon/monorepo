@@ -1,0 +1,127 @@
+// :global(html, body) {
+//   overflow: hidden;
+// }
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  min-height: inherit;
+  touch-action: manipulation;
+  // width: 100vw;
+  min-height: inherit;
+}
+
+.scene {
+  position: relative;
+  // height: min(100vw, 700px);
+  height: min(100vw, 800px);
+  width: min(100%, 800px);
+
+  &.selection-active {
+    .layer {
+      &:not(&.selected) {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      &.selected {
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+        background: transparent;
+
+        img {
+          object-fit: contain;
+        }
+
+        .pin-container {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  .layer {
+    position: absolute;
+    top: 0px;
+    right: 12.5%;
+    left: 17.5%; // Centers things, but not sure exactly why
+    bottom: 0px;
+    width: 70%;
+    height: 70%;
+    transform-style: preserve-3d;
+    transition: transform 0.2s linear, opacity 0.2s linear;
+    // background: grey;
+    // opacity: 0.5;
+
+    @media (min-width: 700px) {
+      right: 10%;
+      left: 12.5%;
+      width: 80%;
+      height: 80%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      // object-fit: contain;
+    }
+
+    transform: rotateZ(var(--rotate-z, 0deg)) rotateY(var(--rotate-y, 0deg)) rotateX(var(--rotate-x, 0deg))
+      translateX(var(--translate-x, 0px)) translateY(var(--translate-y, 0px));
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: rotateZ(var(--rotate-z, 0deg)) rotateY(var(--rotate-y, 0deg)) rotateX(var(--rotate-x, 0deg))
+        translateX(-5%) translateY(var(--translate-y, 0px));
+    }
+
+    .label {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      transform: rotateX(-90deg) translateY(-1.1em);
+    }
+
+    .pin-container {
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      transform: rotateX(-90deg) translateY(-1.1em);
+
+      .pin {
+        margin-left: -50%;
+        margin-right: -50%;
+      }
+    }
+
+    &.floor-0 {
+      z-index: 4;
+    }
+
+    &.floor-1 {
+      top: 10%;
+      z-index: 3;
+    }
+
+    &.floor-2 {
+      top: 20%;
+      z-index: 2;
+    }
+
+    &.floor-3 {
+      top: 30%;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes;

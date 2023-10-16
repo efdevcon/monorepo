@@ -1,0 +1,356 @@
+@use 'assets/css/partials/index' as *;
+
+.about {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoints-xl) {
+    flex-direction: row;
+  }
+
+  .left {
+    flex-basis: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    flex-basis: auto;
+
+    @media (min-width: $breakpoints-xl) {
+      flex-basis: 50%;
+      margin-right: 120px;
+    }
+
+    // p,
+    // button {
+    //   margin-top: 1em;
+    // }
+
+    .links {
+      display: flex;
+    }
+  }
+
+  .right {
+    flex-basis: auto;
+    margin-top: 32px;
+    // display: none;
+
+    @media (min-width: $breakpoints-xl) {
+      display: block;
+      flex-basis: auto;
+      flex-grow: 1;
+      margin-top: 0px;
+    }
+  }
+}
+
+.timeline-item {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  @include fonts-md;
+
+  > * {
+    flex-shrink: 0;
+  }
+
+  .left {
+    display: flex;
+    order: 1;
+    flex-wrap: wrap;
+    flex-basis: 40%;
+    flex-shrink: 1;
+
+    @media (min-width: $breakpoints-lg) {
+      flex-basis: 40%;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+  }
+
+  .right {
+    flex-shrink: 0;
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+
+    @media (min-width: $breakpoints-lg) {
+      justify-content: unset;
+      text-align: start;
+      flex-grow: 1;
+      order: 2;
+    }
+
+    .when {
+      color: $colors-monochrome-6;
+    }
+  }
+
+
+  
+  > * {
+    &:nth-child(3) {
+      margin-left: 20px;
+
+      order: 1;
+      margin-right: 0.5em;
+  
+      @media (min-width: $breakpoints-lg) {
+        order: 3;
+        margin-right: 0px;
+      }  
+    }
+  }
+}
+
+.ticket {
+  min-height: 200px; 
+  height: 100%;
+  padding: 10px 24px;
+  padding-left: 30px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: $breakpoints-md) {
+    padding: 20px 50px;
+  }
+
+  &.disabled {
+   .tag {
+      color: #000;
+      border-color: #000;
+      opacity: 0.4;
+    }
+  }
+
+  &.grey {
+    background: #FFF6E4;
+
+    .mask {
+      &:before, &:after {
+        border-color: rgb(255, 153, 0, 0.3);
+      }
+    }
+
+    .border, .right {
+      border-color: rgb(255, 153, 0, 0.3);
+    }
+
+    // &:hover {
+    //   background: #FFEFCE;
+
+    //   .mask {
+    //     &:before, &:after {
+    //       border-color: rgb(255, 153, 0, 0.5);
+    //     }
+    //   }
+  
+    //   .border, .right {
+    //     border-color: rgb(255, 153, 0, 0.5);
+    //   }
+    // }
+  }
+
+  &.blue {
+    background: #EAF7FF;
+
+    .mask {
+      &:before, &:after {
+        border-color: rgb(29, 110, 173, 0.3);
+      }
+    }
+
+    .border, .right {
+      border-color: rgb(29, 110, 173, 0.3);
+    }
+
+    // &:hover {
+    //   background: #D3EFFF;
+
+    //   .mask {
+    //     &:before, &:after {
+    //       border-color: rgb(29, 110, 173, 0.5);
+    //     }
+    //   }
+
+    //   .right, .border {
+    //     border-color: rgb(29, 110, 173, 0.5);
+    //   }
+    // }
+  }
+
+  .border {
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+    bottom: 0px;
+    border: 2px solid $colors-standard-border-color;
+  }
+
+  .mask {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: -19px;
+      top: 50%;
+      margin-top: -19px;
+      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
+      height: 38px;
+      width: 38px;
+      background: white;
+      border: 2px solid $colors-standard-border-color;
+      border-radius: 1000px;
+    }
+  
+    &:after {
+      left: auto;
+      right: -19px;
+    }
+  }
+
+  .background-logo {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 0.05;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: max(150px, 20%);
+    background-position: right;
+    background-image: url('../assets/images/pages/tickets.svg');
+  }
+
+  .left, .right {
+    flex-shrink: 0;
+  }
+
+  .left {
+    position: relative;
+    flex-basis: 35%;
+
+    padding-right: 0px;
+
+    @media (min-width: $breakpoints-md) {
+      flex-basis: 50%;
+      padding-right: 24px;
+    }
+
+    .background-number {
+      display: none; 
+
+      @media (min-width: $breakpoints-md) {
+        display: block;
+      }
+
+      position: absolute;
+      top: 8px;
+      right: 24px;
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.1);
+    }
+
+    .price {
+      font-weight: 700;
+
+      .free {
+        color: $colors-monochrome-6;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-basis: 60%;
+    padding-left: 0px;
+    
+    @media (min-width: $breakpoints-md) {
+      padding-left: 24px;
+      flex-basis: 50%;
+      border-left: 1px solid $colors-standard-border-color;
+    }
+
+    .tag {
+      margin-top: 16px;
+      background: white;
+
+      margin-left: 8px; 
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.tickets {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-top: 8px;
+
+    @media (min-width: $breakpoints-lg) {
+      margin-top: 0px;
+    }
+
+    // &:nth-child(1) {
+    //   order: 1;
+    // }
+
+    // &:nth-child(2) {
+    //   order: 2;
+    // }
+
+    // &:nth-child(3) {
+    //   order: 3;
+    // }
+
+    // &:nth-child(4) {
+    //   order: 4;
+    // }
+
+    // &:nth-child(5) {
+    //   order: 5;
+    // }
+    
+    // &:nth-child(6) {
+    //   order: 6;
+    // }
+  }
+
+  @media (min-width: $breakpoints-lg) {
+    margin-top: 0px;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: 1fr 1fr;
+
+    > * {
+      order: 0 !important;
+    }
+  }
+}

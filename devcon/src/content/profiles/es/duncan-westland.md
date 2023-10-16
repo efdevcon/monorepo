@@ -1,0 +1,7 @@
+---
+name: "Duncan Westland"
+role: "Global Blockchain R&amp;D Team Lead"
+description: "►Duncan leads EY’s global blockchain R&amp;D team, and is responsible for developing new blockchain concepts and products for EY. ►Prior to joining EY Duncan was the CTO of Her Majesty’s Passport Office.  There he transformed IT delivery, moving it from a traditional wholly outsourced model to an internally provided Agile service deploying modern DevOps practices.  He was also responsible for developing the cryptography that secures the UK passport and worked on the use of Blockchain for recording travel stamps. ►Previously, Duncan was the biometrics lead for the UK’s ID Cards programme, responsible for the specification and the design of fingerprint and face recognition biometrics for the scheme. Later he applied this technology to passport issuance for detection of fraudulent applications. ►Prior to his public sector role he was a Managing Consultant at PA’s Cambridge Technology centre and worked on a wide variety of cutting-edge technologies, developing several patents during his work.  Duncan has a physics PhD and is a chartered engineer."
+organization: "EY"
+country: "United Kingdom"
+---

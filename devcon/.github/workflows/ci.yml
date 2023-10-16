@@ -1,0 +1,44 @@
+name: Devcon CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo DB_CONNECTION_STRING='${{ secrets.DB_CONNECTION_STRING }}' >> .env
+          echo ELASTIC_ENDPOINT='${{ secrets.ELASTIC_ENDPOINT }}' >> .env
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run Prettier // Format
+        run: yarn format
+
+      - name: Run Eslint // Lint
+        run: yarn lint
+
+      - name: Run Build
+        run: yarn build
+
+      - name: Serve build to test against
+        run: yarn serve &
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: Run your tests
+        run: npm test
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: screenshots

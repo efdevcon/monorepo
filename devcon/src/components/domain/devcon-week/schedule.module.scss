@@ -1,0 +1,968 @@
+@use 'assets/css/partials/index' as *;
+
+.hero {
+  --tile-size: 60px;
+  z-index: 1;
+}
+
+.schedule {
+  position: relative;
+  background: white;
+  color: black;
+  --color-icon: black;
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 16px;
+    // color: $colors-monochrome-6;
+
+    @media (min-width: $breakpoints-md) {
+      margin-bottom: 20px;
+      margin-bottom: 8px;
+    }
+
+    .view {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      color: $colors-monochrome-6;
+      background: #f8f8f8;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+      border-radius: 44px;
+      padding: 0px 20px;
+      width: 100%;
+      margin-top: 16px;
+
+      @media (min-width: $breakpoints-md) {
+        width: auto;
+        margin-top: 0px;
+      }
+
+      .options {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-evenly;
+        align-items: center;
+        // margin-left: 16px;
+
+        .switch {
+          all: unset;
+          height: 100%;
+          margin: 15px 0px;
+          padding: 6px 15px;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+
+          // &:not(:first-child) {
+          //   margin-left: 16px;
+          // }
+
+          .text {
+            margin-left: 8px;
+          }
+
+          svg {
+            font-size: 1.2em;
+          }
+
+          &.selected {
+            color: white;
+            border-radius: 14px;
+            background: #6664d3;
+
+            * {
+              fill: white;
+            }
+          }
+
+          * {
+            fill: #666666;
+          }
+        }
+      }
+    }
+  }
+
+  .top-bar {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: -16px;
+    margin-bottom: 4px;
+    padding: 16px 0px;
+
+    > * {
+      padding-top: 16px;
+    }
+
+    .expand-container {
+      display: none;
+
+      @media (min-width: $breakpoints-md) {
+        display: inline-block;
+      }
+    }
+
+    .swipe {
+      display: none;
+      color: $colors-monochrome-7;
+
+      @media (min-width: $breakpoints-lg) {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.event {
+  border-top-width: 4px !important;
+  border-width: 1px;
+}
+
+.event-in-table {
+  border-width: 1px;
+  border-top-width: 4px !important;
+
+  @media (min-width: $breakpoints-lg) {
+    // border-top-width: 1px !important;
+    // border-left-width: 4px !important;
+  }
+}
+
+.event,
+.event-in-table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+
+  &.KingsDay,
+  &.Easter {
+    .event-links {
+      display: none !important;
+    }
+  }
+
+  // &.Cowork, &.ID-Devcon {
+  //   background: none !important;
+  //   --difficulty-color-bg: none !important;
+
+  //   &:before {
+  //     content: '';
+  //     z-index: -1;
+  //     position: absolute;
+  //     pointer-events: none;
+  //     background-color: #f9f8ff;
+  //     left: 0px;
+  //     right: 0px;
+  //     bottom: 0px;
+  //     height: 100%;
+  //     width: 100%;
+  //     background-image: url('../../../assets/images/tile.png');
+  //     background-repeat: repeat-x;
+  //     mix-blend-mode: overlay;
+  //     background-size: var(--tile-size, 35px);
+  //     background-position: bottom;
+  //   }
+  // }
+
+  background: #f8f8f8;
+  border-color: #4b4b4b;;
+  --difficulty-color: #4b4b4b;
+  --difficulty-color-bg: #f8f8f8;
+
+  &.ID-Devcon {
+    background: #fff8f8;
+    border-color: #ff2a00;
+    --difficulty-color: #ff2a00;
+    --difficulty-color-bg: #ffebeb;
+
+    &:before {
+      content: '';
+      // z-index: -1;
+      position: absolute;
+      pointer-events: none;
+      // left: 0px;
+      // right: 5%;
+      left: 30%;
+      bottom: 0%;
+      height: 100%;
+      width: 70%;
+      background-image: url('../../../assets/images/mountains.png');
+      // background-repeat: repeat-x;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      background-position: right;
+      // mix-blend-mode: overlay;
+      background-size: contain;
+      // background-size: var(--tile-size, 35px);
+      background-position: bottom;
+    }
+  }
+
+  &.ID-ETHBogotaHackathon {
+    background: #f8fcff;
+    border-color: #1a8ffc;
+    --difficulty-color: #1a8ffc;
+    --difficulty-color-bg: #e3f3ff;
+  }
+
+  // Green!
+  &.ID-ETHLatAm {
+    background: #fffdfc;
+    border-color: #ffa51f;
+    --difficulty-color: #ffa51f;;
+    --difficulty-color-bg: #fffdfc;
+  }
+ 
+  &.ID-SchellingPoint {
+    background: #fbf5ff;
+    border-color: #c681ff;
+    --difficulty-color: #c681ff;
+    --difficulty-color-bg: #e7defc;
+  }
+
+  // &:not(.Beginner, .Intermediate, .Advanced) {
+  //   background: transparent;
+  //   border-color: #4b4b4b;
+  //   --difficulty-color: #4b4b4b;
+  //   --difficulty-color-bg: transparent;
+  // }
+
+  // &:not(.Beginner, .Intermediate, .Advanced) {
+  //   background: #f9f8ff;
+  //   border-color: #8f78fb;
+  //   --difficulty-color: #8f78fb;
+  //   --difficulty-color-bg: #e9e6ff;
+  // }
+
+  // &.Beginner {
+  //   background: #f8fcff;
+  //   border-color: #0085ff;
+  //   --difficulty-color: #0085ff;
+  //   --difficulty-color-bg: #e3f3ff;
+  // }
+
+  // &.Intermediate {
+  //   background: #fffaf8;
+  //   border-color: #ff9b00;
+  //   --difficulty-color: #ff9b00;
+  //   --difficulty-color-bg: #ffece4;
+  // }
+
+  // &.Advanced {
+  //   background: #fff8f8;
+  //   border-color: #ff2a00;
+  //   --difficulty-color: #ff2a00;
+  //   --difficulty-color-bg: #ffebeb;
+  // }
+
+  .multi-day-indicator {
+    align-self: flex-start;
+  }
+}
+
+.learn-more-modal-content,
+.event {
+  .event-links {
+    background: var(--difficulty-color);
+    color: white;
+    --color-icon: white;
+    pointer-events: all;
+  }
+}
+
+.learn-more-modal-content {
+  color: black;
+  --color-icon: black;
+
+  .event {
+    display: flex !important;
+    margin-top: 0px !important;
+
+    .event-links {
+      @media (min-width: $breakpoints-sm) {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+
+    .content {
+      padding: 24px 24px !important;
+      padding-bottom: 8px !important;
+
+      .title {
+        margin-right: 36px;
+      }
+
+      .time-of-day {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.event {
+  @media (hover: hover) {
+    &:hover {
+      .learn-more {
+        background: var(--difficulty-color);
+        color: white;
+        pointer-events: all;
+
+        .attend-details {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.list {
+  .event-links {
+    padding-left: 16px !important;
+  }
+}
+
+.event-links {
+  display: flex;
+  align-items: center;
+  padding: 10px 8px;
+  color: var(--difficulty-color);
+  --color-icon: var(--difficulty-color);
+  background: var(--difficulty-color-bg);
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--difficulty-color);
+    color: white;
+    --color-icon: white;
+  }
+
+  > * {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  .add-to-calendar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    --color-icon: white !important;
+  }
+}
+
+.add-to-calendar-modal {
+  [data-type='modal-content'] {
+    width: 300px !important;
+  }
+
+  .add-to-calendar-modal-content {
+    color: black;
+
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-right: 32px;
+    }
+
+    > * {
+      align-self: flex-start;
+      margin-top: 16px;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+.learn-more {
+  cursor: pointer;
+  padding: 4px 8px;
+  color: white;
+  background: var(--difficulty-color);
+  display: none;
+
+  p {
+    letter-spacing: 0.08em;
+  }
+
+  // Desktop + cursor devices (not touch)
+  @media (min-width: $breakpoints-lg) and (hover: hover) {
+    background: var(--difficulty-color-bg);
+    color: var(--difficulty-color);
+    display: block;
+    left: 0px;
+    right: 0px;
+    bottom: 0%;
+    pointer-events: none;
+
+    .attend-details {
+      color: black;
+    }
+  }
+}
+
+.day-header {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+.day,
+.day-header,
+.list-table-header {
+  // background: #2b2b2b;
+  padding: 16px;
+  // color: $colors-monochrome-2;
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  // box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+
+  &.is-devcon {
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      // opacity: 0.35;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+      height: 100%;
+      left: 0px;
+      background: #ffebeb;
+    }
+  }
+
+  &.open {
+    background: black;
+  }
+
+  &.active {
+    // background: rgb(214, 214, 214);
+    // background: #6664d3 !important;
+  }
+
+  * {
+    fill: $colors-monochrome-2;
+  }
+}
+
+.list-table-header {
+  background: rgb(10, 10, 10);
+  color: $colors-monochrome-5;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+
+  font-weight: bold;
+  position: relative;
+
+  .categories {
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    // margin-top: 4px;
+    // transform: translateX(-4px);
+
+    > * {
+      margin-top: 4px;
+    }
+  }
+
+  > * {
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.list-grid {
+  @media (min-width: $breakpoints-lg) {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(24, 1fr);
+
+    .col-1 {
+      grid-column: span 3;
+    }
+
+    .col-2 {
+      grid-column: span 12;
+    }
+
+    .col-3 {
+      grid-column: span 5;
+    }
+
+    .col-4 {
+      grid-column: span 3;
+    }
+
+    .col-5 {
+      grid-column: span 1;
+    }
+  }
+}
+
+.list-table-header {
+  display: none;
+  @media (min-width: $breakpoints-lg) {
+    display: grid;
+  }
+
+  padding: 16px;
+}
+
+.list,
+.learn-more-modal-content {
+  .day-header {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  // Styles shared by event and event-in-table
+  .event,
+  .event-in-table {
+    overflow: hidden;
+    margin-top: 4px;
+
+    .content {
+      padding: 16px;
+      padding-bottom: 8px;
+      margin-top: 4px;
+
+      .info {
+        display: none;
+      }
+
+      .title {
+        display: inline-block;
+      }
+
+      .location {
+        display: flex;
+        font-weight: normal;
+        margin-bottom: 8px;
+        color: $colors-monochrome-6;
+        --color-icon: #{$colors-monochrome-6};
+      }
+
+      .date {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        span {
+          color: $colors-monochrome-6;
+        }
+
+        .end-date {
+          color: $colors-monochrome-6;
+        }
+      }
+
+      .organizers {
+        color: $colors-monochrome-6;
+      }
+    }
+  }
+
+  // Specific styles/overrides for event in table
+  .event-in-table {
+    display: none;
+
+    @media (min-width: $breakpoints-lg) {
+      display: grid;
+    }
+
+    .date {
+      justify-content: space-between;
+      flex-direction: column;
+
+      .end-date {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      .cowork-image {
+        margin-top: 8px;
+
+        > * {
+          width: 80px;
+        }
+      }
+    }
+
+    .description {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .title {
+        margin-bottom: 8px;
+      }
+
+      .body {
+        margin-bottom: 16px;
+      }
+    }
+
+    .attend {
+      font-weight: bold;
+    }
+
+    .calendar-add {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    // &.Cowork {
+    //   .event-links {
+    //       color: white;
+    //       --color-icon: white;
+    //       background: var(--difficulty-color) !important;
+    //   }
+    // }
+  }
+
+  // Specific styles/overrides for event in regular list view
+  .event {
+    @media (min-width: $breakpoints-lg) {
+      display: none;
+    }
+
+    .content {
+      .date {
+        margin: 8px 0px;
+      }
+
+      .location {
+        margin-top: 4px;
+      }
+
+      .organizers {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      .description {
+        margin: 8px 0px;
+      }
+
+      .ticket-availability {
+        display: block;
+        padding: 12px 0px;
+        margin-bottom: 8px;
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .add-to-calendar {
+          fill: $colors-monochrome-6;
+        }
+      }
+    }
+  }
+}
+
+// Timeline view
+.timeline {
+  display: grid;
+  grid-gap: 8px;
+  text-transform: uppercase;
+
+  // hover:none and pointer:coarse targets mobile/touch devices
+  @media (hover: none), (pointer: coarse) {
+    overflow-x: auto;
+    position: relative;
+    left: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100vw;
+    right: -16px;
+  }
+
+  @media (min-width: $breakpoints-md) and (hover: none), (min-width: $breakpoints-md) and (pointer: coarse) {
+    left: -64px;
+    right: -64px;
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+
+  .day {
+    min-width: 240px;
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-row: 1;
+    grid-column: span 1;
+
+    @media (min-width: $breakpoints-md) {
+      padding: 16px;
+      font-size: 16px;
+    }
+
+    // Position sticky doesn't work when overflow property is set on a parent (which is the case for touch devices since we want to use native scroll in that scenario)
+    // For now the sticky positioning only works on non-touch devices, hence the media query:
+    @media (hover: hover) {
+      position: sticky;
+      top: 4px;
+    }
+  }
+
+  .event {
+    cursor: pointer;
+    --padding: 4px 8px 4px 8px;
+    --margin: 8px;
+    // margin-right: var(--margin);
+    font-size: 10px;
+    -webkit-text-size-adjust: none;
+
+    @media (min-width: $breakpoints-lg) {
+      font-size: 12px;
+      --padding: 12px 12px 8px 12px;
+    }
+
+    .content {
+      padding: var(--padding);
+      display: flex;
+
+      flex-direction: row;
+      flex-grow: 1;
+
+      .image {
+        margin-right: 16px;
+
+        > * {
+          height: 50px;
+        }
+      }
+
+      .content-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        flex-grow: 1;
+
+        .top {
+          @media (min-width: $breakpoints-lg) {
+            margin-bottom: 12px;
+          }
+
+
+          .title {
+            // margin-bottom: 8px;
+            display: inline-block;
+            position: sticky;
+            left: 0px;
+            max-width: 100%;
+            transform: translateZ(0);
+
+            // @media (min-width: $breakpoints-lg) {
+            //   margin-bottom: 8px;
+            // }
+
+            // No need for sticky positioning when the event is only one day long:
+            &.single-day {
+              position: relative;
+            }
+
+            // @media (max-width: $breakpoints-lg + 1) {
+            //   white-space: nowrap;
+            //   text-overflow: ellipsis;
+            //   overflow: hidden;
+            // }
+          }
+
+          .when {
+            // display: none;
+
+            // @media (min-width: $breakpoints-lg) {
+            //   display: grid;
+            // }
+            // display: inline-block;
+            // position: sticky;
+            // left: 0px;
+            display: grid;
+            grid-gap: 4px;
+            grid-template-columns: repeat(1fr, var(--eventLength));
+
+            > * {
+              grid-column: span 1;
+              grid-row: 1;
+            }
+
+            .which-day {
+              color: $colors-monochrome-6;
+            }
+          }
+        }
+
+        .bottom {
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+
+          @media (min-width: $breakpoints-lg) {
+            display: flex;
+          }
+
+          .organizers {
+            margin-bottom: 4px;
+            color: $colors-monochrome-9;
+          }
+        }
+      }
+    }
+  }
+}
+
+.timeline-background {
+  position: absolute;
+  pointer-events: none;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: -1;
+
+  svg {
+    width: min(300px, 100%);
+    height: 50%;
+  }
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: -16px;
+
+  .filter-text {
+    display: none;
+
+    @media (min-width: $breakpoints-sm) {
+      display: inline-block;
+    }
+  }
+
+  > * {
+    margin-top: 16px;
+    margin-right: 8px;
+  }
+
+  > div {
+    [role='button'] {
+      width: 100px;
+
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @media (min-width: $breakpoints-sm) {
+        width: auto;
+      }
+    }
+  }
+}
+
+.no-results {
+  display: flex;
+  height: 200px;
+}
+
+.expand-list {
+  background: white;
+  border: 1px solid $colors-monochrome-6;
+  color: $colors-monochrome-8;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 2px;
+  // display: none;
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Roboto';
+
+  &:first-child {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: $colors-monochrome-3;
+  }
+
+  * {
+    fill: $colors-monochrome-6;
+  }
+
+  span {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      font-size: 0.6em;
+
+      &:first-child {
+        // margin-bottom: 2px;
+      }
+    }
+  }
+
+  p {
+    display: none;
+    margin-left: 8px;
+
+    @media (min-width: $breakpoints-lg) {
+      display: inline-block;
+    }
+  }
+}
+
+.hide-sold-out {
+  display: inline-flex;
+  align-items: center;
+
+  span {
+    margin-left: 0.5em;
+  }
+}

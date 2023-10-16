@@ -1,0 +1,7 @@
+---
+name: "Sergey Nazarov"
+role: "CEO"
+description: "Sergey is the CEO of SmartContract.com and Chainlink, which specialize in providing highly secure and reliable oracles to both large enterprises (SWIFT; https://create.smartcontract.com/sibos17) and various leading smart contract development teams (Zeppelin; https://blog.zeppelinos.org/chainlink-partnership/, OpenLaw; https://medium.com/@OpenLawOfficial/openlaw-teams-with-chainlink-to-bring-real-world-info-to-smart-contracts-4e7a3dac80a8, etc…). Sergey has been building decentralized applications since 2014, initially launching Cryptamail as the first blockchain-based messaging service, then going on to build Secure Asset Exchange, which became the first widely used decentralized exchange interface.Sergey’s current goal is the creation of a thriving and diverse ecosystem of oracles, providing various off-chain data, payments and various other APIs to smart contracts for their immediate use. He’s extremely excited about the decentralization revolution currently under way, and is hopeful that the ability to securely combine smart contracts on Ethereum with off-chain data/events, will lead to a massive rise in both the volume and large scale usefulness of smart contracts."
+organization: "SmartContract"
+country: "United States"
+---

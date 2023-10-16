@@ -1,0 +1,68 @@
+@use 'assets/css/partials/index' as *;
+
+$gradient-size: max(5%, 32px);
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+
+  &.mask-left {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 $gradient-size);
+  }
+
+  &.mask-right {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - $gradient-size), transparent);
+
+    .swipe-to-scroll {
+      // Add a bit of padding to the end of the scrollable content
+      // A bit hacky/not obvious way to do it but its to accomodate some edge cases
+      // This may need to be done on a per case basis later since this solutions assumes a certain structure of the scrollable content, but works for now
+      > * {
+        &:after {
+          content: '';
+          display: block;
+          width: $gradient-size;
+          opacity: 0;
+          flex-shrink: 0;
+          height: 1px;
+          pointer-events: none;
+          z-index: -1;
+        }
+      }
+    }
+  }
+
+  &.mask-both {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 $gradient-size,
+      #000 calc(100% - $gradient-size),
+      transparent
+    );
+  }
+
+  &.no-bounds {
+    overflow: visible;
+  }
+}
+
+.swipe-to-scroll {
+  height: 100%;
+  user-select: none;
+
+  &.is-native-scroll {
+    overflow-x: auto;
+    transform: translateX(0px) !important;
+  }
+}

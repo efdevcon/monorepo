@@ -1,0 +1,7 @@
+---
+name: "Shayan Eskandari"
+role: "PhD Student, Blockchain Whisperer"
+description: "Shayan Eskandari is a Phd student in Information Systems Engineering program at Concordia University, also he has been involved in many projects in the blockchain space in the last 6 years. His MASc thesis in 2015 was on Bitcoin usability in real-world use cases and his PhD thesis is looking at STS (Society Technology and Science) perspective on Blockchain technology and also working on a collaborative academic project on Decentral Order books. His roles including but not limited to, Blockchain engineer at Bitaccess Inc startup, Opensource contributor to projects such as web3.js, MIST, truffle, pycoin and many more."
+organization: "Concordia University"
+country: "Canada"
+---

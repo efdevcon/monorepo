@@ -1,0 +1,174 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+}
+
+.account {
+  position: relative;
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+
+  .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: $gaps-gap-3;
+
+    > * {
+      margin-top: $gaps-gap-2;
+      margin-right: $gaps-gap-2;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+    top: $gaps-gap-4;
+  }
+}
+
+.connection-info {
+  border-bottom: 1px solid $colors-standard-border-color;
+  margin-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+}
+
+.wallet {
+  display: flex;
+  // margin-top: $gaps-gap-4;
+  // margin-bottom: $gaps-gap-4;
+
+  .circle {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    margin-right: $gaps-gap-4;
+    
+    img {
+      height: auto;
+      width: 100%;
+      border-radius: 50px;
+    }
+  }
+
+  .avatar {
+    img {
+      border-radius: 50px;
+      height: 50px;
+      width: 50px;
+      margin-right: $gaps-gap-4;
+    }
+  }
+
+  .details {
+    .network {
+      @include fonts-bold;
+    }
+
+    .wallet-address {
+      color: $colors-monochrome-7;
+      @include fonts-bold;
+    }
+
+    .connection {
+      @include fonts-sm;
+    }
+
+    .loading {
+      color: $colors-track-light-blue;
+    }
+
+    .connected {
+      color: $colors-track-green;
+    }
+
+    .disconnected {
+      color: $colors-track-red;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+.slider-container {
+  padding-bottom: $gaps-gap-4;
+  padding-top: $gaps-gap-4;
+  border-bottom: 1px solid $colors-standard-border-color;
+}
+
+.ticket-container {
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+
+  .ticket {
+    margin-bottom: $gaps-gap-4;
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+
+    img {
+      width: 100%;
+    }
+
+    .ticket-type,
+    .thumbnail,
+    .ticket-id,
+    .qr-code {
+      position: absolute;
+    }
+
+    .ticket-type {
+      @include fonts-bold;
+      top: 5%;
+      left: 4.3%;
+    }
+
+    .thumbnail {
+    }
+
+    .ticket-id {
+      top: 45%;
+      right: 6%;
+      @include fonts-bold;
+      @include fonts-xl;
+    }
+
+    .qr-code {
+      border: 1px solid $colors-standard-border-color;
+      bottom: 5%;
+      left: 4.3%;
+      height: 33%;
+      width: 36.8%;
+      padding: $gaps-gap-4;
+
+      @media (max-width: $breakpoints-sm) {
+        padding: $gaps-gap-2;
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nft {
+      display: flex;
+      align-items: center;
+
+      .view-nft {
+        @include fonts-bold;
+        text-decoration: underline;
+        margin-right: $gaps-gap-4;
+      }
+    }
+  }
+}

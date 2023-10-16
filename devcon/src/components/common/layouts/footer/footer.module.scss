@@ -1,0 +1,397 @@
+/* TODO: The footer styling is batshit insane and unreadabable, if its too painful to deal with, maybe better to just rework it */
+@use 'src/assets/css/partials/index' as *;
+
+@mixin top-grid {
+  @include grids-grid-12;
+
+  .col-1 {
+    grid-column: 1 / 3;
+  }
+
+  .col-2 {
+    grid-column: 3 / 6;
+  }
+
+  .col-3 {
+    grid-column: 6 / 8;
+  }
+
+  .col-4 {
+    grid-column: 8 / 10;
+  }
+
+  .col-5 {
+    grid-column: 10 / 13;
+    grid-row: 1;
+  }
+
+  .col-6 {
+    grid-column: 12 / 13;
+    grid-row: 1;
+  }
+
+  .col-7 {
+    display: none;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    @include grids-grid-6;
+    row-gap: 40px;
+
+    .col-1 {
+      grid-column: 1 / 4;
+      grid-row-start: 1;
+    }
+
+    .col-2 {
+      grid-column: 4 / 7;
+    }
+
+    .col-3 {
+      grid-column: 1 / 4;
+    }
+
+    .col-4 {
+      grid-column: 4 / 7;
+    }
+
+    .col-5 {
+      grid-column: 1 / 4;
+      grid-row-start: 1;
+
+      .newsletter {
+        display: none;
+      }
+    }
+
+    .col-6 {
+      grid-column: 1 / 1;
+      grid-row: 1 / 1;
+    }
+
+    .col-7 {
+      display: block;
+      grid-column: 1 / 7;
+      grid-row: 2;
+    }
+  }
+}
+
+@mixin bottom-grid {
+  @include grids-grid-12;
+
+  .col-1 {
+    grid-column: 1 / 6;
+  }
+
+  .col-2 {
+    grid-column: 6 / 11;
+  }
+
+  .col-3 {
+    grid-column: 11 / 13;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    @include grids-grid-6;
+    grid-auto-flow: column;
+
+    .col-1 {
+      grid-column: 2 / 7;
+      grid-row-start: 2;
+    }
+    
+    .col-3 {
+      grid-column: 5 / 7;
+      grid-row: 1 / 3;
+    }
+  }
+
+  @media (max-width: $breakpoints-md) {
+    grid-auto-flow: row;
+
+    .col-1 {
+      grid-column: 1 / 7;
+      grid-row: 3 / 4;
+    }
+
+    .col-2 {
+      grid-column: 1 /7;
+      grid-row: 1 / 2;
+    }
+
+    .col-3 {
+      grid-column: 1 / 7;
+      grid-row: 2 / 3;
+    }
+  }
+}
+
+.container {
+  border-top: 1px solid $colors-monochrome-5;
+  position: relative;
+
+  .top-section {
+    position: relative;
+    background: white;
+    z-index: 2;
+
+    .col-2 {
+      @media (max-width: $breakpoints-lg) {
+        margin-top: 0px !important;
+      }
+
+      @media (max-width: $breakpoints-md) {
+        margin-top: $gaps-gap-4 !important;
+      }
+    }
+
+    --theme-gradient: linear-gradient(90deg, #ffdc8b 0%, #f7d9d4 50%, #ffb8e3);
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      opacity: 0.2;
+      z-index: -2;
+      background-image: var(--theme-gradient-footer, var(--theme-gradient));
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      background: url('../../../../assets/images/pages/bogota-stroked.svg');
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 1;
+      z-index: -1;
+
+      @media (max-width: $breakpoints-md) {
+        background-size: 250%;
+        background-position: 20% center;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      justify-content: space-between;
+      padding-top: 32px;
+      padding-bottom: 32px;
+
+      @media (max-width: $breakpoints-md) {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        background-position: center left;
+      }
+
+      .col-1,
+      .col-2,
+      .col-3,
+      .col-4 {
+        flex-basis: 24%;
+
+        @media (max-width: $breakpoints-lg) {
+          flex-basis: 50%;
+        }
+
+        @media (max-width: $breakpoints-md) {
+          flex-basis: 100%;
+        }
+      }
+
+      .col-3,
+      .col-4 {
+        @media (max-width: $breakpoints-lg) {
+          margin-top: $gaps-gap-6;
+        }
+      }
+
+      .col-2,
+      .col-3,
+      .col-4 {
+        @media (max-width: $breakpoints-lg) {
+          margin-top: $gaps-gap-4;
+        }
+      }
+
+      // Logo & social
+      .col-1 {
+        @include fonts-sm;
+        padding-right: $gaps-gap-16;
+
+        a {
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+
+      // About Devcon
+      .col-2 {
+        padding-right: $gaps-gap-16;
+
+        p {
+          @include fonts-sm;
+          margin-bottom: $sizes-size-8;
+        }
+      }
+
+      // Links
+      .col-3 {
+        @media (max-width: $breakpoints-md) {
+          padding-top: 16px;
+          padding-bottom: 16px;
+          border-top: 1px solid $colors-standard-border-color;
+          border-bottom: 1px solid $colors-standard-border-color;
+        }
+      }
+
+      // Contact
+      .col-4 {
+        @include fonts-sm;
+
+        .contact {
+          .email-1 {
+            margin-bottom: $sizes-size-16;
+          }
+        }
+      }
+
+      // Scroll up
+      .col-5 {
+        .scroll-up {
+          display: flex;
+          justify-content: flex-end;
+          font-size: $sizes-size-14;
+
+          &:hover {
+            --color-icon: #{$colors-monochrome-6};
+          }
+
+          @media (max-width: $breakpoints-lg) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-section {
+    border-top: 1px solid $colors-monochrome-5;
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      @media (max-width: $breakpoints-lg) {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .col-1 {
+        @include fonts-xs;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: $breakpoints-lg) {
+          order: 2;
+          text-align: center;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+
+      .col-2 {
+      }
+
+      .col-3 {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        top: -8px;
+        position: relative;
+
+        > * {
+          margin-right: 16px;
+          margin-top: 8px;
+          text-align: center;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+
+        @media (max-width: $breakpoints-lg) {
+          order: 1;
+          margin-bottom: 8px;
+          margin-right: 0px;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.list {
+  list-style-type: none;
+
+  > p,
+  li {
+    @include fonts-sm;
+    margin-bottom: 14px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.social-media {
+  margin-top: $sizes-size-12;
+  @include fonts-lg-fixed;
+
+  > * {
+    margin-right: $sizes-size-9;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.small-logo {
+  margin-right: 16px; 
+
+  @media (max-width: $breakpoints-lg) {
+    margin-right: 0px;
+  }
+
+  svg {
+    width: 125px;
+    height: 50px;
+    max-width: 100%;
+  }
+}
+
+.modal-overrides {
+  [data-type='modal-content'] {
+    max-height: 80vh;
+    width: min(800px, 80vw) !important;
+  }
+}

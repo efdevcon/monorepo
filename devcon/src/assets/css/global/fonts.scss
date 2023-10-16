@@ -1,0 +1,265 @@
+@use 'assets/css/partials/index' as *;
+
+.font-primary {
+  @include fonts-primary;
+}
+
+.font-secondary {
+  @include fonts-secondary;
+}
+
+// Headers
+h1,
+.h1 {
+  @include fonts-secondary;
+  @include fonts-bold;
+  font-size: $sizes-size-16 + $sizes-size-16;
+  line-height: 125%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+h2,
+.h2,
+.title {
+  @include fonts-bold;
+  font-size: 24px;
+  line-height: 120%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+h3,
+.h3 {
+  @include fonts-bold;
+  @include fonts-highlighted;
+  font-size: 24px;
+  line-height: 120%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+h4,
+.h4 {
+  // @include fonts-secondary;
+  @include fonts-normal;
+  font-size: $sizes-size-10;
+  line-height: 125%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+h5,
+.h5 {
+  // @include fonts-secondary;
+  @include fonts-bold;
+  font-size: $sizes-size-9;
+  line-height: 150%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+h6,
+.h6 {
+  // @include fonts-secondary;
+  @include fonts-bold;
+  font-size: $sizes-size-8;
+  line-height: 150%;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+.app-header {
+  @include fonts-app-section-header;
+}
+
+.app-header-sm {
+  @include fonts-app-section-header-sm;
+}
+
+.subtitle {
+  @include fonts-subtitle;
+
+  &.spaced {
+    @include gaps-margin-bottom($gaps-gap-6, $gaps-gap-4);
+  }
+}
+
+// Sizes
+.font-xxs {
+  @include fonts-xxs;
+
+  &-em {
+    @include fonts-xxs-em;
+  }
+}
+
+.font-xs {
+  @include fonts-xs;
+
+  &-em {
+    @include fonts-xs-em;
+  }
+}
+
+.font-sm {
+  @include fonts-sm;
+
+  &-em {
+    @include fonts-sm-em;
+  }
+}
+
+.font-md {
+  @include fonts-md;
+
+  &-em {
+    @include fonts-md-em;
+  }
+}
+
+.font-lg {
+  @include fonts-lg;
+
+  &-em {
+    @include fonts-lg-em;
+  }
+}
+
+.font-xl {
+  @include fonts-xl;
+
+  &-em {
+    @include fonts-xl-em;
+  }
+}
+
+.font-xxl {
+  @include fonts-xxl;
+
+  &-em {
+    @include fonts-xxl-em;
+  }
+}
+
+// Sizes
+.font-xxs-fixed {
+  @include fonts-xxs-fixed;
+}
+
+.font-xs-fixed {
+  @include fonts-xs-fixed;
+}
+
+.font-sm-fixed {
+  @include fonts-sm-fixed;
+}
+
+.font-md-fixed {
+  @include fonts-md-fixed;
+}
+
+.font-lg-fixed {
+  @include fonts-lg-fixed;
+}
+
+.font-xl-fixed {
+  @include fonts-xl-fixed;
+}
+
+.font-xxl-fixed {
+  @include fonts-xxl-fixed;
+  // font-size: $sizes-size-16 + $sizes-size-8;
+}
+
+.font-massive {
+  @include fonts-massive;
+}
+
+.font-massive-2 {
+  @include fonts-massive-2;
+}
+
+.bold,
+.text-bold {
+  @include fonts-bold;
+}
+
+.semi-bold,
+.text-semi-bold {
+  @include fonts-semi-bold;
+}
+
+.very-bold,
+.text-very-bold {
+  @include fonts-very-bold;
+}
+
+.text-italic {
+  font-style: italic !important;
+}
+
+.text-small {
+  @include fonts-sm;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-line-through {
+  text-decoration: line-through;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.hover-underline {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &.generic {
+    @include fonts-generic-link;
+  }
+}
+
+// For cases where we don't want default link styling
+a.plain {
+  color: inherit;
+  text-decoration: none;
+}
+
+li.plain {
+  list-style-type: none;
+}
+
+.highlighted {
+  @include fonts-highlighted;
+}

@@ -1,0 +1,70 @@
+@use 'assets/css/partials/index' as *;
+
+.positional-wrapper {
+  justify-content: center;
+  width: 100%;
+  z-index: 1;
+  margin-top: $gaps-gap-8;
+  // padding-top: $gaps-gap-8;
+
+  @media (max-width: $breakpoints-lg) {
+    position: relative;
+    display: flex;
+    bottom: 0px;
+  }
+
+  .content {
+    overflow: hidden;
+    border: 1px solid $colors-standard-border-color;
+    display: flex;
+    flex-direction: row;
+    background: white;
+    color: black;
+    width: 100%;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      width: 80px;
+      height: 80px;
+    }
+
+    // .slider {
+    //   overflow: hidden;
+    //   width: 100%;
+
+    .swipe-wrapper {
+      width: 100%;
+
+      .items {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+    
+        > * {
+          min-width: 200px;
+          flex-basis: 25%;
+          flex-shrink: 0;
+          display: flex !important;
+          flex-direction: column;
+          justify-content: center;
+          padding: 4px 12px;
+          margin: 0px 8px;
+          height: 80px;
+          border-bottom: 3px solid transparent;
+    
+          &:hover {
+            border-bottom: 3px solid black;
+          }
+    
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

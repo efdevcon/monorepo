@@ -1,0 +1,48 @@
+@use 'assets/css/partials/index' as *;
+
+.panzoom {
+  overflow: hidden;
+
+  .image {
+    width: 100%;
+    height: min(50vh, 300px);
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+
+.gallery {
+  margin-top: $gaps-gap-4;
+}
+
+.tabs {
+  margin-bottom: $gaps-gap-1;
+}
+
+.room-info {
+  border-bottom: 1px solid $colors-standard-border-color;
+  padding-top: $gaps-gap-2;
+  padding-bottom: $gaps-gap-4;
+
+  .capacity-icon {
+    @include fonts-md-fixed;
+  }
+
+  p {
+    @include fonts-primary;
+  }
+
+  :global(.label) {
+    text-transform: unset;
+    @include fonts-bold;
+
+    > * {
+      margin-right: $gaps-gap-2;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}

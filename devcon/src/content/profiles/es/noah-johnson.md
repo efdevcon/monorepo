@@ -1,0 +1,7 @@
+---
+name: "Noah Johnson"
+role: "Chief Product Officer"
+description: "Noah Johnson is Chief Product Officer and co-founder of Oasis Labs. Noah is a PhD candidate at UC Berkeley with expertise in program analysis, security policy enforcement, and privacy-preserving techniques. Noah recently developed the first practical system to provide differential privacy for general statistical queries. This work was featured in Wired and Gizmodo, and is in use today by Uber. Noah has received several awards as a graduate student including the Signature Innovation Fellowship, Sevin Rosen Award for Innovation, and Tony Leong Lim Pre-Doctoral Award. Previously Noah co-led a team of students in the development of DroidBlaze, a platform for automated security analysis and policy enforcement for mobile applications. Noah and advisor Dawn Song commercialized the DroidBlaze platform by founding Ensighta Security, which was acquired by FireEye in 2012."
+organization: "Oasis Labs"
+country: "United States"
+---

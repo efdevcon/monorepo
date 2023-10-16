@@ -1,0 +1,90 @@
+@use 'assets/css/partials/index' as *;
+
+.strip {
+  // display: none !important; // Temporarily disabling
+  @include fonts-sm;
+  position: relative;
+  z-index: 20;
+  background: $colors-monochrome-1;
+  color: $colors-monochrome-10;
+  --color-icon: #{$colors-monochrome-10};
+
+  :global(#language-toggle) {
+    @media (max-width: $breakpoints-lg) {
+      display: none;
+    }
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    // background: $colors-ef-pink;
+    color: #{$colors-monochrome-10};
+    --color-icon: #{$colors-system-error};
+  }
+
+  &.hero {
+    background: #2d2d2d33;
+    color: white;
+    --color-icon: white;
+  }
+
+  &:not(.hero) {
+    border-bottom: var(--strip-border, 1px solid rgba(0, 0, 0, 0.1));
+  }
+
+  .body {
+    width: 100%;
+    display: var(--display-strip, flex);
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    // height: var(--strip-height, 32px);
+    // padding-top: var(--strip-padding, 4px);
+    // padding-bottom: var(--strip-padding, 4px);
+    // opacity: var(--strip-opacity, 1);
+    // transition: height 0.3s, opacity 0.3s;
+
+    .notification {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      overflow: hidden;
+
+      > svg {
+        @include fonts-md;
+        fill: none !important;
+        stroke: var(--color-icon, $colors-main);
+
+        @media (max-width: $breakpoints-lg) {
+          @include fonts-lg;
+        }
+      }
+
+      :global(.label) {
+        flex-shrink: 0;
+        margin-right: $gaps-gap-2;
+      }
+
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .dismiss {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-left: 8px;
+
+      svg {
+        margin-left: 0.5em;
+        font-size: 0.7em;
+      }
+    }
+  }
+}

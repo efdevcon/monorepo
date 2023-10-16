@@ -1,0 +1,24 @@
+.links {
+  display: flex;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  top: -12px;
+
+  >* {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    margin-top: 12px;
+
+    svg {
+      font-size: 0.9em;
+      margin-left: 8px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}

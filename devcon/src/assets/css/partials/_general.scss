@@ -1,0 +1,21 @@
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+  }
+}
+
+// Not touch
+@mixin hover-supported {
+  @media not all and (hover: none) {
+    @content;
+  }
+}

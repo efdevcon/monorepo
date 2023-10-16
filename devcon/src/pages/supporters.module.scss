@@ -1,0 +1,95 @@
+@use 'assets/css/partials/index' as *;
+
+.auto-scroller {
+  display: flex;
+  justify-content: center;
+
+  > * {
+    max-width: 1000px;
+  }
+}
+
+.page-body {
+  :global {
+    .left {
+      flex-basis: calc(60% - 24px);
+    }
+    .right {
+      flex-basis: calc(40% - 24px);
+    }
+  }
+}
+
+
+.grid-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  .grid-image-wrapper {
+    flex-basis: 150px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.smaller {
+      flex-basis: 70px;
+    }
+  }
+}
+
+.grid-text {
+  display: grid;
+  grid-gap: 5px;
+  row-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    > * {
+      justify-content: flex-start;
+    }
+  }
+
+  > * {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    @include fonts-bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    cursor: pointer;
+  }
+}
+
+.horizontal-scroller-images {
+  display: inline-flex !important;
+  align-items: center;
+
+  .image-wrapper {
+    width: 150px; 
+    margin-right: 50px;
+
+    img {
+      height: 50px;
+      cursor: pointer;
+    }
+  }
+}
+
+.thanks {
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 40px; 
+
+    &:first-child {
+      margin-top: 0px;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@use 'assets/css/partials/index' as *;
+
+.overview {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.outer {
+  flex: 0 50%;
+  margin-bottom: $gaps-gap-8;
+
+  &:nth-child(odd) {
+    padding-right: $gaps-gap-4;
+  }
+
+  &:nth-child(even) {
+    padding-left: $gaps-gap-4;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    flex: 0 100%;
+
+    &:nth-child(odd),
+    &:nth-child(even) {
+      padding: 0;
+    }
+  }
+}
+
+.card {
+  background: white;
+}

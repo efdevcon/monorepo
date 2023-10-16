@@ -1,0 +1,106 @@
+@use 'assets/css/partials/index' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 120px;
+  scroll-snap-margin-top: 120px; // safari
+
+  >p {
+    @include fonts-xl;
+
+    margin-bottom: $gaps-gap-8;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: $gaps-gap-10;
+
+    @media (max-width: $breakpoints-md) {
+      flex-direction: column;
+    }
+
+    .left-section {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .description {
+        flex-shrink: 0;
+
+        @media (max-width: $breakpoints-lg) {
+          flex-basis: 100%;
+        }
+      }
+    }
+
+    .left-70 {
+      @extend .left-section;
+      flex-basis: 70%;
+
+      .description {
+        flex-shrink: 0;
+
+        @media (max-width: $breakpoints-lg) {
+          flex-basis: 70%;
+        }
+      }
+    }
+
+    .right-section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right-contributors {
+      @extend .right-section;
+      flex-basis: 50%;
+
+      @media (max-width: $breakpoints-lg) {
+        margin-top: $gaps-gap-10;
+        flex-basis: 100%;
+      }
+    }
+
+    .right-deva {
+      @extend .right-section;
+      margin-left: auto;
+    }
+  }
+}
+
+.location {
+  a {
+    color: $colors-track-red;
+  }
+}
+
+.tours {
+  display: flex;
+  gap: 32px;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: row;
+  }
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+  }
+
+  .left {
+    flex-basis: auto !important;
+    flex-shrink: 0;
+  }
+
+  .right {
+    flex-basis: auto !important;
+  }
+}

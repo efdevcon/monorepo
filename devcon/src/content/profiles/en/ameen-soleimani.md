@@ -1,0 +1,7 @@
+---
+name: "Ameen Soleimani"
+role: "CEO"
+description: "Ameen is the CEO of SpankChain, a blockchain based adult entertainment platform. He was previously a software engineer at ConsenSys where he focused on state channels research and P2P energy trading. He also helped launch AdChain, the first Token Curated Registry to curate a list of non-fraudulent online publishers."
+organization: "SpankChain"
+country: "United States"
+---

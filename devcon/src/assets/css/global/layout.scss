@@ -1,0 +1,82 @@
+@use 'assets/css/partials/index' as *;
+
+.section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) minmax(auto, 1680px) minmax(64px, 1fr);
+
+  @media (max-width: $breakpoints-md) {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 1680px) minmax(16px, 1fr);
+  }
+
+  &.constrained {
+    grid-template-columns: minmax(64px, 1fr) minmax(auto, 800px) minmax(64px, 1fr);
+
+    @media (max-width: $breakpoints-md) {
+      grid-template-columns: minmax(16px, 1fr) minmax(auto, 800px) minmax(16px, 1fr);
+    }
+  }
+
+  >* {
+    grid-column: 2 / 3;
+  }
+
+  >.expand {
+    grid-column: 1 / 4;
+  }
+  
+  >.expand-right {
+    grid-column: 2 / 4;
+  }
+
+  >.expand-left {
+    grid-column: 1 / 3;
+  }
+
+
+  &.no-overflow {
+    overflow: hidden;
+  }
+}
+
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+
+    >* {
+      flex-basis: auto !important;
+
+      &:first-child {
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  &.reverse-order-on-mobile {
+    @media (max-width: $breakpoints-lg) {
+      .right {
+        order: 1;
+      }
+
+      .left {
+        order: 2;
+      }
+    }
+  }
+
+  .right {
+    margin-top: 2em;
+
+    @media (min-width: $breakpoints-lg + 1) {
+      margin-top: 0px;
+    }
+  }
+
+  >* {
+    flex-basis: calc(50% - 24px); // effectively 16px margin 
+    flex-grow: 0;
+  }
+}

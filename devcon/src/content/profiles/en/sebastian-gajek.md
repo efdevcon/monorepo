@@ -1,0 +1,7 @@
+---
+name: "Sebastian Gajek"
+role: "Professor for Cryptography &amp; Chief Scientist"
+description: "Prof. Dr. Sebastian has a strong focus on the topics of cryptographicalgorithm design and system security. He is a professor for IT-Security and Cryptography at Flensburg University and co-founder of weeve, aventure at the forefront of IoT and Blockchain.Before, he held a research position at NEC Laboratories Europe, wherehe transferred foundational security research to products. He was apostdoctoral fellow at the Tel Aviv University and obtained his PhDfrom the renowned Horst- Görtz Institute for IT-Security, one of theleading academic institutes for Information Security in Europe."
+organization: "Flensburg University &amp; weeve"
+country: "Germany"
+---

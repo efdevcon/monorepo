@@ -1,0 +1,149 @@
+@use 'assets/css/partials/index' as *;
+
+.thumbnail-container {
+  margin-bottom: 8px;
+
+  &.passed {
+    opacity: 0.4;
+  }
+
+  &.ongoing {
+    // box-shadow: 0px 0px 4px 2px #f1f1f1;
+    // border: 1px solid darken($colors-track-red, 20%);
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid darken($colors-standard-border-color, 20%);
+  }
+
+  position: relative;
+  border: 1px solid $colors-standard-border-color;
+
+  // &.compact {
+  //   [data-type='thumbnail-block-image'] {
+  //     display: none;
+  //   }
+
+  //   .top {
+  //     border-bottom: none;
+  //     padding-bottom: 0px;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: space-between;
+
+  //     .save-session {
+  //       top: 0px;
+
+  //       position: relative;
+  //     }
+
+  //     > * {
+  //       flex-shrink: 0;
+  //     }
+
+  //     .title {
+  //       @include fonts-xs;
+  //       flex-grow: 1;
+  //       // margin-bottom: 0px;
+  //     }
+  //   }
+
+  //   .bottom {
+  //     display: none;
+  //   }
+  // }
+}
+
+.details {
+  padding: $gaps-gap-2;
+
+  .title, .room-title, .speaker {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .top {
+    padding-bottom: 8px;
+    border-bottom: 1px solid $colors-standard-border-color;
+
+    .title {
+      @include fonts-bold;
+      @include fonts-sm-fixed;
+      display: block;
+      padding-right: $gaps-gap-8;
+    }
+
+    .save-session {
+      font-size: 20px;
+      cursor: pointer;
+      user-select: none;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+
+      &.saved {
+        --color-icon: #{$colors-track-red};
+      }
+    }
+  }
+
+  .bottom {
+    padding-top: 8px;
+    @include fonts-sm;
+
+    p, a {
+      @include fonts-bold;
+      margin-left: $gaps-gap-2;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+
+      :global(.icon) {
+        flex-shrink: 0;
+      }
+    }
+
+    .room {
+      display: flex;
+      justify-content: space-between;
+      
+      @media (min-width: $breakpoints-sm) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .room-title, .n-seats {
+        display: flex;
+        align-items: center;
+        margin-right: 16px;
+      }
+
+      .room-title {
+        color: $colors-track-purple;
+        --color-icon: #{$colors-track-purple};
+      }
+
+      .n-seats {
+        flex-shrink: 0;
+        margin-right: 8px;
+      }
+    }
+
+    .speakers {
+      .speaker {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-left: 0px;
+
+        &.is-first {
+          margin-left: 8px !important;
+        }
+      }
+    }
+  }
+}

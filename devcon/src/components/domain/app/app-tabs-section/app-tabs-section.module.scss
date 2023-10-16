@@ -1,0 +1,26 @@
+@use 'assets/css/partials/index' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $gaps-gap-2;
+}
+
+.tabs {
+  display: flex;
+
+  .tab {
+    padding: $gaps-gap-2 $gaps-gap-3;
+    @include fonts-bold;
+    cursor: pointer;
+
+    &.selected {
+      border-bottom: 2px solid $colors-main;
+    }
+
+    &:not(.selected) {
+      color: $colors-text-inactive;
+    }
+  }
+}

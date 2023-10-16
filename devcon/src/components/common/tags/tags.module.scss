@@ -1,0 +1,19 @@
+@use 'assets/css/partials/index' as *;
+
+.tags {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  top: -8px; // Needed to counteract the margin-top on the labels themselves (which is needed when they wrap, otherwise they'd stick together)
+  margin-bottom: 16px;
+
+  :global(.label) {
+    margin-top: 8px;
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}

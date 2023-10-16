@@ -1,0 +1,129 @@
+@use 'assets/css/partials/index' as *;
+
+.list {
+  list-style-type: none;
+
+  ul {
+    list-style-position: inside;
+    list-style-type: disc;
+  }
+
+  &.with-separators {
+    .item {
+      border-bottom: 1px solid $colors-standard-border-color;
+      padding-bottom: 18px;
+    }
+  }
+
+  &.connected {
+    .item {
+      overflow: hidden;
+      margin-top: 0px;
+      align-items: center;
+      position: relative;
+
+      &.active {
+        .number {
+          background: var(--theme-color, $colors-main);
+        }
+      }
+
+      &.disabled {
+        text-decoration: line-through;
+      }
+
+      &:first-child {
+        .number {
+          &:after {
+            display: none;
+          }
+        }
+      }
+
+      &:last-child {
+        .number {
+          &:before {
+            display: none;
+          }
+        }
+      }
+
+      .number {
+        position: relative;
+
+        > span {
+          display: none;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          transform: translateY(100%);
+          bottom: 0px;
+          width: 3px;
+          background: var(--theme-color, $colors-main);
+          height: 1000px;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          transform: translateY(-100%);
+          top: 0px;
+          width: 3px;
+          background: var(--theme-color, $colors-main);
+          height: 1000px;
+        }
+      }
+
+      .title {
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+      }
+
+      .body { 
+        display: none;  
+      }
+    }
+  }
+  
+  .item {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    position: relative;
+
+    .number {
+      display: none;
+
+      @media (min-width: $breakpoints-md) {
+        flex-shrink: 0;
+        height: 2em;
+        width: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 100px;
+        border: 3px solid var(--theme-color, $colors-main);
+        color: var(--theme-color, $colors-main);
+        margin-right: 32px;
+        padding-left: 1px;
+      }
+    }
+
+    .content {
+      flex-grow: 1;
+      .title {
+        @include fonts-lg;
+      }
+
+      .body {
+        @include fonts-sm;
+      }
+    }
+  }
+}

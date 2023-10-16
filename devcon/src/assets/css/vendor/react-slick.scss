@@ -1,0 +1,19 @@
+// Importing these in gatsby-browser.js for now since this doesn't work out of the box
+// @import '~slick-carousel/slick/slick';
+// @import '~slick-carousel/slick/slick-theme';
+
+.slick-list {
+  overflow: unset !important;
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto;
+
+  > div {
+    height: 100%;
+  }
+}

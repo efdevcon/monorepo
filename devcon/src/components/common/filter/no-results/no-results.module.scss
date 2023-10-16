@@ -1,0 +1,13 @@
+@use 'assets/css/partials/index' as *;
+
+.no-results-container {
+  width: min(100%, 500px);
+  display: flex;
+  justify-content: center;
+  margin: auto;
+
+  .no-results-image-container {
+    width: 100%;
+  }
+}
+

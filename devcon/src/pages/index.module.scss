@@ -1,0 +1,33 @@
+@use 'assets/css/partials/index' as *;
+
+.layout-default {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > :global(.header) {
+    width: 100%;
+  }
+
+  > :global(.footer) {
+    width: 100%;
+    flex-shrink: 0;
+  }
+}
+
+.background-container {
+  position: relative;
+
+  .circle-background {
+    opacity: 0.2;
+    z-index: -2;
+    width: 500px;
+    pointer-events: none;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
+}

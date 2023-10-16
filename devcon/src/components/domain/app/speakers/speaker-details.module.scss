@@ -1,0 +1,90 @@
+@use 'assets/css/partials/index' as *;
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  height: min(40vh, 300px);
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: $breakpoints-md) {
+    img {
+      object-fit: cover !important;
+    }
+  }
+}
+
+.speaker-title {
+  @include fonts-xxl;
+  @include fonts-primary;
+  margin: 16px 0px;
+}
+
+.header {
+  margin: 16px 0px;
+}
+
+.meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-top: 1px solid $colors-standard-border-color;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  .role {
+    @include fonts-bold;
+  }
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  :global(.icon) {
+    font-size: 20px;
+    // --color-icon: #{$colors-monochrome-7};
+
+  }
+
+  a {
+    display: flex;
+    margin-left: 12px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+}
+
+.description {
+  // margin-top: 16px;
+}
+
+.sessions {
+  border-top: 1px solid $colors-standard-border-color;
+  margin-top: $gaps-gap-2;
+}
+
+.videos {
+  border-top: 1px solid $colors-standard-border-color;
+  margin-top: $gaps-gap-2;
+
+  .video {
+    margin-bottom: $gaps-gap-4;
+
+    [data-type='video-card-title'] {
+      @include fonts-md;
+    }
+
+    [data-type='video-card-description'] {
+      @include fonts-sm;
+    }
+  }
+}
+
+.header {
+  margin-top: $gaps-gap-2;
+  margin-bottom: $gaps-gap-2;
+}

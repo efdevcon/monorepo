@@ -1,0 +1,40 @@
+@use 'assets/css/partials/index' as *;
+
+.modal {
+  [data-type="modal-container"] {
+    height: auto !important;
+  }
+
+  [data-type="modal-content"] {
+    width: auto !important;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  // margin-right: 16px;
+
+  svg {
+    position: relative;
+    top: -1px;
+    margin-right: 0.7em;
+    // font-size: 0.9em;
+  }
+}
+
+.modal-content {
+  padding-right: 32px;
+
+  .buttons {
+    display: flex;
+    
+    > * {
+      margin-left: 12px;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}

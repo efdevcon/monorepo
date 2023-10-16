@@ -1,0 +1,83 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  position: relative;
+  // background: white;
+
+  .body {
+    // grid-column: 2 / 3;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: $breakpoints-xl) {
+      // grid-column: 2 / 4;
+    }
+
+    .left {
+      flex-basis: 100%;
+      flex-shrink: 0;
+
+      >svg {
+        max-width: 90%;
+        margin-top: 16px;
+      }
+
+      @media (min-width: $breakpoints-lg) {
+        flex-basis: 55%;
+        padding-right: 32px;
+      }
+
+      .highlighted {
+        line-height: 150%;
+        font-weight: 400;
+      }
+
+      p,
+      button {
+        margin-top: 1em;
+      }
+
+      .grey {
+        color: $colors-monochrome-6;
+      }
+
+      .crossed-out {
+        color: $colors-monochrome-6;
+        text-decoration: line-through;
+      }
+    }
+
+    .right {
+      flex-basis: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      max-height: 400px;
+      margin-top: 32px;
+
+      @media (min-width: $breakpoints-lg) {
+        margin-top: 0px;
+        padding-left: 60px;
+        flex-basis: 45%;
+        max-height: 560px; 
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: center;
+
+        img {
+          object-fit: contain;
+          height: 100% !important;
+          width: auto !important;
+          transition: .5s ease;
+          cursor: pointer;
+
+          &:hover {
+            transform: perspective(1000px) scale(0.95) rotateX(1deg) rotateY(-4deg);
+          }
+        }
+      }
+    }
+  }
+}

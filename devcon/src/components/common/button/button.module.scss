@@ -1,0 +1,64 @@
+@keyframes bring-attention {
+  60% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: -200% -200%;
+  }
+}
+
+.button {
+  position: relative;
+  overflow: hidden;
+
+  &:not(:global(.disabled), :disabled) {
+    &:hover {
+      .background {
+        background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%) !important;
+      }
+    }
+
+    // optional "hover" class plays a hover-like effect even when the button isn't hovered to bring attention to itself
+    &:global(.hover) {
+      .background {
+        animation: bring-attention ease-in-out 5s infinite;
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      background: var(--button-color-background);
+      color: var(--button-color);
+      --color-icon: var(--button-color);
+
+      .background {
+        opacity: 1;
+      }
+    }
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .background {
+    background: var(--button-color-background);
+    color: var(--button-color);
+    --color-icon: var(--button-color);
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: 1;
+    background-size: 200% 200%;
+    background-image: radial-gradient(var(--button-color-background-hover), var(--button-color-background));
+  }
+}

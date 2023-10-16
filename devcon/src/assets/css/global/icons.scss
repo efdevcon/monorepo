@@ -1,0 +1,17 @@
+@use 'assets/css/partials/index' as *;
+
+svg.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  // height: auto;
+  fill: var(--color-icon, $colors-main);
+
+  > path {
+    fill: inherit;
+  }
+}
+
+.fill-red {
+  --color-icon: #{$colors-track-red};
+}

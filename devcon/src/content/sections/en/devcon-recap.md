@@ -1,0 +1,8 @@
+---
+title: Devcon Recap
+pages: ['index']
+---
+
+Last year, after a three-year-long pause, we emerged from the pandemic stronger than before and reunited in Bogotá for the largest and some would say, “best Devcon yet.”
+
+One of its most powerful aspects was the impact on the regional community and the involvement of the flourishing Latin American Ethereum community, which had organized 14 community events around the region leading up to Devcon.

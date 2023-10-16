@@ -1,0 +1,75 @@
+@use 'assets/css/partials/index' as *;
+
+.intro-right,
+.for-builders-right {
+  @media (min-width: $breakpoints-lg) {
+    margin-left: 120px;
+  }
+
+  .theme-colored {
+    font-weight: 700;
+    color: var(--theme-color);
+  }
+
+  * {
+    fill: black;
+  }
+}
+
+.for-builders-right {
+  .videos {
+    display: flex;
+    flex-direction: row;
+
+    > * {
+      flex-grow: 1;
+      flex-basis: 300px;
+      flex-shrink: 0;
+      margin-left: 16px;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.community {
+  .videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &:after {
+      content: '';
+      width: var(--scroll-mask-size);
+      flex-shrink: 0;
+      height: 100%;
+      display: block;
+    }
+
+    > * {
+      flex-basis: 400px;
+      flex-shrink: 0;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+.button {
+  margin-top: 24px;
+}
+
+.link {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-left: 8px;
+  }
+}

@@ -1,0 +1,159 @@
+@use 'assets/css/partials/index' as *;
+
+.layout {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.about {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoints-xl) {
+    flex-direction: row;
+  }
+
+  .left {
+    flex-basis: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: auto;
+
+    @media (min-width: $breakpoints-xl) {
+      flex-basis: 50%;
+      margin-right: 120px;
+    }
+
+    p,
+    button {
+      margin-top: 1em;
+    }
+
+    .links {
+      display: flex;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      position: relative;
+      top: -12px;
+
+      >* {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        margin-right: 24px;
+        margin-top: 12px;
+
+        svg {
+          font-size: 0.9em;
+          margin-left: 8px;
+        }
+
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+
+  .right {
+    flex-basis: auto;
+    margin-top: 32px;
+    // display: none;
+
+    @media (min-width: $breakpoints-xl) {
+      display: block;
+      flex-basis: auto;
+      flex-grow: 1;
+      margin-top: 0px;
+    }
+  }
+}
+
+.values {}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoints-xl) {
+    flex-direction: row;
+  }
+
+  .left {
+    flex-basis: auto;
+    flex-shrink: 0;
+
+    @media (min-width: $breakpoints-xl) {
+      flex-basis: 50%;
+      margin-right: 32px;
+    }
+  }
+
+  .right {
+    flex-basis: auto;
+    margin-top: 32px;
+    // display: none;
+
+    @media (min-width: $breakpoints-xl) {
+      display: block;
+      flex-basis: auto;
+      flex-grow: 1;
+      margin-top: 0px;
+    }
+  }
+}
+
+.custom-markdown {
+  padding: 0;
+
+  ol {
+    list-style: none;
+    counter-reset: circle-counter;
+    margin-bottom: 0;
+  }
+
+  ol li {
+    position: relative;
+    counter-increment: circle-counter;
+    padding-left: 56px;
+    margin-bottom: 16px;
+    
+    @media (max-width: $breakpoints-md) {
+      padding-left: 40px;
+    }
+
+    &::before {
+      content: counters(circle-counter, '');
+      position: absolute;
+      top: 2px;
+      left: 0;
+
+      background: var(--theme-color, $colors-main);
+      border-radius: 0.8em;
+      -moz-border-radius: 0.8em;
+      -webkit-border-radius: 0.8em;
+      color: #ffffff;
+      display: inline-block;
+      font-weight: bold;
+      line-height: 1.6em;
+      margin-right: 5px;
+      text-align: center;
+      width: 1.6em;
+    }
+  }
+
+  p {
+    &:first-child {
+      @include fonts-normal;
+      @include fonts-lg;
+    }
+
+    &:not(:first-child) {
+      @include fonts-normal;
+      @include fonts-sm;
+    }
+  }
+}

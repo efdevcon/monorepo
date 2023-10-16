@@ -1,0 +1,13 @@
+@use 'assets/css/partials/index' as *;
+
+.theme {
+  --theme-color: #{$colors-track-red};
+  --theme-color-hover: #{$colors-track-red-hover};
+  // --theme-logo: url('assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #e55066 0%,
+    rgba(255, 183, 0, 0.4) 58.33%,
+    rgba(255, 184, 0, 0) 100%
+  );
+}

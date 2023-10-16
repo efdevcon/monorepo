@@ -1,0 +1,53 @@
+@use 'assets/css/partials/index' as *;
+
+.date-selector-container {
+  margin-top: 8px;
+  border-top: 1px solid $colors-standard-border-color;
+  // border-bottom: 1px solid $colors-standard-border-color;
+
+  .date-selector {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style-type: none;
+    padding: 12px 0px;
+
+    li {
+      @include fonts-sm-fixed;
+      flex-shrink: 0;
+      cursor: pointer;
+      padding: 8px 10px;
+      position: relative;
+
+      &:first-child {
+        position: relative;
+        padding-left: 0px;
+      }
+  
+      &.selected/*, &:hover */{
+        @include fonts-bold;
+      }
+
+      // &.is-current-day {
+      //   &:before {
+      //     content: 'Today';
+      //     position: absolute;
+      //     bottom: -9px;
+      //     left: 50%;
+      //     transform: translateX(-50%);
+      //     color: $colors-track-red;
+      //     font-size: 0.55em;
+      //     @include fonts-bold;
+      //   }
+      // }
+    }
+  }  
+}
+
+.basic-filter-container {
+  display: flex;
+  flex-wrap: nowrap;
+
+  > * {
+    flex-shrink: 0;
+  }
+}

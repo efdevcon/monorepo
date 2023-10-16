@@ -1,0 +1,24 @@
+@use 'assets/css/partials/index' as *;
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  // overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  // left: -8px;
+  // right: -8px;
+  // padding-left: 8px;
+  // padding-right: 8px;
+  margin-bottom: $gaps-gap-4;
+
+  .card {
+    height: 100%;
+    // margin-right: $gaps-gap-4;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: $gaps-gap-4;
+    background: white;
+  }
+}

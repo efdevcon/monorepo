@@ -1,0 +1,1 @@
+export { PageHero } from './PageHero'
