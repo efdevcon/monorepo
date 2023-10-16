@@ -31,7 +31,7 @@ import { BlogReel } from 'common/components/blog-posts/BlogPosts'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
 import moment from 'moment'
-import TestExternalRepo from '@lib/components/button'
+// import TestExternalRepo from '@lib/components/button'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -714,7 +714,7 @@ const Home: NextPage = (props: any) => {
             <div className="section">
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
-                  <TestExternalRepo />
+                  {/* <TestExternalRepo /> */}
                   <div>
                     <p className={`${css['big-description']}`}>
                       Meet the builders of Ethereum
