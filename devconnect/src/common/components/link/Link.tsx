@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import LinkIndicator from 'assets/icons/link-indicator.svg'
 import css from './link.module.scss'
 // @ts-ignore
@@ -95,11 +95,11 @@ const WrappedLink = React.forwardRef(
     }
 
     return (
-      <Link href={href} {...linkAttributes}>
+      <NextLink href={href} {...linkAttributes}>
         <span className={css['link']} data-type="link-text">
           {children}
         </span>
-      </Link>
+      </NextLink>
     )
   }
 )

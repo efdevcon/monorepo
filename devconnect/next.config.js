@@ -1,4 +1,5 @@
 const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin')
+const path = require('path')
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -7,6 +8,7 @@ module.exports = {
     // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
     externalDir: true,
   },
+  // transpilePackages: ['lib'],
   // Add redirects to netlify.toml - netlify doesn't seem to pick up next.config.js redirects
   redirects: () => {
     return [
@@ -46,6 +48,13 @@ module.exports = {
   webpack: (config, { webpack }) => {
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        fallback: {
+          'react/jsx-dev-runtime': path.resolve(__dirname, 'node_modules/react/jsx-dev-runtime.js'),
+          react: path.resolve(__dirname, 'node_modules/react'),
+        },
+      },
       plugins: [
         // Only include tz data for the zone we use
         new MomentTimezoneDataPlugin({

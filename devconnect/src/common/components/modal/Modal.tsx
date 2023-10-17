@@ -146,7 +146,7 @@ ModalSlide.displayName = 'ModalSlide'
 export { ModalSlide }
 
 const Modal = (props: ModalProps) => {
-  if (!props.open) return null
+  if (!props.open) return <></>
 
   let className = css['modal']
 

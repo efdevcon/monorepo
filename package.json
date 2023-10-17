@@ -1,6 +1,7 @@
 {
     "private": true,
     "workspaces": {
+        "nohoist": ["devconnect/**", "devcon/**", "lib/**"],
         "packages": [
             "lib",
             "devconnect",

@@ -12,6 +12,7 @@ export const CopyToClipboard = ({ url, onShare, children }: ShareProps) => {
   const [clicked, setClicked] = React.useState(false)
 
   return (
+    // @ts-ignore
     <Tooltip arrow={false} open={clicked} title="Copied to Clipboard">
       <div
         style={{ display: 'inline-block', cursor: 'pointer' }}

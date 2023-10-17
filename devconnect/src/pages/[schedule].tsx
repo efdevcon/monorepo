@@ -1974,6 +1974,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
                     <p className={css['text']}>
                       You are currently viewing{' '}
                       <span className={css['info-icon']}>
+                        {/* 
+                        //@ts-ignore */}
                         <Tooltip
                           arrow
                           title="This schedule was created by another user. You can create your own snapshot by favoriting events and creating a snapshot url."
