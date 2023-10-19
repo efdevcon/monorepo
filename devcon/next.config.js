@@ -1,6 +1,7 @@
 // const withPWA = require('next-pwa')
 // const webpack = require('webpack')
 // const { withSentryConfig } = require('@sentry/nextjs')
+const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -41,6 +42,10 @@ const nextConfig = {
           'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
         }),
       ],
+      resolve: {
+        ...config.resolve,
+        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
+      },
       module: {
         ...config.module,
         rules: [

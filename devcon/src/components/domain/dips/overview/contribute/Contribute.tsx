@@ -6,7 +6,7 @@ import { Contributor } from 'types/DIP'
 import { Tooltip } from 'components/common/tooltip'
 import { useTranslations } from 'next-intl'
 import { chunkArray } from 'utils/chunk-array'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import { usePageContext } from 'context/page-context'
 
 type ContributeProps = {
@@ -50,7 +50,7 @@ export const AutoScroller = (props: { contributors: Array<Contributor> }) => {
   const [containerSize, setContainerSize] = React.useState(0)
   const cleanupRef = React.useRef<any>()
 
-  const setRef = React.useCallback(node => {
+  const setRef = React.useCallback((node: any) => {
     if (cleanupRef.current) cleanupRef.current()
     if (!node) return
 

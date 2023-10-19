@@ -127,6 +127,8 @@ export const Slider = (props: SliderProps) => {
       )}
 
       <div className={`${props.className} ${css['children']}`}>
+        {/*
+        // @ts-ignore */}
         <SlickSlider ref={sliderState.sliderRef} {...settings}>
           {props.children}
         </SlickSlider>

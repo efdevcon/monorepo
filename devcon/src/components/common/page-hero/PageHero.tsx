@@ -8,7 +8,7 @@ import { usePageContext } from 'context/page-context'
 import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import { Button } from 'components/common/button'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 
 type NavigationLink = {
@@ -77,6 +77,8 @@ const PathNavigation = (props: PageHeroProps) => {
     }, [] as React.ReactNode[])
   }
 
+  // @ts-ignore
+  // TODO: type fix
   return <p className={`${css['path']} font-xs text-uppercase`}>{path || props.path || pagePath}</p>
 }
 

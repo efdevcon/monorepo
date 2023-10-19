@@ -16,37 +16,41 @@ const Foldout = (props: any) => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted) return <></>
 
   let foldoutClassName = `${css['foldout']} section`
 
   if (props.foldoutOpen) foldoutClassName += ` ${css['open']}`
 
   // Moving the foldout content to the root so we have better control over z-index in relation to the header
-  return createPortal(
-    <div className={foldoutClassName} style={{ '--headerHeight': `${fullHeaderHeight}px` } as any}>
-      <div>
-        <div className={css['top']}>{props.children}</div>
+  return (
+    <>
+      {createPortal(
+        <div className={foldoutClassName} style={{ '--headerHeight': `${fullHeaderHeight}px` } as any}>
+          <div>
+            <div className={css['top']}>{props.children}</div>
 
-        {!props.isApp && (
-          <div className={css['bottom']}>
-            <div className={css['social-media']}>
-              <p>Social</p>
-              <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
-            </div>
+            {!props.isApp && (
+              <div className={css['bottom']}>
+                <div className={css['social-media']}>
+                  <p>Social</p>
+                  <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
+                </div>
 
-            <div className={css['newsletter']}>
-              <Newsletter id="foldout_newsletter_email" />
-            </div>
+                <div className={css['newsletter']}>
+                  <Newsletter id="foldout_newsletter_email" />
+                </div>
 
-            <div className={css['copyright']}>
-              <Copyright />
-            </div>
+                <div className={css['copyright']}>
+                  <Copyright />
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>,
-    document.body
+        </div>,
+        document.body
+      )}
+    </>
   )
 }
 

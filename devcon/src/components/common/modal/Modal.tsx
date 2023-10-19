@@ -5,7 +5,7 @@ import IconClose from 'assets/icons/cross.svg'
 import IconChevronLeft from 'assets/icons/chevron_left.svg'
 import IconChevronRight from 'assets/icons/chevron_right.svg'
 import { Button } from 'components/common/button'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 
 type ModalProps = {
   open: boolean
@@ -148,7 +148,7 @@ ModalSlide.displayName = 'ModalSlide'
 export { ModalSlide }
 
 export const Modal = (props: ModalProps) => {
-  if (!props.open) return null
+  if (!props.open) return <></>
 
   let className = css['modal']
 
@@ -160,17 +160,21 @@ export const Modal = (props: ModalProps) => {
     className += ` ${props.className}`
   }
 
-  return createPortal(
-    <div
-      className={className}
-      onClick={e => {
-        e.stopPropagation()
-        props.close()
-      }}
-    >
-      <ModalContent {...props} />
-    </div>,
-    document.body
+  return (
+    <>
+      {createPortal(
+        <div
+          className={className}
+          onClick={e => {
+            e.stopPropagation()
+            props.close()
+          }}
+        >
+          <ModalContent {...props} />
+        </div>,
+        document.body
+      )}
+    </>
   )
 }
 

@@ -4,7 +4,7 @@ import IconHelp from 'assets/icons/icon-help.svg'
 import { Modal } from 'components/common/modal'
 
 type InfoIconProps = {
-  children: React.ReactChild | React.ReactChild[]
+  children: React.ReactNode
   [key: string]: any
 }
 

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-inspect": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "cd ../lib && npm install && cd ../devconnect && next build",
+    "build": "cd ../lib && yarn && cd ../devconnect && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -39,8 +39,7 @@
     "sharp": "^0.29.3",
     "slick": "1.12.2",
     "slugify": "^1.6.6",
-    "stats.js": "^0.17.0",
-    "lib": "*"
+    "stats.js": "^0.17.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.28",

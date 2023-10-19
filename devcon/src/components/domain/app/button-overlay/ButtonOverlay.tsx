@@ -6,7 +6,8 @@ type ButtonContent = {
   text?: string
   className?: string
   onClick: () => void
-  render: () => void
+  // TODO: Type fix
+  render: any
 }
 
 type ButtonOverlayProps = {
@@ -25,7 +26,7 @@ export const ButtonOverlay = (props: ButtonOverlayProps) => {
 
           return (
             <div className={className} key={button.id} onClick={button.onClick}>
-              {button.render()}
+              {button.render && button.render()}
               {button.text && <span className={css['text']}>{button.text}</span>}
             </div>
           )

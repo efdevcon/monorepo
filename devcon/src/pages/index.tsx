@@ -17,7 +17,7 @@ import Image from 'next/legacy/image'
 import CircleBackground from 'assets/images/background-circles.png'
 import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
-import TestExternalRepo from '@lib/components/button'
+import TestExternalRepo from 'lib/components/lib-import'
 
 export default pageHOC(function Index(props: any) {
   return (

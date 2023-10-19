@@ -10,7 +10,7 @@ import { useAvatar } from 'hooks/useAvatar'
 import { isEmail } from 'utils/validators'
 import { TruncateMiddle } from 'utils/formatting'
 import { useRouter } from 'next/router'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import { AppNav } from 'components/domain/app/navigation'
 import Toggle from 'react-toggle'
 
@@ -64,8 +64,11 @@ export default function SettingsPage() {
                   <img src={avatar.url} alt={avatar.name} />
                 </div>
                 <p className={`${css['name']} title`}>
-                  {accountContext.account?.username ? accountContext.account?.username :
-                    isEmail(avatar.name) ? avatar.name : TruncateMiddle(avatar.name, 8)}
+                  {accountContext.account?.username
+                    ? accountContext.account?.username
+                    : isEmail(avatar.name)
+                    ? avatar.name
+                    : TruncateMiddle(avatar.name, 8)}
                 </p>
                 <span className={css['signout']} role="button" onClick={disconnect}>
                   Sign out
@@ -123,6 +126,9 @@ export default function SettingsPage() {
                   <div className={css['share']}>
                     <p>Public schedule</p>
                     <div className={css['toggle']}>
+                      {/*
+                      TODO: Type fix
+                      // @ts-ignore */}
                       <Toggle
                         defaultChecked={accountContext.account?.appState?.publicSchedule}
                         onChange={toggleScheduleSharing}

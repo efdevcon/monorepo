@@ -7,7 +7,7 @@ export default class AppDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
           {/* Adding the specific font weights for bold (e.g. 700) makes the font look so much worse :-P Bit of a mystery, since bolding works fine without it (probably just a fallback that happens to look good) */}
           <link

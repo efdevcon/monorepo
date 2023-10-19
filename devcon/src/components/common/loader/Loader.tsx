@@ -6,7 +6,7 @@ import useGetElementHeight from 'hooks/useGetElementHeight'
 type MessageType = 'loading' | 'error' | 'noResults'
 
 type Message = {
-  message: string | (() => string)
+  message: string | React.ReactNode
 }
 
 type LoaderProps = {
