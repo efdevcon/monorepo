@@ -1,11 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./src"
-    // "paths": {
-    //   "@lib/*": ["../../lib/*"],
-    //   "*": ["*", "*.js"]
-    // }
+    "baseUrl": "./src",
+    "paths": {
+      "lib/*": ["../../lib/*"]
+    }
   },
   "include": ["next-env.d.ts", "src"],
   "exclude": ["node_modules"]

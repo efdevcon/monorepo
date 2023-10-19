@@ -50,10 +50,7 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
-        fallback: {
-          'react/jsx-dev-runtime': path.resolve(__dirname, 'node_modules/react/jsx-dev-runtime.js'),
-          react: path.resolve(__dirname, 'node_modules/react'),
-        },
+        modules: [path.resolve(__dirname, 'node_modules'), 'node_modules', path.resolve(__dirname, 'src')],
       },
       plugins: [
         // Only include tz data for the zone we use
