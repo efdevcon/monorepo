@@ -60,6 +60,18 @@
   --icon-color: black;
   overflow: hidden;
 
+  :global(.button) {
+    [data-type="link-text"] {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+  
+      svg {
+        margin-right: 8px;
+      }
+    }
+  }
+
   .general-info {
     border-top: 1px solid $standard-border-color;
     // margin-top: 16px;

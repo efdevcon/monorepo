@@ -43,7 +43,7 @@ const tabs = [
     value: 'general-info',
   },
   {
-    text: 'Getting to Istanbul',
+    text: 'Plan Your Travels',
     value: 'plan-your-travels',
     content: () => {
       return (
@@ -51,19 +51,55 @@ const tabs = [
           {/* <p>
             <b>Timezone</b>: GMT+3 (all year, as Turkey has no daylight savings time)
           </p> */}
-          <p className="big-text">
+          {/* <p className="big-text">
             <b>Visa requirements</b>: Get your Visa before your travels,{' '}
             <Link href="https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa">if you need one</Link>!
-          </p>
+          </p> */}
           <p className="big-text">
-            Need a Visa invitation letter? You&apos;ll need a ticket for the Devconnect Cowork first, then you can&nbsp;
-            <Link href="https://forms.gle/zDQ6ax5Ukr75gDXt5" indicateExternal>
+            <b>Need a Visa invitation letter?</b> Check if you need a visa{' '}
+            <Link
+              indicateExternal
+              href="https://team.notion.site/pse-team/Istanbul-Tourist-Visa-30-90-days-E-Visa-Public-5f83cc372a224c1e9b3ed6d6170aa0a8"
+            >
+              here
+            </Link>
+            &nbsp;and if you need an invitation letter, you can{' '}
+            <Link indicateExternal href="https://forms.gle/zDQ6ax5Ukr75gDXt5">
               fill out this form
             </Link>
-            . You will hear back from us via email within 2 weeks.
+            . You will need to purchase a{' '}
+            <Link indicateExternal href="https://devconnect.org/cowork">
+              Cowork ticket
+            </Link>{' '}
+            before we can issue a letter.
           </p>
 
-          <p className="big-text bold margin-top-less">Istanbul Airports</p>
+          <p className="big-text margin-top-less">
+            <b>Wifi: </b>
+            It&apos;s always nice to be connected while on-the-go or have a backup in case of poor connectivity: We
+            recommend purchasing a local SIM card or a large package of an e-SIM. We have secured discounts from two
+            different e-SIM providers for you:
+            <br />
+            <br />
+            <b>a)</b> The local provider <Link href="https://roamless.com/">Roamless</Link> offers you 2GB for free and
+            when they are used, you get another $5 free credit if you add $20 or more into your Roamless wallet. Use the
+            code "DEVCONNECT".
+            <br />
+            <b>b)</b> <Link href="https://www.airalo.com/turkey-esim">Airalo</Link> offers a 20% discount for all
+            Devconnect cowork attendees to receive 20% off their chosen data package with the code “DEVCONNECT” up until
+            30th November, 2023.
+          </p>
+
+          <p className="big-text">
+            <b>Weather whispers: </b>
+            Istanbul in autumn is a mix of crisp air with occasional rain showers. Pack some cozy layers and don't
+            forget your rain jacket.
+          </p>
+
+          <p className="big-text">
+            <b>The “City with seven hills”: </b>
+            Pack some good shoes to walk around.
+          </p>
 
           <div className={css['airports']}>
             <Link href="https://goo.gl/maps/mZRy5WnRe4JBfoBK9">
@@ -94,276 +130,6 @@ const tabs = [
               </div>
             </Link>
           </div>
-
-          {/* <b>Airports</b>: Istanbul International Airport (IST) (European side), Sabiha Gökçen Airport (Asian side)
-          </p> */}
-          {/* <p>
-            <b>Official language</b>: Turkish. Thank you ={' '}
-            <Link href="https://forvo.com/word/te%C5%9Fekk%C3%BCr_ederim/">Teşekkür ederim</Link>, GM = GA (Günaydın)
-          </p> */}
-          {/* <p>
-            <b>E-SIM providers</b>: Holafly or Airalo{' '}
-          </p>
-          <p>
-            <b>SIM cards with best 4G coverage:</b> Turkcell or Türk Telekom. We recommend buying physical SIM cards in
-            a local shop, not at the airport.
-          </p> */}
-          {/* <p>
-            <b>Average November weather</b>: High: 15ºC (59 ºF), Low: 9ºC (47ºF)
-          </p> */}
-        </div>
-      )
-    },
-  },
-  {
-    text: 'Experience the City',
-    value: 'experience-the-city',
-    content: () => {
-      return (
-        <div className={`tab-content ${css['experience-the-city']}`}>
-          <p className="large-text">
-            There is an active and vibrant local Ethereum community in Istanbul, and they are excited to welcome
-            Devconnect attendees to their city. Many shared small videos with us, showing what Istanbul has to offer.
-            Watch the videos, and experience Istanbul&apos;s magic! ✨
-          </p>
-
-          <SwipeToScroll noBounds>
-            <div className={css['tweets']}>
-              {/* <blockquote className="twitter-tweet" data-dnt="true" {...linkAttr}>
-                <p lang="en" dir="ltr">
-                  🏡In the company of cats, Istanbul will evoke a feeling of home for each one of you.❤️
-                  <br />
-                  <br />
-                  As a part of <a href="https://twitter.com/ITUblockchain?ref_src=twsrc%5Etfw">@ITUblockchain</a> , the
-                  excitement is building for{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  🎢
-                  <br />
-                  <br />
-                  Stay tuned for greatness! 🤩{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/QKfuY9ktrW">https://t.co/QKfuY9ktrW</a>{' '}
-                  <a href="https://t.co/NAMBAld825">pic.twitter.com/NAMBAld825</a>
-                </p>
-                &mdash; Tuğçe (@0xtugcee){' '}
-                <a href="https://twitter.com/0xtugcee/status/1685606937503657984?ref_src=twsrc%5Etfw">July 30, 2023</a>
-              </blockquote> */}
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  There are so many little details that I love about Istanbul! And yes,{' '}
-                  <a href="https://twitter.com/ITUblockchain?ref_src=twsrc%5Etfw">@ITUblockchain</a> is the first
-                  one…🥺💖 <br />
-                  <br />I don&apos;t know which one is second but this metro station is definitely lit 😏😎
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  🐈 <a href="https://t.co/SW36SyCOPp">pic.twitter.com/SW36SyCOPp</a>
-                </p>
-                &mdash; dilara aka buzagi | pepethe.lens 🌿 (@thebuzagi){' '}
-                <a href="https://twitter.com/thebuzagi/status/1685999231201423360?ref_src=twsrc%5Etfw">July 31, 2023</a>
-              </blockquote>
-              {/* <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  Hey people! Are you excited for Devconnect Istanbul? <br />
-                  Cause we are very excited to host you in our home and I wanted to share some videos from daily life.{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/CxMgkAFOSk">pic.twitter.com/CxMgkAFOSk</a>
-                </p>
-                &mdash; Alamalu (@alamaluu){' '}
-                <a href="https://twitter.com/alamaluu/status/1685361500528021504?ref_src=twsrc%5Etfw">July 29, 2023</a>
-              </blockquote> */}
-
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  Are you ready for Istanbul 🇹🇷{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a> <br />
-                  <br />
-                  and cats… lots of cats…🐈 <a href="https://t.co/UntAaToUHC">pic.twitter.com/UntAaToUHC</a>
-                </p>
-                &mdash; hatun (@0xhatun){' '}
-                <a href="https://twitter.com/0xhatun/status/1686113561486000128?ref_src=twsrc%5Etfw">July 31, 2023</a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  we&apos;re preparing a comprehensive Istanbul guide with local recommendations{' '}
-                  <a href="https://twitter.com/Sublockchain?ref_src=twsrc%5Etfw">@Sublockchain</a> <br />
-                  <br />
-                  but before that here&apos;s a little video i found <br />
-                  📍Macka Democracy Park (also known as Cats Heaven) 🐱✨{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  <a href="https://t.co/gA71shWEIP">pic.twitter.com/gA71shWEIP</a>
-                </p>
-                &mdash; Helin Cagine (@helincesxyz){' '}
-                <a href="https://twitter.com/helincesxyz/status/1684630930697199616?ref_src=twsrc%5Etfw">
-                  July 27, 2023
-                </a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  I couldn&#39;t fit my favorites in Istanbul into a single
-                  <br />
-                  frame. I added some synergy with a clip😛
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>
-                  <br />
-                  <br />
-                  ⬇️Everybody says Taksim Square, Madien&#39;s Towers
-                  <br />
-                  etc. Here are the things you should do in Istanbul, like
-                  <br />
-                  the ones from Istanbul <a href="https://t.co/9PDSTJevVX">pic.twitter.com/9PDSTJevVX</a>
-                </p>
-                &mdash; Gökçe🌱| eckoger.lens (🌸,🌿) (@eckoger){' '}
-                <a href="https://twitter.com/eckoger/status/1685658517296824320?ref_src=twsrc%5Etfw">July 30, 2023</a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  Hey <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a> are you ready for
-                  city of cats? <a href="https://t.co/Qjqa8bKWsB">pic.twitter.com/Qjqa8bKWsB</a>
-                </p>
-                &mdash; 0xDogan.eth (@DoganEth){' '}
-                <a href="https://twitter.com/DoganEth/status/1685412911429148672?ref_src=twsrc%5Etfw">July 29, 2023</a>
-              </blockquote>
-              {/* <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  - N e v e r - leave İstanbul without taking bosphorus boat tour 🚢🌊✨
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  <a href="https://t.co/B4PCzw6sMJ">pic.twitter.com/B4PCzw6sMJ</a>
-                </p>
-                &mdash; Buse Kaya (@bbusekay){' '}
-                <a href="https://twitter.com/bbusekay/status/1685730350683590657?ref_src=twsrc%5Etfw">July 30, 2023</a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  The Maltepe Orhanzgazi City Park, Fill Area Maltepe, and Maltepe Beach Parks are nice to run around.
-                  <br />
-                  <br />
-                  It&#39;s well maintained, quiet, and peaceful with nice views{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/h8e68EhIpZ">pic.twitter.com/h8e68EhIpZ</a>
-                </p>
-                &mdash; braqzen (@braqzen){' '}
-                <a href="https://twitter.com/braqzen/status/1686040982523940864?ref_src=twsrc%5Etfw">July 31, 2023</a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  👀 Here are just a few of the wonderful places in this enchanting city of Istanbul🪄that I can show
-                  you 🤩📸
-                  <br />
-                  <br />
-                  As a member of the <a href="https://twitter.com/ITUblockchain?ref_src=twsrc%5Etfw">
-                    @ITUblockchain
-                  </a>{' '}
-                  family, looking forward to be host you all in{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  🤭💜✨<a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/E20lR9gMzz">pic.twitter.com/E20lR9gMzz</a>
-                </p>
-                &mdash; beril (@0xberil_){' '}
-                <a href="https://twitter.com/0xberil_/status/1685627443384639488?ref_src=twsrc%5Etfw">July 30, 2023</a>
-              </blockquote>
-              <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  I suggest all the fellas who is coming to Istanbul for{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a> to get los in the C I
-                  H A N G I R streets✨✨
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  <a href="https://t.co/oczbVDvhQa">pic.twitter.com/oczbVDvhQa</a>
-                </p>
-                &mdash; avicado 🪄 (@avicadointech){' '}
-                <a href="https://twitter.com/avicadointech/status/1686020838284308482?ref_src=twsrc%5Etfw">
-                  July 31, 2023
-                </a>
-              </blockquote> */}
-              {/* <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="und" dir="ltr">
-                  ..
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/P9FV0OxiO7">https://t.co/P9FV0OxiO7</a>{' '}
-                  <a href="https://t.co/SuX7xLlFRL">pic.twitter.com/SuX7xLlFRL</a>
-                </p>
-                &mdash; Artstein (@Artsteiin){' '}
-                <a href="https://twitter.com/Artsteiin/status/1685709292995821569?ref_src=twsrc%5Etfw">July 30, 2023</a>
-              </blockquote> */}
-              {/* <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="en" dir="ltr">
-                  Discover the vibrant heart of Istanbul in this mesmerizing video challenge!🌅 <br />
-                  <br />
-                  Join the{' '}
-                  <a href="https://twitter.com/hashtag/DevconnectIST?src=hash&amp;ref_src=twsrc%5Etfw">
-                    #DevconnectIST
-                  </a>{' '}
-                  video challenge and capture the city&#39;s magic yourself!🤗
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a>{' '}
-                  <a href="https://t.co/qmpui0aNR8">https://t.co/qmpui0aNR8</a>{' '}
-                  <a href="https://t.co/tQZ4kqYtRL">pic.twitter.com/tQZ4kqYtRL</a>
-                </p>
-                &mdash; ITU Blockchain (@ITUblockchain){' '}
-                <a href="https://twitter.com/ITUblockchain/status/1685592269892509696?ref_src=twsrc%5Etfw">
-                  July 30, 2023
-                </a>
-              </blockquote> */}
-              {/* <blockquote className="twitter-tweet" data-dnt="true">
-                <p lang="tr" dir="ltr">
-                  <a href="https://twitter.com/EFDevconnect?ref_src=twsrc%5Etfw">@EFDevconnect</a> in İstanbul⚘{' '}
-                  <a href="https://t.co/2wwByk65Ny">pic.twitter.com/2wwByk65Ny</a>
-                </p>
-                &mdash; karababa.eth🦇🔊 (@BabaBlack_){' '}
-                <a href="https://twitter.com/BabaBlack_/status/1684582970957635587?ref_src=twsrc%5Etfw">
-                  July 27, 2023
-                </a>
-              </blockquote> */}
-            </div>
-          </SwipeToScroll>
-
-          <p className="big-text margin-top-less">
-            Istanbul&#39;s magic lies in the narrow lanes of its bazaars, the calls to prayer, the cats strolling
-            around, the rhythms of Turkish music, and, of course, the delicious food. Istanbul is considered a
-            cat&apos;s heaven - locals take good care of their strays, giving them food and shelter -, and a
-            foodie&apos;s paradise - Turkish cuisine is meat-heavy, but vegetables play a significant role as well, and
-            for the foodies amongst you,{' '}
-            <Link indicateExternal href="https://twitter.com/kaanuzdogan/status/1684913443759968256?s=20">
-              here is a restaurant guide
-            </Link>{' '}
-            put together by a local community member. There is also{' '}
-            <Link indicateExternal href="https://www.instagram.com/thegoodday_istanbul">
-              this lovely Instagram account
-            </Link>{' '}
-            for inspiration about Istanbul&apos;s city, culture, local shops, and nature.
-          </p>
-
-          <Link
-            className="button orange margin-top-less margin-right-less"
-            href="https://kaanuzdogan.com/kaans-foodie-guide-during-devconnect-istanbul"
-          >
-            <PinIcon />
-            Restaurant Guide
-          </Link>
-          <Link
-            className="button orange margin-top-less"
-            href="https://www.google.com/maps/d/edit?mid=1eX7T0uqj9dfXHBFcw2mH9qXGfQtdr0A&usp=sharing"
-          >
-            <PinIcon />
-            Food Map
-          </Link>
         </div>
       )
     },
@@ -397,10 +163,14 @@ const tabs = [
             </p>
           </Alert>
 
-          <p className="large-text">
-            The Bosporus Strait divides Istanbul&apos;s neighborhoods into two sides: the European side and the Asian
-            side. The Devconnect Cowork venue and probably most Devconnect venues will be located on the European side.
-            We recommend staying around the green metro line. <b>Here are the neighborhoods we recommend staying in:</b>
+          <p className="big-text">
+            The Bosporus Strait divides Istanbul's neighborhoods into two sides: the European side and the Asian side.
+            The Devconnect Cowork venue and probably most Devconnect venues will be located on the European side.
+          </p>
+
+          <p className="big-text bold">
+            We highly recommend staying in walking distance to the ICC or close to Metro lines M2 and F1 for ease of
+            moving around in the city (ICC is connected to Taksim and Osmanbey station).
           </p>
 
           <div className={css['areas']}>
@@ -435,68 +205,200 @@ const tabs = [
               to the Bosphorus, filled with bars, cafes, restaurants, and a large student population. It takes 15-20
               minutes by public transport from Beşiktaş Meydan to the ICC venue.{' '}
             </div>
-            <div className={css['area']}>
-              <div className="large-text orange margin-bottom-much-less bold">Üsküdar</div>
-              is a good and affordable alternative on the Asian side, very local with few tourists. The frequent ferries
-              allow easy access to the European side with a 10-minute ride to Beşiktaş and a ~40 minutes metro
-              connection under the sea to the historical peninsula. Ferries are operating until late.{' '}
-            </div>
-            <div className={css['area']}>
-              <div className="large-text orange margin-bottom-much-less bold">The Historic Peninsula</div>
-              <p>
-                {' '}
-                The touristic center, including the neighborhood <b>Sultanahmet</b> with many famous landmarks like the
-                Blue Mosque, Hagia Sophia, Topkapi Palace, and the Grand Bazaar, all within walking distance of each
-                other. Check out{' '}
-                <Link href="https://istanbulclues.com/istanbul-historic-peninsula/" indicateExternal>
-                  this resource
-                </Link>{' '}
-                for a map and more details.
-              </p>
-            </div>
-            <div className={css['area']}>
-              <div className="large-text orange margin-bottom-much-less bold">Moda in Kadıköy (far, but nice)</div>
-              <b>Moda in Kadıköy</b> is one of the most beautiful, hip, and modern districts. It has a lovely coast,
-              many good restaurants, cafes and bars. The district attracts most students and upper-middle-class young
-              adults. However, Kadıköy is far from the venue, requiring a ~1-hour ride with public transport. It might
-              be a good place to stay for a local experience outside Devconnect week.
-            </div>
           </div>
 
-          {/* <h3 id="far-but-nice" className="margin-top-less">
-            Far but nice:
-          </h3>
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Accommodation-Guide-by-ITU-Blockchain-261d65cdd210452aa7f7679f5583164e"
+          >
+            <PinIcon />
+            Accommodation Guide by ITU
+          </Link>
+        </div>
+      )
+    },
+  },
+  {
+    text: 'Arriving in Istanbul',
+    value: 'getting-around',
+    content: () => {
+      return (
+        <div className="tab-content">
           <p>
-            <b>Moda in Kadıköy</b> is one of the most beautiful, hip, and modern districts. It has a lovely coast, many
-            good restaurants, cafes and bars. The district attracts most students and upper-middle-class young adults.
-            However, Kadıköy is far from the venue, requiring a ~1-hour ride with public transport. It might be a good
-            place to stay for a local experience outside Devconnect week.{' '}
-          </p> */}
-          <p className="big-text margin-top">
-            <b>More information about all neighborhoods:</b>
+            <b>From the airport to the city</b>
+          </p>
+          <ul>
+            <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li>
+            <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
+          </ul>
+
+          <p>
+            <b>Public transport</b>
+          </p>
+          <ul>
+            <li>
+              <b>Metro / Tram:</b> The fastest, not everywhere
+            </li>
+            <li>
+              <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
+            </li>
+            <li>
+              <b>Bus:</b> Go everywhere, but traffic
+            </li>
+            <li>
+              <b>Ferry:</b> to cross the Bosphorus
+            </li>
+            <li>
+              {' '}
+              👉 To use all public transportation in Istanbul you will need the Istanbulkart (might not work seamless
+              for non-locals) or simply use contactless payments. 💳 Get the card and top it up at kiosks near metro
+              stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL ($0.4) per trip
+            </li>
+          </ul>
+
+          <p>
+            <b>Apps</b>
+          </p>
+          <ul>
+            <li>
+              <b>Uber or BiTaksi:</b> to order taxis
+            </li>
+            <li>
+              <b>isbike:</b> city bikes by the municipality.
+            </li>
+            <li>
+              <b>Google Maps or Moovit:</b> for route planning and real-time information on public transport.
+            </li>
+          </ul>
+
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Tourist-Guide-by-ITU-Blockchain-e09893e5555b4f8e9b4c6ae854b599cd "
+          >
+            <PinIcon />
+            Tourist Guide by ITU
+          </Link>
+        </div>
+      )
+    },
+  },
+  {
+    text: 'Tips from a Local',
+    value: 'local-tips',
+    content: () => {
+      return (
+        <div className="tab-content">
+          <p>
+            <b>Practical information</b>
+          </p>
+          <ul>
+            <li>
+              <b>Credit Card:</b> Widely used in Istanbul, you don't need much cash.
+            </li>
+            <li>
+              <b>Best exchange:</b> We recommend avoiding exchanges at the airport for their poor rates. There are lots
+              of change offices in every district.
+            </li>
+            <li>
+              <b>Tipping culture:</b> 5-10% or rounding up.
+            </li>
+            <li>
+              <b>Tap water:</b> NOT safe to drink. Bottled water is easy to find.
+            </li>
+          </ul>
+          <p>
+            <b>"The shoe shiner scam"</b>
+          </p>
+          <p>
+            Beware of shoe shiners in Istanbul who may{' '}
+            <Link indicateExternal href="https://turkishtravelblog.com/shoe-shine-scam-istanbul/">
+              drop their brush near you
+            </Link>
+            , then offer to shine your shoe in gratitude - they will greatly overcharge you out of claimed desperation,
+            so politely decline. Stick to regular shoe shiners at their stools to avoid being scammed.
+          </p>
+          <p>
+            <b>Negotiate on markets</b>
+          </p>
+          <p>
+            Always bargain at bazaars, like the Grand Bazar or Spice Market. There&apos;s always room for some discount.
+            These guys are sales experts!
+          </p>
+          <p>
+            <b>Taxis</b>
+          </p>
+          <ul>
+            <li>Risk of scamming in regular taxis is high.</li>
+            <li>Use Uber or BiTaksi apps to find a taxi, follow your route, and always check the license plate.</li>
+            <li>
+              It can get difficult to find a taxi in rush hours or crowded areas, so better use public transport then.
+            </li>
+            <li>
+              If you need to use a regular taxi, always check that the taximeter is turned on and counting when
+              you&apos;re driving.
+            </li>
+            <li>
+              There can indeed be extra fees for crossing highways, bridges, and tunnels, and taxi drivers might ask you
+              for it.
+            </li>
+            <li>
+              In case you think you were overcharged or have a problem take note of the taxi plate. You can file a
+              complaint at the “White Desk” of the municipality by calling “153”, from the{' '}
+              <Link indicateExternal href="https://cozummerkezi.ibb.istanbul/application/cozummerkezi">
+                website
+              </Link>
+              ,{' '}
+              <Link indicateExternal href="https://play.google.com/store/apps/details?id=com.tr.gov.ibb.istanbulsenin">
+                Android
+              </Link>
+              , or{' '}
+              <Link indicateExternal href="https://apps.apple.com/tr/app/lstanbul-senin/id1534342254?l=tr">
+                Apple
+              </Link>{' '}
+              apps.
+            </li>
+          </ul>
+          <p>
+            <b>How do I behave around the cats “miyav”?</b>{' '}
+          </p>
+          <p>
+            Many locals view the cats as communally-owned pets rather than traditional strays, and it&apos;s common to
+            feed them. Here there is a documentary about cats in Istanbul: “Kedi”{' '}
+            <Link indicateExternal href="https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers">
+              https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers
+            </Link>
+          </p>
+          <p>
+            <b>Be friendly</b> 🙂
+          </p>
+          <p>It&#39;s essential to be friendly and get along well with taxi drivers and local shopkeepers.</p>
+          <p>
+            <b>Do locals speak English?</b>
+          </p>
+          <p>
+            Yes they do, even though their English may not be very fluent. Shopkeepers are very helpful in every matter,
+            and you can feel comfortable asking them questions. :)
           </p>
           <Link
-            className="large-text"
-            href="https://propertyexperts-tr.com/en/Blog/districts-of-istanbul"
-            indicateExternal
+            className="button orange margin-top-less margin-right-less"
+            href="https://kaanuzdogan.com/kaans-foodie-guide-during-devconnect-istanbul"
           >
-            Districts of Istanbul
+            <PinIcon />
+            Kaan's Foodie Guide
           </Link>
-          <br />
           <Link
-            className="large-text"
-            href="https://exploretraveloasis.com/the-coolest-neighbourhoods-in-istanbul/"
-            indicateExternal
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Food-and-Drink-Guide-by-ITU-Blockchain-9598ce3a51494d72a842d71d3692d3d3"
           >
-            The coolest neighbourhoods in Istanbul
+            <PinIcon />
+            ITU Food and Drink Guide
           </Link>
-          <br />
           <Link
-            className="large-text"
-            href="https://www.isthomes.com/news/best-5-areas-to-live-on-the-asian-side-of-istanbul"
-            indicateExternal
+            className="button orange margin-top-less "
+            href="https://www.google.com/maps/d/u/0/edit?mid=1eX7T0uqj9dfXHBFcw2mH9qXGfQtdr0A&usp=sharing"
           >
-            Best 5 areas to live on the asian side of Istanbul
+            <PinIcon />
+            Lunch spots close to ICC
           </Link>
         </div>
       )
@@ -509,13 +411,13 @@ const tabs = [
     content: () => {
       return (
         <div className={`tab-content ${css['history-and-culture']}`}>
-          <p className="large-text">
+          <p className="">
             Istanbul lies in a geographically unique spot, being the only city that covers two continents - Europe and
             Asia. Istanbul is not only a fusion of continents, it&apos;s also a unique blend of cultures. Ancient
             histories intertwine with the modern world, and many civilizations have left their imprints over the
             millennia.{' '}
           </p>
-          <p className="big-text">
+          <p className="">
             Alone the different names Istanbul has been called give you a sense of the variety of cultures you can
             experience in the city. Initially founded by Greek settlers in the 7th century BC, it was known as{' '}
             <Link indicateExternal href="https://ethereum.org/en/history/#byzantium">
@@ -531,7 +433,24 @@ const tabs = [
             </Link>
             .{' '}
           </p>
-          <p className="big-text">
+
+          <p>
+            Curious how the city has developed over time? Here are some videos showing Istanbul in the{' '}
+            <Link indicateExternal href="https://www.youtube.com/watch?v=Pejti3plPAg">
+              1920s
+            </Link>
+            ,{' '}
+            <Link indicateExternal href="https://www.youtube.com/watch?v=wO2-ownJAYc">
+              1930s
+            </Link>
+            , and{' '}
+            <Link indicateExternal href="https://www.youtube.com/watch?v=fK09Vz75EyQ">
+              1960s
+            </Link>
+            .
+          </p>
+
+          <p className="">
             If you want to delve deeper into understanding Istanbul&apos;s culture, you can get started with some of the
             following movie and book recommendations from a local.{' '}
           </p>
@@ -686,256 +605,6 @@ const tabs = [
     },
   },
   {
-    text: 'Arrival',
-    value: 'arriving-in-the-city',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            <b>Currency</b>: Turkish Lira{' '}
-          </p>
-          <p>
-            <b>Credit Card:</b> Widely used in Istanbul, you don&apos;t need much cash.{' '}
-          </p>
-          <p>
-            <b>Best exchange:</b> We recommend avoiding exchanges at the airport for their poor rates. There are lots of
-            change offices in every district.
-          </p>
-          <p>
-            <b>E-SIM providers</b>: Holafly or Airalo{' '}
-          </p>
-          <p>
-            <b>SIM cards with best 4G coverage:</b> Turkcell or Türk Telekom. We recommend buying physical SIM cards in
-            a local shop, not at the airport.
-          </p>
-          <p>
-            <b>Tipping culture</b>: 5-10% or rounding up
-          </p>
-          <p>
-            <b>Tap Water</b>: <b>NOT</b> safe to drink. Bottled water is easy to find.
-          </p>
-          <p>
-            🚨 <b>Emergency number: 112</b>
-          </p>
-        </div>
-      )
-    },
-  },
-  {
-    text: 'Getting Around',
-    value: 'getting-around',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            Public transport in Istanbul is extensive and well-developed, making it easy to move around the city. It is
-            way better to use public transport than a car, due to heavy traffic, and difficulty finding parking.
-            Especially during <b>rush hours between 5:00-6:30 PM</b>, it will be basically impossible to find a taxi.{' '}
-          </p>
-          <h3 id="use-one-of-the-many-public-transportation-options-">
-            Use one of the many public transportation options:
-          </h3>
-          <p>
-            <b>Metro</b>: The fastest way to get around, with several lines connecting different parts of the city. Look
-            for the red, blue, and white M signs to find a metro station.
-          </p>
-          <p>
-            <b>Metrobus:</b> Segregated express bus line on the Main D100 highway. Goes from the Asian side of the city
-            all the way to the end of Europe, and crosses the bridge.
-          </p>
-          <p>
-            <b>Tram</b>: Trams cover many popular areas, yet there are only three lines.
-          </p>
-          <p>
-            <b>Bus</b>: Most widely used form of public transport in Istanbul, with around 500 lines and 8,000 stops.
-          </p>
-          <p>
-            <b>Ferry (Vapur)</b>: There&apos;s lots of public ferries crossing the Bosphorus between the European and
-            Asian sides.{' '}
-            <Link
-              indicateExternal
-              // href="https://file.notion.so/f/s/4017bdb4-e7b2-4bb8-9c30-90a7cf4c27dc/Sefer-Haritasi-Line-Map-2022.pdf?id=2d225240-dc8a-4cbe-96ed-5206edd1b887&table=block&spaceId=29b26582-476c-4221-baee-adf2ad16f913&expirationTimestamp=1691599673061&signature=YAYiT4YQRW9xLbOoQbG95-Q57zK-fEj0DwIo3ioRqYI&downloadName=Sefer-Haritasi-Line-Map-2022.pdf"
-              href="/files/ferry-map.pdf"
-            >
-              Here is a Map with all lines
-            </Link>
-            , but the most used ones are Kadikoy and Uskudar on the Asian side, and the two-sided ferries from Besiktas,
-            Kabatas, and Karakoy.
-          </p>
-
-          <p>
-            <b>Dolmuş (shared taxis)</b>: These minibuses are more affordable than taxis, you just hop on and pay cash
-            in the vehicle.{' '}
-          </p>
-          <p>
-            <b>Marmaray:</b> The rail connection between European and Asian Istanbul via a tunnel beneath the Bosphorus.
-          </p>
-          <p>
-            <b>Bosphorus taxis</b>: You can easily transfer from Bebek to Nisantası, Taksim, and other areas close to
-            Bosphorus.
-          </p>
-
-          <p>
-            👉 To use all public transportation in Istanbul you will need the <b>Istanbulkart</b>. You can simply get
-            the card and top it up at kiosks near metro stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL
-            ($0.4) each way
-          </p>
-          {/* <p>
-            🦄 Cowork attendees also have the option to pre-order a discounted metro card when they purchase their
-            Cowork ticket. Metro cards will then be available for pickup at registration and pre-registration for those
-            who selected them.{' '}
-          </p> */}
-          <h2 id="transportation-apps">Transportation apps</h2>
-          <p>
-            <b>İstanbulkart</b>: Official transport app. A Turkish mobile number might be needed (you can get one with a
-            physical SIM and with some e-SIMs). You can also just get the physical İstanbulkart at kiosks close to the
-            stations.
-          </p>
-          <p>
-            <b>Uber:</b> It is used to call verified official yellow taxis, not personal drivers.{' '}
-          </p>
-          <p>
-            <b>BiTaksi:</b> Uber-like app, locally-made.
-          </p>
-          <p>
-            <Link indicateExternal href="https://www.marti.tech/">
-              Marti
-            </Link>{' '}
-            and{' '}
-            <Link indicateExternal href="https://fenix.life/index-tr.html">
-              Fenix
-            </Link>
-            : Shared scooter apps are widely used. Marti has the “MartiTag” mode that works like Uber.
-          </p>
-          <p>
-            <Link indicateExternal href="https://www.isbike.istanbul/">
-              <b>isbike</b>
-            </Link>
-            : City bikes by the municipality. However, the city is not very bikeable. There are some good bikeable zones
-            at the coast, you can see them on the isbike map.
-          </p>
-          <p>
-            <b>Moovit:</b> Route planning and real-time information on public transport.
-          </p>
-          <p>
-            <b>Google Maps:</b> Works OK, yet, bus times might not be accurate.
-          </p>
-          <h2 id="from-the-airport-to-the-city">From the Airport to the City</h2>
-          <p>
-            We recommend using public transport because taxis are not easy to find. If you want to use the yellow taxis,
-            you should use Uber or BiTaksi to ensure you can get the best, fair rate.
-          </p>
-          <p>These are the transportation services offering transit between the airport and the city center:</p>
-          <p>
-            <b>Havabus</b>: Official airport shuttle service operating between Istanbul Sabiha Gökçen Airport (SAW) and
-            Taksim, Kadikoy, and Yenisahra.{' '}
-          </p>
-          <p>
-            <b>Havaist</b>: Official airport shuttle service between the Istanbul Airport (IST) and many destinations in
-            the city.{' '}
-          </p>
-          <p>
-            <b>IETT</b> (İstanbul Elektrik Tramvay ve Tünel İşletmeleri): IETT is a general public transportation
-            provider that operates bus routes.
-          </p>
-          <p>
-            <b>Metro</b>: M4 metro line at the Sabiha Gökçen airport, and M11 at Istanbul Airport (does not reach the M2
-            line yet but ends at Kağıthane).{' '}
-          </p>
-          <p>
-            <b>Resources and more information:</b>
-          </p>
-          <p>
-            <Link indicateExternal href="https://istanbul-tourist-information.com/en/public-transport-in-istanbul/">
-              https://istanbul-tourist-information.com/en/public-transport-in-istanbul
-            </Link>
-          </p>
-          <p>
-            <Link indicateExternal href="https://www.chasingthedonkey.com/getting-around-istanbul-transport/">
-              https://www.chasingthedonkey.com/getting-around-istanbul-transport
-            </Link>
-          </p>
-        </div>
-      )
-    },
-  },
-  {
-    text: 'Tips from a Local',
-    value: 'local-tips',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            <b>Negotiate on markets</b>
-          </p>
-          <ul>
-            <li>
-              Always bargain at bazaars, like the Grand Bazar or Spice Market. There&apos;s always room for some
-              discount. These guys are sales experts!
-            </li>
-          </ul>
-          <p>
-            <b>Taxis</b>
-          </p>
-          <ul>
-            <li>Risk of scamming in regular taxis is high.</li>
-            <li>Use Uber or BiTaksi apps to find a taxi, follow your route, and always check the license plate.</li>
-            <li>
-              It can get difficult to find a taxi in rush hours or crowded areas, so better use public transport then.
-            </li>
-            <li>
-              If you need to use a regular taxi, always check that the taximeter is turned on and counting when
-              you&apos;re driving.
-            </li>
-            <li>
-              There can indeed be extra fees for crossing highways, bridges, and tunnels, and taxi drivers might ask you
-              for it.
-            </li>
-            <li>
-              In case you think you were overcharged or have a problem take note of the taxi plate. You can file a
-              complaint at the “White Desk” of the municipality by calling “153”, from the{' '}
-              <Link indicateExternal href="https://cozummerkezi.ibb.istanbul/application/cozummerkezi">
-                website
-              </Link>
-              ,{' '}
-              <Link indicateExternal href="https://play.google.com/store/apps/details?id=com.tr.gov.ibb.istanbulsenin">
-                Android
-              </Link>
-              , or{' '}
-              <Link indicateExternal href="https://apps.apple.com/tr/app/lstanbul-senin/id1534342254?l=tr">
-                Apple
-              </Link>{' '}
-              apps.
-            </li>
-          </ul>
-          <p>
-            <b>How do I behave around the cats “miyav”?</b>{' '}
-          </p>
-          <p>
-            Many locals view the cats as communally-owned pets rather than traditional strays, and it&apos;s common to
-            feed them. Here there is a documentary about cats in Istanbul: “Kedi”{' '}
-            <Link indicateExternal href="https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers">
-              https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers
-            </Link>
-          </p>
-          <p>
-            <b>Be friendly</b> 🙂
-          </p>
-          <p>It&#39;s essential to be friendly and get along well with taxi drivers and local shopkeepers.</p>
-          <p>
-            <b>Do locals speak English?</b>
-          </p>
-          <ul>
-            <li>
-              Yes they do, even though their English may not be very fluent. Shopkeepers are very helpful in every
-              matter, and you can feel comfortable asking them questions. :)
-            </li>
-          </ul>
-        </div>
-      )
-    },
-  },
-  {
     text: 'Safety',
     value: 'safety',
     content: () => {
@@ -1046,17 +715,17 @@ const List = (props: any) => {
             <b>Visa:</b> tourist visa (30/90 days) & e-visa
           </p>
         </div>
-        <AnchorLink
-          href={`#plan-your-travels`}
+        <Link
+          href={`https://team.notion.site/pse-team/Istanbul-Tourist-Visa-30-90-days-E-Visa-Public-5f83cc372a224c1e9b3ed6d6170aa0a8`}
           className={`${css['right']} orange uppercase tiny-text hover-underline generic`}
-          onClick={(e: any) => {
-            if (props.accordionRefs.current['plan-your-travels']) {
-              props.accordionRefs.current['plan-your-travels'].open()
-            }
-          }}
+          // onClick={(e: any) => {
+          //   if (props.accordionRefs.current['plan-your-travels']) {
+          //     props.accordionRefs.current['plan-your-travels'].open()
+          //   }
+          // }}
         >
           Requirements
-        </AnchorLink>
+        </Link>
       </div>
       <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
@@ -1095,7 +764,6 @@ const List = (props: any) => {
 
       <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
-          {/* <Visa className={`${css['icon']} icon`} /> */}
           <AnchorLink
             href={`#where-to-stay`}
             className={`uppercase hover-underline generic`}
@@ -1121,24 +789,11 @@ const List = (props: any) => {
         </AnchorLink>
       </div>
 
-      {/* <div className={css['row']}>
+      <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
-          <Water className={`${css['icon']} icon`} />
-          <p className="bold">WATER: &nbsp;</p>
-          <p>Medium safe to drink</p>
+          <b>⚠️ Emergency Number: 112</b>
         </div>
-        <AnchorLink
-          href={`#faq`}
-          className={`${css['right']} orange uppercase tiny-text hover-underline generic`}
-          onClick={(e: any) => {
-            if (props.accordionRefs.current.faq) {
-              props.accordionRefs.current.faq.open()
-            }
-          }}
-        >
-          FAQ
-        </AnchorLink>
-      </div> */}
+      </div>
     </div>
   )
 }
@@ -1173,21 +828,6 @@ const CityGuide: NextPage = () => {
             </p>
             <p className="extra-large-text">Hoşgeldin</p>
           </div>
-
-          {/* <div className={css['items']}>
-            {tabs.map(tab => {
-              return (
-                <AnchorLink
-                  key={tab.value}
-                  href={`#${tab.value}`}
-                  className={`uppercase bold`}
-                  onClick={() => accordionRefs.current[tab.value] && accordionRefs.current[tab.value].open()}
-                >
-                  {tab.text}
-                </AnchorLink>
-              )
-            })}
-          </div> */}
         </div>
       </Hero>
 
@@ -1228,41 +868,6 @@ const CityGuide: NextPage = () => {
                   recommendations to getting around in the city and tips from locals, you can consider this your
                   ultimate Devconnect travel resource.
                 </p>
-                {/* <p className="big-text">
-                  Our destination for Devconnect 2023 is Istanbul - A city that is home to many cultures and bridges two
-                  continents, Europe and Asia.
-                </p>
-                <br />
-                <p className="big-text">
-                  It&apos;s a popular destination for visitors because it&apos;s easy to reach via its major
-                  international airport (IST), it&apos;s very affordable to live, public transport is efficient and
-                  cheap, hospitality is genuine, and there&apos;s a lot to explore: bazaars, spices, kebaps, baklava,
-                  the Bosporus strait, and the city&apos;s rich culture and heritage.
-                </p>
-                <br />
-                <p>
-                  This guide aims to prepare you for the best Devconnect experience in Istanbul, providing you with
-                  resources and covering more than just the basics.
-                </p> */}
-                {/* <br />
-
-                <div className={css['call-to-action']}>
-                  <Link
-                    href="https://www.google.com/maps/d/embed?mid=143AuN51prJpx6M62b9xMTAwdXNm-dstJ&hl=en&ehbc=2E312F"
-                    indicateExternal
-                    className={`button sm orange-fill`}
-                  >
-                    Venues Map
-                  </Link>
-
-                  <Link
-                    href="https://amsterdamblockchainweek.org/"
-                    indicateExternal
-                    className={`button sm orange-fill`}
-                  >
-                    AMS Blockchain Week
-                  </Link>
-                </div> */}
               </div>
 
               <div className={css['right']}>
@@ -1275,26 +880,17 @@ const CityGuide: NextPage = () => {
               className="section-header orange margin-top-less margin-bottom-much-less border-top padding-top-less"
               id="plan-your-travels"
             >
-              Getting to Istanbul
+              PLAN YOUR TRAVELS
             </p>
             <div>{tabs[1].content()}</div>
 
-            <p className="section-header orange margin-top-less margin-bottom-much-less" id="experience-the-city">
-              Experience The City
-            </p>
-
-            <div>{mounted && tabs[2].content()}</div>
-
-            {/* <p className="section-header orange margin-top-less">Before Devconnect</p> */}
             <Accordion>
-              {tabs.slice(3).map((tab: any) => {
+              {tabs.slice(2).map((tab: any) => {
                 const tabContent = tab
 
                 return (
                   <AccordionItem
                     key={tab.value}
-                    // title={tab.text}
-                    // alwaysOpen={tab.alwaysOpen}
                     title={<p className="uppercase orange large-text bold">{tab.text}</p>}
                     id={tab.value}
                     ref={el => (accordionRefs.current[tab.value] = el)}
@@ -1304,42 +900,6 @@ const CityGuide: NextPage = () => {
                 )
               })}
             </Accordion>
-            {/* 
-            <div
-              className="margin-bottom-less margin-top-less"
-              style={{ width: '100%', display: 'flex', justifyContent: 'center', maxWidth: '700px' }}
-            >
-              <div className="aspect">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/BzMYQIo-0NA"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div> */}
-
-            {/* <p className="section-header orange margin-top-less">During Devconnect</p> */}
-            {/* <Accordion>
-              {tabs.slice(5).map((tab, index) => {
-                const tabContent = tab
-
-                return (
-                  <AccordionItem
-                    key={tab.value}
-                    // title={tab.text}
-                    title={<p className="uppercase large-text orange bold">{tab.text}</p>}
-                    id={tab.value}
-                    ref={el => (accordionRefs.current[tab.value] = el)}
-                  >
-                    {tabContent.content && tabContent.content()}
-                  </AccordionItem>
-                )
-              })}
-            </Accordion> */}
           </div>
         </div>
       </div>

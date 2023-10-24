@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
-// import Image from 'next/legacy/image'
+import Image from 'next/legacy/image'
 import ImageNew from 'next/image'
 import css from './index.module.scss'
-// import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic'
 import React from 'react'
 import HeaderLogo from 'assets/images/header-logo.svg'
 import Logo from 'assets/images/logo-ist.svg'
-// import LogoBig from 'assets/images/logo-big.svg'
+import LogoBig from 'assets/images/logo-big.svg'
 import DevconnectIstanbulText from 'assets/images/istanbul-logo-text.svg'
 import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
-// import RoadToDevcon from 'assets/images/rtd.png'
-// import CubeImages from 'assets/images/cube-images-ist.png'
+import RoadToDevcon from 'assets/images/rtd.png'
+import CubeImages from 'assets/images/cube-images-ist.png'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
@@ -29,9 +29,8 @@ import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
 import ShapesImage from 'assets/images/shapes.png'
-// import useDimensions from 'react-cool-dimensions'
+import useDimensions from 'react-cool-dimensions'
 import moment from 'moment'
-import TestExternalRepo from 'lib/components/lib-import'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -714,7 +713,6 @@ const Home: NextPage = (props: any) => {
             <div className="section">
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
-                  <TestExternalRepo />
                   <div>
                     <p className={`${css['big-description']}`}>
                       Meet the builders of Ethereum

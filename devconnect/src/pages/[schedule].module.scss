@@ -694,24 +694,6 @@
   grid-gap: 4px;
   text-transform: uppercase;
 
-  // hover:none and pointer:coarse targets mobile/touch devices
-  @media (hover: none), (pointer: coarse) {
-    overflow-x: auto;
-    position: relative;
-    left: -16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    width: 100vw;
-    right: -16px;
-  }
-
-  @media (min-width: $screen-md) and (hover: none), (min-width: $screen-md) and (pointer: coarse) {
-    left: -64px;
-    right: -64px;
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-
   .day {
     min-width: 240px;
     padding: 10px;
@@ -1338,8 +1320,69 @@
   // }
   // --override-display-swipe: none;
 
-  @media (max-width: $screen-lg) {
-    grid-column: 2 / 4;
+  &.timeline-wrapper {
+    @media (max-width: $screen-lg) {
+      grid-column: 1 / 4;
+      overflow: visible;
+    }
+
+    [data-type="swipe-to-scroll-container"] {
+      > div {
+        @media (max-width: $screen-md) {
+          display: flex;
+
+          &:before {
+            content: '';
+            position: relative;
+            display: block;
+            opacity: 0;
+            flex-shrink: 0;
+            width: 16px !important;
+          }
+        }
+
+        @media (max-width: $screen-lg) {
+          display: flex;
+
+          &:before {
+            content: '';
+            position: relative;
+            display: block;
+            opacity: 0;
+            flex-shrink: 0;
+            width: 64px;
+          }
+        }
+      }
+    }
+
+    // @media (hover: none), (pointer: coarse) {
+    //   overflow-x: auto;
+    //   position: relative;
+    //   // left: -16px;
+    //   padding-left: 16px;
+    //   padding-right: 16px;
+    //   width: 100vw;
+    //   // right: -16px;
+    // }
+
+    //   // hover:none and pointer:coarse targets mobile/touch devices
+    // @media (hover: none), (pointer: coarse) {
+    //   overflow-x: auto;
+    //   position: relative;
+    //   left: -16px;
+    //   padding-left: 16px;
+    //   padding-right: 16px;
+    //   width: 100vw;
+    //   right: -16px;
+    // }
+
+    // @media (min-width: $screen-md) and (hover: none), (min-width: $screen-md) and (pointer: coarse) {
+    //   left: -64px;
+    //   right: -64px;
+    //   padding-left: 64px;
+    //   padding-right: 64px;
+    // }
   }
 
   > * {
@@ -1433,6 +1476,7 @@
         padding: 12px 16px;
         padding-right: 36px;
         width: 100%;
+        font-size: 16px;
         
         &::placeholder {
           opacity: 0.5;
@@ -1459,7 +1503,7 @@
   align-self: flex-start;
   border: 1px solid var(--primary-text-inactive, #BCBFCA);
   background: #FCFCFC;
-  z-index: 5;
+  z-index: 7;
   flex-shrink: 0;
   margin-right: 8px;
   width: min(313px, 100%);
@@ -1467,6 +1511,11 @@
   @media (max-width: $screen-lg) {
     position: absolute;
     margin-right: 0px;
+    margin-left: 64px;
+  }
+
+  @media (max-width: $screen-md) {
+    margin-left: 16px;
   }
 }
 

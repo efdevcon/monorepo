@@ -551,7 +551,7 @@ const useFavorites = (events: any, edition: Edition): any => {
 
     let url = window.location.origin + window.location.pathname
 
-    url += `?edition=${edition}&share=${shareParams}`
+    url += `?edition=${encodeURIComponent(edition)}&share=${encodeURIComponent(shareParams)}`
 
     if (shareTitleInput) url += `&share_title=${encodeURIComponent(shareTitleInput)}`
 
@@ -781,6 +781,23 @@ const Timeline = (props: any) => {
           <DevconnectIstanbul style={{ maxWidth: '300px', width: '400px', opacity: 0.15, right: '16px' }} />
         )}
       </div>
+
+      {(() => {
+        const selectedEvent = sortedEvents.find((event: any) => event.ID === eventModalOpen)
+
+        if (!selectedEvent) return null
+
+        return (
+          <LearnMoreModal
+            event={selectedEvent}
+            open
+            close={() => setEventModalOpen('')}
+            edition={props.edition}
+            favorites={props.favorites}
+          />
+        )
+      })()}
+
       <SwipeToScroll noBounds>
         <div className={css['timeline']}>
           {events}
@@ -891,6 +908,27 @@ const EventLinks = (props: any) => {
   )
 }
 
+const LearnMoreModal = (props: { open: boolean; close: () => void; event: any; favorites: any; edition: any }) => {
+  return (
+    <Modal
+      open={props.open}
+      close={props.close}
+      className={`${css['learn-more-modal']} ${css[`edition-${props.edition}`]}`}
+      noCloseIcon
+    >
+      <div className={css['learn-more-modal-content']}>
+        <ListEventMobile
+          {...getFormattedEventData(props.event)}
+          event={props.event}
+          timeline
+          edition={props.edition}
+          favorites={props.favorites}
+        />
+      </div>
+    </Modal>
+  )
+}
+
 const LearnMore = (props: { open: boolean; close: () => void; event: any; favorites: any; edition: any }) => {
   let className = css['learn-more']
 
@@ -903,23 +941,6 @@ const LearnMore = (props: { open: boolean; close: () => void; event: any; favori
         <p>Learn More →</p>
         {props.event['Attend'] && <p className={css['attend-details']}>{props.event['Attend']}</p>}
       </div>
-
-      <Modal
-        open={props.open}
-        close={props.close}
-        className={`${css['learn-more-modal']} ${css[`edition-${props.edition}`]}`}
-        noCloseIcon
-      >
-        <div className={css['learn-more-modal-content']}>
-          <ListEventMobile
-            {...getFormattedEventData(props.event)}
-            event={props.event}
-            timeline
-            edition={props.edition}
-            favorites={props.favorites}
-          />
-        </div>
-      </Modal>
     </>
   )
 }
@@ -1896,10 +1917,10 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
               <p className={`small-text bold uppercase ${css['swipe']}`}>Hold and drag schedule for more →</p>
             )}
 
-            <Expand scheduleView={scheduleView} accordionRefs={accordionRefs} />
+            {/* <Expand scheduleView={scheduleView} accordionRefs={accordionRefs} /> */}
           </div>
 
-          <div className={css['schedule-wrapper']}>
+          <div className={`${css['schedule-wrapper']} ${scheduleView === 'timeline' ? css['timeline-wrapper'] : ''}`}>
             {filterOpen && (
               <>
                 <div className={css['filter-foldout']}>
@@ -2105,6 +2126,15 @@ const formatResult = (result: any) => {
 
   // Insert a default value for time of day when unspecified
   if (!properties['Time of Day']) properties['Time of Day'] = 'All day'
+  // Prepend https to url if it's not an internal link (e.g. /cowork) and if https is not specified in case the event host forgot
+  if (properties['URL']) {
+    const isInternal = properties['URL'].startsWith('/')
+    const noHttp = !properties['URL'].startsWith('http')
+
+    if (noHttp && !isInternal) {
+      properties['URL'] = `https://${properties['URL']}`
+    }
+  }
 
   return { ...properties, ID: result.id, ShortID: result.id.slice(0, 5) /* raw: result*/ }
 }
