@@ -1,0 +1,6 @@
+---
+id: "XNPLJ9"
+name: "Piper Merriam"
+description: "I am a long time core developer of the Ethereum protocol that loves to make things and tell stories."
+avatar: "http://speak.devcon.org/media/avatars/headshot-small_zc28weX.jpg"
+---

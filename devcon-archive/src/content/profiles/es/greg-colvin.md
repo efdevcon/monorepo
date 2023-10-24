@@ -1,0 +1,7 @@
+---
+name: "Greg Colvin"
+role: "Scientist &amp; Engineer"
+description: "Greg is a Core Developer of the Ethereum Virtual Machine. His career spans decades, from a psychology PhD at Cornell through artificial intelligence, optical storage, and information retrieval startups in Boulder and San Francisco, optimization of the JVM interpreter in the Oracle kernel, service on the C++ standards committee, to his current incarnation as the Gandalf of Ethereum.  He likes fast cars and loud guitars."
+organization: "Independent"
+country: "United States"
+---

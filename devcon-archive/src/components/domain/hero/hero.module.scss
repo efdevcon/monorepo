@@ -1,0 +1,339 @@
+@use 'src/assets/css/partials/index' as *;
+@use 'sass:math';
+
+@keyframes sway {
+  0% {
+    transform: translateX(0px);
+  }
+
+  25% {
+    transform: translateX(-50px);
+  }
+
+  75% {
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+$logo-offset: 50px;
+
+.hero {
+  color: white;
+  --color-icon: white;
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
+  top: 32px;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(45deg, #f17c58, #e94584, #24aadb, #d529c6, #f25c37);
+  background-size: 600% 100%;
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+
+  // Using 100vh on mobile devices often doesn't account for the navigation bar at the bottom, so this is a decent compromise - if it's important to fill the entire
+  // screen we can fall back to a JS solution - pending feedback
+  @media (max-width: $breakpoints-lg) {
+    height: 90vh;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    height: 85vh;
+  }
+
+  .shading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 21%;
+    width: 100%;
+  }
+
+  .mountain-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .mountains {
+      transform: translateY(var(--translateY));
+      width: 42%;
+
+      @media (max-width: $breakpoints-xl) {
+        width: 60%;
+      }
+
+      @media (max-width: $breakpoints-lg) {
+        width: 65%;
+      }
+
+      @media (max-width: $breakpoints-md) {
+        width: 75%;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        width: 100%;
+      }
+
+      @media (max-width: $breakpoints-tiny) {
+        width: 100%;
+      }
+
+      @media (orientation: landscape) {
+        width: 40%;
+      }
+    }
+  }
+
+  .cloud-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+
+    .clouds {
+      margin-bottom: -7%;
+      margin-left: -7.5%;
+      width: 115%;
+      transform: translateY(var(--translateY));
+      // animation: sway linear 13s infinite;
+
+      @media (max-width: $breakpoints-md) {
+        transform: scale(1.5) translateY(var(--translateY));
+        margin-bottom: -3%;
+        margin-left: 0%;
+        width: 100%;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        transform: scale(2.5) translateY(var(--translateY));
+        margin-bottom: -3%;
+        margin-left: 0%;
+        width: 100%;
+      }
+
+      @media (orientation: landscape) {
+        transform: scale(1.1) translateY(var(--translateY));
+        width: 100%;
+        margin-left: 0%;
+        margin-bottom: -10%;
+      }
+    }
+  }
+
+  .rays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    width: 100%;
+    top: -$logo-offset;
+    transform: scale(2);
+
+    @media (max-width: $breakpoints-tiny) {
+      top: -(math.div($logo-offset, 2));
+    }
+
+    @media (max-width: $breakpoints-lg) and (orientation: landscape) {
+      top: -(math.div($logo-offset, 2));
+    }
+  }
+
+  .left-rotated,
+  .right-rotated {
+    color: white;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    top: 0;
+    height: 100%;
+    align-items: center;
+
+    @media (max-width: $breakpoints-lg) {
+      display: none;
+    }
+
+    p {
+      @include fonts-xs;
+      @include fonts-bold;
+      white-space: nowrap;
+    }
+  }
+
+  .left-rotated {
+    left: 0;
+
+    p {
+      writing-mode: vertical-lr;
+      margin-left: 20px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .right-rotated {
+    right: 0;
+    justify-content: flex-end;
+
+    p {
+      writing-mode: vertical-rl;
+      margin-right: 20px;
+    }
+  }
+
+  .logo-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    --color-icon: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .logo {
+      display: flex;
+      position: relative;
+      width: 25%;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+      top: -$logo-offset;
+
+      @media (max-width: $breakpoints-xl) {
+        width: 35%;
+      }
+
+      @media (max-width: $breakpoints-lg) {
+        width: 50%;
+      }
+
+      @media (max-width: $breakpoints-md) {
+        width: 60%;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        width: 60%;
+      }
+
+      @media (max-width: $breakpoints-tiny) {
+        top: -(math.div($logo-offset, 2));
+      }
+
+      @media (max-width: $breakpoints-lg) and (orientation: landscape) {
+        width: 20%;
+        top: -(math.div($logo-offset, 2));
+      }
+    }
+  }
+
+  .date {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+
+    p {
+      line-height: 100%;
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      @include gaps-lg(true);
+      display: flex;
+      left: unset;
+      width: 100%;
+      top: 15%;
+      justify-content: flex-end;
+    }
+
+    @media (orientation: landscape) {
+      top: 25%;
+    }
+  }
+
+  .calendar {
+    position: absolute;
+    left: 70%;
+    bottom: 20%;
+    max-width: 350px;
+
+    @media (max-width: $breakpoints-lg) {
+      @include gaps-lg(true);
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      left: unset;
+      width: 100%;
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      bottom: 15%;
+    }
+
+    > p {
+      font-family: $fonts-secondary;
+
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
+    }
+
+    button {
+      @include fonts-xl;
+      @include fonts-bold;
+      // cursor: pointer;
+      width: 100%;
+      margin-top: $gaps-gap-4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-transform: uppercase;
+      // background: none;
+      // display: flex;
+      // align-items: center;
+      // padding-left: $gaps-gap-7;
+      // padding-right: $gaps-gap-7;
+      // padding-top: $gaps-gap-3;
+      // padding-bottom: $gaps-gap-3;
+      // border: 2px solid white;
+
+      @media (max-width: $breakpoints-lg) {
+        @include fonts-xxl;
+        width: 70%;
+        max-width: 300px;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        width: 100%;
+      }
+
+      @media (max-width: $breakpoints-lg) and (orientation: landscape) {
+        font-size: 16px;
+      }
+
+      > p {
+        flex-grow: 1;
+      }
+
+      .icon {
+        margin-right: $gaps-gap-2;
+        flex-shrink: 0;
+      }
+    }
+  }
+}

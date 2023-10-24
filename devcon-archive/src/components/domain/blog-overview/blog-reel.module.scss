@@ -1,0 +1,19 @@
+@use 'src/assets/css/partials/index' as *;
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  left: -$gaps-gap-2;
+  margin-bottom: $gaps-gap-4;
+
+  .card {
+    height: 100%;
+    // margin-right: $gaps-gap-4;
+    margin-left: $gaps-gap-2;
+    margin-right: $gaps-gap-2;
+    margin-bottom: $gaps-gap-4;
+    background: white;
+  }
+}

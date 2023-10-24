@@ -1,0 +1,7 @@
+---
+id: "ZQA8DA"
+name: "Fabio Hildebrand"
+description: "Dev @ RAI"
+twitter: "fabiohild"
+avatar: "http://speak.devcon.org/media/avatars/shyguy_TPgWuG9.jpeg"
+---

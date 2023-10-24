@@ -1,0 +1,57 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  padding: $sizes-size-8 0;
+  display: flex;
+  flex-wrap: nowrap;
+
+  @media (min-width: $breakpoints-md) and (max-width: $breakpoints-xl) {
+    flex-wrap: wrap;
+  }
+}
+
+.alert-container {
+  padding: $sizes-size-8 0;
+}
+
+.input {
+  @include fonts-md-fixed;
+
+  flex-grow: 1;
+  color: $colors-monochrome-10;
+  border-bottom: 1px solid $colors-monochrome-5;
+  padding-left: $gaps-gap-2;
+  margin-right: $gaps-gap-4;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  @media (min-width: $breakpoints-md) and (max-width: $breakpoints-xl) {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+.button {
+  display: inline-block;
+  border: 2px solid $colors-monochrome-10;
+  color: $colors-monochrome-10;
+  padding: $gaps-gap-2 $gaps-gap-3;
+
+  &:focus,
+  &:active,
+  &:hover {
+    outline: none;
+    background: #fff;
+    border: 2px solid $colors-monochrome-10;
+    color: $colors-monochrome-10;
+  }
+
+  @media (min-width: $breakpoints-md) and (max-width: $breakpoints-xl) {
+    padding: $gaps-gap-1 $gaps-gap-2;
+    width: 100%;
+    margin-top: $gaps-gap-2;
+  }
+}

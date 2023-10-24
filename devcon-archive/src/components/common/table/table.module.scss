@@ -1,0 +1,71 @@
+@use 'src/assets/css/partials/index' as *;
+
+.distribute-items {
+  display: flex;
+
+  > * {
+    overflow: hidden;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+}
+
+.cell {
+  @include gaps-responsive-gap($attribute: padding, $gap: $gaps-gap-4, $min-gap: $gaps-gap-2);
+  > * {
+    word-break: break-word;
+  }
+}
+
+.container {
+  @include fonts-primary;
+  // border-top: 2px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  .header {
+    align-self: flex-start;
+    @extend .distribute-items;
+
+    .column-header {
+      @include fonts-xs;
+      @include fonts-bold;
+      display: flex;
+      align-items: center;
+
+      &.sort {
+        cursor: pointer;
+      }
+
+      .sort {
+        margin-left: $gaps-gap-3;
+        font-size: $sizes-size-4;
+        display: inline-flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .row {
+    @extend .distribute-items;
+
+    $bg-color: white;
+
+    background: $bg-color;
+
+    @media not all and (hover: none) {
+      &:hover {
+        outline: 1px solid rgba(121, 128, 135, 1);
+        background: darken($bg-color, 5%);
+      }
+    }
+
+    &:nth-child(even) {
+      $even-bg-color: #f8f8f8;
+      background: $even-bg-color;
+
+      &:hover {
+        background: darken($even-bg-color, 5%);
+      }
+    }
+  }
+}

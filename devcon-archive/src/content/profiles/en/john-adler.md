@@ -1,0 +1,7 @@
+---
+id: "ZP7CJ7"
+name: "John Adler"
+description: "Co-founder of Celestia Labs and Fuel Labs. Creator of optimistic rollups. Blockchain skeptic and Twitter troll."
+twitter: "jadler0"
+avatar: "http://speak.devcon.org/media/avatars/twitter_jadler0_jC6453M.png"
+---

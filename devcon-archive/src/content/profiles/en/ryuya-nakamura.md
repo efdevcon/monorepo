@@ -1,0 +1,7 @@
+---
+name: "Ryuya Nakamura"
+role: "Engineer"
+description: "Engineer &amp; Researcher at LayerX Inc.- Researching on Plasma, state channel.- Leading the project of implementation of Plasma in Vyper.- Working on the enlightenment of state channel technology in Japanese blockchain community(e.g. workshop of state channel, translation of L4 Counterfactual paper and articles in Japanese like https://blockchain.gunosy.io/entry/counterfactual)."
+organization: "LayerX"
+country: "Japan"
+---

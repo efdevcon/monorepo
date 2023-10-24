@@ -1,0 +1,9 @@
+---
+id: "7GZSZT"
+name: "Emilie Raffo"
+description: "Emilie Raffo is a founding partner and the sales director of ChainSecurity, a top-tier blockchain security company specialized in smart contract audits. ChainSecurity served many large DeFi protocols such as MakerDAO, Compound, Curve and others.
+
+She is also a 2021 best-selling author in Switzerland. Her book \"le Futur des Espèces\" explains blockchain, cryptocurrency and smart contracts to the novice, and explores how these technologies  can foster innovations in monetary policy & governance."
+twitter: "https://twitter.com/EmilieRaffo"
+avatar: "http://speak.devcon.org/media/avatars/Emilie_Raffo_5yh3TWf.jpeg"
+---

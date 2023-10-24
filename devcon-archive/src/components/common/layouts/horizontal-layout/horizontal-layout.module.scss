@@ -1,0 +1,316 @@
+@use 'src/assets/css/partials/index' as *;
+@use 'sass:math';
+
+@mixin nav-number {
+  font-size: 10px;
+  line-height: 1em;
+  display: inline-block;
+  font-family: $fonts-primary;
+  width: $gaps-gap-5;
+  color: rgba(144, 152, 161, 1);
+}
+
+.layout-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+
+  @media (max-width: $breakpoints-sm) {
+    flex-direction: column;
+    // padding-top: 64px;
+  }
+
+  .page-track {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    transition: transform 400ms ease-out;
+    // margin-left: 64px;
+
+    // If not using mouse, we just fall back to native scroll behaviour (i.e. swipe)
+    // @media (hover: none) {
+    //   overflow: auto;
+    // }
+
+    @media (max-width: $breakpoints-sm) {
+      margin-left: 0px;
+      margin-bottom: 64px;
+    }
+
+    .page {
+      position: relative;
+      flex-basis: 100%;
+      flex-shrink: 0;
+      max-height: 100%;
+      overflow: hidden;
+
+      .layer {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        $left: $gaps-gap-10 + $gaps-gap-6;
+        $right: $gaps-gap-10 + $gaps-gap-6;
+        $top: $gaps-gap-10 * 2;
+
+        margin-left: $left;
+        margin-right: $right;
+        margin-top: $top;
+
+        @media (max-width: $breakpoints-lg) {
+          margin-left: math.div($left, 2);
+          margin-right: math.div($right, 2);
+          margin-top: math.div($top, 2);
+        }
+
+        @media (max-width: $breakpoints-md) {
+          margin-left: math.div($left, 3);
+          margin-right: math.div($right, 3);
+          margin-top: math.div($top, 3);
+        }
+
+        @media (max-width: $breakpoints-sm) {
+          margin-left: $gaps-gap-4;
+          margin-right: $gaps-gap-4;
+          margin-top: $gaps-gap-4;
+        }
+
+        .header {
+          font-family: $fonts-primary;
+          flex-grow: 1;
+          height: 10%;
+          display: flex;
+          justify-content: space-between;
+
+          .page-title {
+            font-family: $fonts-primary;
+            z-index: 1;
+            text-transform: uppercase;
+
+            &:before {
+              content: attr(data-index);
+              @include nav-number;
+            }
+          }
+
+          .page-title-inverted {
+            @extend .page-title;
+            color: #fff;
+          }
+
+          .background-text {
+            top: -$gaps-gap-8;
+            margin-left: $gaps-gap-8;
+            flex-grow: 1;
+            font-size: $sizes-size-8 * 9;
+            line-height: $sizes-size-8 * 8;
+            opacity: 0.4;
+
+            @media (max-width: 1600px) {
+              margin-top: $gaps-gap-4;
+              position: absolute;
+              font-size: $sizes-size-8 * 7;
+              line-height: $sizes-size-8 * 6;
+            }
+
+            @media (max-width: $breakpoints-md) {
+              left: 0px;
+              font-size: $sizes-size-8 * 7;
+              line-height: $sizes-size-8 * 6;
+            }
+
+            @media (max-width: $breakpoints-sm) {
+              display: none;
+              font-size: $sizes-size-8 * 5;
+              line-height: $sizes-size-8 * 4;
+            }
+          }
+
+          .background-text-gradient {
+            @extend .background-text;
+
+            background: conic-gradient(
+              from 178.57deg at 30% 50%,
+              #edefcf 0deg,
+              #ededce 24.56deg,
+              #eeebcc 51.02deg,
+              #f3c4ba 102.55deg,
+              #c5d4e4 137.2deg,
+              #c5d8ed 169.68deg,
+              #c5d7ea 170.39deg,
+              #d9cdd2 202.5deg,
+              #ff7852 265.36deg,
+              #d4d1d8 328.41deg,
+              #d4d3d9 339.22deg,
+              #d3d7da 360deg
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            @media (min-width: $breakpoints-xxl) {
+              background: conic-gradient(
+                from 178.57deg at 10% 50%,
+                #edefcf 0deg,
+                #ededce 24.56deg,
+                #eeebcc 51.02deg,
+                #f3c4ba 102.55deg,
+                #c5d4e4 137.2deg,
+                #c5d8ed 169.68deg,
+                #c5d7ea 170.39deg,
+                #d9cdd2 202.5deg,
+                #ff7852 265.36deg,
+                #d4d1d8 328.41deg,
+                #d4d3d9 339.22deg,
+                #d3d7da 360deg
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+          }
+
+          .background-text-solid {
+            @extend .background-text;
+
+            color: #3b445d;
+          }
+
+          .top-right {
+            z-index: 1;
+          }
+
+          .links {
+            display: flex;
+            text-transform: uppercase;
+            z-index: 1;
+
+            > h3 {
+              margin-right: $gaps-gap-8;
+
+              @media (max-width: $breakpoints-sm) {
+                margin-right: $gaps-gap-5;
+                font-size: 24px;
+              }
+
+              &:last-child {
+                margin-right: 0px;
+              }
+
+              .text {
+                @media (max-width: $breakpoints-sm) {
+                  display: none;
+                }
+              }
+            }
+
+            svg {
+              height: 18px;
+
+              @media (max-width: $breakpoints-sm) {
+                height: 1em;
+              }
+            }
+          }
+
+          .icon-link {
+            margin-right: $gaps-gap-2;
+
+            @media (max-width: $breakpoints-sm) {
+              margin-right: 0px;
+            }
+          }
+        }
+
+        .content {
+          // overflow: auto;
+          flex-shrink: 0;
+          z-index: 1;
+          height: 70%;
+          box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+          background: #fff;
+
+          &::-webkit-scrollbar {
+            width: 8px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 5px;
+          }
+
+          @media (max-width: $breakpoints-lg) {
+            height: 80%;
+          }
+
+          @media (max-width: $breakpoints-sm) {
+            height: 90%;
+            flex-shrink: 1;
+          }
+
+          &.transparent {
+            box-shadow: none;
+            background: transparent;
+            overflow: visible;
+            padding: 0px;
+            pointer-events: none;
+
+            > * {
+              pointer-events: auto;
+            }
+          }
+        }
+
+        .bottom-links {
+          display: flex;
+          align-items: center;
+          height: 8%;
+          flex-shrink: 0;
+          @include fonts-bold;
+          @include fonts-lg;
+          text-transform: uppercase;
+        }
+
+        .bottom-links-white {
+          @extend .bottom-links;
+          color: #fff;
+
+          svg {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.gesture-blocker {
+  display: none;
+
+  @media (max-width: $breakpoints-sm) {
+    display: block;
+  }
+
+  position: fixed;
+  left: 0px;
+  bottom: 64px;
+  z-index: 10000;
+  width: $gaps-gap-4;
+  height: 100%;
+
+  &.right {
+    left: unset;
+    right: 0px;
+  }
+}

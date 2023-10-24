@@ -1,0 +1,9 @@
+---
+id: "LR7HVL"
+name: "Paul Gadi"
+description: "Paul currently stewards the KERNEL Gaming Guild, a community of the most talented individuals in the web3 space. He has been developing games since 2004, and has always been interested in the intersection of game design and new tech.  
+
+He is CTO / Co-Founder of OP Games, a game platform company building Arcadia.fun.  Arcadia is built using open-source game legos, helping game developers create more sustainable economies in the coming metaverse."
+twitter: "polats"
+avatar: "http://speak.devcon.org/media/avatars/paul_gadi_TlhzmP2.jpg"
+---

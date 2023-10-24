@@ -1,0 +1,10 @@
+---
+id: "JTLSDW"
+name: "0xdeniz"
+description: "Deniz Yilmaz
+🦆  Core unit facilitator of DUX team @MakerDAO, working on governance UX and tooling
+🧠  PM & creative facilitation, crypto class of '17
+💙  wagmi"
+twitter: "https://twitter.com/0xdeniz"
+avatar: "http://speak.devcon.org/media/avatars/IMG_0095_2_gKF0UTS.jpg"
+---

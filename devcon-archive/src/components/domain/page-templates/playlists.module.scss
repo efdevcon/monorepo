@@ -1,0 +1,28 @@
+@use 'src/assets/css/partials/index' as *;
+
+$left-column-width: 30%;
+
+.container {
+  overflow-x: hidden;
+  --theme-logo: url('src/assets/images/pages/archive-1.svg');
+  --theme-gradient: linear-gradient(to right, #edeccd 0%, #f1c4bb 50%, #d7cdd3 100%);
+
+  .search-sort {
+    display: flex;
+    align-items: center;
+
+    .search {
+      flex-basis: $left-column-width;
+      margin-right: $gaps-gap-8;
+    }
+  }
+
+  .content {
+    display: flex;
+    margin-bottom: $gaps-gap-10;
+
+    @media (max-width: $breakpoints-lg) {
+      flex-direction: column;
+    }
+  }
+}

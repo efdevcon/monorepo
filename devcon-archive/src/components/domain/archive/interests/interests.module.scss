@@ -1,0 +1,140 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  display: flex;
+  // padding-bottom: $gaps-gap-8;
+  // padding-top: $gaps-gap-4;
+
+  // @media (max-width: $breakpoints-lg) {
+  //   padding-bottom: $gaps-gap-5;
+  //   padding-top: $gaps-gap-2;
+  // }
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: 400px;
+    margin-right: $gaps-gap-12;
+
+    @media (max-width: $breakpoints-lg) {
+      flex-basis: auto;
+      margin-bottom: $gaps-gap-6;
+    }
+
+    .title {
+      margin-bottom: $gaps-gap-2;
+    }
+
+    .unicorn {
+      @include fonts-xl;
+      display: flex;
+      flex-grow: 1;
+      align-items: flex-end;
+      margin-top: $gaps-gap-2;
+
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
+    }
+  }
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: column;
+
+  > p {
+    margin-bottom: $gaps-gap-1;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 900px;
+
+    .tag {
+      display: flex;
+      flex-shrink: 0;
+      margin-right: $gaps-gap-2;
+      margin-bottom: $gaps-gap-2;
+
+      > span {
+        // margin-left: $gaps-gap-2;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .icons {
+        width: 0.9em;
+        display: flex;
+        justify-content: center;
+
+        svg {
+          font-size: 0.9em;
+        }
+      }
+
+      // .icon-check {
+      //   display: none;
+      // }
+
+      // .icon-plus {
+      //   display: block;
+      //   font-size: 0.8em !important;
+      // }
+
+      // &.selected {
+      //   .icon-plus {
+      //     display: none;
+      //   }
+
+      //   .icon-check {
+      //     display: block;
+      //   }
+      // }
+    }
+  }
+
+  .clear {
+    display: flex;
+    align-items: center;
+    padding-top: $gaps-gap-1;
+
+    // @media (max-width: $breakpoints-lg) {
+    //   padding-top: $gaps-gap-3;
+    // }
+
+    svg {
+      font-size: 0.8em;
+    }
+
+    .continue {
+      margin-right: $gaps-gap-3;
+
+      .text {
+        margin-right: $gaps-gap-2;
+      }
+
+      .text-icon {
+        position: relative;
+      }
+    }
+
+    .clear {
+      padding: $gaps-gap-2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

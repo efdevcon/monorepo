@@ -1,0 +1,7 @@
+---
+id: "3RQVJC"
+name: "Philip Daian"
+description: "Philip Daian is a Ph.D. candidate in computer science at Cornell Tech, and a steward of Flashbots, a research and product organization that is active within the MEV space. He is particularly interested in the intersection of cryptocurrencies, financial systems, programmable privacy, and formal systems. His past work includes uncovering and publicizing MEV in the ETH community, and seeking to illuminate the dark forest of incentives and mechanisms in which we all co-exist."
+twitter: "phildaian"
+avatar: "http://speak.devcon.org/media/avatars/phil_uXI7JYz.jpg"
+---

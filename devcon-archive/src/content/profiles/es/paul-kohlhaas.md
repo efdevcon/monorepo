@@ -1,0 +1,7 @@
+---
+id: "SWTXQ3"
+name: "Paul Kohlhaas"
+description: "economist, biohacker, developer, building on Ethereum since 2016. on a mission to accelerate scientific progress and open medicine. previously at ConsenSys and identity solution uPort, founder of Eth dev studio Linumlabs.com & www.molecule.to"
+twitter: "paulkhls"
+avatar: "http://speak.devcon.org/media/avatars/Paul-Kohlhaas-avatar_70Etj0w.jpeg"
+---

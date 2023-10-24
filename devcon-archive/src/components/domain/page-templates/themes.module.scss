@@ -1,0 +1,111 @@
+@use 'src/assets/css/partials/index' as *;
+
+.light-blue {
+  --theme-color: #{$colors-track-light-blue};
+  --theme-color-hover: #{$colors-track-light-blue-hover};
+  --theme-logo: url('src/assets/images/theme/info.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #0fadcf 0%,
+    rgba(0, 149, 255, 0.4) 58.33%,
+    rgba(13, 174, 208, 0) 100%
+  );
+}
+
+.blue {
+  --theme-color: #{$colors-track-blue};
+  --theme-color-hover: #{$colors-track-blue-hover};
+  --theme-logo: url('src/assets/images/theme/info.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #064ae1 0%,
+    rgba(0, 149, 255, 0.4) 58.33%,
+    rgba(13, 174, 208, 0) 100%
+  );
+}
+
+.teal {
+  --theme-color: #{$colors-track-teal};
+  --theme-color-hover: #{$colors-track-teal-hover};
+  --theme-logo: url('src/assets/images/pages/get-involved.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #00b3a4 0%,
+    rgba(0, 255, 117, 0.4) 58.33%,
+    rgba(203, 227, 214, 0) 100%
+  );
+}
+
+.green {
+  --theme-color: #{$colors-track-green};
+  --theme-color-hover: #{$colors-track-green-hover};
+  --theme-logo: url('src/assets/images/theme/info.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #88c43f 0%,
+    #50d100 0.01%,
+    rgba(140, 255, 0, 0.4) 58.33%,
+    rgba(136, 196, 63, 0) 100%
+  );
+}
+
+.yellow {
+  --theme-color: #{$colors-track-yellow};
+  --theme-color-hover: #{$colors-track-yellow-hover};
+  --theme-logo: url('src/assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #fee506 0%,
+    rgba(247, 232, 104, 0.4) 58.33%,
+    rgba(242, 238, 166, 0) 100%
+  );
+}
+
+.orange {
+  --theme-color: #{$colors-track-orange};
+  --theme-color-hover: #{$colors-track-orange-hover};
+  --theme-logo: url('src/assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #e55066 0%,
+    rgba(255, 183, 0, 0.4) 58.33%,
+    rgba(255, 184, 0, 0) 100%
+  );
+}
+
+.red {
+  --theme-color: #{$colors-track-red};
+  --theme-color-hover: #{$colors-track-red-hover};
+  --theme-logo: url('src/assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #e92639 0%,
+    rgba(232, 123, 104, 0.4) 58.33%,
+    rgba(232, 125, 104, 0) 100%
+  );
+}
+
+.news {
+  --theme-color: #{$colors-track-red};
+  --theme-color-hover: #{$colors-track-red-hover};
+  --theme-logo: url('src/assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #e55066 0%,
+    rgba(255, 183, 0, 0.4) 58.33%,
+    rgba(255, 184, 0, 0.1) 100%
+  );
+}
+
+.purple {
+  --theme-color: #{$colors-track-purple};
+  --theme-color-hover: #{$colors-track-purple-hover};
+  --theme-logo: url('src/assets/images/pages/bogota.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #7958a5 0%,
+    #7000ff 0.01%,
+    rgba(189, 0, 255, 0.4) 58.33%,
+    rgba(251, 111, 228, 0) 100%
+  );
+}

@@ -1,0 +1,94 @@
+@use 'src/assets/css/partials/index' as *;
+
+.card {
+  height: 100%;
+
+  &.slider {
+    margin-left: $gaps-gap-4;
+    margin-bottom: $gaps-gap-4;
+  }
+}
+
+.news-container {
+  margin-top: $gaps-gap-10;
+  display: flex;
+  flex-direction: column;
+  @include layout-content;
+
+  @media (max-width: $breakpoints-lg) {
+    margin-top: 0px;
+
+    > * {
+      &:not(.slider-container) {
+        display: none;
+      }
+    }
+  }
+
+  .slider-container {
+    // https://github.com/kenwheeler/slick/issues/187 <-- can't use display: none; for the slider because react-slick needs to measure elements
+    display: block;
+    height: 0;
+    overflow: hidden;
+
+    @media (max-width: $breakpoints-lg) {
+      display: flex;
+      height: 100%;
+      overflow: unset;
+    }
+
+    .slider {
+      left: -$gaps-gap-2;
+    }
+  }
+
+  .body {
+    display: flex;
+
+    .cards {
+      display: flex;
+      margin-right: $gaps-gap-8;
+      flex-basis: 60%;
+
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
+
+      @media (max-width: $breakpoints-xxl) {
+        margin-right: $gaps-gap-4;
+        flex-basis: 40%;
+      }
+
+      > * {
+        flex-basis: 0;
+        flex-grow: 1;
+
+        &:first-child {
+          margin-right: $gaps-gap-8;
+
+          @media (max-width: $breakpoints-xxl) {
+            margin-right: 0px;
+          }
+        }
+
+        @media (max-width: $breakpoints-xxl) {
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .feed {
+      flex-grow: 1;
+      flex-basis: 40%;
+      height: 410px;
+      box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+      padding: $gaps-gap-4;
+
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
+    }
+  }
+}

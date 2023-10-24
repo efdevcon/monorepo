@@ -1,0 +1,7 @@
+---
+id: "SDHXUT"
+name: "Terence Tsao"
+description: "👋 Hi, I'm a core dev at Prismatic labs. I'm most known for my work on Prysm, a consensus layer client written in Go. I mostly worked on the proof of stake Ethereum, known as the beacon chain. Lately, I've been working extensively on \"the merge\", hybrid PBS, and eip4844."
+twitter: "terencechain"
+avatar: "http://speak.devcon.org/media/avatars/avatar1_DZ1o9iE.jpg"
+---

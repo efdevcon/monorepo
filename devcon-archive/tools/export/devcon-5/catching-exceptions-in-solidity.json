@@ -1,0 +1,22 @@
+{
+  "id": "catching-exceptions-in-solidity",
+  "sourceId": "catching-exceptions-in-solidity",
+  "eventId": "devcon-5",
+  "title": "Catching exceptions in Solidity",
+  "description": "When a revert happens in solidity, all the state changes done in that transaction are rolled back. All the changes done in sub calls are also rolled back. If a contract A tries to do a token transfer in contract B but contract B reverts, all the changes done by contract A will also be rolled back. This is fine for some cases but sometimes there might be a need to ignore or handle this revert in the smart contract itself. The talk will demonstrate how reverts and other exceptions can be caught in Solidity.",
+  "track": "Developer Infrastructure",
+  "type": "Talk",
+  "expertise": "Intermediate",
+  "tags": [
+    "Developer Infrastructure",
+    "technical"
+  ],
+  "speakers": [
+    "mudit-gupta"
+  ],
+  "sources_youtubeId": "z7NruBa2yFc",
+  "sources_ipfsHash": "QmVGHQEefFH2fSseHHap6ayckceBWunECzGfqieGCfiiGA",
+  "sources_swarmHash": "5bf6e64bc609753f0651cfe965e793f62a43c7e06099cf9068caac6e9cf3f1a9",
+  "duration": 208,
+  "language": "en"
+}

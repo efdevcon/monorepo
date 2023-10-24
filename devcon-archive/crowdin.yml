@@ -1,0 +1,7 @@
+commit_message: "[skip ci]"
+preserve_hierarchy: true
+files:
+  - source: /src/content/**/en/*.md
+    translation: /src/content/**/%two_letters_code%/%original_file_name%
+  - source: /src/content/i18n/en.json
+    translation: /src/content/i18n/%two_letters_code%.json

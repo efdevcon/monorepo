@@ -1,0 +1,25 @@
+{
+  "id": "handel-practical-multi-signature-aggregation-for-large-byzantine-committees",
+  "sourceId": "handel-practical-multi-signature-aggregation-for-large-byzantine-committees",
+  "eventId": "devcon-5",
+  "title": "Handel: Practical Multi-Signature Aggregation for Large Byzantine Committees",
+  "description": "We present Handel, a Byzantine fault tolerant aggregation protocol that allows for the quick aggregation of cryptographic signatures over a WAN. Handel has logarithmic time and polylogarithmic network complexity and needs minimal computing resources. We implemented Handel as an open source Go library with a flexible design to support any associative and commutative aggregation function. We tested Handel with a BLS multi-signature scheme for BN256 on 2000 AWS instances running two nodes per instance and located in 10 AWS regions. The 4000 signatures are aggregated in less than 900 milliseconds with an average per-node communication cost of 56KB. This work can be used to improve Ethereum 2's latency to finality.",
+  "track": "Staking & Validator Experience",
+  "type": "Breakout",
+  "expertise": "Intermediate",
+  "tags": [
+    "Staking & Validator Experience",
+    "technical"
+  ],
+  "speakers": [
+    "olivier-begassat",
+    "nicolas-gailly",
+    "blazej-kolad",
+    "nicolas-liochon"
+  ],
+  "sources_youtubeId": "cmX8Fmbh9Yc",
+  "sources_ipfsHash": "QmS3pVenjNg8U71EPL9A8gcfhtygjVjucCywhB7LipSoYU",
+  "sources_swarmHash": "720f47f6e8fc01bf49946b25abfae5b07802cc39ad46d5fa39b28feb418937aa",
+  "duration": 1730,
+  "language": "en"
+}

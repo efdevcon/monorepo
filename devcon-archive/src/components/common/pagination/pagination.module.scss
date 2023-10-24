@@ -1,0 +1,41 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  .pages { 
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: $gaps-gap-4 0;
+
+    li { 
+      span { 
+        cursor: pointer;
+        padding: $gaps-gap-1 $gaps-gap-2;
+        margin: 0 $gaps-gap-1;
+
+        &.selected {
+          color: #fff;
+          background: #E55066 !important;
+        }
+  
+        &:hover,
+        &:active {
+          background: #f2f2f2;
+        }
+
+        &.truncated { 
+          cursor: auto;
+
+          &:hover,
+          &:active {
+            background: none !important;
+          }
+        }
+      }
+      
+      svg { 
+        font-size: smaller;
+      }
+    }
+  }
+}

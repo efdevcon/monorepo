@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react",
+      "strict": true,
+      "noEmit": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "baseUrl": "./",
+      "types": ["node"],
+      "lib": ["dom", "es2015", "es2019"],
+    },
+    "include": [
+      "src",
+      "node_modules/@types"
+    ]
+  }
+  

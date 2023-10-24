@@ -1,0 +1,7 @@
+---
+name: "Andy Milenius"
+role: "CTO"
+description: "Andy Milenius is the CTO of MakerDAO and has been with the project since 2015. Aside from stablecoins, he is most interested in the intersection between decentralized applications, democracy and environmentalism. He is also a member of DappHub, an online collective that focuses on the logistics of dapp development and the philosophical implications of the decentralization movement. He is from Detroit, USA and currently lives in New York City, USA."
+organization: "MakerDAO"
+country: "United States"
+---

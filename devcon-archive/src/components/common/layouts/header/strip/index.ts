@@ -1,0 +1,1 @@
+export { Strip } from './Strip'

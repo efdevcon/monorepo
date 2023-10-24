@@ -1,0 +1,60 @@
+@use 'src/assets/css/partials/index' as *;
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: $gaps-gap-4 0;
+  cursor: pointer;
+
+  h3 {
+    @include fonts-lg;
+    text-transform: uppercase;
+  }
+
+  svg {
+    color: $colors-system-error;
+    fill: $colors-system-error;
+  }
+}
+
+.header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $gaps-gap-4 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  span {
+    // RTD: @include fonts-xxl;
+    @include fonts-lg;
+    margin-right: $gaps-gap-2;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $colors-monochrome-2;
+  }
+}
+
+.item-container {
+  // padding: $gaps-gap-4;
+  // background: $colors-monochrome-2;
+
+  .active {
+    @extend .header;
+    border-bottom: none;
+    background: $colors-monochrome-2;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.body {
+  padding: $gaps-gap-8 0;
+  border-bottom: 1px solid rgba($colors-monochrome-10, 0.2);
+}

@@ -1,0 +1,7 @@
+---
+name: "Alejandro Machado"
+role: "co-founder"
+description: "Currently researching cryptocurrency adoption in VenezuelaCreator designforcrypto.org, wrote design guidelines and performed UX audits for five dapps: Peepeth, Cryptokitties, OpenSea, Airswap, BancorResearch / Interviews / Personas building / Copywriter / Design for the new Zeppelin websiteResearch usability improvements for Toshi, both for developers and end users1.5 years as UX Lead - mycs.com. Researched and designed furniture configurator web appsBackground in computer science, including computational complexity theory and machine learning"
+organization: "Design Dao"
+country: "Venezuela"
+---

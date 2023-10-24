@@ -1,0 +1,38 @@
+@use 'src/assets/css/partials/index' as *;
+
+.layout {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > .header {
+    width: 100%;
+  }
+
+  > .content {
+    @include layout-content;
+    padding-top: 64px;
+    width: 100%;
+    padding-bottom: 64px;
+    flex: 1 0 auto;
+  }
+
+  > .footer {
+    width: 100%;
+    flex-shrink: 0;
+  }
+}
+
+.theme {
+  --theme-color: #{$colors-track-red};
+  --theme-color-hover: #{$colors-track-red-hover};
+  --theme-logo: url('src/assets/images/pages/blog.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #e55066 0%,
+    rgba(255, 183, 0, 0.4) 58.33%,
+    rgba(255, 184, 0, 0) 100%
+  );
+}

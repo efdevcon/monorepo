@@ -1,0 +1,103 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  svg {
+    fill: $colors-monochrome-10;
+  }
+}
+
+.event {
+  padding: $gaps-gap-4 $gaps-gap-6;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  div:last-child {
+    margin-left: auto;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.day {
+  @include fonts-xxl;
+  @include fonts-secondary;
+  display: block;
+}
+
+.month {
+  @include fonts-sm;
+  @include fonts-primary;
+  @include fonts-bold;
+  display: block;
+  text-transform: uppercase;
+}
+
+.event-add {
+  cursor: pointer;
+  margin-top: $gaps-gap-2;
+  display: block;
+
+  svg {
+    fill: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.date {
+  @include fonts-xs;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+.title {
+  @include fonts-lg;
+}
+
+.url {
+  @include fonts-xs;
+  @include fonts-semi-bold;
+  display: block;
+  margin-top: $gaps-gap-6;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.date-column {
+  margin-right: $gaps-gap-16;
+
+  @media (max-width: $breakpoints-sm) {
+    display: none;
+  }
+}
+
+.image-column {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: $sizes-size-88;
+  height: $sizes-size-40;
+  position: relative;
+
+  @media (max-width: $breakpoints-sm) {
+    width: $sizes-size-64;
+    height: $sizes-size-32;
+  }
+
+  img {
+    position: absolute;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

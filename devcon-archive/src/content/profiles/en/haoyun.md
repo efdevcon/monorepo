@@ -1,0 +1,6 @@
+---
+id: "VEDWYZ"
+name: "Haoyun"
+description: "Based in Shanghai China｜ETHPlanet TEAM ｜ EDCON TEAM ｜ Member of togETHer"
+avatar: ""
+---

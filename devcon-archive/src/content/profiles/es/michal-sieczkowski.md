@@ -1,0 +1,7 @@
+---
+id: "LJETHP"
+name: "Michał Sieczkowski"
+description: "I'm an engineer passionate about blockchains and decentralised systems. I've been building in the web3 space since 2018. Hit me up if you'd like to talk about Rollups, L2s or Ethereum scaling in general."
+twitter: "m_sieczkowski"
+avatar: "http://speak.devcon.org/media/avatars/michal_sieczkowski_selfie_fbjGVqt.jpeg"
+---

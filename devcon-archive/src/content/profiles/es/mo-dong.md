@@ -1,0 +1,7 @@
+---
+name: "Mo Dong"
+role: "Co-Founder"
+description: "Dr. Mo Dong received his Ph.D. from UIUC. His research focuses on learning based networking protocol design, distributed systems, formal verification and Game Theory.Dr. Dong led project revolutionizing Internet TCP and improved cross-continental data transfer speed by 10X to 100X with non-regret learning algorithms. His work was published in top conferences, won Internet2 Innovative Application Award and being adopted by major Internet content and service providers. Dr. Dong was a founding engineer and product manager at Veriflow, a startup specializes in network formal verification. The formal verification algorithms he developed is protecting networking security for fortune 50 companies. Dr. Dong is also experienced in applying AlgorithmicGame Theory, especially auction theory, to computer system protocol designs. He has been teaching full-stack smart contract courses. He produces technical blogs and videos on blockchain with over 7000 subscribers."
+organization: "Celer Network"
+country: "United States"
+---

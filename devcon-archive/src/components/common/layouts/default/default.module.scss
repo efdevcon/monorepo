@@ -1,0 +1,28 @@
+@use 'src/assets/css/partials/index' as *;
+
+:global {
+  .layout-default {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    > .header {
+      width: 100%;
+    }
+
+    > .content {
+      position: relative;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    > .footer {
+      width: 100%;
+      flex-shrink: 0;
+    }
+  }
+}

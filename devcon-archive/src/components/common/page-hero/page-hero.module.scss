@@ -1,0 +1,400 @@
+@use 'src/assets/css/partials/index' as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  // padding-top: $gaps-gap-4;
+  // margin-bottom: $gaps-gap-10;
+  // background-repeat: no-repeat;
+  // background-position: center right;
+  // background-color: var(--theme-gradient-background-color, #{$colors-monochrome-1});
+  // background-image: var(--theme-logo), var(--theme-gradient);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+  }
+
+  // Gradient
+  &:before {
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 50%;
+    background-image: var(--theme-logo);
+    z-index: -1;
+
+    @media (max-width: $breakpoints-lg) {
+      mask-image: none;
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      background-size: 70%;
+    }
+
+    @media (max-width: $breakpoints-sm) {
+      background-size: 90%;
+      left: 20%;
+      width: 100%;
+    }
+  }
+
+  // Image
+  &:after {
+    background-color: var(--theme-gradient-background-color, #{$colors-monochrome-1});
+    background-image: var(--theme-gradient);
+    z-index: -2;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    // margin-bottom: $gaps-gap-6;
+  }
+
+  &.as-background {
+    .title-block {
+      display: none;
+    }
+
+    .path {
+      padding-bottom: $gaps-gap-4;
+    }
+
+    &:before,
+    &:after {
+      height: 400px;
+
+      @media (max-width: $breakpoints-lg) {
+        height: 300px;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        height: 225px;
+      }
+    }
+  }
+
+  &.inline-content {
+    .title-block {
+      display: none;
+    }
+  }
+
+  &.with-scenes {
+    &:before {
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
+    }
+  }
+
+  &.with-navigation {
+    box-shadow: var(--header-shadow, 0px 4px 2px rgba(0, 0, 0, 0.15));
+    position: sticky;
+    // "Pulls up" the entire section except for the page menu, effectively making it look like just the page menu is sticky
+    top: var(--negative-offset, -1000px);
+    z-index: 10;
+
+    // Strip is always present on mobile (but not on desktop) - we have to account for that:
+    &.scrolled {
+      @media (max-width: $breakpoints-lg) {
+        top: calc(var(--negative-offset) + var(--strip-height));
+      }
+    }
+  }
+
+  &:not(.with-navigation) {
+    // margin-bottom: $gaps-gap-4;
+  }
+
+  &.custom-background {
+    border-bottom: none;
+
+    .path {
+      // Might be problematic depending on image colors
+      color: white;
+    }
+
+    .title-block {
+      opacity: 0;
+    }
+  }
+
+  &.has-scenes {
+    .title-block {
+      min-height: auto;
+      padding-bottom: 0px;
+
+      @media (max-width: $breakpoints-lg) {
+        padding-bottom: $gaps-gap-4;
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    > img {
+      position: absolute;
+      right: 0px;
+      bottom: -50px;
+
+      @media (max-width: $breakpoints-lg) {
+        max-width: 30%;
+        height: 100%;
+        bottom: 0px;
+      }
+    }
+  }
+}
+
+.info {
+  @include layout-content;
+  height: 100%;
+
+  .path {
+    display: flex;
+    padding-top: $gaps-gap-4;
+
+    > * {
+      flex-shrink: 0;
+
+      &:last-child {
+        flex-shrink: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .title-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 325px;
+
+    @media (max-width: $breakpoints-lg) {
+      min-height: 225px;
+    }
+
+    @media (max-width: $breakpoints-sm) {
+      min-height: 175px;
+    }
+
+    h1 {
+      position: relative;
+      display: block;
+
+      @media (max-width: $breakpoints-lg) {
+        font-size: 6rem;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        font-size: 5rem;
+      }
+
+      &.subtext {
+        color: $colors-monochrome-1;
+      }
+
+      > span {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 0.3em;
+        color: $colors-main;
+        letter-spacing: 0.3em;
+      }
+    }
+
+    .description {
+      color: #707070;
+      font-size: $sizes-size-12;
+    }
+
+    .buttons {
+      margin-top: $gaps-gap-5;
+
+      > a {
+        margin-right: $gaps-gap-3;
+
+        > svg {
+          @include fonts-xs;
+        }
+
+        > span {
+          margin-left: $gaps-gap-2;
+        }
+      }
+    }
+  }
+
+  .page-navigation {
+    position: relative;
+    // top: var(--header-height);
+    width: 100%;
+    display: flex;
+    padding-top: $gaps-gap-4;
+    padding-bottom: $gaps-gap-4;
+
+    > * {
+      margin-left: $gaps-gap-6;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.scenes {
+  margin-bottom: $gaps-gap-4;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: $breakpoints-lg) {
+    .controls {
+      grid-column: 1 / 3;
+      grid-row: 2 / 2;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  .scene {
+    display: flex;
+    align-items: flex-end;
+    grid-column: 1 / 2;
+    grid-row: 1 / 1;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+
+    @media (max-width: $breakpoints-lg) {
+      grid-column: 1 / 4;
+    }
+
+    &.active {
+      top: 0px;
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 1;
+
+    .arrows {
+      > * {
+        border: none;
+
+        &:first-child {
+          margin-right: 1px;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      grid-column: 1 / 4;
+      grid-row: 2 / 2;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  .controls-dots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    @media (max-width: $breakpoints-lg) {
+      display: none;
+    }
+
+    .dot {
+      padding: 6px;
+      display: flex;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.active {
+        .circle {
+          background-color: $colors-state-error;
+        }
+      }
+
+      .circle {
+        height: 8px;
+        width: 8px;
+        border-radius: 8px;
+        background-color: $colors-monochrome-7;
+      }
+    }
+  }
+}
+
+.scene-background-image {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: min(950px, 100%);
+  right: 0px;
+  z-index: -1;
+  display: flex;
+  justify-content: flex-end;
+  background-position: cover;
+
+  @media (max-width: $breakpoints-lg) {
+    width: 100%;
+    transform: translateY(0px);
+
+    &.active {
+      transform: translateY(0px);
+    }
+  }
+
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+
+  &.active {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 0));
+
+    @media (max-width: $breakpoints-lg) {
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(255, 255, 255, 0) 80%);
+    }
+  }
+
+  :global(.gatsby-image-wrapper) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,88 @@
+---
+title: Devcon 1
+description: 'Only a few months after Ethereum came to life, DΞVCON 1 was held in London in November of 2015. Presenters remained hard at work on each piece of the original Ethereum roadmap, early dApp teams took the stage, and supporters teased the early industry adoption that was to arrive soon.'
+image: ../../../../static/assets/uploads/editions/devcon1.png
+categories:
+  - Devcon
+curators:
+  - Devcon Team
+videos: 
+  - 1/keynote-and-ethereum-roadmap/index
+  - 1/challenges-in-public-economic-consensus/index
+  - 1/monadic-design-patterns-for-the-blockchain/index
+  - 1/scalability/index
+  - 1/swarm/index
+  - 1/casper/index
+  - 1/btc-relay/index
+  - 1/ethereum-and-webassembly/index
+  - 1/universal-hash-time/index
+  - 1/scalable-blockchains-and-asynchronous-programming/index
+  - 1/digital-identity/index
+  - 1/raiden-scaling-out-with-offchain-state-networks/index
+  - 1/towards-imandra-contracts-formal-verification-for-ethereum/index
+  - 1/formal-semantics-for-protocols/index
+  - 1/towards-safer-languages-for-smart-contracts/index
+  - 1/ipfs/index
+  - 1/how-blockchain-technology-can-help-us-achieve-prosperity/index
+  - 1/microsoft-announcing-ethereum-blockchain-as-a-service-eth-baas-on-azure-cloud/index
+  - 1/ethercamp/index
+  - 1/mix/index
+  - 1/tokens/index
+  - 1/introduction-to-consensus/index
+  - 1/blockapps-strato/index
+  - 1/dapp-design-patterns/index
+  - 1/middleware-and-on-chain-services/index
+  - 1/registries/index
+  - 1/building-a-dapp-what-are-dapps-and-why-meteor/index
+  - 1/building-a-dapp-design-principles-for-dapp-developers/index
+  - 1/lightning-talk-hitfin/index
+  - 1/lightning-talk-provably-honest-oracle-service/index
+  - 1/lightning-talk-learning-ethereum-and-how-to-navigate-the-community/index
+  - 1/lightning-talk-reality-keys/index
+  - 1/lightning-talk-metamaskio/index
+  - 1/securing-ethereum/index
+  - 1/devp2p/index
+  - 1/standardization/index
+  - 1/dapps-framework/index
+  - 1/shh-whisper/index
+  - 1/progressing-toward-the-ethereum-light-client/index
+  - 1/understanding-the-ethereum-blockchain-protocol/index
+  - 1/weifund-and-boardroom/index
+  - 1/dappstore/index
+  - 1/nano-payments-on-ethereum/index
+  - 1/ens-ethereal-namespace/index
+  - 1/colony/index
+  - 1/decentralized-reddit/index
+  - 1/ethereum-the-african-opportunity/index
+  - 1/prediction-markets-panel/index
+  - 1/augur/index
+  - 1/ujo-music/index
+  - 1/maker/index
+  - 1/synthetic-assets/index
+  - 1/smart-bonds/index
+  - 1/gaming-on-the-blockchain/index
+  - 1/freemyvunk-join-the-movement/index
+  - 1/liquidity-on-blockchains/index
+  - 1/backfeed/index
+  - 1/gnosis/index
+  - 1/balanc3-triple-entry-accounting/index
+  - 1/inflekt-event-and-community-management/index
+  - 1/slockit/index
+  - 1/rebuilding-enterprise-processes-with-blockchains-and-smart-contracts/index
+  - 1/history-of-the-blockchain/index
+  - 1/communicating-the-ethereum-narrative/index
+  - 1/provenance/index
+  - 1/ethereum-for-dummies/index
+  - 1/ibm-mtn-project/index
+  - 1/devgrants/index
+  - 1/ethereum-in-the-enterprise-environment/index
+  - 1/towards-a-dynamic-economic-social-and-political-mesh/index
+  - 1/agreement-making-in-solidity-a-legal-perspective/index
+  - 1/transactive-grid-a-decentralized-energy-management-solution/index
+  - 1/banking-with-smart-contracts/index
+  - 1/myths-and-facts-of-reputation-systems/index
+  - 1/dangerous-old-men-cypherpunks-failure-ethereums-success/index
+  - 1/insurance-on-the-blockchain/index
+  - 1/the-pathway-to-ethereum-adoption/index
+  - 1/blockchain-model-canvas/index
+---

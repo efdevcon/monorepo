@@ -1,0 +1,6 @@
+---
+id: "3EBXMM"
+name: "Brian Wilkes, CFA"
+description: "I am a data scientist and financial analyst currently working on a grant from the EF PSE team.  I am fascinated by a future enabled by zero-knowledge technology, including both scalability and privacy.   Outside of Ethereum work, I am a husband and father of a 2-year-old I like to carry up mountains in Colorado.  I am generally interested in everything, but you will catch my attention with music (I play bass), skiing, and anything Ethereum related :)"
+avatar: "http://speak.devcon.org/media/avatars/Profile_Pic_kqK2pZx.PNG"
+---

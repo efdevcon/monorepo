@@ -1,0 +1,205 @@
+@use 'src/assets/css/partials/index' as *;
+
+@keyframes auto-scroll {
+  100% {
+    transform: translateX(var(--track-width));
+  }
+}
+
+@keyframes auto-scroll-indent {
+  100% {
+    transform: translateX(calc(var(--track-width) + var(--odd-offset)));
+  }
+}
+
+@keyframes auto-scroll-reverse {
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 120px;
+  scroll-snap-margin-top: 120px; // safari
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    // flex-wrap: wrap;
+    margin-bottom: $gaps-gap-10;
+
+    @media (max-width: $breakpoints-lg) {
+      flex-direction: column;
+    }
+
+    .header-container {
+      flex-basis: 100%;
+    }
+
+    .left-section {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .dip-description {
+        flex-shrink: 0;
+
+        @media (max-width: $breakpoints-lg) {
+          flex-basis: 100%;
+        }
+      }
+
+      .links {
+        margin-top: $gaps-gap-6;
+        > * {
+          margin-right: $gaps-gap-12;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+
+    .contributors {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-basis: 50%;
+
+      @media (max-width: $breakpoints-lg) {
+        margin-top: $gaps-gap-10;
+        flex-basis: 100%;
+      }
+
+      .scroll-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+        &:after {
+          content: '';
+          pointer-events: none;
+          left: 0;
+          top: 0;
+          right: 0;
+          height: 100%;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.1) 15%,
+            rgba(255, 255, 255, 0.1) 85%,
+            rgba(255, 255, 255, 1)
+          );
+        }
+
+        .track {
+          @media (hover: hover) {
+            &:hover {
+              -webkit-animation-play-state: paused !important;
+              -moz-animation-play-state: paused !important;
+              -o-animation-play-state: paused !important;
+              animation-play-state: paused !important;
+            }
+          }
+
+          --thumbnails-per-view: 6;
+          --thumbnail-spacing: 20px;
+          --track-width: calc(-100% + var(--container-size));
+          transform: translateX(0%);
+          // yikes
+          --odd-offset: calc(
+            (
+              ((var(--container-size) / var(--thumbnails-per-view) - (var(--thumbnail-spacing) * 2)) / 2) +
+                var(--thumbnail-spacing)
+            )
+          );
+
+          &.odd {
+            transform: translateX(var(--odd-offset));
+          }
+
+          // TO FIX: When animation resets there's a quick flicker on safari
+          &.animate {
+            animation: auto-scroll linear 50s infinite;
+
+            &.odd {
+              animation: auto-scroll-indent linear 50s infinite;
+            }
+          }
+
+          display: inline-block;
+          white-space: nowrap;
+
+          // &.reverse {
+          //   animation: auto-scroll-reverse linear 120s infinite;
+          //   transform: translateX(var(--track-width));
+          // }
+
+          @media (max-width: $breakpoints-md) {
+            --thumbnails-per-view: 5;
+            // --thumbnail-spacing: 40px;
+          }
+
+          @media (max-width: $breakpoints-sm) {
+            --thumbnails-per-view: 4;
+          }
+
+          @media (max-width: $breakpoints-tiny) {
+            --thumbnails-per-view: 3;
+          }
+
+          .thumbnail {
+            display: inline-block;
+
+            // img {
+            cursor: pointer;
+            width: calc(var(--container-size) / var(--thumbnails-per-view) - (var(--thumbnail-spacing) * 2));
+            margin-left: var(--thumbnail-spacing);
+            margin-right: var(--thumbnail-spacing);
+            margin-bottom: var(--thumbnail-spacing);
+            border-radius: 100px;
+
+            @media (max-width: $breakpoints-md) {
+              &:nth-last-child(-n + 1) {
+                display: none;
+              }
+            }
+
+            @media (max-width: $breakpoints-sm) {
+              &:nth-last-child(-n + 2) {
+                display: none;
+              }
+            }
+
+            @media (max-width: $breakpoints-tiny) {
+              &:nth-last-child(-n + 3) {
+                display: none;
+              }
+            }
+            // }
+          }
+        }
+      }
+
+      .info {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        p {
+          margin-right: $gaps-gap-4;
+        }
+
+        svg {
+          font-size: $sizes-size-14;
+        }
+      }
+    }
+  }
+}

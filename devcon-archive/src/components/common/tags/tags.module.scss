@@ -1,0 +1,15 @@
+@use 'src/assets/css/partials/index' as *;
+
+.tags {
+  display: flex;
+  align-items: center;
+  margin-bottom: $gaps-gap-4;
+
+  :global(.label) {
+    margin-right: $gaps-gap-2;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}

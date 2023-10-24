@@ -1,0 +1,7 @@
+---
+id: "WKQZLV"
+name: "Stefan Starflinger"
+description: "Stefan Starflinger is a vienna-based fullstack developer at Bitfly. He attended the University of Vienna and graduated with a master's degree in business informatics. Currently he's working on multiple crypto related projects, namely Ethermine, Beaconcha.in and Ethermine Staking."
+twitter: "https://twitter.com/stefan_star"
+avatar: "http://speak.devcon.org/media/avatars/me2_v2SdjSy.jpeg"
+---

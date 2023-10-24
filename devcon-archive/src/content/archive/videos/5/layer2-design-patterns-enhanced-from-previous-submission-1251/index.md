@@ -1,0 +1,19 @@
+---
+edition: 5
+title: "Layer2 Design Patterns - (enhanced from previous submission #1251)"
+description: "Continuing previous research I’m interviewing all Layer2 solution providers, exploring current solutions, their problems, the UX patterns and user-research being done.
+The interviews are focused on extracting knowledge from the companies own user-research, if available: only a few of these projects have actually launched and have real users and even less have performed real user-research. 
+The only company I’m partially affiliated with, Abridged, will launch 7 apps by EthBerlin and there are 13 more launching in September. For once Layer2 tech allows to have direct user contact since most flows ask for user emails.I hope there will be enough users to gather some data which I’d like to share at Devcon, although at this time I can’t guarantee it.
+Even so, this talk will allow viewers to quickly learn about all Layer2 UX patterns in one session, learning about the differences between the UX mechanics of payment channels, Plasma, (Generalized) State Channels, maybe sidechains, their pros-and-cons, how users enter and exit these systems, how and what they understand about decentralization, what are the open design problems of the space, and accelerating their knowledge of Layer2 solutions which hold the promise to onboard real users onto the decentralized web"
+youtubeUrl: "https://www.youtube.com/embed/Q8j5LdydSUs"
+ipfsHash: "QmQKYH5MfL2QBsTArwxYwGAXftMiWMmF4owJRGK17F6Vjk"
+ethernaIndex: "https://etherna.io/embed/63452f41080a54f6d733eafd"
+ethernaPermalink: "https://etherna.io/embed/cfe170ab5b22c3cc4373aff6b9539481ad5eb0d545d26c2e43bae09ba369e31e"
+duration: 1303
+expertise: "Intermediate"
+type: "Breakout"
+track: "UX & Design"
+keywords: []
+tags: ['UX & Design']
+speakers: ['Beltran Berrocal']
+---
