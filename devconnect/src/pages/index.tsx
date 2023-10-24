@@ -47,6 +47,8 @@ import moment from 'moment'
 //   ssr: false,
 // })
 
+console.log('test monorepo deploy')
+
 function getTimeUntilNovember13InTurkey() {
   // Create a Date object for the current date
   const currentDate = moment.utc()
