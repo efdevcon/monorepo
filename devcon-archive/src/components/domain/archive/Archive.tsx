@@ -12,6 +12,7 @@ import { Interests } from './interests'
 import OnDemandVideoIcon from 'src/assets/icons/on_demand_video.svg'
 import { Button } from 'src/components/common/button'
 import { ARCHIVE_DESCRIPTION, ARCHIVE_IMAGE_URL, ARCHIVE_TITLE } from 'src/utils/constants'
+import LibButton from 'lib/components/button'
 
 type ArchiveProps = {}
 
@@ -22,6 +23,7 @@ export const Archive = (props: ArchiveProps) => {
 
   return (
     <div className={css['container']}>
+      <LibButton />
       <SEO title={ARCHIVE_TITLE} description={ARCHIVE_DESCRIPTION} imageUrl={ARCHIVE_IMAGE_URL} />
       <Header withStrip={false} />
       <PageHero
@@ -69,7 +71,7 @@ export const Archive = (props: ArchiveProps) => {
         })}
         title="Archive"
         titleClassName={css['white-title']}
-      // titleSubtext="Devcon"
+        // titleSubtext="Devcon"
       />
 
       <div className={css['content']}>

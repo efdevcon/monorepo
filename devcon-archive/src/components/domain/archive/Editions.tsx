@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Clock = (props: any) => {
-  const animationEl = React.useRef()
+  const animationEl = React.useRef<any>()
 
   React.useEffect(() => {
     const handler = () => {
