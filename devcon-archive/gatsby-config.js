@@ -8,12 +8,29 @@ const {
 const isNetlifyProduction = NETLIFY_ENV === 'production'
 let siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
-if (NODE_ENV === 'production' && NETLIFY_ENV === 'branch-deploy' && siteUrl === 'https://archive--efdevcon.netlify.app') {
+if (
+  NODE_ENV === 'production' &&
+  NETLIFY_ENV === 'branch-deploy' &&
+  siteUrl === 'https://archive--efdevcon.netlify.app'
+) {
   console.log('Override siteUrl in Gatsby config for archive branch-deploy..')
   siteUrl = 'https://archive.devcon.org'
 }
-console.log('Gatsby config', 'NODE_ENV', NODE_ENV, 'NETLIFY_ENV', NETLIFY_ENV, 'NETLIFY_SITE_URL', NETLIFY_SITE_URL,
-  'NETLIFY_SITE_URL', NETLIFY_SITE_URL, 'isNetlifyProduction', isNetlifyProduction, 'siteUrl', siteUrl)
+console.log(
+  'Gatsby config',
+  'NODE_ENV',
+  NODE_ENV,
+  'NETLIFY_ENV',
+  NETLIFY_ENV,
+  'NETLIFY_SITE_URL',
+  NETLIFY_SITE_URL,
+  'NETLIFY_SITE_URL',
+  NETLIFY_SITE_URL,
+  'isNetlifyProduction',
+  isNetlifyProduction,
+  'siteUrl',
+  siteUrl
+)
 
 const title = 'Devcon'
 const defaultLanguage = 'en'
@@ -43,12 +60,12 @@ module.exports = {
   plugins: [
     'gatsby-plugin-root-import',
     'gatsby-plugin-typescript',
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-netlify-cms',
+    //   options: {
+    //     modulePath: `${__dirname}/src/cms/cms.js`,
+    //   },
+    // },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-image',
     `gatsby-transformer-sharp`,
@@ -365,4 +382,5 @@ module.exports = {
       },
     },
   ],
-}// 
+} //
+//
