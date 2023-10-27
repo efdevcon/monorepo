@@ -141,6 +141,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/grants',
+        destination: 'https://esp.ethereum.foundation/devcon-grants',
+        permanent: true,
+      },
+      {
         source: '/surveypoap',
         destination: 'https://www.poap.delivery/devcon-vi-attendee-feedback-survey',
         permanent: true,

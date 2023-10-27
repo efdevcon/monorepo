@@ -472,6 +472,18 @@
     > * {
       margin-top: 4px;
     }
+
+    :global(.tag) {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+
+      &.is-virtual {
+        order: 1;
+      }
+
+      order: 2;
+    }
   }
 
   > * {

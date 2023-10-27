@@ -850,7 +850,10 @@ const EventMeta = (props: any) => {
           props.event.Category.length > 0 &&
           props.event.Category.map((category: any) => {
             return (
-              <div key={category} className={`tag tiny-text-em`}>
+              <div
+                key={category}
+                className={`tag tiny-text-em ${category === 'Virtual Event' ? css['is-virtual'] : ''}`}
+              >
                 {category}
               </div>
             )
