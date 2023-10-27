@@ -184,6 +184,12 @@ const sortEvents = (a: any, b: any) => {
     if (a.Domain && !b.Domain) return -1
     if (!a.Domain && b.Domain) return 1
 
+    const aIsVirtualEvent = a.Category && a.Category.includes('Virtual Event')
+    const bIsVirtualEvent = b.Category && b.Category.includes('Virtual Event')
+
+    if (aIsVirtualEvent && !bIsVirtualEvent) return 1
+    if (bIsVirtualEvent && !aIsVirtualEvent) return -1
+
     return 0
   } else {
     return 1
