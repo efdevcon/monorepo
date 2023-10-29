@@ -28,6 +28,10 @@
   --third-edition-color-1: #ff8c72;
   --third-edition-color-2: #fcf5f5;
   --third-edition-color-3: #fbe9e6;
+
+  --virtual-color-1: rgb(176, 207, 247); 
+  --virtual-color-2: rgb(254, 255, 255);
+  --virtual-color-3: rgb(212, 229, 245);
 }
 
 .edition-amsterdam {
@@ -150,6 +154,12 @@
             color: var(--third-edition-color-1);
           }
         }
+
+        &.virtual {
+          .indicator {
+            color: var(--virtual-color-1);
+          }
+        }
       }
     }
 
@@ -193,7 +203,6 @@
   }
 
   &.difficulty-based {
-
     &.Cowork {
       background: none !important;
       --color-bg: none !important;
@@ -281,6 +290,13 @@
       --color: var(--second-edition-color-1);
       --color-bg: var(--second-edition-color-3);
     }
+  }
+
+  &.virtual-event {
+    background: var(--virtual-color-2) !important;
+    border-color: var(--virtual-color-1) !important;
+    --color: var(--virtual-color-1) !important;
+    --color-bg: var(--virtual-color-3) !important;
   }
 
   .multi-day-indicator {
@@ -480,6 +496,12 @@
 
       &.is-virtual {
         order: 1;
+
+        .virtual {
+          margin-left: 0.5em;
+          height: 0.8em;
+          transform: scale(1.3) translateY(-4px);
+        }
       }
 
       order: 2;

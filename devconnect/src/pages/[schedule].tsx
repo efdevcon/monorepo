@@ -184,11 +184,8 @@ const sortEvents = (a: any, b: any) => {
     if (a.Domain && !b.Domain) return -1
     if (!a.Domain && b.Domain) return 1
 
-    const aIsVirtualEvent = a.Category && a.Category.includes('Virtual Event')
-    const bIsVirtualEvent = b.Category && b.Category.includes('Virtual Event')
-
-    if (aIsVirtualEvent && !bIsVirtualEvent) return 1
-    if (bIsVirtualEvent && !aIsVirtualEvent) return -1
+    if (a.isVirtualEvent && !b.isVirtualEvent) return 1
+    if (b.isVirtualEvent && !a.isVirtualEvent) return -1
 
     return 0
   } else {
@@ -686,6 +683,10 @@ const Timeline = (props: any) => {
               className += ` ${css['difficulty-based']} ${css[event['Difficulty']]}`
             }
 
+            if (event.isVirtualEvent) {
+              className += ` ${css['virtual-event']}`
+            }
+
             return className
           })()}
           style={gridPlacement}
@@ -710,7 +711,8 @@ const Timeline = (props: any) => {
               <div className={css['top']}>
                 <div className={css['title-bar']}>
                   <p className={`large-text-em bold ${css['title']} ${totalDays === 1 ? css['single-day'] : ''}`}>
-                    {event.Name}
+                    {event.Name}{' '}
+                    {/* {event.isVirtualEvent && <span style={{ opacity: 0.7, color: 'red' }}>[VIRTUAL EVENT]</span>} */}
                   </p>
                   <Favorite event={event} favorites={props.favorites} />
                 </div>
@@ -860,7 +862,7 @@ const EventMeta = (props: any) => {
                 key={category}
                 className={`tag tiny-text-em ${category === 'Virtual Event' ? css['is-virtual'] : ''}`}
               >
-                {category}
+                {category} {category === 'Virtual Event' && <span className={css['virtual']}>🌐</span>}
               </div>
             )
           })}
@@ -1019,6 +1021,10 @@ const ListEventDesktop = (props: any) => {
           className += ` ${css['difficulty-based']} ${css[props.event['Difficulty']]}`
         }
 
+        if (props.event.isVirtualEvent) {
+          className += ` ${css['virtual-event']}`
+        }
+
         return className
       })()}
     >
@@ -1119,6 +1125,10 @@ const ListEventMobile = (props: any) => {
 
         if (props.edition === 'amsterdam') {
           className += ` ${css['difficulty-based']} ${css[props.event['Difficulty']]}`
+        }
+
+        if (props.event.isVirtualEvent) {
+          className += ` ${css['virtual-event']}`
         }
 
         return className
@@ -1775,6 +1785,11 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
                           <span className={css['indicator']}>⬤</span>Ecosystem Events
                         </p>
                       </div>
+                      <div className={css['virtual']}>
+                        <p>
+                          <span className={css['indicator']}>⬤</span>Virtual Events
+                        </p>
+                      </div>
                       <div className={css['intermediate']}>
                         <p>
                           <span className={css['indicator']}>⬤</span>Other Events
@@ -2145,7 +2160,9 @@ const formatResult = (result: any) => {
     }
   }
 
-  return { ...properties, ID: result.id, ShortID: result.id.slice(0, 5) /* raw: result*/ }
+  const isVirtualEvent = properties.Category && properties.Category.includes('Virtual Event')
+
+  return { ...properties, isVirtualEvent, ID: result.id, ShortID: result.id.slice(0, 5) /* raw: result*/ }
 }
 
 export async function getStaticProps(context: any) {
@@ -2269,7 +2286,7 @@ const createKeyResolver =
     return keyMatch ? eventData[keyMatch] : undefined
   }
 
-// The notion tables for each event aren't the same - this normalizes the different column names by looking at multiple keys for each expected value
+// The notion tables for each edition (istanbul, amsterdam, etc.) aren't the same - this normalizes the different column names by looking at multiple keys for each expected value
 const normalizeEvent = (eventData: any): FormattedNotionEvent => {
   const keyResolver = createKeyResolver(eventData)
 
