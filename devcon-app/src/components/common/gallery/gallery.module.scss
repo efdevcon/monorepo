@@ -1,0 +1,64 @@
+@use 'assets/css/partials/index' as *;
+
+.gallery {
+  position: relative;
+  border: 1px solid $colors-standard-border-color;
+  
+
+  .gallery-item {
+    background: white;
+    width: 102%;
+    left: -1%;
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+
+    &:not(.prev, .next, .selected) {
+      display: none;
+    }
+
+    &.prev {
+      transform: translateX(-100%);
+    }
+
+    &.next {
+      transform: translateX(100%);
+    }
+
+    &.selected {
+      transform: translateX(0%);
+    }
+  }
+
+  .button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $colors-monochrome-1;
+    border-radius: 50%;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid $colors-standard-border-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+    &:hover {
+      background: $colors-monochrome-3;
+    }
+
+    &.left {
+      left: 0px;
+      transform: translateY(-50%) translateX(-50%);
+    }
+
+    &.right {
+      right: 0px;
+      transform: translateY(-50%) translateX(50%);
+    }
+
+    svg {
+      --color-icon: #{$colors-monochrome-6};
+    }
+  }
+}

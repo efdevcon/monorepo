@@ -1,0 +1,74 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  position: relative;
+  // background: white;
+
+  .body {
+    grid-column: 2 / 3;
+    display: flex;
+
+    @media (min-width: $breakpoints-xl) {
+      grid-column: 2 / 4;
+    }
+
+    .left {
+      flex-basis: 100%;
+      flex-shrink: 0;
+
+      > svg {
+        max-width: 90%;
+      }
+
+      @media (min-width: $breakpoints-xl) {
+        flex-basis: 40%;
+      }
+
+      .highlighted {
+        line-height: 150%;
+        font-weight: 400;
+      }
+
+      p, button {
+        margin-top: 1em;
+      }
+
+      .grey {
+        color: $colors-monochrome-6;
+      }
+
+      .crossed-out {
+        color: $colors-monochrome-6;
+        text-decoration: line-through;
+      }
+    }
+
+    .right {
+      flex-basis: 100%;
+      position: relative;
+      display: none;
+
+      @media (min-width: $breakpoints-xl) {
+        display: block;
+        flex-basis: auto;
+        flex-grow: 1;
+      }
+
+      > * {
+        height: 100%;
+        width: 100%;
+      }
+
+      .image-container {
+        position: absolute;
+        height: 100%;
+
+        img {
+          object-fit: contain;
+          height: 100% !important;
+          width: auto !important;
+        }
+      }
+    }
+  }
+}

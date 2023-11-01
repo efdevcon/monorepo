@@ -1,0 +1,223 @@
+@use 'assets/css/partials/index' as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  background: var(--background);
+
+  .background-icon {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    right: 0px;
+    top: 0px;
+    transform: translateY(-25%) translateX(20%);
+
+    @media (min-width: 500px) {
+      transform: translateY(-20%) translateX(0%);
+    }
+
+    img {
+      height: 80%;
+      width: 80%;
+    }
+  }
+}
+
+.layer-1, .layer-1 .info-line {
+  --background: #E6F0FF;
+}
+.layer-2s, .layer-2s .info-line {
+  --background: #E4FAFF;
+}
+.developer-infrastructure, .developer-infrastructure .info-line {
+  --background: #F6F2FF;
+}
+.governance-coordination, .governance-coordination .info-line {
+  --background: #F9FFDF;
+}
+.ux-design, .ux-design .info-line {
+  --background: #FFF4F4;
+}
+.staking-validator-experience, .staking-validator-experience .info-line {
+  --background: #FCF4FF;
+}
+.security, .security .info-line {
+  --background: #E4FFFD;
+}
+.zkps, .zkps .info-line {
+  --background: #F2FFFA;
+}
+.opportunity-global-impact, .opportunity-global-impact .info-line {
+  --background: #FFFBF4;
+}
+.cryptoeconomics, .cryptoeconomics .info-line {
+  --background: #FFFEF4;
+}
+
+.session-hero {
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .info-line {
+      display: flex;
+      align-self: flex-start;
+      align-items: center;
+      @include fonts-bold;
+
+      p {
+        align-self: flex-start;
+        background: var(--background);
+        display: inline;
+      }
+
+      svg {
+        margin-right: $gaps-gap-2;
+      }
+    }
+
+    .title {
+      @include fonts-xxl;
+      @include fonts-primary;
+      width: min(700px, 70%);
+      margin-top: $gaps-gap-2;
+      margin-bottom: $gaps-gap-4;
+
+      span {
+        background: var(--background);
+        display: inline;
+      }
+    }
+
+    .relative-time {
+      @include fonts-bold;
+      margin-top: 8px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      padding-right: 4px;
+
+      &.expertise-and-type {
+        margin-bottom: 8px;
+      }
+
+      > * {
+        margin-left: 16px;
+
+        &:first-child {
+          margin-left: 0px;
+        }
+      }
+    }
+
+    .calendar-icon-in-circle {
+      cursor: pointer;
+      width: 52px;
+      height: 52px;
+      font-size: 24px;
+      position: absolute;
+      border-radius: 50%;
+      background: $colors-monochrome-1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+      right: 0px;
+      bottom: 0px;
+    }
+  }
+}
+
+.actions {
+  margin-top: $gaps-gap-4;
+  margin-bottom: $gaps-gap-4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1px;
+  background: $colors-standard-border-color;
+  border: 1px solid $colors-standard-border-color;
+  max-width: 600px;
+
+  @media (min-width: $breakpoints-md) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: none;
+  }
+
+  > * {
+    // height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $colors-monochrome-1;
+    padding: $gaps-gap-2;
+    cursor: pointer;
+    --color-icon: #{$colors-monochrome-5};
+
+    &:hover {
+      --color-icon: #{$colors-monochrome-7};
+    }
+
+    > p {
+      font-size: 13px;
+      // @include fonts-bold;
+      // color: $colors-monochrome-8;
+      // align-self: flex-end;
+    }
+
+    > svg {
+      font-size: 20px;
+    }
+  }
+
+  .active {
+    > svg {
+      --color-icon: #{$colors-track-red};
+    }
+  }
+}
+
+.description {
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  border-top: 1px solid $colors-standard-border-color;
+  border-bottom: 1px solid $colors-standard-border-color;
+}
+
+.speakers {
+  padding-top: $gaps-gap-4;
+  border-top: 1px solid $colors-standard-border-color;
+}
+
+.resources {
+  .slides {
+  }
+}
+
+.title {
+  @include fonts-lg;
+  @include fonts-primary;
+  margin-bottom: $gaps-gap-4;
+}
+
+.subtitle {
+  @include fonts-md;
+  @include fonts-bold;
+  @include fonts-primary;
+  margin-bottom: $gaps-gap-1;
+}
+
+.link-list {
+  margin-bottom: $gaps-gap-4;
+}
+
+.related-sessions {
+  padding-top: $gaps-gap-4;
+  border-top: 1px solid $colors-standard-border-color;
+  margin-top: $gaps-gap-4;
+}

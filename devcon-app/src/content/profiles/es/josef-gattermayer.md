@@ -1,0 +1,7 @@
+---
+name: "Josef Gattermayer"
+role: "CIO"
+description: "I have been researching distributed systems during my doctorate from 2010-2018, when I successfully defended my Ph.D. thesis. Besides from my theoretical work I'm a co-founder of mobile development studio Ackee where we focus on native development and technologically demanding projects. Our current ongoing projects are iOS Dev Kit for the Ethereum Foundation or a new mobile app for German Bundestag. We combine research with engineering"
+organization: "Ackee"
+country: "Germany"
+---

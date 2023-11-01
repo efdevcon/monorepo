@@ -1,0 +1,19 @@
+@use 'assets/css/partials/index' as *;
+
+.background {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  svg {
+    height: 60px;
+    width: auto;
+  }
+
+  @media (max-width: 700px) {
+    img {
+      height: 120px;
+      width: auto;
+    }
+  }
+}

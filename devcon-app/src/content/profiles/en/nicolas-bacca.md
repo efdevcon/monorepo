@@ -1,0 +1,7 @@
+---
+name: "Nicolas Bacca"
+role: "CTO"
+description: "Nicolas worked on card systems for 5 years at Oberthur, a leader in embedded digital security, ultimately as R&amp;D Solution Architect. He left Oberthur to launch his company, Ubinity, which was developing smartcard operating systems.He finally co-founded BTChip to develop an open standard, secure element based hardware wallet which eventually became the first version of the Ledger wallet."
+organization: "Ledger"
+country: "France"
+---

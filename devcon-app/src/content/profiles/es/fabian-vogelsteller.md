@@ -1,0 +1,7 @@
+---
+name: "Fabian Vogelsteller"
+role: "web3.js Developer \ CEO"
+description: "Fabian Vogelsteller joined Ethereum before the network started in January 2015, he build the Ethereum Wallet, which was the first app to enable smart contract interaction for non-tech people, as well as the Mist Browser - the first decentralised web 3.0 Browser. He work worked on the RPC API and still works on developer tools like web3.js - the Ethereum space's most used JavaScript library. He proposed the ERC20 token standard, and ERC725 Identity standard, and now builds LUKSO, the Fashion and Design Industry Blockchain an Ethereum sister network."
+organization: "Ethereum \ LUKSO"
+country: "Germany"
+---

@@ -1,0 +1,74 @@
+@use 'assets/css/partials/index' as *;
+
+.header {
+  position: relative;
+}
+
+.app {
+  // overflow-x: hidden;
+  width: 100vw;
+  min-height: calc(var(--viewport-height) - var(--header-height) - var(--app-nav-upper-height) - var(--app-nav-lower-height));
+  padding-bottom: 120px; // Adjusting for fixed bottom nav overlaying content, and adding a bit of white space to indicate bottom was reached
+  @include fonts-sm-fixed;   
+
+  > h3,
+  > button,
+  > ul {
+    margin-bottom: 20px;
+  }
+
+  > label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 10px;
+  }
+
+  > input {
+    @include fonts-sm;
+    color: $colors-monochrome-10;
+    border: 1px solid $colors-monochrome-10;
+    padding: $gaps-gap-1;
+    margin-bottom: 10px;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  > a {
+    text-decoration: underline;
+  }
+
+  > button:hover {
+    background: $colors-monochrome-3;
+  }
+}
+
+.header-hider {
+  position: sticky;
+  background: $colors-monochrome-1;
+  border-bottom: 1px solid $colors-standard-border-color;
+  top: var(--header-height);
+  z-index: 20;
+
+  header,
+  :global(#header) {
+    position: relative;
+
+    :global(#header) {
+      transition: opacity 0.3s linear;
+    }
+  }
+
+  &.hide {
+    :global(#header) {
+      box-shadow: none;
+    }
+  }
+
+  :global(#inline-nav) {
+    position: sticky;
+    top: var(--header-height);
+  }
+}

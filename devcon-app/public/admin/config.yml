@@ -1,0 +1,267 @@
+backend:
+  name: git-gateway
+  repo: efdevcon/devcon-website
+  branch: '%BRANCH_PLACEHOLDER%'
+  accept_roles:
+    - admin
+    - editor
+
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+  sanitize_replacement: '-'
+
+local_backend: true
+publish_mode: editorial_workflow
+media_folder: public/assets/uploads/images
+public_folder: /assets/uploads/
+
+i18n:
+  structure: multiple_folders
+  locales: [en, es]
+  default_locale: en
+
+collections:
+  - name: 'pages'
+    label: 'Pages'
+    label_singular: 'Page'
+    folder: 'src/content/pages'
+    slug: '{{slug}}'
+    summary: '{{header}}'
+    create: false
+    i18n: true
+    fields:
+      - { name: 'title', label: 'Title', widget: 'string', i18n: true }
+      - { name: 'header', label: 'Header', widget: 'string', i18n: true }
+      - { name: 'description', label: 'Description', widget: 'text', i18n: true, required: false }
+      - { name: 'body', label: 'Body', widget: 'markdown', i18n: true }
+      - {
+          name: 'tags',
+          label: 'Tags',
+          widget: 'relation',
+          i18n: 'duplicate',
+          required: false,
+          collection: 'tags',
+          value_field: '{{slug}}',
+          search_fields: ['title'],
+          multiple: true,
+        }
+
+  - name: 'Sections'
+    label: 'Sections'
+    label_singular: 'Section'
+    folder: 'src/content/sections'
+    create: true
+    i18n: true
+    view_groups:
+      - label: Pages
+        field: pages
+    fields:
+      - { name: 'title', label: 'Title', widget: 'string', i18n: true }
+      - {
+          name: 'pages',
+          label: 'Pages',
+          widget: 'hidden',
+          i18n: 'duplicate',
+          multiple: true,
+          required: false,
+          collection: 'pages',
+          value_field: '{{slug}}',
+          search_fields: ['title'],
+        }
+      - { name: 'left', widget: 'markdown', i18n: true, required: false }
+      - { name: 'right', widget: 'markdown', i18n: true, required: false }
+      - { name: body, label: Body, widget: markdown, i18n: true, required: false }
+
+  - name: faq
+    label: FAQ
+    label_singular: FAQ
+    folder: src/content/faq
+    create: true
+    i18n: true
+    view_groups:
+      - label: Category
+        field: category
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: body, label: Body, widget: markdown, i18n: true }
+      - {
+          name: category,
+          label: Category,
+          widget: relation,
+          i18n: duplicate,
+          collection: categories,
+          value_field: '{{slug}}',
+          search_fields: ['title'],
+          multiple: false,
+        }
+      - {
+          name: order,
+          label: Order,
+          widget: number,
+          i18n: duplicate,
+          required: false,
+          value_type: int,
+          min: 1,
+          max: 1000,
+          step: 1,
+        }
+
+  - name: categories
+    label: Categories
+    label_singular: Category
+    folder: src/content/categories
+    create: true
+    i18n: true
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - {
+          name: order,
+          label: Order,
+          widget: number,
+          i18n: duplicate,
+          required: false,
+          value_type: int,
+          min: -1000,
+          max: 1000,
+          step: 1,
+        }
+
+  - name: tags
+    label: Tags
+    label_singular: Tag
+    folder: src/content/tags
+    create: true
+    i18n: true
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+
+  - name: 'devcon'
+    label: 'Devcon'
+    folder: 'src/content/devcon'
+    identifier_field: number
+    slug: '{{number}}'
+    sortable_fields: ['number']
+    create: true
+    i18n: true
+    fields:
+      - { name: 'number', label: 'Number', widget: 'number', i18n: 'duplicate' }
+      - { name: 'title', label: 'Title', widget: 'string', i18n: true }
+      - { name: 'description', label: 'Description', widget: 'text', i18n: true }
+      - { name: 'location', label: 'Location', widget: 'string', i18n: true }
+      - { name: 'startDate', label: 'Start Date', widget: 'date', format: 'YYYY-MM-DD', i18n: 'duplicate' }
+      - { name: 'endDate', label: 'End Date', widget: 'date', format: 'YYYY-MM-DD', i18n: 'duplicate' }
+      - { name: 'imageUrl', label: 'Image', widget: 'string', i18n: 'duplicate' }
+      - label: Urls
+        name: urls
+        widget: list
+        i18n: true
+        fields:
+          - { label: Title, name: title, widget: string, i18n: true }
+          - { label: Url, name: url, widget: string, i18n: 'duplicate' }
+
+  - name: tracks
+    label: Tracks
+    label_singular: Track
+    folder: 'src/content/tracks'
+    sortable_fields: ['order']
+    create: true
+    i18n: true
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: body, label: Body, widget: markdown, i18n: true }
+      - {
+          name: order,
+          label: Order,
+          widget: number,
+          i18n: duplicate,
+          required: false,
+          value_type: int,
+          min: 1,
+          max: 1000,
+          step: 1,
+        }
+
+  - name: 'notification'
+    label: 'Notification Strip'
+    label_singular: 'Notification'
+    folder: 'src/content/notifications'
+    i18n: true
+    fields:
+      - {
+          name: 'body',
+          label: 'Body',
+          pattern: ['^.{0,50}$', 'Must have less than 50 characters'],
+          widget: 'markdown',
+          i18n: true,
+        }
+      - { name: 'url', label: 'URL', widget: 'string', i18n: 'duplicate', required: false }
+      - { name: 'label', Label: 'Label', widget: 'string', i18n: true, required: false }
+      - {
+          name: 'labelType',
+          Label: 'Label Type',
+          widget: 'select',
+          options: ['neutral', 'success', 'error'],
+          required: false,
+          i18n: 'duplicate',
+        }
+      - { label: 'Active', name: 'active', widget: 'boolean', default: true, i18n: duplicate }
+
+  - name: 'app-notification'
+    label: 'App Notifications'
+    create: true
+    label_singular: 'App Notification'
+    folder: 'src/content/app-notifications'
+    fields:
+      - { name: 'title', label: 'Title', widget: 'string', required: true }
+      - { name: 'body', label: 'Body', widget: 'markdown', required: true }
+      - {
+          label: 'Date (UTC)',
+          name: 'date',
+          widget: 'datetime',
+          date_format: 'YYYY-MM-DD',
+          time_format: 'THH:mm:ss',
+          format: 'YYYY-MM-DDTHH:mm:ss',
+          picker_utc: true,
+          required: true,
+        }
+      - { name: 'url', label: 'URL', widget: 'string', required: false }
+      - { name: 'label', Label: 'Label', widget: 'string', required: false }
+      - {
+          name: 'labelType',
+          Label: 'Label Type',
+          widget: 'select',
+          options: ['neutral', 'success', 'error'],
+          required: false,
+          i18n: 'duplicate',
+        }
+
+  - name: 'news'
+    label: 'News'
+    label_singular: 'News item'
+    folder: 'src/content/news'
+    create: true
+    i18n: true
+    fields:
+      - { name: 'url', label: 'URL', widget: 'string', i18n: 'duplicate', required: false }
+      - { name: 'title', label: 'Title', widget: 'string', i18n: true, required: true }
+      - {
+          name: 'body',
+          label: 'Body',
+          pattern: ['^.{0,280}$', 'Must have less than 280 characters'],
+          widget: 'markdown',
+          i18n: true,
+        }
+      - {
+          name: 'tags',
+          label: 'Tags',
+          widget: 'relation',
+          i18n: 'duplicate',
+          required: false,
+          collection: 'tags',
+          value_field: '{{slug}}',
+          search_fields: ['title'],
+          multiple: true,
+        }
+      - { name: 'author', label: 'Author', widget: 'string', required: false }
+      - { name: 'date', label: 'Date', widget: datetime, picker_utc: true, i18n: 'duplicate', required: true }

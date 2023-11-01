@@ -1,0 +1,161 @@
+@use 'assets/css/partials/index' as *;
+
+.highlighted-link {
+  @include fonts-primary;
+  // @include fonts-bold;
+  margin-right: 32px;
+}
+
+.foldout-top {
+  @include fonts-uppercase;
+  display: flex;
+  justify-content: space-between;
+  // margin-bottom: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  // flex-grow: 1;
+  flex-shrink: 0;
+  align-self: stretch;
+  min-width: 0;
+
+  &.is-app {
+    .buttons {
+      transform: none !important;
+    }
+  }
+
+  .left {
+    display: none;
+    align-items: center;
+
+    @media (min-width: 1351px) {
+      display: flex;
+    }
+  }
+
+  .right {
+    height: 100%;
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    @media (max-width: 1350px) {
+      :global(#language-toggle) {
+        display: none;
+      } 
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  transform: translateX(10px);
+
+  @media (max-width: $breakpoints-sm) {
+    transform: none;
+  }
+
+  > * {
+    position: relative;
+    flex-shrink: 0;
+    height: 100%;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // When menu is transparent we don't want borders - "--button-border" is set to none in that case.
+    border-right: var(--button-border, 1px solid $colors-monochrome-5);
+    // background: var(--header-background-color, $colors-monochrome-2);
+    cursor: pointer;
+
+    &:first-child {
+      border-left: var(--button-border, 1px solid $colors-monochrome-5);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      font-size: 22px;
+    }
+
+    &.mobile-only {
+      display: none;
+
+      @media (max-width: 1350px) {
+        touch-action: none;
+        display: flex;
+      }
+    }
+
+    .app-notifications {
+      display: flex;
+      position: relative;
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        border-radius: 50%;
+        top: -4px;
+        right: -4px;
+        color: $colors-monochrome-1;
+        background: $colors-track-red;
+        @include fonts-xxs;
+      }
+    }
+  }
+}
+
+.account {
+  // Move to separate file?
+  .account-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid $colors-monochrome-1;
+    padding: $gaps-gap-2;
+
+    > svg {
+      @include fonts-xl;
+      margin-right: $gaps-gap-2;
+    }
+  }
+
+  .account-icon {
+    @include fonts-xl;
+    margin-left: $gaps-gap-7;
+    cursor: pointer;
+  }
+}
+
+.desktop {
+  display: none !important;
+
+  @media (min-width: 1351px) {
+    display: flex !important;
+  }
+}
+
+.mobile {
+  display: none !important;
+
+  @media (max-width: 1350px) {
+    display: block !important;
+  }
+}

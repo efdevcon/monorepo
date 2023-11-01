@@ -1,0 +1,84 @@
+@use 'assets/css/partials/index' as *;
+
+.hero {
+  position: relative;
+  margin-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+
+  [data-type="slider-container"] {
+    margin-top: 16px !important;
+  }
+
+  .text {
+    padding: $gaps-gap-4;
+    border: 1px solid $colors-standard-border-color;
+    border-top: none;
+
+    .title {
+      @include fonts-bold;
+      margin-bottom: $gaps-gap-3;
+    }
+
+    .description {
+      color: $colors-monochrome-6;
+    }
+  }
+
+  &:global(.slick-track) {
+    margin-left: 0px;
+  }
+}
+
+.latest-notification {
+  border-top: 1px solid $colors-standard-border-color;
+}
+
+.quicklinks {
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  .title-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    .dropdown {
+      top: -$gaps-gap-2;
+      right: -2px;
+      z-index: 1;
+      position: absolute;
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 16px;
+
+  @media (min-width: $breakpoints-lg) {
+    overflow: hidden;
+    width: calc(100% + 12px);
+    left: -6px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .card {
+    height: 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 16px;
+    background: white;
+  }
+}
+
+.notification-spacing {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}

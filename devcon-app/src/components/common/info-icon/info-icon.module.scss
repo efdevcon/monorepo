@@ -1,0 +1,8 @@
+@use 'assets/css/partials/index' as *;
+
+.modal-overrides {
+  [data-type="modal-content"] {
+    min-height: 200px;
+    padding: 32px;
+  }
+}

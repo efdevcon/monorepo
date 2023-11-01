@@ -1,0 +1,328 @@
+@use 'assets/css/partials/index' as *;
+
+/*
+  Whenever RTD and static phase branch converge, discard RTD card css for static phase css
+*/
+
+.card {
+  &:hover {
+    box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.2);
+  }
+
+  box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.1);
+  color: $colors-main;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.slide {
+    &:active {
+      > * {
+        cursor: grabbing !important;
+      }
+    }
+
+    .img {
+      cursor: grab;
+    }
+
+    .body {
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing !important;
+      }
+    }
+  }
+
+  // Whole card should trigger hover effect
+  &.expand-link {
+    &:hover .read-more {
+      color: var(--theme-color-hover, $colors-main-light) !important;
+      --color-icon: var(--theme-color-hover, #{$colors-main-light}) !important;
+    }
+  }
+
+  @media (min-width: $breakpoints-lg + 1) {
+    &:hover {
+      .img-wrapper {
+        .img {
+          transform: scale(1.15);
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+
+    .read-more {
+      display: none !important;
+    }
+  }
+
+  .img-wrapper {
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: $gaps-gap-2;
+
+    .img {
+      transition: transform 0.5s;
+      // Kinda tragic positioning strategy here, but this constellation was the only way to make it work in safari
+      position: absolute !important;
+      top: 0;
+      min-width: 100%;
+      overflow: hidden;
+      height: 100%;
+      object-fit: cover;
+
+      &.not-gatsby {
+        position: relative !important;
+      }
+    }
+
+    // &:after {
+    //   content: '';
+    //   background-image: linear-gradient(180deg, rgba($colors-monochrome-1, 0) 50%, $colors-monochrome-1);
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    //   width: 100%;
+    //   height: 50%;
+    // }
+  }
+
+  &.img {
+    .body {
+      padding-top: 0px;
+      flex-grow: 0;
+    }
+  }
+
+  .body {
+    padding: $gaps-gap-5;
+    padding-bottom: 0px;
+
+    &.with-link {
+      cursor: pointer;
+
+      &:hover {
+        .title {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      padding: $gaps-gap-4;
+      padding-bottom: 0px;
+    }
+
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-family: $fonts-primary;
+
+    .title {
+      @include fonts-lg;
+      @include fonts-bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-bottom: 0px;
+    }
+
+    .text {
+      @include fonts-sm;
+      margin-top: $gaps-gap-4;
+      overflow: hidden;
+      color: rgba(97, 97, 97, 1);
+    }
+
+    .bottom-section {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      flex-direction: column;
+
+      .metadata {
+        @include fonts-sm;
+        color: $colors-main-light;
+        display: flex;
+        text-transform: uppercase;
+        margin-top: $gaps-gap-1;
+        margin-bottom: $gaps-gap-3;
+
+        > * {
+          margin-right: $gaps-gap-3;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+
+      .read-more {
+        // @include fonts-section-link;
+        @include fonts-bold;
+        border-top: 1px solid rgba($colors-monochrome-10, 0.1);
+        padding-top: $gaps-gap-3;
+        padding-bottom: $gaps-gap-3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--theme-color, $colors-main);
+        --color-icon: var(--theme-color, $colors-main);
+
+        > svg {
+          margin-left: $gaps-gap-3;
+          font-size: 1em;
+        }
+
+        // &:hover {
+        //   color: var(--theme-color-hover, $colors-main-light) !important;
+        //   --color-icon: var(--theme-color-hover, #{$colors-main-light}) !important;
+        // }
+      }
+    }
+  }
+}
+
+// @use 'src/assets/css/variables' as *;
+// @use 'src/assets/css/partials/fonts';
+
+// .card {
+//   // overflow: hidden;
+//   // max-width: 526px;
+//   // margin: $size-8;
+//   // -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   // -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+//   color: $color-primary;
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+
+//   &:hover .read-more {
+//     color: rgba(0, 0, 0, 0.5) !important;
+//     --text-color: rgba(0, 0, 0, 0.5) !important;
+//   }
+
+//   @media (min-width: $screen-lg + 1) {
+//     &:hover {
+//       .img-wrapper {
+//         .img {
+//           transform: scale(1.15);
+//         }
+//       }
+//     }
+//   }
+
+//   .img-wrapper {
+//     overflow: hidden;
+//     position: relative;
+//     flex-grow: 1;
+//     max-width: 100%;
+//     display: flex;
+//     justify-content: center;
+
+//     .img {
+//       transition: transform 0.5s;
+//       // Kinda tragic positioning strategy here, but this constellation was the only way to make it work in safari
+//       position: absolute !important;
+//       top: 0;
+//       min-width: 100%;
+//       overflow: hidden;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+
+//     &:after {
+//       content: '';
+//       background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, white);
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
+
+//   &.img {
+//     .body {
+//       padding-top: 0px;
+//       flex-grow: 0;
+//     }
+//   }
+
+//   .body {
+//     padding: $gap-8;
+//     padding-bottom: $gap-4;
+
+//     @media (max-width: $screen-lg) {
+//       padding: $gap-4;
+//       padding-bottom: $gap-2;
+//     }
+
+//     display: flex;
+//     flex-grow: 1;
+//     flex-direction: column;
+//     font-family: $font-secondary;
+
+//     .title {
+//       font-family: $font-primary;
+//       letter-spacing: -0.4px;
+//       // overflow: hidden;
+//       // white-space: nowrap;
+//       // text-overflow: ellipsis;
+//       @include fonts.font-xl;
+//       @include fonts.bold;
+//     }
+
+//     .text {
+//       margin-top: $gap-4;
+//       overflow: hidden;
+//       // white-space: nowrap;
+//       color: rgba(97, 97, 97, 1);
+//     }
+
+//     .bottom-section {
+//       display: flex;
+//       flex-grow: 1;
+//       justify-content: flex-end;
+//       flex-direction: column;
+
+//       .metadata {
+//         @include fonts.font-sm;
+//         display: flex;
+//         text-transform: uppercase;
+//         margin-top: $gap-3;
+//         margin-bottom: $gap-3;
+
+//         > * {
+//           margin-right: $gap-3;
+
+//           &:last-child {
+//             margin-right: 0px;
+//           }
+//         }
+//       }
+
+//       .read-more {
+//         @include fonts.bold;
+//         border-top: 1px solid rgba(0, 0, 0, 0.1);
+//         padding-top: 13px;
+//         display: flex;
+//         align-items: center;
+//         color: rgba(0, 0, 0, 0.25);
+//         --text-color: rgba(0, 0, 0, 0.25); // for icons
+//         justify-content: space-between;
+//       }
+//     }
+//   }
+// }

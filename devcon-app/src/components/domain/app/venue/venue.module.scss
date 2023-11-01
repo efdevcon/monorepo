@@ -1,0 +1,150 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  position: absolute;
+  bottom: 16px;
+  right: 0px;
+  // z-index: 5000;
+  text-align: right;
+
+  .shift-end {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background: $colors-track-red;
+    border: 0px solid rgba(255, 255, 255, 0);
+    font-size: 12px;
+    color: white;
+    --color-icon: white;
+    // pointer-events: auto;
+    // @include fon
+    // touch-action: none;
+    margin-left: 8px;
+
+    .text {
+      @include fonts-xxs;
+      margin-top: 0.5em;
+      line-height: 1em;
+    }
+  }
+}
+
+.panzoom {
+  overflow: hidden;
+  position: relative;
+  height: min(50vh, 600px);
+  width: 100%;
+  cursor: grab;
+
+  .image {
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+
+
+    img {
+      object-fit: contain;
+      width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.panzoom-cover {
+  @extend .panzoom;
+  cursor: auto;
+
+  .image {
+    img {
+      object-fit: cover !important;
+    }
+  }
+}
+
+.floor-header {
+  margin-bottom: 8px;
+}
+
+.floor-link {
+  // margin-left: 8px;
+}
+
+.filter {
+  display: flex;
+  width: 100%;
+
+  .search {
+    flex-grow: 4;
+  }
+
+  .end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 8px;
+
+    >* {
+      margin-left: 8px;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+
+.list-item {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $colors-standard-border-color;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    background: $colors-monochrome-3;
+  }
+}
+
+.floor-image {
+  position: relative;
+  width: 205px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.agora { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gaps-gap-4;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $colors-monochrome-5;
+
+  .info p {
+    margin-bottom: $gaps-gap-2;
+  } 
+
+  .image { 
+    position: relative;
+    flex-shrink: 0;
+    width: 60px;
+  }
+}

@@ -1,15 +1,8 @@
-// const withPWA = require('next-pwa')
-// const webpack = require('webpack')
 // const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // pwa: {
-  //   dest: '/public',
-  //   cacheOnFrontEndNav: true,
-  //   customWorkerDir: 'workbox',
-  // },
   experimental: {
     // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
     externalDir: true,

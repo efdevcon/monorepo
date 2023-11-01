@@ -1,0 +1,55 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  margin-top: $gaps-gap-4;
+
+  .subtitle { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $gaps-gap-4;
+  }
+
+  .banner {
+    margin-top: $gaps-gap-2;
+    border: 1px solid $colors-standard-border-color;
+
+    [data-type='thumbnail-block-image'] {
+      background: $colors-monochrome-2;
+    }
+
+    .content {
+      padding: $gaps-gap-3;
+      padding-left: $gaps-gap-5;
+
+    }
+  }
+
+  a { 
+    text-decoration: underline;
+  }
+  
+  .powered-by {
+    margin-top: $gaps-gap-3;
+    @include fonts-xs;
+    @include fonts-bold;
+  }
+
+  .responsive {
+    position: relative;
+    padding-top: 56.25%;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  .iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

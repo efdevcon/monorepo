@@ -1,0 +1,183 @@
+@use 'assets/css/partials/index' as *;
+
+:root {
+  --color-icon: inherit; // Since icons don't respond to the color attribute, they can use this variable to retrieve and apply the color context
+  --color-text: $colors-main;
+}
+
+// Invert colors
+.dark-mode {
+  --color-text: $colors-main-light !important;
+}
+
+// Button/Label colors
+.white {
+  @include colors-white;
+
+  &.ghost {
+    @include colors-white-ghost;
+  }
+
+  &.disabled {
+    @include colors-white-disabled;
+  }
+}
+
+.black {
+  @include colors-black;
+
+  &.ghost {
+    @include colors-black-ghost;
+  }
+
+  &.disabled {
+    @include colors-black-disabled;
+  }
+}
+
+.red {
+  @include colors-red;
+
+  &.ghost {
+    @include colors-red-ghost;
+  }
+
+  &.disabled {
+    @include colors-red-disabled;
+  }
+}
+
+.purple {
+  @include colors-purple;
+
+  &.ghost {
+    @include colors-purple-ghost;
+  }
+
+  &.disabled {
+    @include colors-purple-disabled;
+  }
+}
+
+.green {
+  @include colors-green;
+
+  &.ghost {
+    @include colors-green-ghost;
+  }
+
+  &.disabled {
+    @include colors-green-disabled;
+  }
+}
+
+.blue {
+  @include colors-blue;
+
+  &.ghost {
+    @include colors-blue-ghost;
+  }
+
+  &.disabled {
+    @include colors-blue-disabled;
+  }
+}
+
+
+.app {
+  @include colors-app;
+
+  &.ghost {
+    @include colors-app-ghost;
+  }
+
+  &.disabled {
+    @include colors-app-disabled;
+  }
+}
+
+.light-blue {
+  background: $colors-monochrome-1 !important;
+  color: $colors-track-light-blue !important;
+  --color-icon: #{$colors-track-light-blue};
+  --theme-color: #{$colors-track-light-blue};
+
+  &:hover {
+    color: $colors-monochrome-1 !important;
+    // For use by Button component (animates colors when hovering)
+    --button-color-background: #{$colors-track-light-blue};
+    --button-color-background-hover: #{darken($colors-track-light-blue, 15%)};
+  }
+
+  &.ghost {
+    background: none !important;
+    color: $colors-track-light-blue !important;
+    --color-icon: #{$colors-track-light-blue} !important;
+    border-color: $colors-track-light-blue !important;
+  }
+
+  &.inverted {
+    background: $colors-monochrome-1 !important;
+    color: $colors-track-light-blue !important;
+    --color-icon: #{$colors-track-light-blue} !important;
+  }
+}
+
+// .blue {
+//   background: $colors-track-blue !important;
+//   color: $colors-monochrome-1 !important;
+//   --color-icon: #{$colors-monochrome-1} !important;
+//   border-color: $colors-track-blue !important;
+
+//   &.ghost {
+//     background: none !important;
+//     color: $colors-track-blue !important;
+//     --color-icon: #{$colors-track-blue} !important;
+//     border-color: $colors-track-blue !important;
+//   }
+
+//   &.inverted {
+//     background: $colors-monochrome-1 !important;
+//     color: $colors-track-blue !important;
+//     --color-icon: #{$colors-track-blue} !important;
+//   }
+// }
+
+// .red {
+//   background: $colors-track-red !important;
+//   color: $colors-monochrome-1 !important;
+//   --color-icon: #{$colors-monochrome-1} !important;
+//   border-color: $colors-track-red !important;
+
+//   &.ghost {
+//     background: none !important;
+//     color: $colors-track-red !important;
+//     --color-icon: #{$colors-track-red} !important;
+//     border-color: $colors-track-red !important;
+//   }
+
+//   &.inverted {
+//     background: $colors-monochrome-1 !important;
+//     color: $colors-track-red !important;
+//     --color-icon: #{$colors-track-red} !important;
+//   }
+
+//   &:disabled {
+//     background: $colors-ef-pink !important;
+//     color: $colors-track-red !important;
+//     --color-icon: #{$colors-track-red} !important;
+//     border: none;
+//   }
+// }
+// .red.disabled {
+//   background: $colors-ef-pink !important;
+//   color: $colors-track-red !important;
+//   --color-icon: #{$colors-track-red} !important;
+//   border: none;
+//   pointer-events: none;
+// }
+
+.theme-color {
+  @include colors-theme-color 
+}
+

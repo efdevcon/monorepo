@@ -1,0 +1,99 @@
+@use 'assets/css/partials/index' as *;
+
+.thumbnail-container {
+  overflow: hidden;
+  margin-bottom: 8px;
+
+  &:hover {
+
+    border: 1px solid darken($colors-standard-border-color, 20%);
+  }
+
+  position: relative;
+  border: 1px solid $colors-standard-border-color;
+
+  &.workshop {
+    background: rgb(255, 255, 221);
+  }
+
+  &.conference {
+    background: rgb(232, 255, 231);
+  }
+
+  &.drinksparty {
+    background: rgb(230, 253, 255);
+  }
+
+  &.hackerhouse {
+    background: rgb(255, 252, 245);
+  }
+
+  &.eventmeetup {
+    background: rgb(255, 236, 234);
+  }
+
+  &.hackathon {
+    background: rgb(243, 243, 243);
+  }
+}
+
+.details {
+  padding: $gaps-gap-2;
+  cursor: pointer;
+
+  .top {
+    padding-bottom: 8px;
+    border-bottom: 1px solid $colors-standard-border-color;
+
+    .title {
+      @include fonts-bold;
+      @include fonts-sm-fixed;
+      padding-right: $gaps-gap-8;
+    }
+  }
+
+  .bottom {
+    padding-top: 8px;
+    @include fonts-md;
+
+    p {
+      @include fonts-bold;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+
+      :global(.icon) {
+        flex-shrink: 0;
+      }
+    }
+
+    .location-title, .capacity {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+    }
+
+    .location-title {
+      color: $colors-track-purple;
+      --color-icon: #{$colors-track-purple};
+    }
+  }
+}
+
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .time {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin-left: 8px;
+    }
+  }
+}

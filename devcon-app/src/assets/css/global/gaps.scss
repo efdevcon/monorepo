@@ -1,0 +1,73 @@
+@use 'assets/css/partials/index' as *;
+
+// Generic spacing utility classes to help build more consistent spacing between content blocks
+$standard-spacing: 2rem;
+$border: 1px solid $colors-monochrome-5;
+
+.margin {
+  &-top {
+    margin-top: $standard-spacing;
+
+    &-less {
+      margin-top: $standard-spacing / 2;
+    }
+  }
+
+  &-bottom {
+    margin-bottom: $standard-spacing;
+
+    &-less {
+      margin-bottom: $standard-spacing / 2;
+    }
+  }
+
+  &-left {
+    margin-left: $standard-spacing;
+
+    &-less {
+      margin-left: $standard-spacing / 2;
+    }
+  }
+
+  &-right {
+    margin-right: $standard-spacing;
+
+    &-less {
+      margin-right: $standard-spacing / 2;
+    }
+  }
+}
+
+.padding, .clear {
+  &-top {
+    padding-top: $standard-spacing;
+
+    &-less {
+      padding-top: $standard-spacing / 2;
+    }
+  }
+
+  &-bottom {
+    padding-bottom: $standard-spacing;
+
+    &-less {
+      padding-bottom: $standard-spacing / 2;
+    }
+  }
+
+  &-left {
+    padding-left: $standard-spacing;
+
+    &-less {
+      padding-left: $standard-spacing / 2;
+    }
+  }
+
+  &-right {
+    padding-right: $standard-spacing;
+
+    &-less {
+      padding-right: $standard-spacing / 2;
+    }
+  }
+}

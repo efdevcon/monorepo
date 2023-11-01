@@ -1,0 +1,58 @@
+@use 'assets/css/partials/index' as *;
+
+// $track-light-blue: #0fadcf;
+// $track-blue: #1b6fae;
+// $track-teal: #00b3a4;
+// $track-green: #88c43f;
+// $track-yellow: #f5d222;
+// $track-orange: #f69022;
+// $track-red: #e55066;
+// $track-purple: #7958a5;
+
+.container {
+    a {
+        margin-left: $gaps-gap-2;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &.align {
+        display: flex;
+        align-items: center;
+    }
+}
+.default {
+    color: $colors-main;
+}
+
+.cold-forest,
+.cold-forest svg {
+    color: $colors-track-green;
+    --color-icon: #{$colors-track-green};
+}
+
+.flowers,
+.flowers svg {
+    color: $colors-track-purple;
+    --color-icon: #{$colors-track-purple};
+}
+
+.river,
+.river svg {
+    color: $colors-track-blue;
+    --color-icon: #{$colors-track-blue};
+}
+
+.tropical-sunset,
+.tropical-sunset svg {
+    color: $colors-track-orange;
+    --color-icon: #{$colors-track-orange};
+}
+
+.slscommunity-room {}
+
+.on-top-of-the-mountain {}
+
+.main-stage-for-opening-day {}

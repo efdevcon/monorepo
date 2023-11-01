@@ -1,0 +1,34 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  display: flex;
+  border: 1px solid #DDDDDD;
+}
+
+.image {
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5F6F6;
+  padding: $gaps-gap-2 $gaps-gap-4;
+
+  svg { 
+    fill: #BABABA;
+
+    > path {
+      fill: inherit;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: $gaps-gap-2 $gaps-gap-4;
+
+  .description {
+    color: rgba(0, 0, 0, 0.34);
+  }
+}

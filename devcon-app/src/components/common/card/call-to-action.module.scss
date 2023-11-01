@@ -1,0 +1,118 @@
+@use 'assets/css/partials/index' as *;
+
+.message-card {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 24px;
+  background: #FFFAFA;
+  $red: #E55066;
+  border: 1px solid lighten(#E55066, 20);
+  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.2);
+    border: 1px solid $red;
+  }
+
+  &.blue {
+    $blue: lighten($colors-track-blue, 20);
+    background: #EAF7FF;
+    border: 1px solid lighten($blue, 20);
+
+    .background {
+      * {
+        fill: #4172e3;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.2);
+      border: 1px solid $blue;
+    }
+  }
+
+  &.purple {
+    $purple: #7958A5;
+    background: #FDF7FF;
+    border: 1px solid lighten($purple, 20);
+
+    .background {
+      * {
+        fill: #2F354B;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.2);
+      border: 1px solid $purple;
+    }
+  }
+
+  &.orange {
+    $orange: #F69022;
+    background: #FFFBF4;
+    border: 1px solid lighten($orange, 20);
+
+    .background {
+      * {
+        fill: $orange;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 11px rgba($colors-monochrome-10, 0.2);
+      border: 1px solid $orange;
+    }
+  }
+
+  .header, .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header {
+    margin-bottom: 25px;
+
+    .tag {
+      background: white;
+      z-index: 2;
+    }
+  }
+
+  .footer {
+    margin-top: 40px;
+
+    > * {
+      &:first-child {
+        flex-shrink: 0;
+      }
+
+      &:last-child {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  .background {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.1;
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+
+    * {
+      fill: #E55066;
+    }
+
+    svg {
+      transform: translateY(-25%);
+      width: 100%;
+      height: 150%;
+    }
+  }
+}

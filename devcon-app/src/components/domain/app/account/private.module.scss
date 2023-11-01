@@ -1,0 +1,33 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: $gaps-gap-4;
+
+  .spinner {
+    display: inline-block;
+  }
+
+  .spinner:after {
+    content: ' ';
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: 0.2em;
+    border-radius: 50%;
+    border: 0.15em solid $colors-main;
+    border-color: $colors-main transparent $colors-main transparent;
+    animation: spinner 1.2s linear infinite;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@use 'assets/css/partials/index' as *;
+
+.search-bar {
+  // RTD: remove padding
+  // padding: $gaps-gap-8 0;
+
+  input {
+    font-family: $fonts-primary;
+    font-size: $sizes-size-12;
+    color: $colors-monochrome-10;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: $gaps-gap-1 $gaps-gap-2;
+
+    @media (max-width: $breakpoints-tiny) {
+      max-width: 180px;
+    }
+  }
+
+  .subtitle {
+    @include fonts-xs;
+    @include fonts-bold;
+    text-transform: uppercase;
+    // color: #88c43f;
+    display: block;
+    margin: $gaps-gap-4 0;
+  }
+}

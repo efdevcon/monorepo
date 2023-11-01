@@ -1,0 +1,57 @@
+@use 'assets/css/partials/index' as *;
+
+.message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 1em 1em;
+  text-transform: uppercase;
+
+  &.orange {
+    background: #fff3dd;
+
+    .title {
+      color: #e16f1d;
+      --icon-color: #e16f1d;
+    }
+  }
+
+  &.blue {
+    background: #ece9ff;
+
+    .title {
+      --icon-color: #6664d3;
+      color: #6664d3;
+    }
+  }
+
+  .title {
+    @include fonts-sm;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    margin-right: 2em;
+
+    display: none;
+
+    @media (min-width: $breakpoints-lg) {
+      display: flex;
+    }
+
+    :global(.icon) {
+      font-size: 1.5em;
+      margin-right: 0.5em;
+    }
+  }
+
+  .body {
+    @include fonts-sm;
+    flex-grow: 1;
+  }
+
+  .close {
+    flex-shrink: 0;
+  }
+}

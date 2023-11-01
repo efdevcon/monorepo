@@ -1,0 +1,19 @@
+@use 'assets/css/partials/index' as *;
+
+.list-item {
+  display: block;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  &:first-child {
+    border-top: 1px solid $colors-standard-border-color;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  // Padded has to be optional in case the list items are clickable (they would add the padding themselves to make the clickable area fill the entire list item)
+  &.padded {
+    padding: $gaps-gap-2 0px;
+  }
+}

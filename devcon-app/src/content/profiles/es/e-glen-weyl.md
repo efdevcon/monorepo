@@ -1,0 +1,7 @@
+---
+name: "E. Glen Weyl"
+role: "Researcher"
+description: "Glen Weyl is a Principal Researcher at Microsoft Research New York City and teaches economics at Princeton University.  His work on political economy seeks to combine economics, law, technology, philosophy to design radically egalitarian and inclusive markets that can address large scale social problems.  He has published his research in the most respected journals in economics, law and computer science and has taught at the University of Chicago and Yale. However, he has recently turned towards communicating with and building a movement among a broader public.  This began with is book Radical Markets: Uprooting Capitalism and Democracy for a Just Society joint with Eric Posner, but has continued in his work advising a wide range of start-ups developing Radical Markets ideas (especially in the blockchain space), helping organize a data labor movement, working with governments and political leaders around the world and collaborating with artists and other communicators to realize the true democratic potential of Radical Markets ideas.  Glen is working to organize these strands into a coherent social movement through a variety of community-building activities and in particular is organizing a Devcon-inspired conference around Radical Markets, RadicalxChange, in March 2019."
+organization: "Princeton University"
+country: "United States"
+---

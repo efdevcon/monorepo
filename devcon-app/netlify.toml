@@ -1,0 +1,16 @@
+[build]
+    ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devcon-app ../lib"
+    command = "yarn build"
+    publish = ".next"
+
+[functions]
+  included_files = ["src/content/**/*"]
+
+[[plugins]]
+    package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/grants"
+  to = "https://esp.ethereum.foundation/devcon-grants"
+  status = 302
+  force = true

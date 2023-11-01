@@ -1,0 +1,101 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  border-bottom: 1px solid $colors-standard-border-color;
+  position: sticky;
+  top: 0px;
+  z-index: 19;
+  background: $colors-monochrome-1;
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 2 / 4;
+
+    &.has-right {
+      grid-column: 2 / 3;
+    }
+
+    > * {
+      &:not(.left, .right) {
+        flex-grow: 1;
+      }
+    }
+
+    .left {
+      @include fonts-lg-fixed;
+      flex-shrink: 0;
+      margin-right: 8px;
+
+      .icon {
+        position: relative;
+        --color-icon: #{$colors-track-red};
+        display: flex;
+        align-items: center;
+    
+        svg {
+          font-size: 0.9em;
+        }
+    
+        &.nested {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .right {
+      margin-left: 8px; 
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+
+      > *, svg {
+        @include fonts-xl-fixed;
+
+        &:not(&:first-child) {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+}
+
+.inline-nav {
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+  
+  > * {
+    flex-shrink: 0;
+  }
+
+  @include fonts-md-fixed;
+
+  .nav-item {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    padding: 12px 12px;
+    padding-bottom: 8px;
+    margin-left: 8px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    // Using pseudo elements instead of border to prevent centering issues
+    &.selected {
+      @include fonts-bold;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0px;
+        right: 0px;
+        height: 2px;
+        background-color: $colors-track-red;
+      }
+    }
+  }
+}

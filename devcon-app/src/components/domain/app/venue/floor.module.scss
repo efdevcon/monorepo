@@ -1,0 +1,14 @@
+@use 'assets/css/partials/index' as *;
+
+.navigator {
+    position: absolute;
+    top: 16px;
+    right: 0px;
+
+    .shift-end {
+        display: flex;
+        justify-content: flex-end;
+        gap: $gaps-gap-2;
+        z-index: 10;
+    }
+}

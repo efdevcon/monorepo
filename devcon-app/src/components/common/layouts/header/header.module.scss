@@ -1,0 +1,153 @@
+@use 'assets/css/partials/index' as *;
+
+@mixin fill-header {
+  --color-icon: #{$colors-monochrome-10};
+  --logo-color: #{$colors-main};
+  --header-background-color: #{$colors-monochrome-1};
+  --header-shadow: 0px 4px 2px rgba(0, 0, 0, 0.15);
+}
+
+@mixin fill-strip {
+  background: white;
+  color: black;
+  --color-icon: black;
+  border-bottom: 1px solid $colors-standard-border-color;
+}
+
+.foldout-open {
+  @media (max-width: 1350px) {
+    @include fill-header;
+
+    :global(#strip) {
+      @include fill-strip;
+    }
+  }
+}
+
+.header-container {
+  z-index: 20;
+
+  &:not(&.app) {
+    position: sticky;
+    top: 0px;
+    --button-border: none;
+
+    .header {
+      position: sticky;
+      top: 0px;
+      --button-border: none;
+    }
+  }
+
+
+  @media (max-width: $breakpoints-lg) {
+    // @include fill-header;
+  }
+
+  @media (min-width: $breakpoints-lg + 1) {
+    // display: contents;$
+  }
+}
+
+.header-fixed-container {
+  position: fixed;
+  width: 100%;
+  z-index: 20;
+  --color-icon: white;
+  --logo-color: var(--color-icon);
+  --header-background-color: #ffffff00;
+  --header-shadow: none;
+  --button-border: none;
+
+  &.scrolled {
+    @include fill-header;
+
+    :global(#strip) {
+      @include fill-strip;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  color: var(--color-icon, #{$colors-main});
+  background: var(--header-background-color, white);
+  box-shadow: var(--header-shadow, 0px 4px 2px rgba(0, 0, 0, 0.15));
+  z-index: 20;
+
+  &.hero {
+    position: relative;
+    --strip-border: none;
+  }
+
+  > * {
+    > * {
+      @media (max-width: $breakpoints-sm) {
+        grid-column: 1 / 4;
+      }
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    &.no-overflow {
+      overflow: hidden;
+    }
+
+    .links {
+      flex-shrink: 1;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      @media (max-width: $breakpoints-sm) {
+        // justify-content: space-between;
+
+        .devcon-org {
+          border-left: 1px solid $colors-standard-border-color;
+        }
+
+        .logo {
+          margin-left: 8px;
+          padding-left: 8px;
+          padding-right: 12px;
+        }
+      }
+
+      .devcon-org {
+        @include fonts-bold;
+        flex-shrink: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .logo {
+        flex-shrink: 1;
+        margin-right: 8px;
+
+      }
+
+      > a {
+        display: flex;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        align-items: center;
+  
+        svg {
+          height: 38px;
+          fill: var(--logo-color, $colors-main);
+          // padding-right: 42px;
+        }
+      }
+    }
+  }
+}

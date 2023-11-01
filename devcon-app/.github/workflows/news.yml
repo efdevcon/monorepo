@@ -1,0 +1,31 @@
+name: Fetch and commit news
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{secrets.GH_ACCESS_TOKEN}}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Create env file
+        run: |
+          cd tools
+          touch .env
+          echo TWITTER_API_KEY=${{ secrets.TWITTER_API_KEY }} >> .env
+
+      - name: Fetch news
+        run: cd tools && yarn && yarn news
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          message: 'Fetch news'

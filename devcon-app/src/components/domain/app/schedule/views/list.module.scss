@@ -1,0 +1,73 @@
+@use 'assets/css/partials/index' as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  // margin-top: 16px;
+
+  .session {
+    margin-top: 2px;
+    padding: 5px;
+    border: 1px solid black;
+  }
+}
+
+.timeslot {
+  position: relative;
+  // &:first-child {
+  //   .start-time {
+  //     margin-top: 0px;
+  //   }
+  // }
+
+  .start-time {
+    position: sticky;
+    top: calc(44px + var(--app-nav-upper-height));
+    // border-top: 1px solid $colors-standard-border-color;
+    padding: 4px 0px;
+    padding-top: 5px;
+    border-bottom: 1px solid $colors-standard-border-color;
+    background: white;
+    z-index: 1;
+    color: $colors-monochrome-7;
+    @include fonts-xs-fixed;
+    @include fonts-bold;
+
+    // &:before {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0px;
+    //   height: 500px;
+    //   width: 100%;
+    //   z-index: -1;
+    // }
+  }
+}
+
+.header-today-indicator {
+  @include fonts-xs-fixed;
+  margin-left: 12px;
+  color: $colors-track-red;
+}
+
+.anchor {
+  display: block;
+  position: absolute;
+  top: calc(-1 * var(--header-height) + var(--app-nav-upper-height));
+  visibility: hidden;
+}
+
+.day-header {
+  padding: 12px 0px !important;
+  // margin-bottom: 0px !important;
+  // z-index: 2 !important;
+}
+
+.collapse {
+  background: #585858 !important; 
+}
+
+.session-card {
+ margin-top: 12px !important;
+
+}

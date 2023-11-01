@@ -1,0 +1,340 @@
+@use 'assets/css/partials/index' as *;
+
+/*
+  width: 1280
+  height: 720
+*/
+
+
+.room-screen {
+  height: 56.25vw;
+  // font-size: 5vw;
+  // border: 1px solid black;
+  display: flex;
+  font-size: 1.5vw;
+  line-height: 1.5em;
+
+  :global {
+    .text-1, p, div {
+      font-size: 1vw;
+      line-height: 1.5em;
+    }
+
+    .text-1-5 {
+      font-size: 1.5vw;
+    }
+
+    .text-2 {
+      font-size: 2vw;
+      line-height: 1.5em;
+    }
+
+    .text-3 {
+      font-size: 3vw;
+      line-height: 1.5em;
+    }
+
+    .tag {
+      padding: 0.5vw 0.75vw;
+      font-size: 0.8vw !important;
+    }
+
+    svg {
+      font-size: 1.5vw;
+    }
+
+    .clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;  
+      overflow: hidden;
+    }
+
+    .live {
+      color: red;
+    }
+  }
+
+  .left {
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $colors-standard-border-color;
+
+    > * {
+      &:first-child {
+        position: relative;
+        background: #D2E0FF;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 81.5%;
+
+        // .layer-1, .layer-1 .info-line {
+        //   --background: #E6F0FF;
+        // }
+        // .layer-2s, .layer-2s .info-line {
+        //   --background: #E4FAFF;
+        // }
+        // .developer-infrastructure, .developer-infrastructure .info-line {
+        //   --background: #F6F2FF;
+        // }
+        // .governance-coordination, .governance-coordination .info-line {
+        //   --background: #F9FFDF;
+        // }
+        // .ux-design, .ux-design .info-line {
+        //   --background: #FFF4F4;
+        // }
+        // .staking-validator-experience, .staking-validator-experience .info-line {
+        //   --background: #FCF4FF;
+        // }
+        // .security, .security .info-line {
+        //   --background: #E4FFFD;
+        // }
+        // .zkps, .zkps .info-line {
+        //   --background: #F2FFFA;
+        // }
+        // .opportunity-global-impact, .opportunity-global-impact .info-line {
+        //   --background: #FFFBF4;
+        // }
+        // .cryptoeconomics, .cryptoeconomics .info-line {
+        //   --background: #FFFEF4;
+        // }
+
+        // background: var(--background);
+
+        .logo-wrapper {
+          width: 50%;
+          margin: 1.5vw;
+        }
+
+        .title {
+          margin: 1.5vw;
+        }
+
+        .image-wrapper {
+          position: relative;
+          flex-grow: 1;
+
+          // img {
+          //   width: 100%;
+          // }
+          // width: 100%;
+        }
+      }
+
+      &:nth-child(2) {
+        background:#DDDDDD;
+        height: 18.5%;
+      }
+    }
+
+    .capacity {
+      // position: absolute; // 58px 
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      bottom: 0px;
+      background: white;
+      width: 100%;
+      padding: 1.5vw;
+
+      svg {
+        opacity: 0.6;
+      }
+    }
+
+    .time {
+      padding: 1.5vw;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .now {
+        display: flex;
+        justify-content: space-between;
+        opacity: 0.6;
+
+        .am-pm {
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 1vw;
+          }
+        }
+      }
+
+      .border {
+        height: 1px; 
+        background: $colors-monochrome-7;
+      }
+
+      .next-session {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+  }
+
+  .right {
+    position: relative;
+    padding: 2vw;
+    width: 74%;
+
+    .first-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 70%;
+    }
+
+    .second-row {
+      border-bottom: 1px solid $colors-standard-border-color;
+      padding: 0.5vw 0px;
+    }
+
+    .speakers {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid $colors-standard-border-color;
+      padding: 1vw 0px;
+
+      .speaker {
+        &:first-child {
+          margin-left: 0px;
+        }
+
+        margin-left: 1vw;
+
+        display: flex;
+        align-items: center;
+
+        .thumbnail {
+          margin-right: 0.5vw;
+          display: flex;
+          align-items: center;
+          // padding: 1vw;
+        
+          .wrapper {
+            position: relative;
+            width: 3vw;
+            height: 3vw;
+        
+            img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+            } 
+          }
+        }
+      }
+    }
+
+    .description {
+      border-bottom: 1px solid $colors-standard-border-color;
+      padding-bottom: 1vw;
+    }
+
+    .title {
+      color: $colors-monochrome-7;
+      padding: 1vw 0px;
+    }
+
+    .livestreams-upcoming {
+      display: flex;
+
+      .livestreams, .upcoming {
+        flex-shrink: 0;
+        flex-basis: 50%;
+      }
+
+      .upcoming {
+        > * {
+          &:nth-child(2) {
+            margin-top: 0.6vw !important;
+          }
+        }
+      }
+
+      .livestreams {
+        display: flex;
+        flex-direction: row;
+
+        .body{
+          display: flex;
+          flex-direction: column;
+
+
+          > * {
+            margin-top: 0.5vw;
+
+            &:first-child {
+              margin-top: 0px;
+            }
+          }
+
+          .session-link {
+            padding: 0.5vw;
+            margin-top: 2vw;
+            border: 1px solid $colors-standard-border-color;
+          }
+        }
+
+        .qr-code {
+          flex-basis: 50%;
+          margin: 3vw;
+          margin-top: 4vw;
+          position: relative;
+          padding: 1vw;
+          padding-bottom: 0.8vw;
+          flex-grow: 0;
+          align-self: flex-start;
+          border: 1px solid $colors-standard-border-color;
+        }
+      }
+    }
+
+
+
+    .bottom-info {
+      background: #DDDDDD;
+    }
+  }
+}
+
+
+.room-image {
+
+}
+
+.current-time {
+  height: 18.5%;
+}
+
+.updates-row {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 0.5vw 0.75vw;
+  background: $colors-monochrome-2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > * {
+    margin-right: 1vw;
+  }
+}
+
+// .speakers {
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 0.5vw 0px;
+// }
+

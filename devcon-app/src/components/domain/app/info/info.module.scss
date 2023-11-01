@@ -1,0 +1,59 @@
+@use 'assets/css/partials/index' as *;
+
+.filter {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.faq,
+.faq-inner,
+.faq-inner-content {
+  // h4 {
+  //   margin-top: $gaps-gap-4;
+  //   padding-bottom: $gaps-gap-2;
+  //   border-bottom: 1px solid $colors-standard-border-color;
+  // }
+  margin-left: 8px;
+}
+
+.markdown-body {
+  padding-top: 12px;
+}
+
+// .faq-inner-content {
+  
+// }
+
+.links {
+  padding: $gaps-gap-4 0px;
+}
+
+.subheader-content {
+  margin-bottom: $gaps-gap-4;
+}
+
+.feedback-form {
+  >* {
+    margin-bottom: $gaps-gap-3;
+  }
+
+  button {
+    // width: 100%;
+  }
+}
+
+.no-border {
+  border-bottom: none !important;
+}
+
+.github {
+  a {
+    text-decoration: underline;
+  }
+}
+
+.modal-link {
+  margin-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  border-bottom: 1px solid $colors-standard-border-color;
+}

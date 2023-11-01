@@ -1,0 +1,66 @@
+@use 'assets/css/partials/index' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  &.indent {
+    margin-left: 1em;
+  }
+
+  &:last-child, &.sticky {
+    border-bottom: none;
+  }
+
+  &:last-child {
+    > .header {
+      border-bottom: 1px solid $colors-standard-border-color;
+    }
+  }
+
+  .header {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: $gaps-gap-4;
+    padding-top: $gaps-gap-4;
+
+    &.open {
+      background: linear-gradient(90deg, transparent 5%, #de64640d);
+      border-bottom: 1px solid $colors-standard-border-color;
+    }
+
+    &.sticky {
+      position: sticky;
+      z-index: 2;
+      background: white;
+      transform: translateY(-1px);
+      top: var(--app-nav-upper-height);
+      border-bottom: 1px solid $colors-standard-border-color;
+    }
+
+    .title {
+      @include fonts-bold;
+      @include fonts-sm;
+    }
+
+    .icon {
+      margin-right: $gaps-gap-2;
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    transition: all 0.2s linear;
+    height: var(--contentHeight);
+    overflow: hidden;
+  }
+}

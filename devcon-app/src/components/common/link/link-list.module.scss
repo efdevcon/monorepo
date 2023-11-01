@@ -1,0 +1,50 @@
+@use 'assets/css/partials/index' as *;
+
+.link-in-list {
+  display: block;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  &:first-child {
+    border-top: 1px solid $colors-standard-border-color;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: $gaps-gap-2;
+  padding-bottom: $gaps-gap-2;
+  padding-right: $gaps-gap-2;
+
+  &.with-thumbnail {
+    padding-top: $gaps-gap-3;
+    padding-bottom: $gaps-gap-3;
+    padding-left: $gaps-gap-4;
+
+    .link-text {
+      margin-left: 10%;
+    }
+  }
+
+  .thumbnail {
+    width: 32px;
+    flex-shrink: 0;
+  }
+
+  .link-text {
+    flex-grow: 1;
+    overflow: hidden;
+    margin-right: $gaps-gap-2;
+  }
+
+  svg {
+    flex-shrink: 0;
+    --color-icon: #{$colors-monochrome-6};
+  }
+}

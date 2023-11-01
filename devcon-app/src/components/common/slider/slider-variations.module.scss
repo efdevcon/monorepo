@@ -1,0 +1,54 @@
+@use 'assets/css/partials/index' as *;
+
+.slider {
+  margin-top: $gaps-gap-4;
+  :global(.slick-slide > div) {
+    margin-left: $gaps-gap-2;
+    cursor: pointer;
+  }
+  > p {
+    padding-top: $gaps-gap-4;
+  }
+
+  .card {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $gaps-gap-4 $gaps-gap-3;
+    height: 100%;
+    box-shadow: none !important;
+
+    &.pink {
+      background: $colors-ef-pink;
+    }
+
+    &.yellow {
+      background: $colors-ef-cream;
+    }
+
+    &.green {
+      background: $colors-ef-green-2;
+    }
+
+    &.blue {
+      background: $colors-ef-blue;
+    }
+
+    &.grey {
+      background: $colors-monochrome-4;
+    }      
+
+    &.red {
+      background: #fddade;
+    }
+
+    .title {
+      @include fonts-sm-fixed;
+      @include fonts-bold;
+    }
+
+    .description {
+      @include fonts-xs-fixed;
+      margin-top: $gaps-gap-4;
+    }
+  }
+}

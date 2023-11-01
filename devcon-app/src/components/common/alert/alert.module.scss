@@ -1,0 +1,84 @@
+@use 'assets/css/partials/index' as *;
+
+.alert {
+  color: $colors-main;
+  padding: $sizes-size-8;
+  display: flex;
+}
+
+.message {
+  margin: 0 0 0 $sizes-size-8;
+  width: 100%;
+}
+
+.right {
+  float: right;
+}
+
+.dismiss {
+  cursor: pointer;
+}
+
+.title {
+  @include fonts-lg;
+}
+
+.success {
+  @extend .alert;
+  background-color: $colors-state-success-light;
+
+  svg {
+    fill: $colors-state-success;
+  }
+  .title {
+    color: $colors-state-success;
+  }
+}
+
+.error {
+  @extend .alert;
+  background-color: $colors-state-error-light;
+
+  svg {
+    fill: $colors-state-error;
+  }
+  .title {
+    color: $colors-state-error;
+  }
+}
+
+.warning {
+  @extend .alert;
+  background-color: $colors-state-warning-light;
+
+  svg {
+    fill: $colors-state-warning;
+  }
+  .title {
+    color: $colors-state-warning;
+  }
+}
+
+.info {
+  @extend .alert;
+  background-color: $colors-state-info-light;
+
+  svg {
+    fill: $colors-state-info;
+  }
+  .title {
+    color: $colors-state-info;
+  }
+}
+
+.light {
+  @extend .alert;
+  background-color: $colors-state-neutral-light;
+
+  svg {
+    fill: $colors-state-neutral;
+  }
+  .title {
+    color: $colors-state-neutral;
+  }
+}

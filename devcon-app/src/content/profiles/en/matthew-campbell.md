@@ -1,0 +1,7 @@
+---
+name: "Matthew Campbell"
+role: "CEO"
+description: "Matthew Campbell is a CEO of Loom Network, where he built one of the first Plasma Cash implementations, and an Ethereum sidechain framework called the Loom SDK. Previously a microservices scalability expert at DigitalOcean. He is writting a book called \"Microservices in Go\". He has spoke at over 20 international conferences, including GothamGO, Hashicorp Conf, JS Conf, GO India, UK GOlang, MicroXchng, Prometheus Conf. You can see some videos of my previous talks on my Youtube https://www.youtube.com/playlist?list=PL9pIpc63NOOaBy3HxQVIhoNeNT8_d8maL . He blogs at https://medium.com/loom-network/ .  In the past he worked at Thomson Reuters, Bloomberg, Gucci, and Cartoon network."
+organization: "Loom Network Inc"
+country: "British Indian Ocean Territory"
+---

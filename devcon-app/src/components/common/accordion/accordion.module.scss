@@ -1,0 +1,62 @@
+@use 'assets/css/partials/index' as *;
+
+.accordion {
+  &.dense {
+    .accordion-item {
+      margin-top: 0px;
+      border: none;
+      border-bottom: 1px solid $colors-standard-border-color;
+    }
+  }
+}
+
+.accordion-item {
+  list-style-type: none;
+  margin-top: 10px;
+  // background: #1c1c1c;
+  // color: white;
+  // --color-icon: white;
+  border: 1px solid #cfcece;
+  // border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: $colors-monochrome-2;
+  }
+
+  // &:first-child {
+  //   margin-top: 0px;
+  // }
+
+  .header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > svg {
+      flex-shrink: 0;
+      // --icon-color: white;
+      font-size: 0.65em;
+      margin-left: 12px;
+    }
+  }
+
+  .content {
+    display: none;
+    padding: 15px;
+    padding-top: 0px;
+    @include fonts-sm;
+    // color: #dadada;
+  }
+
+  &.open {
+    .title {
+      font-weight: bold;
+    }
+
+    .content {
+      display: block;
+    }
+  }
+}
