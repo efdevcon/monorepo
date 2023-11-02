@@ -18,6 +18,7 @@ import CircleBackground from 'assets/images/background-circles.png'
 import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
 import TestExternalRepo from 'lib/components/lib-import'
+import { Devcon7Logo } from 'components/common/devcon-7-logo'
 
 export default pageHOC(function Index(props: any) {
   return (
@@ -25,7 +26,9 @@ export default pageHOC(function Index(props: any) {
       <Header withStrip withHero />
       <Hero />
 
-      <TestExternalRepo />
+      {/* <Devcon7Logo />
+
+      <TestExternalRepo /> */}
 
       <About content={props.sections['devcon-about']} />
 
