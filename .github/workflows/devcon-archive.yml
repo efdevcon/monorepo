@@ -1,13 +1,15 @@
-name: Devcon Website CI
+name: Devcon Archive CI
 on:
   push:
     paths:
       - "lib/**"
-      - "devcon/**"
+      - "devcon-archive/**"
+      - ".github/workflows/devcon-archive.yml"
   pull_request:
     paths:
       - "lib/**"
-      - "devcon/**"
+      - "devcon-archive/**"
+      - ".github/workflows/devcon-archive.yml"
 
 jobs:
   build:
