@@ -13,6 +13,7 @@ on:
 
 jobs:
   build:
+    working_directory: devcon
     runs-on: ubuntu-latest
 
     steps:
@@ -23,40 +24,32 @@ jobs:
           node-version: "12.x"
 
       - name: Create env file
-        working-directory: devcon
         run: |
           touch .env
           echo DB_CONNECTION_STRING='${{ secrets.DB_CONNECTION_STRING }}' >> .env
           echo ELASTIC_ENDPOINT='${{ secrets.ELASTIC_ENDPOINT }}' >> .env
 
       - name: Install dependencies
-        working-directory: devcon
         run: yarn
 
       - name: Run Prettier // Format
-        working-directory: devcon
         run: yarn format
 
       - name: Run Eslint // Lint
-        working-directory: devcon
         run: yarn lint
 
       - name: Run Build
-        working-directory: devcon
         run: yarn build
 
       - name: Serve build to test against
-        working-directory: devcon
         run: yarn serve &
 
       - uses: microsoft/playwright-github-action@v1
 
       - name: Run your tests
-        working-directory: devcon
         run: npm test
 
       - uses: actions/upload-artifact@v2
-        working-directory: devcon
         with:
           name: screenshots
           path: screenshots
