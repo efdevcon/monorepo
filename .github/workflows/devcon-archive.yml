@@ -13,7 +13,9 @@ on:
 
 jobs:
   build:
-    working_directory: devcon-archive
+    defaults:
+      run:
+        working_directory: devcon-archive
     runs-on: ubuntu-latest
 
     steps:
