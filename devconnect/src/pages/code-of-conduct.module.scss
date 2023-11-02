@@ -1,0 +1,18 @@
+.code-of-conduct {
+    color: black;
+
+    :global(#code-of-conduct) {
+        padding: 32px 0px !important;
+
+    }
+
+    .hero {
+        background-image: linear-gradient(62deg, #6c3d89 0%, #68b99f 100%);
+        text-wrap: nowrap;
+        :global(.background-title) {
+            color: black !important;
+            -webkit-text-fill-color: unset !important;
+            -webkit-text-stroke-color: unset !important;
+        }
+    }
+}

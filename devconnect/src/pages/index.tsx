@@ -356,9 +356,9 @@ const FAQ = [
   },
 ]
 
-const CodeOfConduct = () => {
+export const CodeOfConduct = () => {
   return (
-    <div className={css['code-of-conduct']}>
+    <div className={css['code-of-conduct']} id="code-of-conduct">
       <p className="large-text bold">Code of Conduct</p>
       <p className="big-text underline bold">TL;DR</p>
       <p>
@@ -565,7 +565,7 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   <Link href="mailto:support@devconnect.org">Contact Us</Link>
                   <Link href="https://ethereum.foundation">Ethereum Foundation</Link>
 
-                  <a
+                  {/* <a
                     role="button"
                     tabIndex={0}
                     onKeyDown={e => {
@@ -580,7 +580,9 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                     }}
                   >
                     Code of Conduct
-                  </a>
+                  </a> */}
+
+                  <Link href="/code-of-conduct">Code of Conduct</Link>
 
                   <Link href="https://ethereum.org/en/privacy-policy/">Privacy policy</Link>
                   <Link href="https://ethereum.org/en/terms-of-use/">Terms of use</Link>

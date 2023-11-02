@@ -1,0 +1,27 @@
+name: Cleanup database
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ./devcon
+    name: Cleanup database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - name: Install Dependencies
+        run: yarn install
+      - name: Cleanup database
+        run: yarn scripts:db-cleanup
+        env:
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
