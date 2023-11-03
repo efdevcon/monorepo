@@ -135,6 +135,291 @@ const tabs = [
     },
   },
   {
+    text: 'Safety',
+    value: 'safety',
+    content: () => {
+      return (
+        <div className="tab-content">
+          <p>
+            Safety is our first and primary consideration now, and we are closely monitoring the situation, including
+            working closely with local security providers, law enforcement, and external risk advisory partners to
+            understand and anticipate risks to Devconnect. We have also conducted an internal review of our security
+            arrangements and crisis response plans, to make sure they are appropriate.
+          </p>
+
+          <Link href="https://www.gov.il/en/Departments/news/spoke-nsc171023" indicateExternal>
+            The Israel government has also released a notice warning any Israelis in the country to leave Turkey
+            immediately.
+          </Link>
+
+          <br />
+          <br />
+
+          <p>
+            We recommend to stay informed about the situation and follow the advice of local authorities and your
+            embassy. You can find lists of foreign embassies and consulates{' '}
+            <Link href="https://www.embassypages.com/city/istanbul" indicateExternal>
+              here
+            </Link>{' '}
+            and{' '}
+            <Link href="https://www.allaboutturkey.com/consulate.html" indicateExternal>
+              here
+            </Link>
+            .
+          </p>
+
+          <p>
+            Additionally, you can stay informed by monitoring local media, like{' '}
+            <Link href="https://www.hurriyetdailynews.com/index/istanbul" indicateExternal>
+              Hürriyet
+            </Link>{' '}
+            or{' '}
+            <Link href="https://www.dailysabah.com/" indicateExternal>
+              Sabah
+            </Link>
+            .
+          </p>
+
+          <p>
+            Please take note of the following safety recommendations, and develop your own individual risk mitigation
+            plan.
+          </p>
+
+          <p>
+            <b>Before you arrive</b>
+          </p>
+
+          <ul>
+            <li>
+              Pre-arrange your mobile data for your phone connection. We secured{' '}
+              <Link href="#plan-your-travels">discounted rates with providers Airalo and Roamless for you</Link>.
+            </li>
+            <li>
+              Familiarize yourself with <Link href="#general-info">local emergency contacts.</Link>
+            </li>
+          </ul>
+
+          <p>
+            <b>Upon Arrival</b>
+          </p>
+
+          <ul>
+            <li>
+              We are setting up 'Welcome booths' at the airport to help you find your way to your hotel. They will be
+              available during the weekend prior to Devconnect (from Friday to Monday (~8AM to 11:59PM)).
+            </li>
+            <li>Carry some local currency and ensure your credit cards are functioning to avoid hassles.</li>
+            <li>
+              Crypto payments for goods and services are illegal in Turkey. It is legal to own crypto and trade crypto,
+              but keep in mind to avoid using it for payments.
+            </li>
+          </ul>
+
+          <p>
+            <b>Personal safety</b>
+          </p>
+
+          <ul>
+            <li>
+              Always keep an eye on your personal belongings, especially in crowded and tourist areas to prevent petty
+              theft.
+            </li>
+            <li>Pro tip: Keep digital or photocopies of your ID and important documents in a secure place.</li>
+            <li>
+              For solo travelers, and particularly solo female travelers, avoid walking alone at night and use trusted
+              taxi services like BiTaksi or Uber. Regularly check in with friends or colleagues.
+            </li>
+            <li>
+              Use reputable apps like{' '}
+              <Link href="https://www.bitaksi.com/en" indicateExternal>
+                BiTaksi
+              </Link>{' '}
+              or Uber, and always check the license plate matches what's shown in the app.
+            </li>
+            <li>
+              For{' '}
+              <Link href="https://queerintheworld.com/lgbt-istanbul/" indicateExternal>
+                LGBTQ+ travelers
+              </Link>{' '}
+              it's recommended to keep in mind the religious and political situation and the more conservative
+              atmosphere
+            </li>
+            <li>
+              Respect the dress code for religious sites like the Blue Mosque. Fatih, the neighborhood where the Blue
+              Mosque and many other historical buildings are located, is quite conservative. It's better to follow the
+              dress code there.
+            </li>
+          </ul>
+
+          <p>
+            <b>Transportation</b>
+          </p>
+
+          <ul>
+            <li>
+              Use public transport because traffic in Istanbul can get crazy (especially during peak times), with
+              drivers being reckless or ignoring traffic signs.
+            </li>
+            <li>
+              When you use BiTaksi or Uber, verify the license plate, sit in the back, and insist on using the seatbelt.
+            </li>
+          </ul>
+
+          <p>
+            <b>In case of emergencies</b>
+          </p>
+
+          <ul>
+            <li>Always identify the nearest emergency exits at your hotels and event venues.</li>
+            <li>
+              In the event of a fire, earthquake, or any emergency, remain calm and follow instructions from
+              authorities.
+            </li>
+          </ul>
+
+          <p>
+            <b>Protests and demonstrations</b>
+          </p>
+
+          <ul>
+            <li>
+              Be aware that protests may occur in popular tourist areas. While most are peaceful and organized, if you
+              encounter one, we suggest leaving the area calmly without running or drawing attention.
+            </li>
+            <li>
+              Common locations for protests and demonstrations are the Blue Mosque, the Hagia Sophia, the Fatih Mosque,
+              and Taksim Square, and more recently, a few peaceful “sit-ins” have occurred at some Starbucks locations.
+            </li>
+          </ul>
+
+          <p>
+            <b>Counterterrorism awareness</b>
+          </p>
+
+          <ul>
+            <li>
+              Be alert and aware of your surroundings when in high-profile public spaces, transportation hubs, and
+              tourist places.
+            </li>
+            <li>Minimize time spent near government facilities whenever possible.</li>
+          </ul>
+
+          <p>
+            By following these guidelines, you can help ensure a secure visit to Istanbul and Devconnect, allowing you
+            to focus on enjoying the various events and on making progress for Ethereum.
+          </p>
+
+          {/* <p>
+            Istanbul is generally a safe city, but it&apos;s still a major city, so please consider the following tips:
+          </p>
+          <ul>
+            <li>
+              <b>Keep an eye on your belongings</b>, especially in crowded and touristic areas like the Grand Bazaar or
+              during peak times in public transport.
+            </li>
+            <li>
+              <b>Use reputable apps like BiTaksi or Uber</b>, and always check the license plate matches what&#39;s
+              shown in the app.
+            </li>
+            <li>
+              <b>Use public transport</b> (check the “Getting around” section above), as traffic in Istanbul can get
+              crazy (especially during peak times), with drivers being reckless or ignoring traffic signs.
+            </li>
+            <li>
+              <b>Solo Travelers</b>: Especially if you&#39;re a solo female traveler, avoid walking alone at night (use
+              BiTaski or Uber), stay in busy or tourist areas (check the neighborhood section above), check in with
+              friends and tell them where you go, and <b>trust your instincts!</b>{' '}
+              <b>If something doesn&#39;t feel right, trust your gut.</b> For example, if a taxi driver seems
+              untrustworthy, don&#39;t feel obligated to get into the car.
+            </li>
+            <li>
+              <b>Respect the dress code for religious sites</b> like the Blue Mosque. Fatih, the neighborhood where the
+              Blue Mosque and many other historical buildings are located, is quite conservative. It&#39;s better to
+              follow the dress code there.
+            </li>
+            <li>
+              <b>Earthquake safety</b>: While Istanbul was not affected by the heavy earthquakes in Turkey and Syria in
+              February 2023, earthquake safety might be on some of your minds. It is difficult to predict the occurrence
+              of an earthquake. For earthquake preparedness, it is good to inform yourself about the safety of the
+              district you are staying. The Cowork venue (ICC) has been{' '}
+              <Link indicateExternal href="/files/earthquake_document.pdf">
+                certified for being suitable in terms of earthquake regulations legislation
+              </Link>
+              .
+            </li>
+          </ul>
+          <p>
+            When you keep these tips in mind, you&apos;ll for sure have a memorable and enjoyable Devconnect experience.
+          </p> */}
+        </div>
+      )
+    },
+  },
+  {
+    text: 'Arriving in Istanbul',
+    value: 'getting-around',
+    content: () => {
+      return (
+        <div className="tab-content">
+          <p>
+            <b>From the airport to the city</b>
+          </p>
+          <ul>
+            <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li>
+            <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
+          </ul>
+
+          <p>
+            <b>Public transport</b>
+          </p>
+          <ul>
+            <li>
+              <b>Metro / Tram:</b> The fastest, not everywhere
+            </li>
+            <li>
+              <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
+            </li>
+            <li>
+              <b>Bus:</b> Go everywhere, but traffic
+            </li>
+            <li>
+              <b>Ferry:</b> to cross the Bosphorus
+            </li>
+            <li>
+              {' '}
+              👉 To use all public transportation in Istanbul you will need the Istanbulkart (might not work seamless
+              for non-locals) or simply use contactless payments. 💳 Get the card and top it up at kiosks near metro
+              stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL ($0.4) per trip
+            </li>
+          </ul>
+
+          <p>
+            <b>Apps</b>
+          </p>
+          <ul>
+            <li>
+              <b>Uber or BiTaksi:</b> to order taxis
+            </li>
+            <li>
+              <b>isbike:</b> city bikes by the municipality.
+            </li>
+            <li>
+              <b>Google Maps or Moovit:</b> for route planning and real-time information on public transport.
+            </li>
+          </ul>
+
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Tourist-Guide-by-ITU-Blockchain-e09893e5555b4f8e9b4c6ae854b599cd "
+          >
+            <PinIcon />
+            Tourist Guide by ITU
+          </Link>
+        </div>
+      )
+    },
+  },
+  {
     text: 'Where to Stay',
     alwaysOpen: true,
     value: 'where-to-stay',
@@ -213,70 +498,6 @@ const tabs = [
           >
             <PinIcon />
             Accommodation Guide by ITU
-          </Link>
-        </div>
-      )
-    },
-  },
-  {
-    text: 'Arriving in Istanbul',
-    value: 'getting-around',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            <b>From the airport to the city</b>
-          </p>
-          <ul>
-            <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li>
-            <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
-          </ul>
-
-          <p>
-            <b>Public transport</b>
-          </p>
-          <ul>
-            <li>
-              <b>Metro / Tram:</b> The fastest, not everywhere
-            </li>
-            <li>
-              <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
-            </li>
-            <li>
-              <b>Bus:</b> Go everywhere, but traffic
-            </li>
-            <li>
-              <b>Ferry:</b> to cross the Bosphorus
-            </li>
-            <li>
-              {' '}
-              👉 To use all public transportation in Istanbul you will need the Istanbulkart (might not work seamless
-              for non-locals) or simply use contactless payments. 💳 Get the card and top it up at kiosks near metro
-              stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL ($0.4) per trip
-            </li>
-          </ul>
-
-          <p>
-            <b>Apps</b>
-          </p>
-          <ul>
-            <li>
-              <b>Uber or BiTaksi:</b> to order taxis
-            </li>
-            <li>
-              <b>isbike:</b> city bikes by the municipality.
-            </li>
-            <li>
-              <b>Google Maps or Moovit:</b> for route planning and real-time information on public transport.
-            </li>
-          </ul>
-
-          <Link
-            className="button orange margin-top-less margin-right-less"
-            href="https://itublockchain.notion.site/itublockchain/Tourist-Guide-by-ITU-Blockchain-e09893e5555b4f8e9b4c6ae854b599cd "
-          >
-            <PinIcon />
-            Tourist Guide by ITU
           </Link>
         </div>
       )
@@ -600,218 +821,6 @@ const tabs = [
               })}
             </div>
           </SwipeToScroll>
-        </div>
-      )
-    },
-  },
-  {
-    text: 'Safety',
-    value: 'safety',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            Safety is our first and primary consideration now, and we are closely monitoring the situation, including
-            working closely with local security providers, law enforcement, and external risk advisory partners to
-            understand and anticipate risks to Devconnect. We have also conducted an internal review of our security
-            arrangements and crisis response plans, to make sure they are appropriate.
-          </p>
-
-          <Link href="https://www.gov.il/en/Departments/news/spoke-nsc171023" indicateExternal>
-            The Israel government has also released a notice warning any Israelis in the country to leave Turkey
-            immediately.
-          </Link>
-
-          <br />
-          <br />
-
-          <p>
-            We recommend to stay informed about the situation and follow the advice of local authorities and your
-            embassy. You can find lists of foreign embassies and consulates{' '}
-            <Link href="https://www.embassypages.com/city/istanbul" indicateExternal>
-              here
-            </Link>{' '}
-            and{' '}
-            <Link href="https://www.allaboutturkey.com/consulate.html" indicateExternal>
-              here
-            </Link>
-            .
-          </p>
-
-          <p>
-            Additionally, you can stay informed by monitoring local media, like{' '}
-            <Link href="https://www.hurriyetdailynews.com/index/istanbul" indicateExternal>
-              Hürriyet
-            </Link>{' '}
-            or <Link href="https://www.dailysabah.com/">Sabah</Link>.
-          </p>
-
-          <p>
-            Please take note of the following safety recommendations, and develop your own individual risk mitigation
-            plan.
-          </p>
-
-          <p>
-            <b>Before you arrive</b>
-          </p>
-
-          <ul>
-            <li>
-              Pre-arrange your mobile data for your phone connection. We secured{' '}
-              <Link href="#plan-your-travels">discounted rates with providers Airalo and Roamless for you</Link>.
-            </li>
-            <li>Familiarize yourself with local emergency contacts.</li>
-          </ul>
-
-          <p>
-            <b>Upon Arrival</b>
-          </p>
-
-          <ul>
-            <li>
-              We are setting up 'Welcome booths' at the airport to help you find your way to your hotel They will be
-              available during the weekend prior to Devconnect (from Friday to Monday (~8AM to 8PM)).
-            </li>
-            <li>Carry some local currency and ensure your credit cards are functioning to avoid hassles.</li>
-            <li>
-              Crypto payments for goods and services are illegal in Turkey. It is legal to own crypto and trade crypto,
-              but keep in mind to avoid using it for payments.
-            </li>
-          </ul>
-
-          <p>
-            <b>Personal safety</b>
-          </p>
-
-          <ul>
-            <li>
-              Always <b>keep an eye on your personal belongings</b>, especially in crowded and tourist areas to prevent
-              petty theft.
-            </li>
-            <li>Pro tip: Keep digital or photocopies of your ID and important documents in a secure place.</li>
-            <li>
-              For <b>solo travelers, and particularly solo female travelers</b>, avoid walking alone at night and use
-              trusted taxi services like BiTaksi or Uber. Regularly check in with friends or colleagues.
-            </li>
-            <li>
-              <b>Use reputable apps like BiTaksi or Uber</b>, and always check the license plate matches what's shown in
-              the app.
-            </li>
-            <li>
-              For{' '}
-              <Link href="https://queerintheworld.com/lgbt-istanbul/">
-                <b>LGBTQ+ travelers</b>
-              </Link>{' '}
-              it's recommended to keep in mind the religious and political situation and the more conservative
-              atmosphere
-            </li>
-            <li>
-              Respect the <b>dress code for religious sites</b> like the Blue Mosque. Fatih, the neighborhood where the
-              Blue Mosque and many other historical buildings are located, is quite conservative. It's better to follow
-              the dress code there.
-            </li>
-          </ul>
-
-          <p>
-            <b>Transportation</b>
-          </p>
-
-          <ul>
-            <li>
-              Use public transport because traffic in Istanbul can get crazy (especially during peak times), with
-              drivers being reckless or ignoring traffic signs.
-            </li>
-            <li>
-              When you use BiTaksi or Uber, verify the license plate, sit in the back, and insist on using the seatbelt.
-            </li>
-          </ul>
-
-          <p>
-            <b>In case of emergencies</b>
-          </p>
-
-          <ul>
-            <li>Always identify the nearest emergency exits at your hotels and event venues.</li>
-            <li>
-              In the event of a fire, earthquake, or any emergency, remain calm and follow instructions from
-              authorities.
-            </li>
-          </ul>
-
-          <p>
-            <b>Protests and demonstrations</b>
-          </p>
-
-          <ul>
-            <li>
-              Be aware that protests may occur in popular tourist areas. While most are peaceful and organized, if you
-              encounter one, we suggest leaving the area calmly without running or drawing attention.
-            </li>
-            <li>
-              Common locations for protests and demonstrations are the Blue Mosque, the Hagia Sophia, the Fatih Mosque,
-              and Taksim Square, and more recently, a few peaceful “sit-ins” have occurred at some Starbucks locations.
-            </li>
-          </ul>
-
-          <p>
-            <b>Counterterrorism awareness</b>
-          </p>
-
-          <ul>
-            <li>
-              Be alert and aware of your surroundings when in high-profile public spaces, transportation hubs, and
-              tourist places.
-            </li>
-            <li>Minimize time spent near government facilities whenever possible.</li>
-          </ul>
-
-          <p>
-            By following these guidelines, you can help ensure a secure visit to Istanbul and Devconnect, allowing you
-            to focus on enjoying the various events and on making progress for Ethereum.
-          </p>
-
-          {/* <p>
-            Istanbul is generally a safe city, but it&apos;s still a major city, so please consider the following tips:
-          </p>
-          <ul>
-            <li>
-              <b>Keep an eye on your belongings</b>, especially in crowded and touristic areas like the Grand Bazaar or
-              during peak times in public transport.
-            </li>
-            <li>
-              <b>Use reputable apps like BiTaksi or Uber</b>, and always check the license plate matches what&#39;s
-              shown in the app.
-            </li>
-            <li>
-              <b>Use public transport</b> (check the “Getting around” section above), as traffic in Istanbul can get
-              crazy (especially during peak times), with drivers being reckless or ignoring traffic signs.
-            </li>
-            <li>
-              <b>Solo Travelers</b>: Especially if you&#39;re a solo female traveler, avoid walking alone at night (use
-              BiTaski or Uber), stay in busy or tourist areas (check the neighborhood section above), check in with
-              friends and tell them where you go, and <b>trust your instincts!</b>{' '}
-              <b>If something doesn&#39;t feel right, trust your gut.</b> For example, if a taxi driver seems
-              untrustworthy, don&#39;t feel obligated to get into the car.
-            </li>
-            <li>
-              <b>Respect the dress code for religious sites</b> like the Blue Mosque. Fatih, the neighborhood where the
-              Blue Mosque and many other historical buildings are located, is quite conservative. It&#39;s better to
-              follow the dress code there.
-            </li>
-            <li>
-              <b>Earthquake safety</b>: While Istanbul was not affected by the heavy earthquakes in Turkey and Syria in
-              February 2023, earthquake safety might be on some of your minds. It is difficult to predict the occurrence
-              of an earthquake. For earthquake preparedness, it is good to inform yourself about the safety of the
-              district you are staying. The Cowork venue (ICC) has been{' '}
-              <Link indicateExternal href="/files/earthquake_document.pdf">
-                certified for being suitable in terms of earthquake regulations legislation
-              </Link>
-              .
-            </li>
-          </ul>
-          <p>
-            When you keep these tips in mind, you&apos;ll for sure have a memorable and enjoyable Devconnect experience.
-          </p> */}
         </div>
       )
     },
