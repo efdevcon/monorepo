@@ -5,6 +5,7 @@ import ImageNew from 'next/image'
 import Hero from 'common/components/hero'
 // import AmsterdamHero from 'assets/images/amsterdam-hero.jpg'
 import HeroImage from 'assets/images/city-guide/city-guide.png'
+import { useRouter } from 'next/dist/client/router'
 import AreasToStayCityCenter from 'assets/images/city-guide/city-center.png'
 import AreasToStayEast from 'assets/images/city-guide/east.png'
 import AreasToStaySouth from 'assets/images/city-guide/south.png'
@@ -829,6 +830,26 @@ const tabs = [
 
 export const Tabs = (props: any) => {
   const linkAttributes = useDraggableLink()
+  const router = useRouter()
+
+  React.useEffect(() => {
+    const path = router.asPath
+    const anchor = path.split('#').slice(1).pop()
+
+    if (anchor) {
+      const decoded = decodeURI(anchor)
+
+      const anchoredTab = props.tabs.find((tab: any) => {
+        return tab.value === decoded
+      })
+
+      if (anchoredTab) {
+        if (props.accordionRefs && props.accordionRefs.current[anchoredTab.value]) {
+          props.accordionRefs.current[anchoredTab.value].open()
+        }
+      }
+    }
+  }, [])
 
   return (
     <SwipeToScroll noBounds>
