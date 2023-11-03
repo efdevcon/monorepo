@@ -514,6 +514,7 @@ const tabs = [
             <b>Practical information</b>
           </p>
           <ul>
+            <li>We recommend downloading a VPN before arriving to Istanbul.</li>
             <li>
               <b>Credit Card:</b> Widely used in Istanbul, you don't need much cash.
             </li>
