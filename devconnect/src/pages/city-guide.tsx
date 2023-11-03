@@ -611,6 +611,166 @@ const tabs = [
       return (
         <div className="tab-content">
           <p>
+            Safety is our first and primary consideration now, and we are closely monitoring the situation, including
+            working closely with local security providers, law enforcement, and external risk advisory partners to
+            understand and anticipate risks to Devconnect. We have also conducted an internal review of our security
+            arrangements and crisis response plans, to make sure they are appropriate.
+          </p>
+
+          <Link href="https://www.gov.il/en/Departments/news/spoke-nsc171023" indicateExternal>
+            The Israel government has also released a notice warning any Israelis in the country to leave Turkey
+            immediately.
+          </Link>
+
+          <br />
+          <br />
+
+          <p>
+            We recommend to stay informed about the situation and follow the advice of local authorities and your
+            embassy. You can find lists of foreign embassies and consulates{' '}
+            <Link href="https://www.embassypages.com/city/istanbul" indicateExternal>
+              here
+            </Link>{' '}
+            and{' '}
+            <Link href="https://www.allaboutturkey.com/consulate.html" indicateExternal>
+              here
+            </Link>
+            .
+          </p>
+
+          <p>
+            Additionally, you can stay informed by monitoring local media, like{' '}
+            <Link href="https://www.hurriyetdailynews.com/index/istanbul" indicateExternal>
+              Hürriyet
+            </Link>{' '}
+            or <Link href="https://www.dailysabah.com/">Sabah</Link>.
+          </p>
+
+          <p>
+            Please take note of the following safety recommendations, and develop your own individual risk mitigation
+            plan.
+          </p>
+
+          <p>
+            <b>Before you arrive</b>
+          </p>
+
+          <ul>
+            <li>
+              Pre-arrange your mobile data for your phone connection. We secured{' '}
+              <Link href="#plan-your-travels">discounted rates with providers Airalo and Roamless for you</Link>.
+            </li>
+            <li>Familiarize yourself with local emergency contacts.</li>
+          </ul>
+
+          <p>
+            <b>Upon Arrival</b>
+          </p>
+
+          <ul>
+            <li>
+              We are setting up 'Welcome booths' at the airport to help you find your way to your hotel They will be
+              available during the weekend prior to Devconnect (from Friday to Monday (~8AM to 8PM)).
+            </li>
+            <li>Carry some local currency and ensure your credit cards are functioning to avoid hassles.</li>
+            <li>
+              Crypto payments for goods and services are illegal in Turkey. It is legal to own crypto and trade crypto,
+              but keep in mind to avoid using it for payments.
+            </li>
+          </ul>
+
+          <p>
+            <b>Personal safety</b>
+          </p>
+
+          <ul>
+            <li>
+              Always <b>keep an eye on your personal belongings</b>, especially in crowded and tourist areas to prevent
+              petty theft.
+            </li>
+            <li>Pro tip: Keep digital or photocopies of your ID and important documents in a secure place.</li>
+            <li>
+              For <b>solo travelers, and particularly solo female travelers</b>, avoid walking alone at night and use
+              trusted taxi services like BiTaksi or Uber. Regularly check in with friends or colleagues.
+            </li>
+            <li>
+              <b>Use reputable apps like BiTaksi or Uber</b>, and always check the license plate matches what's shown in
+              the app.
+            </li>
+            <li>
+              For{' '}
+              <Link href="https://queerintheworld.com/lgbt-istanbul/">
+                <b>LGBTQ+ travelers</b>
+              </Link>{' '}
+              it's recommended to keep in mind the religious and political situation and the more conservative
+              atmosphere
+            </li>
+            <li>
+              Respect the <b>dress code for religious sites</b> like the Blue Mosque. Fatih, the neighborhood where the
+              Blue Mosque and many other historical buildings are located, is quite conservative. It's better to follow
+              the dress code there.
+            </li>
+          </ul>
+
+          <p>
+            <b>Transportation</b>
+          </p>
+
+          <ul>
+            <li>
+              Use public transport because traffic in Istanbul can get crazy (especially during peak times), with
+              drivers being reckless or ignoring traffic signs.
+            </li>
+            <li>
+              When you use BiTaksi or Uber, verify the license plate, sit in the back, and insist on using the seatbelt.
+            </li>
+          </ul>
+
+          <p>
+            <b>In case of emergencies</b>
+          </p>
+
+          <ul>
+            <li>Always identify the nearest emergency exits at your hotels and event venues.</li>
+            <li>
+              In the event of a fire, earthquake, or any emergency, remain calm and follow instructions from
+              authorities.
+            </li>
+          </ul>
+
+          <p>
+            <b>Protests and demonstrations</b>
+          </p>
+
+          <ul>
+            <li>
+              Be aware that protests may occur in popular tourist areas. While most are peaceful and organized, if you
+              encounter one, we suggest leaving the area calmly without running or drawing attention.
+            </li>
+            <li>
+              Common locations for protests and demonstrations are the Blue Mosque, the Hagia Sophia, the Fatih Mosque,
+              and Taksim Square, and more recently, a few peaceful “sit-ins” have occurred at some Starbucks locations.
+            </li>
+          </ul>
+
+          <p>
+            <b>Counterterrorism awareness</b>
+          </p>
+
+          <ul>
+            <li>
+              Be alert and aware of your surroundings when in high-profile public spaces, transportation hubs, and
+              tourist places.
+            </li>
+            <li>Minimize time spent near government facilities whenever possible.</li>
+          </ul>
+
+          <p>
+            By following these guidelines, you can help ensure a secure visit to Istanbul and Devconnect, allowing you
+            to focus on enjoying the various events and on making progress for Ethereum.
+          </p>
+
+          {/* <p>
             Istanbul is generally a safe city, but it&apos;s still a major city, so please consider the following tips:
           </p>
           <ul>
@@ -651,7 +811,7 @@ const tabs = [
           </ul>
           <p>
             When you keep these tips in mind, you&apos;ll for sure have a memorable and enjoyable Devconnect experience.
-          </p>
+          </p> */}
         </div>
       )
     },
