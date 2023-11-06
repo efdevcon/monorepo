@@ -4,6 +4,7 @@ import Link from '../link/Link'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import DiscordIcon from 'assets/icons/discord.svg'
 import TelegramIcon from 'assets/icons/telegram.svg'
+import GithubIcon from 'assets/icons/github.svg'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import HamburgerIcon from 'assets/icons/menu.svg'
 import IconCross from 'assets/icons/cross.svg'
@@ -222,6 +223,9 @@ export const FooterMenu = (props: any) => {
         </a>
         <a target="_blank" rel="noreferrer" href="https://warpcast.com/efdevconnect">
           <FarcasterIcon style={{ fill: 'white' }} />
+        </a>
+        <a target="_blank" rel="noreferrer" href="https://github.com/efdevconnect/">
+          <GithubIcon style={{ fill: 'white' }} />
         </a>
       </div>
     </div>
