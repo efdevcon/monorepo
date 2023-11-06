@@ -366,9 +366,20 @@ const tabs = [
             <b>From the airport to the city</b>
           </p>
           <ul>
-            <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li>
+            {/* <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li> */}
             <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
+            <li>
+              Another option to get from the airports to Taskim are couch type buses or the M2 metro. There are couch
+              type Havaist (IST) and Havabus (SAW) buses to the city. Find the bus to Taksim. Depending on your final
+              destination either:
+              <ul>
+                <li>Get off at Levent and take M2 metro.</li>
+                <li>Get off at Taksim and walk to your place.</li>
+              </ul>
+            </li>
           </ul>
+
+          <p>Keep in mind there can be traffic in rush hours (17pm-19pm)</p>
 
           <p>
             <b>Public transport</b>
