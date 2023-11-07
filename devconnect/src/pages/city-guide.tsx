@@ -629,10 +629,10 @@ const tabs = [
           </Link>
           <Link
             className="button orange margin-top-less "
-            href="https://www.google.com/maps/d/u/0/edit?mid=1eX7T0uqj9dfXHBFcw2mH9qXGfQtdr0A&usp=sharing"
+            href="https://www.google.com/maps/@41.0481054,28.9906437,15z/data=!3m1!4b1!4m3!11m2!2sqfLohimFSFu5m5WNqdu32w!3e3?entry=ttu"
           >
             <PinIcon />
-            Lunch spots close to ICC
+            Lunch and dinner spots around ICC
           </Link>
         </div>
       )
