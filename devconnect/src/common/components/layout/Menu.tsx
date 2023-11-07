@@ -113,6 +113,11 @@ const menuItems = (pathname: string) => [
       },
     ],
   },
+  {
+    text: 'DCxPrague',
+    url: 'https://dcxprague.org/',
+    customClass: css['dcxprague-highlight'],
+  },
   // {
   //   text: 'StreamETH',
   //   customClass: pathname === '/' ? css['streameth-highlight'] : undefined,
