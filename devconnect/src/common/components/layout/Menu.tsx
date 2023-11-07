@@ -114,6 +114,11 @@ const menuItems = (pathname: string) => [
     ],
   },
   {
+    text: 'Devcon',
+    onlyFooter: true,
+    url: 'https://devcon.org',
+  },
+  {
     text: 'DCxPrague',
     url: 'https://dcxprague.org/',
     customClass: css['dcxprague-highlight'],
@@ -123,11 +128,6 @@ const menuItems = (pathname: string) => [
   //   customClass: pathname === '/' ? css['streameth-highlight'] : undefined,
   //   url: 'https://streameth.tv',
   // },
-  {
-    text: 'Devcon',
-    onlyFooter: true,
-    url: 'https://devcon.org',
-  },
 ]
 
 const Mobile = () => {

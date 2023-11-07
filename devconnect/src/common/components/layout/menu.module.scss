@@ -3,18 +3,8 @@
 $width-right-column: 190px;
 
 .dcxprague-highlight {
-  color: #327a1c;
-  --icon-color: #327a1c;
-  // stroke-width: 1px;
-  // stroke: black;
-  // color: rgb(0, 0, 0);
-  // --icon-color: black;
-  // background: rgb(32, 74, 21) !important;
-  // box-shadow: 0px 0px 3px 1px rgb(42, 39, 39);
-  // background: rgb(57, 57, 57) !important;
-  // align-self: flex-start;
-  // padding: 6px 16px !important;
-  // border-radius: 16px;
+  color: #63ca44;
+  --icon-color: #63ca44;
 }
 
 .streameth-highlight {
@@ -141,6 +131,21 @@ $width-right-column: 190px;
   z-index: 10;
   text-transform: uppercase;
   color: white;
+
+  .dcxprague-highlight {
+    // color: #63ca44;
+    // --icon-color: #63ca44;
+    // stroke-width: 1px;
+    // stroke: black;
+    // color: rgb(0, 0, 0);
+    // --icon-color: black;
+    // background: rgb(32, 74, 21) !important;
+    // box-shadow: 0px 0px 3px 1px rgb(42, 39, 39);
+    background: #17340f !important;
+    align-self: flex-start;
+    padding: 6px 16px !important;
+    border-radius: 16px;
+  }
 
   .multi-link,
   >a {
