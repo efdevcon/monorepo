@@ -24,7 +24,10 @@ const Clock = (props: any) => {
     animationEl.current.addEventListener('animationend', handler)
 
     return () => {
-      animationEl.current.removeEventListener('animationend', handler)
+      // TODO: Something messed up with react 18 upgrade here (warns about "falling back to react 17 behaviour" because of some gatsby internals using old apis) - need this check - won't spend too much energy on it since we'll be moving to nextjs anyway
+      if (animationEl.current) {
+        animationEl.current.removeEventListener('animationend', handler)
+      }
     }
   }, [props.next])
 
