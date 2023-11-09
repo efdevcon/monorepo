@@ -1,8 +1,12 @@
 import 'styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
-export const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' })
-export const robotoCondensed = Roboto_Condensed({ subsets: ['latin'], weight: ['400', '700'] })
+export const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto', weight: ['400', '700'], display: 'swap' })
+export const robotoCondensed = Roboto_Condensed({
+  subsets: ['latin'],
+  variable: '--font-roboto-condensed',
+  weight: ['400', '700'],
+})
 
 // Safari 100vh works poorly - this is the workaround
 if (typeof window !== 'undefined') {

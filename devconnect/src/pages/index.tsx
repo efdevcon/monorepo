@@ -31,6 +31,7 @@ import { BlogPost } from 'types/BlogPost'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
+import LibButton from 'lib/components/button'
 import moment from 'moment'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
@@ -671,6 +672,8 @@ const Home: NextPage = (props: any) => {
     <>
       <SEO />
       <div className={css.container}>
+        {/* <LibButton />
+        <div className="m-5 text-sky-400">haha</div> */}
         <main id="main" className={css.main}>
           <Scene className={css['scene-hero']}>
             <Header />

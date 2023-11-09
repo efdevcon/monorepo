@@ -644,7 +644,7 @@ const tabs = [
     value: 'history-and-culture',
     content: () => {
       return (
-        <div className={`tab-content ${css['history-and-culture']}`}>
+        <div className={`tab-content ${css['history-and-culture']}`} style={{ overflow: 'hidden' }}>
           <p className="">
             Istanbul lies in a geographically unique spot, being the only city that covers two continents - Europe and
             Asia. Istanbul is not only a fusion of continents, it&apos;s also a unique blend of cultures. Ancient
@@ -691,7 +691,7 @@ const tabs = [
 
           <p className="bold">Books</p>
 
-          <SwipeToScroll>
+          <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
             <div className={css['media']}>
               {[
                 {
@@ -745,7 +745,7 @@ const tabs = [
 
           <p className="bold">Movies</p>
 
-          <SwipeToScroll>
+          <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
             <div className={css['media']}>
               {[
                 {
@@ -791,7 +791,7 @@ const tabs = [
 
           <p className="bold">Documentaries</p>
 
-          <SwipeToScroll>
+          <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
             <div className={css['media']}>
               {[
                 {

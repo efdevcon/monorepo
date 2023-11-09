@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: var(--font-roboto);
+  }
+}
+
 @import './reset.scss';
 @import './variables.scss';
 @import './layout.scss';
@@ -7,6 +17,7 @@ html,
 body,
 #__next {
   height: 100%;
+  line-height: normal;
   // font-family: 'Roboto', sans-serif;
   // font-family: 'Inter', sans-serif;
 }
@@ -14,7 +25,7 @@ body,
 body {
   color: $white;
   // background: linear-gradient(60deg, #0d0d20, #161627, #312046, #121212);
-  font-family: var(--font-roboto);
+  // font-family: var(--font-roboto);
   overflow-x: hidden;
 }
 
@@ -498,6 +509,9 @@ a {
 }
 
 .icon {
+  display: inline-block;
+  vertical-align: baseline;
+
   * {
     fill: var(--icon-color);
   }

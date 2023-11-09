@@ -1,5 +1,5 @@
 import React from "react";
 
 export default () => {
-  return <p className="">Wowser DEPLOY TT</p>;
+  return <p className="text-sky-800">Wowser DEPLOY TT</p>;
 };
