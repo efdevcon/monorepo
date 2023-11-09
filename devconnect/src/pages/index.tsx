@@ -74,289 +74,495 @@ function getTimeUntilNovember13InTurkey() {
   }
 }
 
-const FAQ = [
+// Exporting to cowork page
+export const FAQDuringEvent = [
   {
-    text: 'How can I get involved?',
-    value: 'how-involve',
+    text: 'Where do I hear about all updates during Devconnect week? 📣',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
-          <p className="bold">Volunteer</p>
+          <p>The Devconnect Community Hub on Telegram will be the main place for updates for attendees.</p>
           <p>
-            We will be looking for volunteers for Devconnect Istanbul soon! Follow{' '}
-            <Link indicateExternal href="https://twitter.com/efdevconnect">
-              @EFDevconnect
-            </Link>{' '}
-            to stay up to date.
-          </p>
-          <p className="bold">Be an event host</p>
-          <p>
-            If you want to organize an event during Devconnect, head over to the{' '}
-            <Link
-              indicateExternal
-              href="https://www.notion.so/ef-events/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022?pvs=4"
-            >
-              event host guide
+            You can{' '}
+            <Link href="https://t.me/zucat_bot?start=auth" indicateExternal>
+              join the Community Hub here
             </Link>
-            .
+            , after you claimed your ZK ticket for the Cowork or another ZK-ticketed Devconnect event. You find
+            instructions on how to join the chat in the email dispatched to you (search for the subject line “Devconnect
+            Cowork your order.”).
           </p>
-          <p className="bold">Media</p>
           <p>
-            You want to cover Devconnect? Cool! Write us at press@devconnect.org for more info, or inquire to obtain a
-            media pass that grants you access to the Devconnect Cowork{' '}
-            <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87 " indicateExternal>
-              here
+            We'll also continue to share updates and what's happening{' '}
+            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
+              on Twitter!
             </Link>
-            . <span className="bold">We, the Devconnect team, are currently not seeking media partnerships.</span>
           </p>
         </>
       )
     },
   },
   {
-    text: 'I need a Visa invitation letter, can you help?',
-    value: 'visa',
+    text: 'Where can I connect with other attendees?',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
           <p>
-            Yes, we are happy to help! You&apos;ll need a{' '}
-            <Link href="/cowork" indicateExternal>
-              ticket for the Devconnect Cowork
+            The{' '}
+            <Link href="https://t.me/zucat_bot?start=auth" indicateExternal>
+              Telegram Community Hub
             </Link>{' '}
-            first, then you can{' '}
-            <Link href="https://forms.gle/zDQ6ax5Ukr75gDXt5" indicateExternal>
-              fill out this form
-            </Link>
-            . You will hear back from us via email within 2 weeks.
+            is a great resource for coordinating with others to attend events together. You need to ZK proof that you
+            have a ZK ticket for the Cowork or another ZKticketed Devconnect event to join.
           </p>
+          <p>
+            You find instructions on how to join the chat in the email dispatched to you (search for the subject line
+            “Devconnect Cowork your order.”)
+          </p>{' '}
         </>
       )
     },
   },
   {
-    text: 'How can I get a press pass?',
-    value: 'press-pass',
+    text: 'Is there online streaming?',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
-          <p>
-            To inquire about obtaining a media pass for Devconnect,{' '}
-            <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
-              please fill out this form.
-            </Link>{' '}
-          </p>
-          <p>
-            A press pass grants access to the main Coworking Space that we are organizing. Please note that all other
-            events are independently hosted, and a press pass does not guarantee entry into them.{' '}
-          </p>
-          <p>
-            Ask us for more info about the event at <span className="bold">press@devconnect.org</span>.
-          </p>
+          Yes! You can watch the{' '}
+          <Link href="https://app.streameth.org/" indicateExternal>
+            live streams and recordings here
+          </Link>
+          . Live-streaming of workshops and talks increases the inclusivity for community members around the world for
+          those who aren&apos;t able to attend. With the help of Streameth we are live-streaming multiple Devconnect
+          events, happening at the ICC venue.
         </>
       )
     },
   },
   {
-    text: 'Can I sponsor Devconnect?',
-    value: 'sponsor',
+    text: 'Where do I get my Devconnect Turkish towel?',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
-          <p>
-            The Devconnect team, responsible for organizing the coworking space in ICC, is currently not seeking
-            sponsorships.
-          </p>
-          <p>
-            Some of the independent teams organizing the different events might be seeking sponsorships. You can find
-            their websites and contact information <Link href="/schedule">on the curated Devconnect schedule</Link>.
-          </p>
+          You have the opportunity to purchase it together with the <Link href="#ticketing">Cowork ticket</Link>, and
+          they will be ready for you to collect at the Cowork registration.
         </>
       )
     },
   },
   {
-    text: 'Can I speak at Devconnect?',
-    value: 'speak',
+    text: 'Is there any agenda and program in the Cowork?',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
-          <p>
-            The Devconnect team, responsible for organizing the coworking space in ICC, is not looking for speakers.
-          </p>
-          <p>
-            Some of the independent teams organizing the different events might be looking for speakers or panelists.
-            You can find their websites and contact information{' '}
-            <Link href="/schedule">on the curated Devconnect schedule</Link>.
-          </p>
+          While there's no planned agenda in the Cowork, we have "Discussion Corners" where public dialogue about
+          Ethereum-related, non-commercial, educational topics will happen. They are open to everyone, and you can{' '}
+          <Link
+            href="https://efevents.notion.site/Devconnect-Cowork-Rooms-Booking-Guidelinesd0730ca40be040f6994bb63ecfe4cd56"
+            indicateExternal
+          >
+            book and suggest your topic in advance here
+          </Link>
+          .
         </>
       )
     },
   },
   {
-    text: 'How do I know if Devconnect is for me?',
-    value: 'howdoiknow',
+    text: 'How can I book a private meeting room?',
+    value: 'whereupdates',
     content: () => {
       return (
         <>
-          <p>Devconnect is for you if you …</p>
+          Meeting rooms are for short (30min to 120min max) and private meetings, in a dedicated (B3) floor. They can be{' '}
+          <Link
+            href="https://ef-events.notion.site/Devconnect-Cowork-Rooms-BookingGuidelines-d0730ca40be040f6994bb63ecfe4cd56"
+            indicateExternal
+          >
+            booked up to 24 hours in advance here
+          </Link>
+          .
+        </>
+      )
+    },
+  },
+  {
+    text: 'Where do I find side events and parties? 🥳',
+    value: 'whereupdates',
+    content: () => {
+      return (
+        <div className="tab-content">
+          <p>Several community-run side event schedules are making the rounds. For example: 🌻</p>
           <ul>
-            <li>want to meet people in Ethereum in person</li>
             <li>
-              love to co-work in an incredible{' '}
+              <Link href="https://cryptoevents.xyz/DevconnectWeek" indicateExternal>
+                https://cryptoevents.xyz/DevconnectWeek
+              </Link>
+            </li>
+            <li>
+              <Link href="https://istanbul.gm.events/" indicateExternal>
+                https://istanbul.gm.events/
+              </Link>
+            </li>
+            <li>
               <Link
-                href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
+                href="https://docs.google.com/spreadsheets/d/1tPe8Qr-DQOvkhwuZ0bLwH17RRrcuRS5ukaZhmkGxOA/edit#gid=0"
                 indicateExternal
               >
-                Coworking Space
-              </Link>{' '}
-              next to others in the Ethereum space
+                https://docs.google.com/spreadsheets/d/1tPe8Qr-DQOvkhwuZ0bLwH17RRrcuRS5ukaZhmkGxOA/edit#gid=0
+              </Link>
             </li>
             <li>
-              <b>dive</b> deep into topics you care about with other domain experts
+              <Link href="https://www.web3event.org/topic/5#Topic" indicateExternal>
+                https://www.web3event.org/topic/5#Topic
+              </Link>
             </li>
-            <li>want to make progress on solving specific problems</li>
-            <li>are passionate about creating more decentralized and fairer systems</li>
+          </ul>
+        </div>
+      )
+    },
+  },
+  {
+    text: 'Media inquiries?',
+    value: 'whereupdates',
+    content: () => {
+      return (
+        <>
+          Please note, we don't share media lists and are not looking for partnerships, but press pass applications are
+          open{' '}
+          <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
+            here
+          </Link>
+          .
+        </>
+      )
+    },
+  },
+  {
+    text: 'What do I need to know about safety? ⛑️',
+    value: 'whereupdates',
+    content: () => {
+      return (
+        <>
+          <p>
+            Your safety is our utmost priority now. We are actively monitoring the situation, working closely with local
+            security providers, law enforcement, and external risk advisory partners to understand and anticipate risks
+            to Devconnect. We've reviewed our security arrangements and crisis response plans to ensure they're
+            appropriate. Read our{' '}
+            <Link href="https://devconnect.org/city-guide" indicateExternal>
+              safety advisories in the city guide
+            </Link>{' '}
+            and for updates, keep an eye on our public channels on Telegram and Twitter/X. Please also be aware of the
+            recent{' '}
+            <Link href="https://www.gov.il/en/Departments/news/spoke-nsc171023" indicateExternal>
+              warning issued by the Israeli government for Israelis
+            </Link>{' '}
+            in the country to leave Turkey immediately.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Do you have promotion codes for mobile data?',
+    value: 'whereupdates',
+    content: () => {
+      return (
+        <>
+          <p>We do!</p>
+          <ul>
+            <li>
+              <Link
+                href="https://www.notion.so/Devconnect-IST-All-you-need-to-knowcc6c61b433b244eda592e0c99a9984c2?pvs=21"
+                indicateExternal
+              >
+                Airalo
+              </Link>{' '}
+              offers a discount for all Devconnect Cowork attendees to receive 20% off their chosen data package with
+              the code “DEVCONNECT” up until 30th November, 2023.
+            </li>
+            <li>
+              The local provider{' '}
+              <Link
+                href="https://www.notion.so/Devconnect-IST-Allyou-need-to-know-cc6c61b433b244eda592e0c99a9984c2?pvs=21"
+                indicateExternal
+              >
+                Roamless
+              </Link>{' '}
+              offers you 2GB for free and another $5 free credit if you add $20 or more to your Roamless wallet. Use the
+              code "DEVCONNECT".
+            </li>
           </ul>
         </>
       )
     },
   },
-  {
-    text: 'How can I navigate through events and ticketing?',
-    value: 'ticketingandevents',
-    content: () => {
-      return (
-        <>
-          <p>
-            👉 Take a look at our curated <Link href="/schedule">events calendar here!</Link> You&apos;ll find brief
-            descriptions of each event, an estimation of the difficulty level (beginner/intermediate/expert), and links
-            to the event websites.
-          </p>
-          <p>
-            👉 Follow{' '}
-            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
-              @EFDevconnect
-            </Link>{' '}
-            on Twitter to stay in the loop. Follow the{' '}
-            <Link href="https://twitter.com/i/lists/1663882935949295616" indicateExternal>
-              Devconnect IST Twitter list
-            </Link>{' '}
-            for updates from event hosts.{' '}
-          </p>
-          <p>
-            There will be many events in many different venues throughout Istanbul during the week. You can pick and
-            choose based on your interests. <b>All events will be independently hosted, ticketed, and organized.</b>{' '}
-            Some events will be free, some will be based on applications, and others may be ticketed with paid tickets.
-          </p>
-          <p>
-            There will be an open{' '}
-            <Link
-              href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
-              indicateExternal
-            >
-              Coworking Space
-            </Link>{' '}
-            throughout the week with tickets available to all, organized by the Devconnect team. Once ticketing for the
-            Cowork is open, you will find information here.
-          </p>
-        </>
-      )
-    },
-  },
-  {
-    text: 'Why is Devconnect coming to Istanbul?',
-    value: 'whyistanbul',
-    content: () => {
-      return (
-        <>
-          <p>
-            In choosing Istanbul as the host city for Devconnect 2023, we aim to capitalize on its unique position as a
-            bridge between East and West. Accessibility is a key priority, and Istanbul&apos;s major international
-            airport, efficient local metro, and abundance of suitable venues for community events make it the perfect
-            location for Devconnect 2023.
-          </p>
-          <p>
-            The engaged local community and numerous student blockchain clubs in the region further strengthen our
-            belief in the potential of this vibrant city. We are confident that Istanbul&apos;s unique blend of history,
-            culture, and modernity will provide an inspiring backdrop for the global Ethereum developer community to
-            come together, collaborate with these passionate groups, and drive innovation for Ethereum.
-          </p>
-        </>
-      )
-    },
-  },
-  // TODO: Add back in once the scholars program is announced
-  // {
-  //   text: 'Is there any financial support to help with travel costs?',
-  //   value: 'financialsupport',
-  //   content: () => {
-  //     return (
-  //       <>
-  //         <p className="bold">Devconnect Scholars Program 🎓</p>
-  //         <p>
-  //           The Ethereum Foundation{' '}
-  //           <Link href="https://twitter.com/EFNextBillion" indicateExternal>
-  //             Next Billion Team
-  //           </Link>{' '}
-  //           offers the Devconnect Scholars Program to support talented individuals from diverse backgrounds in
-  //           contributing their unique skills to unlock the potential of the Ethereum ecosystem.
-  //         </p>
-  //         <p>
-  //           Who do you know that could significantly impact Ethereum&apos;s future and needs financial help to attend
-  //           Devconnect in Istanbul?
-  //         </p>
-  //       </>
-  //     )
-  //   },
-  // },
-  {
-    text: 'What about Devcon?',
-    value: 'ondevcon',
-    content: () => {
-      return (
-        <>
-          <p>
-            <Link href="https://twitter.com/EFDevcon" indicateExternal>
-              Devcon
-            </Link>{' '}
-            will remain our principal event, and we&apos;re excited to bring Devcon 7 to Southeast Asia in 2024!
-            Specific dates and location are coming soon. Read about why we&apos;re scheduling Devcon 7 for 2024 in
-            Southeast Asia{' '}
-            <Link href="https://blog.ethereum.org/2023/02/28/devcon-7-update" indicateExternal>
-              here
-            </Link>
-            .
-          </p>
-        </>
-      )
-    },
-  },
-  {
-    text: 'What is the difference between Devcon and Devconnect?',
-    value: 'devconvsdevconnect',
-    content: () => {
-      return (
-        <>
-          <p>
-            Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the other
-            amazing ETH events are community-run!). Both events are Ethereum-focused but serve different purposes.
-          </p>
-          <p>
-            <b>Devcon</b> is a global Ethereum <i>family reunion</i>, a place to celebrate success and align on updates
-            and direction. It is our principal event, all in one place with one big venue, and talks and workshops open
-            to all. <Link href="devcon.org">Devcon 7 is scheduled for 2024 in Southeast Asia</Link>!
-          </p>
-          <p>
-            <b>Devconnect</b> on the other hand, is a week to <i>make progress</i>, dive deep into specific topics among
-            fellow experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists
-            of many individual events, organized by you the community, that each cover one topic in depth.
-          </p>
-        </>
-      )
-    },
-  },
 ]
+
+// FAQ changes during event to be more pertinent
+// const FAQBeforeEvent = [
+//   {
+//     text: 'How can I get involved?',
+//     value: 'how-involve',
+//     content: () => {
+//       return (
+//         <>
+//           <p className="bold">Volunteer</p>
+//           <p>
+//             We will be looking for volunteers for Devconnect Istanbul soon! Follow{' '}
+//             <Link indicateExternal href="https://twitter.com/efdevconnect">
+//               @EFDevconnect
+//             </Link>{' '}
+//             to stay up to date.
+//           </p>
+//           <p className="bold">Be an event host</p>
+//           <p>
+//             If you want to organize an event during Devconnect, head over to the{' '}
+//             <Link
+//               indicateExternal
+//               href="https://www.notion.so/ef-events/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022?pvs=4"
+//             >
+//               event host guide
+//             </Link>
+//             .
+//           </p>
+//           <p className="bold">Media</p>
+//           <p>
+//             You want to cover Devconnect? Cool! Write us at press@devconnect.org for more info, or inquire to obtain a
+//             media pass that grants you access to the Devconnect Cowork{' '}
+//             <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87 " indicateExternal>
+//               here
+//             </Link>
+//             . <span className="bold">We, the Devconnect team, are currently not seeking media partnerships.</span>
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'I need a Visa invitation letter, can you help?',
+//     value: 'visa',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             Yes, we are happy to help! You&apos;ll need a{' '}
+//             <Link href="/cowork" indicateExternal>
+//               ticket for the Devconnect Cowork
+//             </Link>{' '}
+//             first, then you can{' '}
+//             <Link href="https://forms.gle/zDQ6ax5Ukr75gDXt5" indicateExternal>
+//               fill out this form
+//             </Link>
+//             . You will hear back from us via email within 2 weeks.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'How can I get a press pass?',
+//     value: 'press-pass',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             To inquire about obtaining a media pass for Devconnect,{' '}
+//             <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
+//               please fill out this form.
+//             </Link>{' '}
+//           </p>
+//           <p>
+//             A press pass grants access to the main Coworking Space that we are organizing. Please note that all other
+//             events are independently hosted, and a press pass does not guarantee entry into them.{' '}
+//           </p>
+//           <p>
+//             Ask us for more info about the event at <span className="bold">press@devconnect.org</span>.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'Can I sponsor Devconnect?',
+//     value: 'sponsor',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             The Devconnect team, responsible for organizing the coworking space in ICC, is currently not seeking
+//             sponsorships.
+//           </p>
+//           <p>
+//             Some of the independent teams organizing the different events might be seeking sponsorships. You can find
+//             their websites and contact information <Link href="/schedule">on the curated Devconnect schedule</Link>.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'Can I speak at Devconnect?',
+//     value: 'speak',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             The Devconnect team, responsible for organizing the coworking space in ICC, is not looking for speakers.
+//           </p>
+//           <p>
+//             Some of the independent teams organizing the different events might be looking for speakers or panelists.
+//             You can find their websites and contact information{' '}
+//             <Link href="/schedule">on the curated Devconnect schedule</Link>.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'How do I know if Devconnect is for me?',
+//     value: 'howdoiknow',
+//     content: () => {
+//       return (
+//         <>
+//           <p>Devconnect is for you if you …</p>
+//           <ul>
+//             <li>want to meet people in Ethereum in person</li>
+//             <li>
+//               love to co-work in an incredible{' '}
+//               <Link
+//                 href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
+//                 indicateExternal
+//               >
+//                 Coworking Space
+//               </Link>{' '}
+//               next to others in the Ethereum space
+//             </li>
+//             <li>
+//               <b>dive</b> deep into topics you care about with other domain experts
+//             </li>
+//             <li>want to make progress on solving specific problems</li>
+//             <li>are passionate about creating more decentralized and fairer systems</li>
+//           </ul>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'How can I navigate through events and ticketing?',
+//     value: 'ticketingandevents',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             👉 Take a look at our curated <Link href="/schedule">events calendar here!</Link> You&apos;ll find brief
+//             descriptions of each event, an estimation of the difficulty level (beginner/intermediate/expert), and links
+//             to the event websites.
+//           </p>
+//           <p>
+//             👉 Follow{' '}
+//             <Link href="https://twitter.com/EFDevconnect" indicateExternal>
+//               @EFDevconnect
+//             </Link>{' '}
+//             on Twitter to stay in the loop. Follow the{' '}
+//             <Link href="https://twitter.com/i/lists/1663882935949295616" indicateExternal>
+//               Devconnect IST Twitter list
+//             </Link>{' '}
+//             for updates from event hosts.{' '}
+//           </p>
+//           <p>
+//             There will be many events in many different venues throughout Istanbul during the week. You can pick and
+//             choose based on your interests. <b>All events will be independently hosted, ticketed, and organized.</b>{' '}
+//             Some events will be free, some will be based on applications, and others may be ticketed with paid tickets.
+//           </p>
+//           <p>
+//             There will be an open{' '}
+//             <Link
+//               href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
+//               indicateExternal
+//             >
+//               Coworking Space
+//             </Link>{' '}
+//             throughout the week with tickets available to all, organized by the Devconnect team. Once ticketing for the
+//             Cowork is open, you will find information here.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'Why is Devconnect coming to Istanbul?',
+//     value: 'whyistanbul',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             In choosing Istanbul as the host city for Devconnect 2023, we aim to capitalize on its unique position as a
+//             bridge between East and West. Accessibility is a key priority, and Istanbul&apos;s major international
+//             airport, efficient local metro, and abundance of suitable venues for community events make it the perfect
+//             location for Devconnect 2023.
+//           </p>
+//           <p>
+//             The engaged local community and numerous student blockchain clubs in the region further strengthen our
+//             belief in the potential of this vibrant city. We are confident that Istanbul&apos;s unique blend of history,
+//             culture, and modernity will provide an inspiring backdrop for the global Ethereum developer community to
+//             come together, collaborate with these passionate groups, and drive innovation for Ethereum.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'What about Devcon?',
+//     value: 'ondevcon',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             <Link href="https://twitter.com/EFDevcon" indicateExternal>
+//               Devcon
+//             </Link>{' '}
+//             will remain our principal event, and we&apos;re excited to bring Devcon 7 to Southeast Asia in 2024!
+//             Specific dates and location are coming soon. Read about why we&apos;re scheduling Devcon 7 for 2024 in
+//             Southeast Asia{' '}
+//             <Link href="https://blog.ethereum.org/2023/02/28/devcon-7-update" indicateExternal>
+//               here
+//             </Link>
+//             .
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+//   {
+//     text: 'What is the difference between Devcon and Devconnect?',
+//     value: 'devconvsdevconnect',
+//     content: () => {
+//       return (
+//         <>
+//           <p>
+//             Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the other
+//             amazing ETH events are community-run!). Both events are Ethereum-focused but serve different purposes.
+//           </p>
+//           <p>
+//             <b>Devcon</b> is a global Ethereum <i>family reunion</i>, a place to celebrate success and align on updates
+//             and direction. It is our principal event, all in one place with one big venue, and talks and workshops open
+//             to all. <Link href="devcon.org">Devcon 7 is scheduled for 2024 in Southeast Asia</Link>!
+//           </p>
+//           <p>
+//             <b>Devconnect</b> on the other hand, is a week to <i>make progress</i>, dive deep into specific topics among
+//             fellow experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists
+//             of many individual events, organized by you the community, that each cover one topic in depth.
+//           </p>
+//         </>
+//       )
+//     },
+//   },
+// ]
 
 export const CodeOfConduct = () => {
   return (
@@ -1078,7 +1284,7 @@ const Home: NextPage = (props: any) => {
 
               <BlogReel blogs={props.blogs} />
 
-              <div className="padding-bottom-less border-bottom "></div>
+              {/* <div className="padding-bottom-less border-bottom "></div> */}
             </div>
             {/* </Observer> */}
           </Scene>
@@ -1123,7 +1329,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div> */}
 
-              <h1 className="section-header orange">Frequently Asked Questions</h1>
+              {/* <h1 className="section-header orange">Frequently Asked Questions</h1>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
                 <Accordion>
@@ -1140,7 +1346,7 @@ const Home: NextPage = (props: any) => {
                     )
                   })}
                 </Accordion>
-              </div>
+              </div> */}
             </div>
             {/* </Observer> */}
           </Scene>

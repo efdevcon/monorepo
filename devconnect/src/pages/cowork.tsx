@@ -28,6 +28,7 @@ import Accordion, { AccordionItem } from 'common/components/accordion'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
 import CoworkHero from 'assets/images/cowork-gallery/cowork.png'
 import PlayIcon from 'assets/icons/play.svg'
+import { FAQDuringEvent } from './index'
 
 const volunteerFAQ = [
   {
@@ -308,6 +309,10 @@ const Cowork: NextPage = (props: any) => {
                     value: 'ticketing',
                   },
                   {
+                    text: 'FAQ',
+                    value: 'faq',
+                  },
+                  {
                     text: 'Volunteer',
                     value: 'volunteer',
                   },
@@ -493,6 +498,36 @@ const Cowork: NextPage = (props: any) => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="section" id="faq">
+          <div className={`${css['volunteer']}`}>
+            <Accordion className={css['no-margin-top']}>
+              <AccordionItem
+                alwaysOpen
+                title={<p className="orange uppercase section-header bold">Frequently Asked Questions</p>}
+                id="volunteer"
+              >
+                <div className={`tab-content`} id="faq">
+                  <Accordion className={css['no-margin-top']}>
+                    {FAQDuringEvent.map(faq => {
+                      return (
+                        <AccordionItem
+                          key={faq.text}
+                          title={<div className="bold">{faq.text}</div>}
+                          id={faq.value}
+                          // ref={faq.value === 'organizers' ? organizersRef : undefined}
+                        >
+                          {faq.content && faq.content()}
+                        </AccordionItem>
+                      )
+                    })}
+                  </Accordion>
+                </div>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          {/* <div className="border-bottom padding-bottom"></div> */}
         </div>
       </div>
 

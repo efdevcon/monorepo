@@ -110,7 +110,7 @@ const tabs = [
               </div>
               <p className="bold big-text">Istanbul International Airport</p>
               <p>
-                Approx. cost to venue by taxi: ~350 <b>TRY</b>
+                Approx. cost to venue by taxi: ~700-900 <b>TRY</b>
               </p>
               <div className={css['directions']}>
                 <PinIcon /> <div className="tag tiny-text bold">Get Directions</div>
@@ -124,7 +124,7 @@ const tabs = [
               </div>
               <p className="bold big-text">Sabiha Gökçen Airport</p>
               <p>
-                Approx. cost to venue by taxi: ~450 <b>TRY</b>
+                Approx. cost to venue by taxi: ~900-1100 <b>TRY</b>
               </p>
               <div className={css['directions']}>
                 <PinIcon /> <div className="tag tiny-text bold">Get Directions</div>
