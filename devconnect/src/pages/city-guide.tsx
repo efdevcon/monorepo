@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Footer } from './index'
 import ImageNew from 'next/image'
 import Hero from 'common/components/hero'
@@ -21,6 +21,7 @@ import Globe from 'assets/icons/globe.svg'
 import PinIcon from 'assets/icons/pin.svg'
 import Dollar from 'assets/icons/dollar.svg'
 import Water from 'assets/icons/water.svg'
+import moment from 'moment'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import Link, { useDraggableLink } from 'common/components/link'
@@ -895,6 +896,18 @@ export const Tabs = (props: any) => {
 }
 
 const List = (props: any) => {
+  const [currentTime, setCurrentTime] = React.useState<any>(null)
+
+  useEffect(() => {
+    const clockInterval = setInterval(() => {
+      setCurrentTime(moment.utc().add(3, 'hours').format('LTS'))
+    }, 1000)
+
+    return () => {
+      clearInterval(clockInterval)
+    }
+  }, [])
+
   return (
     <div className={css['list']}>
       <div className={css['row']}>
@@ -905,9 +918,9 @@ const List = (props: any) => {
         </div>
         <Link
           href="https://www.timeanddate.com/worldclock/turkey/istanbul"
-          className={`${css['right']} orange uppercase tiny-text hover-underline`}
+          className={`${css['right']} uppercase hover-underline`}
         >
-          Current time
+          {currentTime && <span className="bold">{currentTime}</span>}
         </Link>
       </div>
       <div className={css['row']}>
