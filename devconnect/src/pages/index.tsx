@@ -196,7 +196,7 @@ export const FAQDuringEvent = [
     content: () => {
       return (
         <div className="tab-content">
-          <p>Several community-run side event schedules are making the rounds. For example: 🌻</p>
+          <p>Several community-run side event schedules are making the rounds. For example:</p>
           <ul>
             <li>
               <Link href="https://cryptoevents.xyz/DevconnectWeek" indicateExternal>
