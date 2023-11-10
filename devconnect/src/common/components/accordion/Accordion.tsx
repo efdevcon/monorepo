@@ -10,6 +10,8 @@ export const AccordionItem = React.forwardRef((props: any, ref: any) => {
   if (props.className) className += ` ${props.className}`
   if (props.alwaysOpen) className += ` ${css['always-open']}`
 
+  React.useEffect(() => {}, [])
+
   React.useImperativeHandle(ref, () => {
     return {
       open: () => setOpen(true),

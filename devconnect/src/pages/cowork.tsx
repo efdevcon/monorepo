@@ -19,6 +19,7 @@ import ComputerIcon from 'assets/icons/computer.svg'
 import BoltIcon from 'assets/icons/bolt.svg'
 import PhotoIcon from 'assets/icons/photo.svg'
 import { Tabs } from './city-guide'
+import WifiIcon from 'assets/icons/wifi.svg'
 import Alert from 'common/components/alert'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -29,6 +30,7 @@ import SwipeToScroll from 'common/components/swipe-to-scroll'
 import CoworkHero from 'assets/images/cowork-gallery/cowork.png'
 import PlayIcon from 'assets/icons/play.svg'
 import { FAQDuringEvent } from './index'
+import { useRouter } from 'next/router'
 
 const volunteerFAQ = [
   {
@@ -244,6 +246,22 @@ export const Row = (props: any) => {
 
 const Cowork: NextPage = (props: any) => {
   //   const [soldOut, setSoldout] = React.useState(!waves.some(wave => wave.status === 'on sale now'))
+  const accordionFAQRefs = React.useRef({} as { [key: string]: any })
+  const router = useRouter()
+
+  // TODO: Probably figure a way to move this to the accordion component, but also kinda dangerous to rely on nextjs router if we want to move it to lib later, so gotta think this through
+  React.useEffect(() => {
+    const path = router.asPath
+    const anchor = path.split('#').slice(1).pop()
+
+    if (anchor) {
+      const decoded = decodeURI(anchor)
+
+      if (accordionFAQRefs && accordionFAQRefs.current[decoded]) {
+        accordionFAQRefs.current[decoded].open()
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -305,31 +323,33 @@ const Cowork: NextPage = (props: any) => {
                     value: 'general-info',
                   },
                   {
+                    text: 'Registration',
+                    value: 'registration',
+                  },
+                  {
                     text: 'Ticketing Info',
                     value: 'ticketing',
                   },
                   {
-                    text: 'FAQ',
+                    text: 'Frequently Asked',
                     value: 'faq',
                   },
-                  {
-                    text: 'Volunteer',
-                    value: 'volunteer',
-                  },
+                  // {
+                  //   text: 'Volunteer',
+                  //   value: 'volunteer',
+                  // },
                 ]}
               />
             </div>
           </div>
-
           <div className={`${css['ticketing-alert']} clear-vertical`}>
             <Alert title="Ticket Information" color="blue">
               <b>These tickets will only grant you access to the EF-hosted Coworking Space at ICC in ISTANBUL.</b>
               <p>These tickets will NOT grant access to any other events taking place during Devconnect.</p>
             </Alert>
           </div>
-
           <div className="clear-vertical">
-            <div className={`${css['body']}`}>
+            <div className={`${css['body']}`} id="cowork-info">
               <div className={css['left']}>
                 <p className={`uppercase bold section-header grey ${css['title']}`}>Coworking</p>
                 <p className="big-text">
@@ -358,6 +378,12 @@ const Cowork: NextPage = (props: any) => {
                     </p>
                   </div>
                   <div className="row">
+                    <WifiIcon />
+                    <p>
+                      <b className="uppercase">Wifi:</b> Devconnect IST (password: <b>blobsarecoming</b>)
+                    </p>
+                  </div>
+                  <div className="row">
                     <PhotoIcon />
                     <p>
                       <b className="uppercase">Relax:</b> Comfy areas to relax alone or in a small group.
@@ -366,7 +392,15 @@ const Cowork: NextPage = (props: any) => {
                   <div className="row">
                     <PeopleIcon />
                     <p>
-                      <b className="uppercase">Collab:</b> Several meeting rooms available for informal meetings
+                      <b className="uppercase">Collab:</b> Several{' '}
+                      <Link
+                        className="orange"
+                        href="https://ef-events.notion.site/Devconnect-Cowork-Rooms-BookingGuidelines-d0730ca40be040f6994bb63ecfe4cd56"
+                        indicateExternal
+                      >
+                        meeting rooms
+                      </Link>{' '}
+                      available for informal meetings
                     </p>
                   </div>
                   <div className="row">
@@ -379,7 +413,6 @@ const Cowork: NextPage = (props: any) => {
               </div>
             </div>
           </div>
-
           {/* <div className={css['door-tally']}>
             <iframe
               width="250"
@@ -391,6 +424,37 @@ const Cowork: NextPage = (props: any) => {
             ></iframe>
             <p className="tiny-text bold">Note: this does not account for a line outside the venue if there is one</p>
           </div> */}
+          <div className={`${css['ticketing']} mb-4`} id="registration">
+            <Accordion className={css['accordion']}>
+              <AccordionItem
+                alwaysOpen
+                title={<p className="orange uppercase section-header bold">Registration</p>}
+                id="registration"
+              >
+                <p className="big-text">
+                  Have your <b>Zupass</b> ready to be scanned at the entry. When we have scanned and validated your
+                  ticket, you will receive a wristband that will grant you access to the Cowork Space for the full week.
+                  Don&apos;t remove or lose your wristband!
+                </p>
+
+                <br />
+
+                <p className="big-text">
+                  🙏 If you took the chance and purchased one of the specially designed Devconnect <b>Turkish towels</b>{' '}
+                  with your Cowork ticket: they&apos;ll be ready for you to collect at the Cowork registration. 🧖‍♀️
+                </p>
+
+                <br />
+
+                <p className="big-text">
+                  <i>
+                    💡 Space in the Cowork is limited, and there&apos;s a maximum amount of people who can be in the
+                    Cowork at the same time. Entry to the Cowork will be granted on a first-come first-serve basis.
+                  </i>
+                </p>
+              </AccordionItem>
+            </Accordion>
+          </div>
 
           <div>
             <div className={`${css['ticketing']}`} id="ticketing">
@@ -429,7 +493,7 @@ const Cowork: NextPage = (props: any) => {
                       <PlayIcon /> Get tickets
                     </Link>
 
-                    <div className="divider"></div>
+                    {/* <div className="divider"></div>
                     <p className={`section-header grey bold margin-top-less`} id="first-come-first-serve">
                       First Come First Serve
                     </p>
@@ -453,32 +517,12 @@ const Cowork: NextPage = (props: any) => {
                       Therefore, entry to the Cowork Space will be granted on a first-come first-serve basis. In the
                       event that the venue is at full-capacity, even those with a wristband may be denied entry until
                       space becomes available.
-                    </p>
-
-                    <p className={`section-header grey bold margin-top-less`} id="first-come-first-serve">
-                      Registration
-                    </p>
-
-                    <p>
-                      If you purchase a ticket, ticket download instructions will be emailed to you 1 week before the
-                      event, and you will need to follow these instructions in order to check-in.
-                    </p>
-                    <p>
-                      When your ticket is scanned as valid, you will be given a wristband. This wristband will be your
-                      access to the Cowork Space for the full week, so we advise that you wear it immediately upon
-                      receipt &amp; <strong>do not lose or remove the wristband</strong> unless you no longer plan on
-                      attending the Cowork Space.
-                    </p>
-                    <p>If you lose your wristband, you will not be granted re-entry to the venue.</p>
-                    <p>
-                      Once you&apos;re checked in, head over to the Swag desk to pick up any swag you may have ordered.
-                    </p>
+                    </p> */}
                   </div>
                 </AccordionItem>
               </Accordion>
             </div>
           </div>
-
           <div className={`clear`}>
             <div className={`${css['gallery']}`}>
               <div className={css['grid-item']}>
@@ -500,7 +544,7 @@ const Cowork: NextPage = (props: any) => {
           </div>
         </div>
 
-        <div className="section" id="faq">
+        <div className="section mb-8" id="faq">
           <div className={`${css['volunteer']}`}>
             <Accordion className={css['no-margin-top']}>
               <AccordionItem
@@ -511,12 +555,13 @@ const Cowork: NextPage = (props: any) => {
                 <div className={`tab-content`} id="faq">
                   <Accordion className={css['no-margin-top']}>
                     {FAQDuringEvent.map(faq => {
+                      const id = `faq-${faq.value}`
                       return (
                         <AccordionItem
                           key={faq.text}
                           title={<div className="bold">{faq.text}</div>}
-                          id={faq.value}
-                          // ref={faq.value === 'organizers' ? organizersRef : undefined}
+                          id={id}
+                          ref={el => (accordionFAQRefs.current[id] = el)}
                         >
                           {faq.content && faq.content()}
                         </AccordionItem>
@@ -531,7 +576,7 @@ const Cowork: NextPage = (props: any) => {
         </div>
       </div>
 
-      <div className="section margin-bottom" id="volunteer">
+      {/* <div className="section margin-bottom" id="volunteer">
         <div className={`${css['volunteer']}`}>
           <Accordion className={css['accordion']}>
             <AccordionItem
@@ -591,7 +636,7 @@ const Cowork: NextPage = (props: any) => {
             </AccordionItem>
           </Accordion>
         </div>
-      </div>
+      </div> */}
 
       <div className={css['map']}>
         <div className={css['directions']}>

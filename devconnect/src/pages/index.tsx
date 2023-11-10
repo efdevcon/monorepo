@@ -78,7 +78,7 @@ function getTimeUntilNovember13InTurkey() {
 export const FAQDuringEvent = [
   {
     text: 'Where do I hear about all updates during Devconnect week? 📣',
-    value: 'whereupdates',
+    value: 'updates',
     content: () => {
       return (
         <>
@@ -104,7 +104,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Where can I connect with other attendees?',
-    value: 'whereupdates',
+    value: 'connect-with-attendees',
     content: () => {
       return (
         <>
@@ -126,7 +126,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Is there online streaming?',
-    value: 'whereupdates',
+    value: 'online-streaming',
     content: () => {
       return (
         <>
@@ -143,7 +143,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Where do I get my Devconnect Turkish towel?',
-    value: 'whereupdates',
+    value: 'where-towel',
     content: () => {
       return (
         <>
@@ -155,7 +155,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Is there any agenda and program in the Cowork?',
-    value: 'whereupdates',
+    value: 'cowork-agenda',
     content: () => {
       return (
         <>
@@ -174,7 +174,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'How can I book a private meeting room?',
-    value: 'whereupdates',
+    value: 'private-meeting-room',
     content: () => {
       return (
         <>
@@ -192,7 +192,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Where do I find side events and parties? 🥳',
-    value: 'whereupdates',
+    value: 'side-events-parties',
     content: () => {
       return (
         <div className="tab-content">
@@ -228,7 +228,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Media inquiries?',
-    value: 'whereupdates',
+    value: 'media-inquiries',
     content: () => {
       return (
         <>
@@ -244,7 +244,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'What do I need to know about safety? ⛑️',
-    value: 'whereupdates',
+    value: 'safety-need-to-know',
     content: () => {
       return (
         <>
@@ -269,7 +269,7 @@ export const FAQDuringEvent = [
   },
   {
     text: 'Do you have promotion codes for mobile data?',
-    value: 'whereupdates',
+    value: 'mobile-data-promo',
     content: () => {
       return (
         <>
@@ -295,6 +295,155 @@ export const FAQDuringEvent = [
               </Link>{' '}
               offers you 2GB for free and another $5 free credit if you add $20 or more to your Roamless wallet. Use the
               code "DEVCONNECT".
+            </li>
+          </ul>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Welcome Booths at the airport',
+    value: 'welcome-booths',
+    content: () => {
+      return (
+        <>
+          We have set up 'Welcome booths' at the airport to help you find your way to your hotel. They will be available
+          during the weekend prior to Devconnect (from Friday to Monday, ~8AM to 11:59PM).
+        </>
+      )
+    },
+  },
+  {
+    text: 'Accessibility info',
+    value: 'accessibility',
+    content: () => {
+      return (
+        <>
+          We have an elevator available. Just let our staff and volunteers at the registration know, and they're happy
+          to help you.
+        </>
+      )
+    },
+  },
+  {
+    text: `Respecting attendee's privacy - "No photo"-stickers`,
+    value: 'attendee-privacy',
+    content: () => {
+      return (
+        <>
+          <p>
+            Before taking photos and videos in the Cowork and other Devconnect events, please ensure you have checked if
+            anyone is wearing a "no photo" sticker. People who wear these stickers are expressing that they don't want
+            to be captured in photos and videos. We have a privacy-conscious community, and it is imperative that we
+            respect each other's space and identity. Taking or posting pictures without consent can be intrusive and
+            disrespectful.
+          </p>
+          <p>
+            If you wish not to be photographed, you're welcome to get a "no-photo" sticker at the registration and wear
+            it visible on your clothes, so others know you don't consent that photos of you are taken and posted.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Food around the Cowork',
+    value: 'food-around-cowork',
+    content: () => {
+      return (
+        <>
+          We have snacks all around the clock in the Cowork, however no lunch or dinner will be served. Food options are
+          available near the Cowork venue.
+          {/* <Link
+            href="https://www.google.com/maps/@41.0481054,28.9906437,15z/data=!3m1!4
+          b1!4m3!11m2!2sqfLohimFSFu5m5WNqdu32w!3e3?entry=ttu"
+            indicateExternal
+          >
+            For food around the ICC, check this list.
+          </Link> */}
+        </>
+      )
+    },
+  },
+  {
+    text: 'Local Payments',
+    value: 'local-payments',
+    content: () => {
+      return (
+        <>
+          <ul>
+            <li>
+              You can use credit or debit cards at the vast majority of establishments, as well as digital payment
+              methods like Apple Pay. Most people rarely carry cash and seldom find the need to use it.
+            </li>
+            <li>
+              However, we do recommend keeping a small amount on hand for specific situations—such as taking a
+              late-night cab, in case the point-of-sale system is down or not available.
+            </li>
+            <li>
+              When it comes to currency exchange, most local services offer competitive rates with zero commission fees.
+              The only exception would be if you're trading in a less common currency pair, typically found at specialty
+              shops like the Grand Bazaar.
+            </li>
+            <li>
+              ATMs are generally secure; just be cautious if you're considering using one at the airport. Their fees can
+              be steep.
+            </li>
+            <li>
+              The banking infrastructure here is notably efficient and secure. Payment channels are reliably available,
+              with rare instances of downtime. However, be aware that American Express isn't as widely accepted; you'll
+              be better off carrying a Visa or Mastercard.
+            </li>
+            <li>
+              Crypto payments for goods and services are illegal in Turkey. It is legal to own crypto and trade crypto,
+              but keep in mind to avoid using it for payments.
+            </li>
+          </ul>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Reporting Emergency Incidents',
+    value: 'reporting-emergencies',
+    content: () => {
+      return (
+        <>
+          <p>
+            In the event of an emergency incident, we have established reporting procedures to ensure your safety, while
+            also emphasizing the importance of adhering to our <Link href="/code-of-conduct">Code of Conduct</Link>,
+            which outlines expected behavior within our community.{' '}
+          </p>
+          <ul>
+            <li>
+              <b>Medical Emergencies:</b> If you encounter a medical emergency, please call +90 537 797 04 28
+              immediately {/* or proceed to the medical room located at XXX in the Cowork venue. */}
+            </li>
+            <li>
+              <b>Physical Violence Incidents in the Cowork Venue:</b> In the case of physical violence incidents within
+              the Cowork venue, please promptly contact our security team and call our emergency number +90 537 797 04
+              28.
+            </li>
+            <li>
+              <b> Harassment Incidents:</b> If you experience harassment incidents, you have three options: Call our
+              emergency number: +90 537 797 04 28 Fill out{' '}
+              <Link href="https://forms.gle/VpDbaJK18HYitJgq9" indicateExternal>
+                this form
+              </Link>
+              .
+            </li>
+          </ul>
+          <p>Additionally, it is advisable to keep the following local authorities' contact numbers in mind:</p>
+
+          <ul>
+            <li>
+              <b>Emergency:</b> 112
+            </li>
+            <li>
+              <b>Fire Department:</b> 110
+            </li>
+            <li>
+              <b>Police:</b> 155
             </li>
           </ul>
         </>
