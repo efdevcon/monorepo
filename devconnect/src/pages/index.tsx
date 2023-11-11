@@ -352,7 +352,7 @@ export const FAQDuringEvent = [
     content: () => {
       return (
         <>
-          We have snacks all around the clock in the Cowork, however no lunch or dinner will be served.
+          We have snacks all around the clock in the Cowork, however no lunch or dinner will be served.{' '}
           <Link href="https://maps.app.goo.gl/Z6rRrdYdwLcT6TPx7" indicateExternal>
             For food around the ICC, check this list.
           </Link>
