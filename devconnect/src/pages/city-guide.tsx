@@ -21,6 +21,8 @@ import Globe from 'assets/icons/globe.svg'
 import PinIcon from 'assets/icons/pin.svg'
 import Dollar from 'assets/icons/dollar.svg'
 import Water from 'assets/icons/water.svg'
+import UberIcon from 'assets/icons/uber.svg'
+// import BiTaksiIcon from 'assets/icons/bitaksi.svg'
 import moment from 'moment'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -38,6 +40,7 @@ import Peace from 'assets/images/city-guide/media/peace.png'
 import Skyfall from 'assets/images/city-guide/media/skyfall.png'
 import TheCat from 'assets/images/city-guide/media/the-cat.png'
 import Alert from 'common/components/alert'
+import BitaksiImage from 'assets/images/bitaksi.png'
 
 const tabs = [
   {
@@ -99,6 +102,14 @@ const tabs = [
           </p>
 
           <p className="big-text">
+            <b>Exchange Rate: </b>
+            The best exchange rate you can find currently is ~22.80, the exchanges near the Devconnect co-work venue are
+            ~28.10 you can potentially find better around the gold market / grand bazaar. Although credit cards all
+            widely used it is good to have some cash in case of emergency or sometimes Ubers and taxis want cash during
+            late nights or busy times.
+          </p>
+
+          <p className="big-text">
             <b>Weather whispers: </b>
             Istanbul in autumn is a mix of crisp air with occasional rain showers. Pack some cozy layers and don't
             forget your rain jacket.
@@ -110,7 +121,8 @@ const tabs = [
           </p>
 
           <div className={css['airports']}>
-            <Link href="https://goo.gl/maps/mZRy5WnRe4JBfoBK9">
+            <div>
+              <Link href="https://goo.gl/maps/mZRy5WnRe4JBfoBK9" />
               <div className={css['header']}>
                 <p className="bold">IST</p>
                 <div className="grey bold">40km to venue</div>
@@ -121,10 +133,18 @@ const tabs = [
               </p>
               <div className={css['directions']}>
                 <PinIcon /> <div className="tag tiny-text bold">Get Directions</div>
+                <div className="flex justify-end grow">
+                  <Link className={css['taxi-link']} href="https://www.uber.com/tr/en/ride/">
+                    <UberIcon className="h-[32px] w-[32px]" />
+                  </Link>
+                  <Link className={css['taxi-link']} href="https://www.bitaksi.com/en#bitaksi">
+                    <ImageNew src={BitaksiImage} height="32" width="32" alt="haha" />
+                  </Link>
+                </div>
               </div>
-            </Link>
-
-            <Link href="https://goo.gl/maps/XPAryow8Dagvxeer6">
+            </div>
+            <div>
+              <Link href="https://goo.gl/maps/XPAryow8Dagvxeer6" />
               <div className={css['header']}>
                 <p className="bold">SAW</p>
                 <div className="grey bold">60km to venue</div>
@@ -135,13 +155,21 @@ const tabs = [
               </p>
               <div className={css['directions']}>
                 <PinIcon /> <div className="tag tiny-text bold">Get Directions</div>
+                <div className="flex justify-end grow">
+                  <Link className={css['taxi-link']} href="https://www.uber.com/tr/en/ride/">
+                    <UberIcon className="h-[32px] w-[32px]" />
+                  </Link>
+                  <Link className={css['taxi-link']} href="https://www.bitaksi.com/en#bitaksi">
+                    <ImageNew src={BitaksiImage} height="32" width="32" alt="haha" />
+                  </Link>
+                </div>
               </div>
-            </Link>
+            </div>
           </div>
 
           <div className="big-text">
             <p className="mt-5">
-              <b>From the airport to the city</b>
+              <b>From the Airport to the city</b>
             </p>
             <ul>
               {/* <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li> */}
@@ -164,7 +192,12 @@ const tabs = [
             </p>
             <ul>
               <li>
-                <b>Metro / Tram:</b> The fastest, not everywhere
+                <b>
+                  <Link href="https://www.metro.istanbul/en/" indicateExternal>
+                    Metro / Tram:
+                  </Link>
+                </b>{' '}
+                The fastest, not everywhere
               </li>
               <li>
                 <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
@@ -188,7 +221,17 @@ const tabs = [
             </p>
             <ul>
               <li>
-                <b>Uber or BiTaksi:</b> to order taxis
+                <b>
+                  <Link href="https://www.uber.com/tr/en/ride/" indicateExternal>
+                    Uber
+                  </Link>{' '}
+                  or{' '}
+                  <Link href="https://www.bitaksi.com/en#bitaksi" indicateExternal>
+                    BiTaksi
+                  </Link>
+                  :
+                </b>{' '}
+                to order taxis
               </li>
               <li>
                 <b>isbike:</b> city bikes by the municipality.

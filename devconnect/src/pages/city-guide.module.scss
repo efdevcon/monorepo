@@ -272,23 +272,27 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 16px;
-    
-    a {
-      display: flex;
-      flex-direction: column;
-      --icon-color: #{$color-orange-2};
+    --icon-color: #{$color-orange-2};
 
-      [data-type="link-text"] {
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        color: black;
-      }
+    > div {
+      position: relative;
 
-      svg {
-        margin-right: 8px;
-        font-size: 22px;
+      > a {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        left: 0px;
       }
+    }
+
+    .taxi-link {
+      z-index: 2;
+    } 
+
+    svg {
+      margin-right: 8px;
+      font-size: 22px;
     }
 
     .header {
@@ -298,6 +302,7 @@
 
     .directions {
       display: flex;
+      align-items: center;
     }
 
     > * {
