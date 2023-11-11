@@ -755,7 +755,7 @@ export const CodeOfConduct = () => {
         {' '}
         Anyone can report harassment. If you were or are being harassed, notice that someone else was or is being
         harassed, or have any other concerns related to harassment, you can contact a Devconnect volunteer or staff
-        member, make a report at the registration desk or info booth, or submit a complaint to support@devconnect.org.
+        member, make a report at the registration desk or info booth, or submit a complaint to help@devconnect.org.
       </p>
       <p className="big-text underline bold">Approved Swag Only</p>
       <p>
@@ -800,7 +800,7 @@ export const CodeOfConduct = () => {
         venue, facility, and/or local authorities.
       </p>
       <p className="big-text underline bold">How to Report</p>
-      <p>If you notice any violations of this Code of Conduct please report them to support@devconnect.org.</p>
+      <p>If you notice any violations of this Code of Conduct please report them to help@devconnect.org.</p>
       <p className="big-text underline bold">Remember</p>
       <p className="bold">
         Devconnect is what you make of it, and as a community we can create a safe, meaningful, and incredible
