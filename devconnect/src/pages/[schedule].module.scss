@@ -740,6 +740,12 @@
     grid-column: span 1;
     z-index: 1;
 
+    &.active {
+      background: #242424;
+      color: white;
+      border-color: #242424;
+    }
+
     @media (min-width: $screen-md) {
       padding: 16px;
       font-size: 16px;

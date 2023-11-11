@@ -590,7 +590,7 @@ const Timeline = (props: any) => {
   const draggableAttributes = useDraggableLink()
   const router = useRouter()
   // Ref of current active day element (to scroll into view on load)
-  // const todayRef = React.useRef<any>()
+  const todayRef = React.useRef<any>()
 
   // React.useEffect(() => {
   //   if (todayRef.current) {
@@ -811,6 +811,7 @@ const Timeline = (props: any) => {
           {events}
 
           {Array.from(Array(scheduleDuration)).map((_, index: number) => {
+            // const day = moment.utc(defaultSortEvents[0].Date.startDate).add(index, 'days')
             const day = moment.utc(defaultSortEvents[0].Date.startDate).add(index, 'days')
             const weekday = day.format('ddd')
             const date = day.format('MMM DD')
@@ -825,7 +826,7 @@ const Timeline = (props: any) => {
             if (dayIsActive) className += ` ${css['active']}`
 
             return (
-              <div className={className} key={index} /*ref={dayIsActive ? todayRef : undefined}*/>
+              <div className={className} key={index} ref={dayIsActive ? todayRef : undefined}>
                 <p>{dayIsActive ? 'TODAY' : weekday}</p>
                 <p>{date}</p>
               </div>
