@@ -93,6 +93,12 @@ const tabs = [
           </p>
 
           <p className="big-text">
+            In addition, you can purchase a local sim card or e-sim with better rates through official stores of
+            Turkcell, TurkTelecom, and Vodafone. Please make sure to go to the official stores to get the standard
+            rates, they will require your passport to issue your Sim card.
+          </p>
+
+          <p className="big-text">
             <b>Weather whispers: </b>
             Istanbul in autumn is a mix of crisp air with occasional rain showers. Pack some cozy layers and don't
             forget your rain jacket.
