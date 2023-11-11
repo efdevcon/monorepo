@@ -126,6 +126,15 @@
         @include extra-large-text;
         font-weight: bold;
         color: #89BEEB;
+        --icon-color: #89BEEB;
+        display: flex;
+        align-items: center;
+
+        svg {
+          transform: translateY(2px);
+          font-size: 0.9em;
+          margin-right: 0.3em;
+        }
       }
     }
 

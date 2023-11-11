@@ -29,10 +29,12 @@ import Parser from 'rss-parser'
 import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
+import CalendarIcon from 'assets/icons/calendar-date.svg'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
 import LibButton from 'lib/components/button'
 import moment from 'moment'
+import { leftPadNumber } from 'lib/utils'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -64,6 +66,13 @@ function getTimeUntilNovember13InTurkey() {
   const hours = Math.max(Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)), 0)
   const minutes = Math.max(Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)), 0)
   const seconds = Math.max(Math.floor((timeDifference % (1000 * 60)) / 1000), 0)
+
+  if (timeDifference < 0) {
+    const dayOne = moment.utc([2023, 10, 13])
+    const timeDiff = currentDate.diff(dayOne, 'days')
+
+    return `DAY ${leftPadNumber(timeDiff + 1)}`
+  }
 
   // Return the time difference as an object
   return {
@@ -352,15 +361,10 @@ export const FAQDuringEvent = [
     content: () => {
       return (
         <>
-          We have snacks all around the clock in the Cowork, however no lunch or dinner will be served. Food options are
-          available near the Cowork venue.
-          {/* <Link
-            href="https://www.google.com/maps/@41.0481054,28.9906437,15z/data=!3m1!4
-          b1!4m3!11m2!2sqfLohimFSFu5m5WNqdu32w!3e3?entry=ttu"
-            indicateExternal
-          >
+          We have snacks all around the clock in the Cowork, however no lunch or dinner will be served.
+          <Link href="https://maps.app.goo.gl/Z6rRrdYdwLcT6TPx7" indicateExternal>
             For food around the ICC, check this list.
-          </Link> */}
+          </Link>
         </>
       )
     },
@@ -971,14 +975,6 @@ const Scene = (props: any) => {
   )
 }
 
-const leftPadNumber = (number: number) => {
-  if (number < 10) {
-    return `0${number}`
-  }
-
-  return number
-}
-
 const Home: NextPage = (props: any) => {
   const [dateHovered, setDateHovered] = React.useState(false)
   const [hehe, setHehe] = React.useState(false)
@@ -990,7 +986,15 @@ const Home: NextPage = (props: any) => {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      const timeLeft = getTimeUntilNovember13InTurkey()
+      const timeLeft: any = getTimeUntilNovember13InTurkey()
+
+      console.log(typeof timeLeft, 'time left')
+
+      if (typeof timeLeft === 'string') {
+        setTimeToEvent(timeLeft)
+
+        return
+      }
 
       setTimeToEvent(
         `${timeLeft.days}D:${leftPadNumber(timeLeft.hours)}H:${leftPadNumber(timeLeft.minutes)}M:${leftPadNumber(
@@ -1098,8 +1102,26 @@ const Home: NextPage = (props: any) => {
                     </div>
                   </div>
                   <div className={css['countdown']}>
-                    <p className={css['countdown-header']}>Countdown</p>
-                    <p className={css['countdown-number']}>{mounted ? timeToEvent : ''}</p>
+                    {mounted && timeToEvent && (
+                      <>
+                        {typeof timeToEvent === 'string' ? (
+                          <>
+                            <p className={css['countdown-header']}>DEVCONNECT IST</p>
+                            <p className={css['countdown-number']}>
+                              <Link href="/schedule">
+                                <CalendarIcon />
+                                {timeToEvent}
+                              </Link>
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p className={css['countdown-header']}>Countdown</p>
+                            <p className={css['countdown-number']}>{timeToEvent}</p>
+                          </>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

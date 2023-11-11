@@ -432,9 +432,15 @@ const Cowork: NextPage = (props: any) => {
                 id="registration"
               >
                 <p className="big-text">
-                  Have your <b>Zupass</b> ready to be scanned at the entry. When we have scanned and validated your
-                  ticket, you will receive a wristband that will grant you access to the Cowork Space for the full week.
-                  Don&apos;t remove or lose your wristband!
+                  Have your{' '}
+                  <b>
+                    <Link href="https://zupass.org/#/login" indicateExternal>
+                      Zupass
+                    </Link>
+                  </b>{' '}
+                  ready to be scanned at the entry. When we have scanned and validated your ticket, you will receive a
+                  wristband that will grant you access to the Cowork Space for the full week. Don&apos;t remove or lose
+                  your wristband!
                 </p>
 
                 <br />
