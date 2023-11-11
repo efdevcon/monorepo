@@ -53,7 +53,7 @@ import { leftPadNumber } from 'lib/utils'
 
 function getTimeUntilNovember13InTurkey() {
   // Create a Date object for the current date
-  const currentDate = moment.utc()
+  const currentDate = moment.utc([2023, 10, 16])
 
   // Set the target date to November 13th, 8 am
   const targetDate = moment.utc([2023, 10, 13, 8]) // Note: Month is 0-based, so 10 represents November.
