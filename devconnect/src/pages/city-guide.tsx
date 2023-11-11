@@ -45,7 +45,7 @@ const tabs = [
     value: 'general-info',
   },
   {
-    text: 'Plan Your Travels',
+    text: 'Arriving in istanbul',
     value: 'plan-your-travels',
     content: () => {
       return (
@@ -132,6 +132,74 @@ const tabs = [
               </div>
             </Link>
           </div>
+
+          <div className="big-text">
+            <p className="mt-5">
+              <b>From the airport to the city</b>
+            </p>
+            <ul>
+              {/* <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li> */}
+              <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
+              <li>
+                Another option to get from the airports to Taskim are couch type buses or the M2 metro. There are couch
+                type Havaist (IST) and Havabus (SAW) buses to the city. Find the bus to Taksim. Depending on your final
+                destination either:
+                <ul>
+                  <li>Get off at Levent and take M2 metro.</li>
+                  <li>Get off at Taksim and walk to your place.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <p>Keep in mind there can be traffic in rush hours (17pm-19pm)</p>
+
+            <p>
+              <b>Public transport</b>
+            </p>
+            <ul>
+              <li>
+                <b>Metro / Tram:</b> The fastest, not everywhere
+              </li>
+              <li>
+                <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
+              </li>
+              <li>
+                <b>Bus:</b> Go everywhere, but traffic
+              </li>
+              <li>
+                <b>Ferry:</b> to cross the Bosphorus
+              </li>
+              <li>
+                {' '}
+                👉 To use all public transportation in Istanbul you will need the Istanbulkart (might not work seamless
+                for non-locals) or simply use contactless payments. 💳 Get the card and top it up at kiosks near metro
+                stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL ($0.4) per trip
+              </li>
+            </ul>
+
+            <p>
+              <b>Apps</b>
+            </p>
+            <ul>
+              <li>
+                <b>Uber or BiTaksi:</b> to order taxis
+              </li>
+              <li>
+                <b>isbike:</b> city bikes by the municipality.
+              </li>
+              <li>
+                <b>Google Maps or Moovit:</b> for route planning and real-time information on public transport.
+              </li>
+            </ul>
+          </div>
+
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Tourist-Guide-by-ITU-Blockchain-e09893e5555b4f8e9b4c6ae854b599cd "
+          >
+            <PinIcon />
+            Tourist Guide by ITU
+          </Link>
         </div>
       )
     },
@@ -357,81 +425,15 @@ const tabs = [
       )
     },
   },
-  {
-    text: 'Arriving in Istanbul',
-    value: 'getting-around',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            <b>From the airport to the city</b>
-          </p>
-          <ul>
-            {/* <li>We recommend using public transport (metro+bus) because taxis are not easy to find + traffic ⚠️</li> */}
-            <li>For taxis, use Uber or BiTaksi to ensure you can get the best, fair rate.</li>
-            <li>
-              Another option to get from the airports to Taskim are couch type buses or the M2 metro. There are couch
-              type Havaist (IST) and Havabus (SAW) buses to the city. Find the bus to Taksim. Depending on your final
-              destination either:
-              <ul>
-                <li>Get off at Levent and take M2 metro.</li>
-                <li>Get off at Taksim and walk to your place.</li>
-              </ul>
-            </li>
-          </ul>
+  // {
+  //   text: 'Arriving in Istanbul',
+  //   value: 'getting-around',
+  //   content: () => {
+  //     return (
 
-          <p>Keep in mind there can be traffic in rush hours (17pm-19pm)</p>
-
-          <p>
-            <b>Public transport</b>
-          </p>
-          <ul>
-            <li>
-              <b>Metro / Tram:</b> The fastest, not everywhere
-            </li>
-            <li>
-              <b>Taxi / Taxibus:</b> only 20,000 taxis for 20m inhabitants. Taxibus are cheap and convenient
-            </li>
-            <li>
-              <b>Bus:</b> Go everywhere, but traffic
-            </li>
-            <li>
-              <b>Ferry:</b> to cross the Bosphorus
-            </li>
-            <li>
-              {' '}
-              👉 To use all public transportation in Istanbul you will need the Istanbulkart (might not work seamless
-              for non-locals) or simply use contactless payments. 💳 Get the card and top it up at kiosks near metro
-              stations, piers, and bus stations. 💵 Approximate costs: 9.90 TL ($0.4) per trip
-            </li>
-          </ul>
-
-          <p>
-            <b>Apps</b>
-          </p>
-          <ul>
-            <li>
-              <b>Uber or BiTaksi:</b> to order taxis
-            </li>
-            <li>
-              <b>isbike:</b> city bikes by the municipality.
-            </li>
-            <li>
-              <b>Google Maps or Moovit:</b> for route planning and real-time information on public transport.
-            </li>
-          </ul>
-
-          <Link
-            className="button orange margin-top-less margin-right-less"
-            href="https://itublockchain.notion.site/itublockchain/Tourist-Guide-by-ITU-Blockchain-e09893e5555b4f8e9b4c6ae854b599cd "
-          >
-            <PinIcon />
-            Tourist Guide by ITU
-          </Link>
-        </div>
-      )
-    },
-  },
+  //     )
+  //   },
+  // },
   {
     text: 'Where to Stay',
     alwaysOpen: true,
@@ -1095,7 +1097,7 @@ const CityGuide: NextPage = () => {
               className="section-header orange margin-top-less margin-bottom-much-less border-top padding-top-less"
               id="plan-your-travels"
             >
-              PLAN YOUR TRAVELS
+              ARRIVING IN ISTANBUL
             </p>
             <div>{tabs[1].content()}</div>
 
