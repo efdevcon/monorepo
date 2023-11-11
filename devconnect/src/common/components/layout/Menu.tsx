@@ -97,11 +97,11 @@ const menuItems = (pathname: string) => [
         // external: true,
         url: '/cowork#volunteer', // cowork#volunteer'https://forms.gle/tEf9UAcn7sHbkQau5',
       },
-      {
-        text: 'Press Inquiry',
-        external: true,
-        url: 'https://forms.gle/se7hd5Sz5x8Lkoj87',
-      },
+      // {
+      //   text: 'Press Inquiry',
+      //   external: true,
+      //   url: 'https://forms.gle/se7hd5Sz5x8Lkoj87',
+      // },
     ],
   },
   {

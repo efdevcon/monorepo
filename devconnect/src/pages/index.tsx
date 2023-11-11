@@ -239,16 +239,7 @@ export const FAQDuringEvent = [
     text: 'Media inquiries?',
     value: 'media-inquiries',
     content: () => {
-      return (
-        <>
-          Please note, we don't share media lists and are not looking for partnerships, but press pass applications are
-          open{' '}
-          <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
-            here
-          </Link>
-          .
-        </>
-      )
+      return <>Please note, we don't share media lists and are not looking for partnerships.</>
     },
   },
   {
