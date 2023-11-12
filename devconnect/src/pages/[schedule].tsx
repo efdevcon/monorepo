@@ -855,6 +855,11 @@ const EventMeta = (props: any) => {
       )}
 
       <div className={`${css['categories']}`}>
+        {props.event['Stream URL'] && (
+          <Link href={props.event['Stream URL']}>
+            <div className="tag tiny-text-em red">Video</div>
+          </Link>
+        )}
         {props.event.Category &&
           props.event.Category.length > 0 &&
           props.event.Category.map((category: any) => {
@@ -2297,7 +2302,7 @@ const normalizeEvent = (eventData: any): FormattedNotionEvent => {
     Name: keyResolver('Name'),
     Organizer: keyResolver('Organizer', '[HOST] Organizer'),
     URL: keyResolver('URL', '[HOST] Event Website URL'),
-    'Stream URL': keyResolver('Stream URL'),
+    'Stream URL': keyResolver('Stream URL', '[WEB] Stream URL'),
     Date: keyResolver('Date', '[HOST] Event Date'),
     Live: keyResolver('Live', '[WEB] Live'),
     Attend: keyResolver('Attend', '[HOST] Status'),
