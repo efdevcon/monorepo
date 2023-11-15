@@ -48,7 +48,7 @@ const tabs = [
     value: 'general-info',
   },
   {
-    text: 'Arriving in istanbul',
+    text: 'Useful Information',
     value: 'plan-your-travels',
     content: () => {
       return (
@@ -60,7 +60,7 @@ const tabs = [
             <b>Visa requirements</b>: Get your Visa before your travels,{' '}
             <Link href="https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa">if you need one</Link>!
           </p> */}
-          <p className="big-text">
+          {/* <p className="big-text">
             <b>Need a Visa invitation letter?</b> Check if you need a visa{' '}
             <Link
               indicateExternal
@@ -77,9 +77,9 @@ const tabs = [
               Cowork ticket
             </Link>{' '}
             before we can issue a letter.
-          </p>
+          </p> */}
 
-          <p className="big-text margin-top-less">
+          <p className="big-text">
             <b>Wifi: </b>
             It&apos;s always nice to be connected while on-the-go or have a backup in case of poor connectivity: We
             recommend purchasing a local SIM card or a large package of an e-SIM. We have secured discounts from two
@@ -109,7 +109,7 @@ const tabs = [
             late nights or busy times.
           </p>
 
-          <p className="big-text">
+          {/* <p className="big-text">
             <b>Weather whispers: </b>
             Istanbul in autumn is a mix of crisp air with occasional rain showers. Pack some cozy layers and don't
             forget your rain jacket.
@@ -118,7 +118,7 @@ const tabs = [
           <p className="big-text">
             <b>The “City with seven hills”: </b>
             Pack some good shoes to walk around.
-          </p>
+          </p> */}
 
           <div className={css['airports']}>
             <div>
@@ -248,6 +248,129 @@ const tabs = [
           >
             <PinIcon />
             Tourist Guide by ITU
+          </Link>
+        </div>
+      )
+    },
+  },
+  {
+    text: 'Tips from a Local',
+    value: 'local-tips',
+    content: () => {
+      return (
+        <div className="tab-content">
+          <p>
+            <b>Practical information</b>
+          </p>
+          <ul>
+            <li>We recommend downloading a VPN before arriving to Istanbul.</li>
+            <li>
+              <b>Credit Card:</b> Widely used in Istanbul, you don't need much cash.
+            </li>
+            <li>
+              <b>Best exchange:</b> We recommend avoiding exchanges at the airport for their poor rates. There are lots
+              of change offices in every district.
+            </li>
+            <li>
+              <b>Tipping culture:</b> 5-10% or rounding up.
+            </li>
+            <li>
+              <b>Tap water:</b> NOT safe to drink. Bottled water is easy to find.
+            </li>
+          </ul>
+          <p>
+            <b>"The shoe shiner scam"</b>
+          </p>
+          <p>
+            Beware of shoe shiners in Istanbul who may{' '}
+            <Link indicateExternal href="https://turkishtravelblog.com/shoe-shine-scam-istanbul/">
+              drop their brush near you
+            </Link>
+            , then offer to shine your shoe in gratitude - they will greatly overcharge you out of claimed desperation,
+            so politely decline. Stick to regular shoe shiners at their stools to avoid being scammed.
+          </p>
+          <p>
+            <b>Negotiate on markets</b>
+          </p>
+          <p>
+            Always bargain at bazaars, like the Grand Bazar or Spice Market. There&apos;s always room for some discount.
+            These guys are sales experts!
+          </p>
+          <p>
+            <b>Taxis</b>
+          </p>
+          <ul>
+            <li>Risk of scamming in regular taxis is high.</li>
+            <li>Use Uber or BiTaksi apps to find a taxi, follow your route, and always check the license plate.</li>
+            <li>
+              It can get difficult to find a taxi in rush hours or crowded areas, so better use public transport then.
+            </li>
+            <li>
+              If you need to use a regular taxi, always check that the taximeter is turned on and counting when
+              you&apos;re driving.
+            </li>
+            <li>
+              There can indeed be extra fees for crossing highways, bridges, and tunnels, and taxi drivers might ask you
+              for it.
+            </li>
+            <li>
+              In case you think you were overcharged or have a problem take note of the taxi plate. You can file a
+              complaint at the “White Desk” of the municipality by calling “153”, from the{' '}
+              <Link indicateExternal href="https://cozummerkezi.ibb.istanbul/application/cozummerkezi">
+                website
+              </Link>
+              ,{' '}
+              <Link indicateExternal href="https://play.google.com/store/apps/details?id=com.tr.gov.ibb.istanbulsenin">
+                Android
+              </Link>
+              , or{' '}
+              <Link indicateExternal href="https://apps.apple.com/tr/app/lstanbul-senin/id1534342254?l=tr">
+                Apple
+              </Link>{' '}
+              apps.
+            </li>
+          </ul>
+          <p>
+            <b>How do I behave around the cats “miyav”?</b>{' '}
+          </p>
+          <p>
+            Many locals view the cats as communally-owned pets rather than traditional strays, and it&apos;s common to
+            feed them. Here there is a documentary about cats in Istanbul: “Kedi”{' '}
+            <Link indicateExternal href="https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers">
+              https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers
+            </Link>
+          </p>
+          <p>
+            <b>Be friendly</b> 🙂
+          </p>
+          <p>It&#39;s essential to be friendly and get along well with taxi drivers and local shopkeepers.</p>
+          <p>
+            <b>Do locals speak English?</b>
+          </p>
+          <p>
+            Yes they do, even though their English may not be very fluent. Shopkeepers are very helpful in every matter,
+            and you can feel comfortable asking them questions. :)
+          </p>
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://kaanuzdogan.com/kaans-foodie-guide-during-devconnect-istanbul"
+          >
+            <PinIcon />
+            Kaan's Foodie Guide
+          </Link>
+          <Link
+            className="button orange margin-top-less margin-right-less"
+            href="https://itublockchain.notion.site/itublockchain/Food-and-Drink-Guide-by-ITU-Blockchain-9598ce3a51494d72a842d71d3692d3d3"
+          >
+            <PinIcon />
+            ITU Food and Drink Guide
+          </Link>
+          <Link
+            className="button orange margin-top-less "
+            href="https://www.google.com/maps/@41.0481054,28.9906437,15z/data=!3m1!4b1!4m3!11m2!2sqfLohimFSFu5m5WNqdu32w!3e3?entry=ttu"
+          >
+            <PinIcon />
+            Lunch and dinner spots around ICC
           </Link>
         </div>
       )
@@ -568,129 +691,6 @@ const tabs = [
     },
   },
   {
-    text: 'Tips from a Local',
-    value: 'local-tips',
-    content: () => {
-      return (
-        <div className="tab-content">
-          <p>
-            <b>Practical information</b>
-          </p>
-          <ul>
-            <li>We recommend downloading a VPN before arriving to Istanbul.</li>
-            <li>
-              <b>Credit Card:</b> Widely used in Istanbul, you don't need much cash.
-            </li>
-            <li>
-              <b>Best exchange:</b> We recommend avoiding exchanges at the airport for their poor rates. There are lots
-              of change offices in every district.
-            </li>
-            <li>
-              <b>Tipping culture:</b> 5-10% or rounding up.
-            </li>
-            <li>
-              <b>Tap water:</b> NOT safe to drink. Bottled water is easy to find.
-            </li>
-          </ul>
-          <p>
-            <b>"The shoe shiner scam"</b>
-          </p>
-          <p>
-            Beware of shoe shiners in Istanbul who may{' '}
-            <Link indicateExternal href="https://turkishtravelblog.com/shoe-shine-scam-istanbul/">
-              drop their brush near you
-            </Link>
-            , then offer to shine your shoe in gratitude - they will greatly overcharge you out of claimed desperation,
-            so politely decline. Stick to regular shoe shiners at their stools to avoid being scammed.
-          </p>
-          <p>
-            <b>Negotiate on markets</b>
-          </p>
-          <p>
-            Always bargain at bazaars, like the Grand Bazar or Spice Market. There&apos;s always room for some discount.
-            These guys are sales experts!
-          </p>
-          <p>
-            <b>Taxis</b>
-          </p>
-          <ul>
-            <li>Risk of scamming in regular taxis is high.</li>
-            <li>Use Uber or BiTaksi apps to find a taxi, follow your route, and always check the license plate.</li>
-            <li>
-              It can get difficult to find a taxi in rush hours or crowded areas, so better use public transport then.
-            </li>
-            <li>
-              If you need to use a regular taxi, always check that the taximeter is turned on and counting when
-              you&apos;re driving.
-            </li>
-            <li>
-              There can indeed be extra fees for crossing highways, bridges, and tunnels, and taxi drivers might ask you
-              for it.
-            </li>
-            <li>
-              In case you think you were overcharged or have a problem take note of the taxi plate. You can file a
-              complaint at the “White Desk” of the municipality by calling “153”, from the{' '}
-              <Link indicateExternal href="https://cozummerkezi.ibb.istanbul/application/cozummerkezi">
-                website
-              </Link>
-              ,{' '}
-              <Link indicateExternal href="https://play.google.com/store/apps/details?id=com.tr.gov.ibb.istanbulsenin">
-                Android
-              </Link>
-              , or{' '}
-              <Link indicateExternal href="https://apps.apple.com/tr/app/lstanbul-senin/id1534342254?l=tr">
-                Apple
-              </Link>{' '}
-              apps.
-            </li>
-          </ul>
-          <p>
-            <b>How do I behave around the cats “miyav”?</b>{' '}
-          </p>
-          <p>
-            Many locals view the cats as communally-owned pets rather than traditional strays, and it&apos;s common to
-            feed them. Here there is a documentary about cats in Istanbul: “Kedi”{' '}
-            <Link indicateExternal href="https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers">
-              https://www.youtube.com/watch?v=PpG0z-npFIY&amp;ab_channel=vlogbrothers
-            </Link>
-          </p>
-          <p>
-            <b>Be friendly</b> 🙂
-          </p>
-          <p>It&#39;s essential to be friendly and get along well with taxi drivers and local shopkeepers.</p>
-          <p>
-            <b>Do locals speak English?</b>
-          </p>
-          <p>
-            Yes they do, even though their English may not be very fluent. Shopkeepers are very helpful in every matter,
-            and you can feel comfortable asking them questions. :)
-          </p>
-          <Link
-            className="button orange margin-top-less margin-right-less"
-            href="https://kaanuzdogan.com/kaans-foodie-guide-during-devconnect-istanbul"
-          >
-            <PinIcon />
-            Kaan's Foodie Guide
-          </Link>
-          <Link
-            className="button orange margin-top-less margin-right-less"
-            href="https://itublockchain.notion.site/itublockchain/Food-and-Drink-Guide-by-ITU-Blockchain-9598ce3a51494d72a842d71d3692d3d3"
-          >
-            <PinIcon />
-            ITU Food and Drink Guide
-          </Link>
-          <Link
-            className="button orange margin-top-less "
-            href="https://www.google.com/maps/@41.0481054,28.9906437,15z/data=!3m1!4b1!4m3!11m2!2sqfLohimFSFu5m5WNqdu32w!3e3?entry=ttu"
-          >
-            <PinIcon />
-            Lunch and dinner spots around ICC
-          </Link>
-        </div>
-      )
-    },
-  },
-  {
     text: 'History and Culture',
     alwaysOpen: true,
     value: 'history-and-culture',
@@ -983,12 +983,13 @@ const List = (props: any) => {
         </div>
         <Link
           href={`https://team.notion.site/pse-team/Istanbul-Tourist-Visa-30-90-days-E-Visa-Public-5f83cc372a224c1e9b3ed6d6170aa0a8`}
-          className={`${css['right']} orange uppercase tiny-text hover-underline generic`}
+          className={`${css['right']} orange uppercase small-text hover-underline generic`}
           // onClick={(e: any) => {
           //   if (props.accordionRefs.current['plan-your-travels']) {
           //     props.accordionRefs.current['plan-your-travels'].open()
           //   }
           // }}
+          indicateExternal
         >
           Requirements
         </Link>
@@ -1002,7 +1003,8 @@ const List = (props: any) => {
         </div>
         <Link
           href="https://www.xe.com/currencyconverter/convert/?Amount=1&From=USD&To=TRY"
-          className={`${css['right']} orange uppercase tiny-text hover-underline`}
+          className={`${css['right']} orange uppercase small-text hover-underline`}
+          indicateExternal
         >
           Exchange Rate
         </Link>
@@ -1028,7 +1030,7 @@ const List = (props: any) => {
         </div>
       </div>
 
-      <div className={css['row']}>
+      {/* <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
           <AnchorLink
             href={`#where-to-stay`}
@@ -1053,12 +1055,32 @@ const List = (props: any) => {
         >
           Contact
         </AnchorLink>
+      </div> */}
+
+      <div className={css['row']}>
+        <div className={`${css['left']} uppercase`}>
+          <b>Emergency Number</b>
+        </div>
+        <div className={css['right']}>112</div>
       </div>
 
       <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
-          <b>⚠️ Emergency Number: 112</b>
+          <b>Devconnect Emergency Number</b>
         </div>
+        <div className={css['right']}>+90 537 797 04 28</div>
+      </div>
+
+      <div className={css['row']}>
+        <div className={`${css['left']} uppercase`}>
+          <Link href="https://forms.gle/VpDbaJK18HYitJgq9)" className="font-bold" indicateExternal>
+            Incident Report Form
+          </Link>
+          {/* <b>Incident Report Form</b> */}
+        </div>
+        {/* <div className={css['right']}>
+          <Link href="https://forms.gle/VpDbaJK18HYitJgq9)">Here</Link>
+        </div> */}
       </div>
     </div>
   )
@@ -1146,7 +1168,7 @@ const CityGuide: NextPage = () => {
               className="section-header orange margin-top-less margin-bottom-much-less border-top padding-top-less"
               id="plan-your-travels"
             >
-              ARRIVING IN ISTANBUL
+              Useful Information
             </p>
             <div>{tabs[1].content()}</div>
 
