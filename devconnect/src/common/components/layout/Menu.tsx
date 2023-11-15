@@ -68,45 +68,49 @@ const MultiLink = (props: any) => {
 }
 
 const menuItems = (pathname: string) => [
+  {
+    text: 'About',
+    url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
+  },
   // {
-  //   text: 'About',
-  //   url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
+  //   text: 'Cowork',
+  //   url: '/cowork',
   // },
-  {
-    text: 'Cowork',
-    url: '/cowork',
-  },
-  {
-    text: 'City Guide',
-    url: '/city-guide',
-  },
-  {
-    text: 'Schedule',
-    url: '/schedule',
-  },
-  {
-    text: 'Get Involved',
-    children: [
-      {
-        text: 'Host an event',
-        external: true,
-        url: 'https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022',
-      },
-      {
-        text: 'Volunteer',
-        // external: true,
-        url: '/cowork#volunteer', // cowork#volunteer'https://forms.gle/tEf9UAcn7sHbkQau5',
-      },
-      // {
-      //   text: 'Press Inquiry',
-      //   external: true,
-      //   url: 'https://forms.gle/se7hd5Sz5x8Lkoj87',
-      // },
-    ],
-  },
+  // {
+  //   text: 'City Guide',
+  //   url: '/city-guide',
+  // },
+  // {
+  //   text: 'Schedule',
+  //   url: '/schedule',
+  // },
+  // {
+  //   text: 'Get Involved',
+  //   children: [
+  //     {
+  //       text: 'Host an event',
+  //       external: true,
+  //       url: 'https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022',
+  //     },
+  //     {
+  //       text: 'Volunteer',
+  //       // external: true,
+  //       url: '/cowork#volunteer', // cowork#volunteer'https://forms.gle/tEf9UAcn7sHbkQau5',
+  //     },
+  //     // {
+  //     //   text: 'Press Inquiry',
+  //     //   external: true,
+  //     //   url: 'https://forms.gle/se7hd5Sz5x8Lkoj87',
+  //     // },
+  //   ],
+  // },
   {
     text: 'Past Events',
     children: [
+      {
+        text: 'Istanbul 2023',
+        url: '/istanbul',
+      },
       {
         text: 'Amsterdam 2022',
         url: '/amsterdam',
@@ -115,14 +119,14 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Devcon',
-    onlyFooter: true,
+    // onlyFooter: true,
     url: 'https://devcon.org',
   },
-  {
-    text: 'DCxPrague',
-    url: 'https://dcxprague.org/',
-    customClass: css['dcxprague-highlight'],
-  },
+  // {
+  //   text: 'DCxPrague',
+  //   url: 'https://dcxprague.org/',
+  //   customClass: css['dcxprague-highlight'],
+  // },
   // {
   //   text: 'StreamETH',
   //   customClass: pathname === '/' ? css['streameth-highlight'] : undefined,

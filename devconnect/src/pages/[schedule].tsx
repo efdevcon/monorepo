@@ -2274,7 +2274,11 @@ export async function getStaticProps(context: any) {
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { schedule: 'schedule' } }, { params: { schedule: 'amsterdam' } }],
+    paths: [
+      { params: { schedule: 'schedule' } },
+      { params: { schedule: 'amsterdam' } },
+      { params: { schedule: 'istanbul' } },
+    ],
     fallback: false,
   }
 }

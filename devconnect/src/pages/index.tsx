@@ -33,8 +33,12 @@ import CalendarIcon from 'assets/icons/calendar-date.svg'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
 import LibButton from 'lib/components/button'
+import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
+import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import { Gallery } from './cowork'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -448,265 +452,265 @@ export const FAQDuringEvent = [
 ]
 
 // FAQ changes during event to be more pertinent
-// const FAQBeforeEvent = [
-//   {
-//     text: 'How can I get involved?',
-//     value: 'how-involve',
-//     content: () => {
-//       return (
-//         <>
-//           <p className="bold">Volunteer</p>
-//           <p>
-//             We will be looking for volunteers for Devconnect Istanbul soon! Follow{' '}
-//             <Link indicateExternal href="https://twitter.com/efdevconnect">
-//               @EFDevconnect
-//             </Link>{' '}
-//             to stay up to date.
-//           </p>
-//           <p className="bold">Be an event host</p>
-//           <p>
-//             If you want to organize an event during Devconnect, head over to the{' '}
-//             <Link
-//               indicateExternal
-//               href="https://www.notion.so/ef-events/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022?pvs=4"
-//             >
-//               event host guide
-//             </Link>
-//             .
-//           </p>
-//           <p className="bold">Media</p>
-//           <p>
-//             You want to cover Devconnect? Cool! Write us at press@devconnect.org for more info, or inquire to obtain a
-//             media pass that grants you access to the Devconnect Cowork{' '}
-//             <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87 " indicateExternal>
-//               here
-//             </Link>
-//             . <span className="bold">We, the Devconnect team, are currently not seeking media partnerships.</span>
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'I need a Visa invitation letter, can you help?',
-//     value: 'visa',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             Yes, we are happy to help! You&apos;ll need a{' '}
-//             <Link href="/cowork" indicateExternal>
-//               ticket for the Devconnect Cowork
-//             </Link>{' '}
-//             first, then you can{' '}
-//             <Link href="https://forms.gle/zDQ6ax5Ukr75gDXt5" indicateExternal>
-//               fill out this form
-//             </Link>
-//             . You will hear back from us via email within 2 weeks.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'How can I get a press pass?',
-//     value: 'press-pass',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             To inquire about obtaining a media pass for Devconnect,{' '}
-//             <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
-//               please fill out this form.
-//             </Link>{' '}
-//           </p>
-//           <p>
-//             A press pass grants access to the main Coworking Space that we are organizing. Please note that all other
-//             events are independently hosted, and a press pass does not guarantee entry into them.{' '}
-//           </p>
-//           <p>
-//             Ask us for more info about the event at <span className="bold">press@devconnect.org</span>.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'Can I sponsor Devconnect?',
-//     value: 'sponsor',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             The Devconnect team, responsible for organizing the coworking space in ICC, is currently not seeking
-//             sponsorships.
-//           </p>
-//           <p>
-//             Some of the independent teams organizing the different events might be seeking sponsorships. You can find
-//             their websites and contact information <Link href="/schedule">on the curated Devconnect schedule</Link>.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'Can I speak at Devconnect?',
-//     value: 'speak',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             The Devconnect team, responsible for organizing the coworking space in ICC, is not looking for speakers.
-//           </p>
-//           <p>
-//             Some of the independent teams organizing the different events might be looking for speakers or panelists.
-//             You can find their websites and contact information{' '}
-//             <Link href="/schedule">on the curated Devconnect schedule</Link>.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'How do I know if Devconnect is for me?',
-//     value: 'howdoiknow',
-//     content: () => {
-//       return (
-//         <>
-//           <p>Devconnect is for you if you …</p>
-//           <ul>
-//             <li>want to meet people in Ethereum in person</li>
-//             <li>
-//               love to co-work in an incredible{' '}
-//               <Link
-//                 href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
-//                 indicateExternal
-//               >
-//                 Coworking Space
-//               </Link>{' '}
-//               next to others in the Ethereum space
-//             </li>
-//             <li>
-//               <b>dive</b> deep into topics you care about with other domain experts
-//             </li>
-//             <li>want to make progress on solving specific problems</li>
-//             <li>are passionate about creating more decentralized and fairer systems</li>
-//           </ul>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'How can I navigate through events and ticketing?',
-//     value: 'ticketingandevents',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             👉 Take a look at our curated <Link href="/schedule">events calendar here!</Link> You&apos;ll find brief
-//             descriptions of each event, an estimation of the difficulty level (beginner/intermediate/expert), and links
-//             to the event websites.
-//           </p>
-//           <p>
-//             👉 Follow{' '}
-//             <Link href="https://twitter.com/EFDevconnect" indicateExternal>
-//               @EFDevconnect
-//             </Link>{' '}
-//             on Twitter to stay in the loop. Follow the{' '}
-//             <Link href="https://twitter.com/i/lists/1663882935949295616" indicateExternal>
-//               Devconnect IST Twitter list
-//             </Link>{' '}
-//             for updates from event hosts.{' '}
-//           </p>
-//           <p>
-//             There will be many events in many different venues throughout Istanbul during the week. You can pick and
-//             choose based on your interests. <b>All events will be independently hosted, ticketed, and organized.</b>{' '}
-//             Some events will be free, some will be based on applications, and others may be ticketed with paid tickets.
-//           </p>
-//           <p>
-//             There will be an open{' '}
-//             <Link
-//               href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
-//               indicateExternal
-//             >
-//               Coworking Space
-//             </Link>{' '}
-//             throughout the week with tickets available to all, organized by the Devconnect team. Once ticketing for the
-//             Cowork is open, you will find information here.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'Why is Devconnect coming to Istanbul?',
-//     value: 'whyistanbul',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             In choosing Istanbul as the host city for Devconnect 2023, we aim to capitalize on its unique position as a
-//             bridge between East and West. Accessibility is a key priority, and Istanbul&apos;s major international
-//             airport, efficient local metro, and abundance of suitable venues for community events make it the perfect
-//             location for Devconnect 2023.
-//           </p>
-//           <p>
-//             The engaged local community and numerous student blockchain clubs in the region further strengthen our
-//             belief in the potential of this vibrant city. We are confident that Istanbul&apos;s unique blend of history,
-//             culture, and modernity will provide an inspiring backdrop for the global Ethereum developer community to
-//             come together, collaborate with these passionate groups, and drive innovation for Ethereum.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'What about Devcon?',
-//     value: 'ondevcon',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             <Link href="https://twitter.com/EFDevcon" indicateExternal>
-//               Devcon
-//             </Link>{' '}
-//             will remain our principal event, and we&apos;re excited to bring Devcon 7 to Southeast Asia in 2024!
-//             Specific dates and location are coming soon. Read about why we&apos;re scheduling Devcon 7 for 2024 in
-//             Southeast Asia{' '}
-//             <Link href="https://blog.ethereum.org/2023/02/28/devcon-7-update" indicateExternal>
-//               here
-//             </Link>
-//             .
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-//   {
-//     text: 'What is the difference between Devcon and Devconnect?',
-//     value: 'devconvsdevconnect',
-//     content: () => {
-//       return (
-//         <>
-//           <p>
-//             Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the other
-//             amazing ETH events are community-run!). Both events are Ethereum-focused but serve different purposes.
-//           </p>
-//           <p>
-//             <b>Devcon</b> is a global Ethereum <i>family reunion</i>, a place to celebrate success and align on updates
-//             and direction. It is our principal event, all in one place with one big venue, and talks and workshops open
-//             to all. <Link href="devcon.org">Devcon 7 is scheduled for 2024 in Southeast Asia</Link>!
-//           </p>
-//           <p>
-//             <b>Devconnect</b> on the other hand, is a week to <i>make progress</i>, dive deep into specific topics among
-//             fellow experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists
-//             of many individual events, organized by you the community, that each cover one topic in depth.
-//           </p>
-//         </>
-//       )
-//     },
-//   },
-// ]
+const FAQ = [
+  {
+    text: 'How can I get involved?',
+    value: 'how-involve',
+    content: () => {
+      return (
+        <>
+          <p className="bold">Volunteer</p>
+          <p>
+            We will be looking for volunteers for Devconnect Istanbul soon! Follow{' '}
+            <Link indicateExternal href="https://twitter.com/efdevconnect">
+              @EFDevconnect
+            </Link>{' '}
+            to stay up to date.
+          </p>
+          <p className="bold">Be an event host</p>
+          <p>
+            If you want to organize an event during Devconnect, head over to the{' '}
+            <Link
+              indicateExternal
+              href="https://www.notion.so/ef-events/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022?pvs=4"
+            >
+              event host guide
+            </Link>
+            .
+          </p>
+          <p className="bold">Media</p>
+          <p>
+            You want to cover Devconnect? Cool! Write us at press@devconnect.org for more info, or inquire to obtain a
+            media pass that grants you access to the Devconnect Cowork{' '}
+            <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87 " indicateExternal>
+              here
+            </Link>
+            . <span className="bold">We, the Devconnect team, are currently not seeking media partnerships.</span>
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'I need a Visa invitation letter, can you help?',
+    value: 'visa',
+    content: () => {
+      return (
+        <>
+          <p>
+            Yes, we are happy to help! You&apos;ll need a{' '}
+            <Link href="/cowork" indicateExternal>
+              ticket for the Devconnect Cowork
+            </Link>{' '}
+            first, then you can{' '}
+            <Link href="https://forms.gle/zDQ6ax5Ukr75gDXt5" indicateExternal>
+              fill out this form
+            </Link>
+            . You will hear back from us via email within 2 weeks.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'How can I get a press pass?',
+    value: 'press-pass',
+    content: () => {
+      return (
+        <>
+          <p>
+            To inquire about obtaining a media pass for Devconnect,{' '}
+            <Link href="https://forms.gle/se7hd5Sz5x8Lkoj87" indicateExternal>
+              please fill out this form.
+            </Link>{' '}
+          </p>
+          <p>
+            A press pass grants access to the main Coworking Space that we are organizing. Please note that all other
+            events are independently hosted, and a press pass does not guarantee entry into them.{' '}
+          </p>
+          <p>
+            Ask us for more info about the event at <span className="bold">press@devconnect.org</span>.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Can I sponsor Devconnect?',
+    value: 'sponsor',
+    content: () => {
+      return (
+        <>
+          <p>
+            The Devconnect team, responsible for organizing the coworking space in ICC, is currently not seeking
+            sponsorships.
+          </p>
+          <p>
+            Some of the independent teams organizing the different events might be seeking sponsorships. You can find
+            their websites and contact information <Link href="/schedule">on the curated Devconnect schedule</Link>.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Can I speak at Devconnect?',
+    value: 'speak',
+    content: () => {
+      return (
+        <>
+          <p>
+            The Devconnect team, responsible for organizing the coworking space in ICC, is not looking for speakers.
+          </p>
+          <p>
+            Some of the independent teams organizing the different events might be looking for speakers or panelists.
+            You can find their websites and contact information{' '}
+            <Link href="/schedule">on the curated Devconnect schedule</Link>.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'How do I know if Devconnect is for me?',
+    value: 'howdoiknow',
+    content: () => {
+      return (
+        <>
+          <p>Devconnect is for you if you …</p>
+          <ul>
+            <li>want to meet people in Ethereum in person</li>
+            <li>
+              love to co-work in an incredible{' '}
+              <Link
+                href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
+                indicateExternal
+              >
+                Coworking Space
+              </Link>{' '}
+              next to others in the Ethereum space
+            </li>
+            <li>
+              <b>dive</b> deep into topics you care about with other domain experts
+            </li>
+            <li>want to make progress on solving specific problems</li>
+            <li>are passionate about creating more decentralized and fairer systems</li>
+          </ul>
+        </>
+      )
+    },
+  },
+  {
+    text: 'How can I navigate through events and ticketing?',
+    value: 'ticketingandevents',
+    content: () => {
+      return (
+        <>
+          <p>
+            👉 Take a look at our curated <Link href="/schedule">events calendar here!</Link> You&apos;ll find brief
+            descriptions of each event, an estimation of the difficulty level (beginner/intermediate/expert), and links
+            to the event websites.
+          </p>
+          <p>
+            👉 Follow{' '}
+            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
+              @EFDevconnect
+            </Link>{' '}
+            on Twitter to stay in the loop. Follow the{' '}
+            <Link href="https://twitter.com/i/lists/1663882935949295616" indicateExternal>
+              Devconnect IST Twitter list
+            </Link>{' '}
+            for updates from event hosts.{' '}
+          </p>
+          <p>
+            There will be many events in many different venues throughout Istanbul during the week. You can pick and
+            choose based on your interests. <b>All events will be independently hosted, ticketed, and organized.</b>{' '}
+            Some events will be free, some will be based on applications, and others may be ticketed with paid tickets.
+          </p>
+          <p>
+            There will be an open{' '}
+            <Link
+              href="https://www.notion.so/ef-events/Devconnect-IST-Coworking-space-e811d778b6a846989600d54158ff70cf?pvs=4"
+              indicateExternal
+            >
+              Coworking Space
+            </Link>{' '}
+            throughout the week with tickets available to all, organized by the Devconnect team. Once ticketing for the
+            Cowork is open, you will find information here.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Why is Devconnect coming to Istanbul?',
+    value: 'whyistanbul',
+    content: () => {
+      return (
+        <>
+          <p>
+            In choosing Istanbul as the host city for Devconnect 2023, we aim to capitalize on its unique position as a
+            bridge between East and West. Accessibility is a key priority, and Istanbul&apos;s major international
+            airport, efficient local metro, and abundance of suitable venues for community events make it the perfect
+            location for Devconnect 2023.
+          </p>
+          <p>
+            The engaged local community and numerous student blockchain clubs in the region further strengthen our
+            belief in the potential of this vibrant city. We are confident that Istanbul&apos;s unique blend of history,
+            culture, and modernity will provide an inspiring backdrop for the global Ethereum developer community to
+            come together, collaborate with these passionate groups, and drive innovation for Ethereum.
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'What about Devcon?',
+    value: 'ondevcon',
+    content: () => {
+      return (
+        <>
+          <p>
+            <Link href="https://twitter.com/EFDevcon" indicateExternal>
+              Devcon
+            </Link>{' '}
+            will remain our principal event, and we&apos;re excited to bring Devcon 7 to Southeast Asia in 2024!
+            Specific dates and location are coming soon. Read about why we&apos;re scheduling Devcon 7 for 2024 in
+            Southeast Asia{' '}
+            <Link href="https://blog.ethereum.org/2023/02/28/devcon-7-update" indicateExternal>
+              here
+            </Link>
+            .
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'What is the difference between Devcon and Devconnect?',
+    value: 'devconvsdevconnect',
+    content: () => {
+      return (
+        <>
+          <p>
+            Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the other
+            amazing ETH events are community-run!). Both events are Ethereum-focused but serve different purposes.
+          </p>
+          <p>
+            <b>Devcon</b> is a global Ethereum <i>family reunion</i>, a place to celebrate success and align on updates
+            and direction. It is our principal event, all in one place with one big venue, and talks and workshops open
+            to all. <Link href="devcon.org">Devcon 7 is scheduled for 2024 in Southeast Asia</Link>!
+          </p>
+          <p>
+            <b>Devconnect</b> on the other hand, is a week to <i>make progress</i>, dive deep into specific topics among
+            fellow experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists
+            of many individual events, organized by you the community, that each cover one topic in depth.
+          </p>
+        </>
+      )
+    },
+  },
+]
 
 export const CodeOfConduct = () => {
   return (
@@ -971,33 +975,33 @@ const Home: NextPage = (props: any) => {
   const [hehe, setHehe] = React.useState(false)
   const organizersRef = React.useRef<any>()
   const splineRef = React.useRef<any>()
-  const [mounted, setMounted] = React.useState(false)
+  // const [mounted, setMounted] = React.useState(false)
 
-  const [timeToEvent, setTimeToEvent] = React.useState<string | null>(null)
+  // const [timeToEvent, setTimeToEvent] = React.useState<string | null>(null)
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const timeLeft: any = getTimeUntilNovember13InTurkey()
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const timeLeft: any = getTimeUntilNovember13InTurkey()
 
-      console.log(typeof timeLeft, 'time left')
+  //     console.log(typeof timeLeft, 'time left')
 
-      if (typeof timeLeft === 'string') {
-        setTimeToEvent(timeLeft)
+  //     if (typeof timeLeft === 'string') {
+  //       setTimeToEvent(timeLeft)
 
-        return
-      }
+  //       return
+  //     }
 
-      setTimeToEvent(
-        `${timeLeft.days}D:${leftPadNumber(timeLeft.hours)}H:${leftPadNumber(timeLeft.minutes)}M:${leftPadNumber(
-          timeLeft.seconds
-        )}S`
-      )
-    }, 1000)
+  //     setTimeToEvent(
+  //       `${timeLeft.days}D:${leftPadNumber(timeLeft.hours)}H:${leftPadNumber(timeLeft.minutes)}M:${leftPadNumber(
+  //         timeLeft.seconds
+  //       )}S`
+  //     )
+  //   }, 1000)
 
-    setMounted(true)
+  //   setMounted(true)
 
-    return () => clearInterval(interval)
-  }, [])
+  //   return () => clearInterval(interval)
+  // }, [])
 
   // const [width, setWidth] = React.useState(0)
   // const { observe } = useDimensions({
@@ -1082,18 +1086,17 @@ const Home: NextPage = (props: any) => {
                     </p>
 
                     <div className={css['buttons']}>
-                      <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
+                      {/* <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
                         <PlayIcon /> Get cowork tickets
-                      </Link>
+                      </Link> */}
 
                       <Link href="#about" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span>ISTANBUL, Türkiye</span>
-                        <span>November 13-19, 2023</span>
+                        <span className="!mr-0">Devconnect Istanbul Recap</span>
                       </Link>
                     </div>
                   </div>
                   <div className={css['countdown']}>
-                    {mounted && timeToEvent && (
+                    {/* {mounted && timeToEvent && (
                       <>
                         {typeof timeToEvent === 'string' ? (
                           <>
@@ -1112,7 +1115,7 @@ const Home: NextPage = (props: any) => {
                           </>
                         )}
                       </>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>
@@ -1181,16 +1184,19 @@ const Home: NextPage = (props: any) => {
                   </div>
 
                   <div className={`margin-top ${css['nowrap']}`}>
-                    <Link href="/cowork" className={`button wide orange-fill ${css['cowork-tickets-button']}`}>
-                      <PlayIcon className="icon large-text" /> COWORK TICKETS
-                    </Link>
                     <Link
+                      href="https://blog.ethereum.org"
+                      className={`button wide orange-fill ${css['cowork-tickets-button']}`}
+                    >
+                      Wrap up Blog (TODO ADD LINK)
+                    </Link>
+                    {/* <Link
                       href="/city-guide"
                       className={`button wide orange margin-left-less ${css['city-guide-button']}`}
                       indicateExternal
                     >
                       City Guide
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <div className="right">
@@ -1439,6 +1445,100 @@ const Home: NextPage = (props: any) => {
             </Observer>
           </div> */}
 
+          <Scene growVertically growNaturally className={`${css['scene-about-past']}`}>
+            <div className="section">
+              <h1 className="section-header orange border-top padding-top-less">Cowork</h1>
+
+              <Gallery />
+            </div>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-about-past']} my-8`}>
+            <div className="section my-8">
+              <h1 className=" section-header orange border-top padding-top-less">Gallery hey hey heyyy</h1>
+            </div>
+            <InfiniteScroller nDuplications={4}>
+              <PastEventCard
+                className="ml-4"
+                text="Istanbul Schedule"
+                renderImage={() => (
+                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
+                )}
+              />
+              <PastEventCard
+                className="ml-4"
+                text="Istanbul Schedule"
+                renderImage={() => (
+                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
+                )}
+              />
+              <PastEventCard
+                className="ml-4"
+                text="Istanbul Schedule"
+                renderImage={() => (
+                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
+                )}
+              />
+              <PastEventCard
+                className="ml-4"
+                text="Istanbul Schedule"
+                renderImage={() => (
+                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
+                )}
+              />
+            </InfiniteScroller>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-about-past']}`}>
+            <div className="section">
+              <div className="flex">
+                <div className="basis-2/4 shrink-0">
+                  <h1 className="section-header orange border-top padding-top-less">About Devconnect</h1>
+
+                  <p>
+                    Devconnect is a week-long and in-person gathering that will feature independent Ethereum events,
+                    each with a unique focus.
+                  </p>
+
+                  <p>
+                    The goal is to focus on depth-first gatherings rather than size, and to bring the Ethereum community
+                    together in smaller groups to talk (and learn) about, or to make sincere progress on, specific
+                    subjects.
+                  </p>
+                </div>
+
+                <div className="basis-2/4 shrink-0">
+                  <h1 className="section-header orange border-top padding-top-less">Past Events</h1>
+
+                  <div className="flex flex-row gap-4 py-8">
+                    <PastEventCard
+                      text="Istanbul Schedule"
+                      renderImage={() => (
+                        <ImageNew
+                          src={istanbulScheduleBackground}
+                          className="h-full w-full object-fill"
+                          alt="Amsterdam"
+                        />
+                      )}
+                    />
+                    <PastEventCard
+                      text="Amsterdam Gallery"
+                      renderImage={() => (
+                        <ImageNew
+                          src={istanbulScheduleBackground}
+                          className="h-full w-full object-fill"
+                          alt="Amsterdam"
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* <BlogReel blogs={props.blogs} /> */}
+            </div>
+          </Scene>
+
           <Scene growVertically growNaturally className={`${css['scene-faq']}`}>
             {/* <Observer> */}
             <div className="section">
@@ -1491,7 +1591,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div> */}
 
-              {/* <h1 className="section-header orange">Frequently Asked Questions</h1>
+              <h1 className="section-header orange">Frequently Asked Questions</h1>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
                 <Accordion>
@@ -1508,7 +1608,7 @@ const Home: NextPage = (props: any) => {
                     )
                   })}
                 </Accordion>
-              </div> */}
+              </div>
             </div>
             {/* </Observer> */}
           </Scene>

@@ -2,12 +2,6 @@
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect ../lib"
 
 [[redirects]]
-  from = "/istanbul"
-  to = "https://devconnect.org/schedule"
-  status = 302
-  force = true
-
-[[redirects]]
   from = "/host"
   to = "https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022"
   status = 302
@@ -23,6 +17,6 @@
 # 26th June 2023
 [[redirects]]
   from = "/edition/istanbul"
-  to = "https://devconnect.org/schedule"
+  to = "https://devconnect.org/istanbul"
   status = 302
   force = true
