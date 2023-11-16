@@ -9,7 +9,7 @@
   flex-wrap: nowrap;
   width: fit-content;
   animation: marquee var(--animation-speed) linear infinite;
-  --animation-speed: 30s;
+  --animation-speed: var(--override-speed, 30s);
 
   &.slow {
     --animation-speed: 80s;

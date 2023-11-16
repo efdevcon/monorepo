@@ -39,6 +39,8 @@ import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import { Gallery } from './cowork'
+import ETHGunuCover from 'assets/images/video-archive/ETHGunu_cover.webp'
+import StakingCover from 'assets/images/video-archive/staking_cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
@@ -1216,7 +1218,7 @@ const Home: NextPage = (props: any) => {
             {/* </Observer> */}
 
             <div className={css['background-cityscape']}>
-              <ImageNew src={bgMerged} alt="Istanbul inspired cityscape background" />
+              <ImageNew src={bgMerged} alt="Istanbul inspired Cityscape Background" />
             </div>
 
             {/* <div className={css['background-layers']}>
@@ -1250,21 +1252,21 @@ const Home: NextPage = (props: any) => {
             {/* <Observer> */}
             <div className="section margin-bottom" id="about">
               <div className="flex">
-                <div className="relative basis-3/4">
+                <div className="relative basis 4/4 xl:basis-3/4">
                   <h1 className="section-header orange margin-top-less margin-bottom-less border-top border-neutral-300 pt-8">
                     Devconnect Week
                   </h1>
 
-                  <p className="extra-large-text pb-12">
+                  <p className="extra-large-text xl:pb-12">
                     Relive Devconnect Istanbul and watch replays of some of the key community events during the week.
                   </p>
                 </div>
 
-                <div className="relative basis-1/3 shrink-0">
+                <div className="relative hidden xl:block basis-1/3 shrink-0">
                   <ImageNew
                     src={ShapesImage}
                     alt="shapes image"
-                    className="hidden md:block absolute h-[135%] bottom-0 object-contain object-bottom"
+                    className="absolute h-[135%] bottom-0 object-contain object-bottom"
                   />
                 </div>
               </div>
@@ -1433,38 +1435,10 @@ const Home: NextPage = (props: any) => {
           </div> */}
 
           <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
-            {/* <div className="section my-8">
-              <h1 className=" section-header orange border-top padding-top-less">Gallery hey hey heyyy</h1>
-            </div> */}
-            <InfiniteScroller nDuplications={4}>
-              <PastEventCard
-                className="ml-4"
-                text="Istanbul Schedule"
-                renderImage={() => (
-                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
-                )}
-              />
-              <PastEventCard
-                className="ml-4"
-                text="Istanbul Schedule"
-                renderImage={() => (
-                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
-                )}
-              />
-              <PastEventCard
-                className="ml-4"
-                text="Istanbul Schedule"
-                renderImage={() => (
-                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
-                )}
-              />
-              <PastEventCard
-                className="ml-4"
-                text="Istanbul Schedule"
-                renderImage={() => (
-                  <ImageNew src={istanbulScheduleBackground} className="h-full w-full object-fill" alt="Amsterdam" />
-                )}
-              />
+            <InfiniteScroller nDuplications={4} speed="80s">
+              {[ETHGunuCover, StakingCover].map((src, i) => {
+                return <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+              })}
             </InfiniteScroller>
           </Scene>
 
