@@ -13,7 +13,7 @@ export default (props: PastEventCard) => {
     <div
       className={`flex grow flex-col bg-[#F3F3F3] aspect-square border border-solid border-neutral-300   text-[#6A6868] [--icon-color:#6A6868] relative overflow-hidden min-h-[200px] min-w-[315px] max-w-full ${props.className}`}
     >
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden grow">
         <props.renderImage />
       </div>
       <div className="flex shrink-0 grow-0 content-center justify-between py-6 px-4">

@@ -1448,7 +1448,7 @@ const Home: NextPage = (props: any) => {
                 <div className={css['topics-header']}>
                   <p className="section-header uppercase orange">Topics Covered</p>
                   <Link href="/istanbul" className={`orange button`} indicateExternal>
-                    View Full Schedule
+                    View Schedule
                   </Link>
                 </div>
 
@@ -1489,8 +1489,8 @@ const Home: NextPage = (props: any) => {
 
           <Scene growVertically growNaturally className={`${css['scene-content']}`}>
             <div className="section">
-              <div className="flex mb-0 lg:mb-8 flex-col lg:flex-row">
-                <div className="basis-1/1 lg:basis-2/4 shrink-0">
+              <div className="flex mb-0 xl:mb-8 flex-col xl:flex-row">
+                <div className="basis-1/1 xl:basis-2/4 shrink-0">
                   <h1 className="section-header orange">About Devconnect</h1>
 
                   <div className="mt-6">
@@ -1510,7 +1510,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div>
 
-                <div className="basis-1/1 lg:basis-2/4 overflow-hidden mt-8 lg:mt-0 pl-0 lg:pl-8">
+                <div className="basis-1/1 xl:basis-2/4 overflow-hidden mt-8 xl:mt-0 pl-0 xl:pl-8">
                   <h1 className="section-header orange">Past Events</h1>
 
                   <div className="flex flex-row flex-wrap gap-4 py-8 max-w-full">
