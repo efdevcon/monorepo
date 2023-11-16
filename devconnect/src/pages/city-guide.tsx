@@ -1073,14 +1073,15 @@ const List = (props: any) => {
 
       <div className={css['row']}>
         <div className={`${css['left']} uppercase`}>
-          <Link href="https://forms.gle/VpDbaJK18HYitJgq9" className="font-bold" indicateExternal>
+          <Link href="https://forms.gle/VpDbaJK18HYitJgq9" className="font-bold">
             Incident Report Form
           </Link>
-          {/* <b>Incident Report Form</b> */}
         </div>
-        {/* <div className={css['right']}>
-          <Link href="https://forms.gle/VpDbaJK18HYitJgq9)">Here</Link>
-        </div> */}
+        <div className={css['right']}>
+          <Link href="https://forms.gle/VpDbaJK18HYitJgq9" indicateExternal className="orange">
+            REPORT INCIDENT
+          </Link>
+        </div>
       </div>
     </div>
   )
