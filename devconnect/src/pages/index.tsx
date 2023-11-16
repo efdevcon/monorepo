@@ -39,6 +39,7 @@ import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import { Gallery } from './cowork'
+import SwipeToScroll from 'common/components/swipe-to-scroll'
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -1162,24 +1163,22 @@ const Home: NextPage = (props: any) => {
             {/* <Observer> */}
             <div className="section" id="about">
               <h1 className="section-header clear-vertical" style={{ zIndex: 1 }}>
-                <span className="orange">WHY DEVCONNECT</span>
+                <span className="orange">DEVCONNECT IST</span>
               </h1>
 
               <div className={`columns margin-bottom`}>
                 <div className="left fill-45">
                   <div>
                     <p className={css['big-description']}>
-                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
-                      <b>
-                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
-                      </b>
+                      Second Devconnect was held in the bustling metropolis of{' '}
+                      <span className={css['red-underline']}>Istanbul</span>, a symbolic and physical bridge between
+                      europe and asia.
                     </p>
 
                     <p className="large-text margin-top-less">
-                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
-                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
-                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
-                      rich history and culture of Istanbul.
+                      Over eight days, the Ethereum community hosted independent events and workshops and held in-depth
+                      discussions on topics such as Ethereum staking, Layer 2s, web3 UX, and MEV. The event took over
+                      the city of Amsterdam, with Devconnect flags and bikes visible all around.
                     </p>
                   </div>
 
@@ -1227,70 +1226,58 @@ const Home: NextPage = (props: any) => {
             </div> */}
           </Scene>
 
-          <Scene growNaturally growVertically className={`${css['scene-content']}`}>
+          <Scene growVertically growNaturally className={`${css['scene-content']} mt-8`}>
+            <div className="section">
+              <h1 className="section-header orange">Cowork</h1>
+
+              <p className={`large-text mt-4`}>
+                Multiple events, independently organized by the community.
+                <br />
+                Each event has a unique focus, ranging from beginner-friendly to expert level.
+              </p>
+
+              <Gallery />
+
+              <div>
+                <Link href="/image-gallery" className="button orange">
+                  View Image Gallery (TODO: add link)
+                </Link>
+              </div>
+            </div>
+          </Scene>
+
+          <Scene growNaturally growVertically className={`${css['scene-content']} !overflow-visible`}>
             {/* <Observer> */}
             <div className="section margin-bottom" id="about">
-              <h1 className="section-header orange margin-top-less margin-bottom-less">What to Expect</h1>
+              <div className="flex">
+                <div className="relative basis-3/4">
+                  <h1 className="section-header orange margin-top-less margin-bottom-less border-top border-neutral-300 pt-8">
+                    Devconnect Week
+                  </h1>
 
-              <p className="extra-large-text margin-bottom-less">
+                  <p className="extra-large-text pb-12">
+                    Relive Devconnect Istanbul and watch replays of some of the key community events during the week.
+                  </p>
+                </div>
+
+                <div className="relative basis-1/3 shrink-0">
+                  <ImageNew
+                    src={ShapesImage}
+                    alt="shapes image"
+                    className="hidden md:block absolute h-[135%] bottom-0 object-contain object-bottom"
+                  />
+                </div>
+              </div>
+
+              {/* <p className="extra-large-text margin-bottom-less">
                 Multiple events, <u>independently</u> organized by the <span className="orange">community</span>.
                 <br />
                 Each event has a unique focus, ranging from <b>beginner-friendly to expert level.</b>
-              </p>
+              </p> */}
 
               {/* <div className="margin-top margin-bottom"></div> */}
 
-              <div className={css['topics-header']}>
-                <p className="section-header uppercase grey">Topics Include</p>
-                <Link href="/schedule" className={`orange button`} indicateExternal>
-                  View Schedule
-                </Link>
-              </div>
-
-              <div className="columns margin-top">
-                <div
-                  className={`${css['topics']} left fill-65 border-bottom padding-bottom-less`}
-                  id="topics-container"
-                >
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}>Decentralized Systems • </div>
-                  </Observer>
-
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}>Scalability • privacy • incentive mechanisms</div>
-                  </Observer>
-
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}> • mev • UX • governance & more</div>
-                  </Observer>
-                </div>
-
-                <div className={`right ${css['shapes-container']}`}>
-                  <div className={css['shapes']}>
-                    <ImageNew src={ShapesImage} alt="shapes image" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="margin-top margin-bottom-less"></div>
+              {/* <div className="margin-top margin-bottom-less"></div>
 
               <h1 className="section-header orange margin-bottom-less">Host Your Event At Devconnect</h1>
 
@@ -1327,7 +1314,7 @@ const Home: NextPage = (props: any) => {
                 >
                   Host An Event
                 </Link>
-              </div>
+              </div> */}
             </div>
             {/* </Observer> */}
           </Scene>
@@ -1445,18 +1432,10 @@ const Home: NextPage = (props: any) => {
             </Observer>
           </div> */}
 
-          <Scene growVertically growNaturally className={`${css['scene-about-past']}`}>
-            <div className="section">
-              <h1 className="section-header orange border-top padding-top-less">Cowork</h1>
-
-              <Gallery />
-            </div>
-          </Scene>
-
-          <Scene growVertically growNaturally className={`${css['scene-about-past']} my-8`}>
-            <div className="section my-8">
+          <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
+            {/* <div className="section my-8">
               <h1 className=" section-header orange border-top padding-top-less">Gallery hey hey heyyy</h1>
-            </div>
+            </div> */}
             <InfiniteScroller nDuplications={4}>
               <PastEventCard
                 className="ml-4"
@@ -1489,28 +1468,78 @@ const Home: NextPage = (props: any) => {
             </InfiniteScroller>
           </Scene>
 
-          <Scene growVertically growNaturally className={`${css['scene-about-past']}`}>
+          <Scene growVertically growNaturally className={`${css['scene-content']} my-8`}>
             <div className="section">
-              <div className="flex">
-                <div className="basis-2/4 shrink-0">
-                  <h1 className="section-header orange border-top padding-top-less">About Devconnect</h1>
-
-                  <p>
-                    Devconnect is a week-long and in-person gathering that will feature independent Ethereum events,
-                    each with a unique focus.
-                  </p>
-
-                  <p>
-                    The goal is to focus on depth-first gatherings rather than size, and to bring the Ethereum community
-                    together in smaller groups to talk (and learn) about, or to make sincere progress on, specific
-                    subjects.
-                  </p>
+              <div className="border-bottom border-neutral-300 pb-8">
+                <div className={css['topics-header']}>
+                  <p className="section-header uppercase orange">Topics Covered</p>
+                  <Link href="/istanbul" className={`orange button`} indicateExternal>
+                    View Full Schedule
+                  </Link>
                 </div>
 
-                <div className="basis-2/4 shrink-0">
-                  <h1 className="section-header orange border-top padding-top-less">Past Events</h1>
+                <div className={`${css['topics']} my-4`} id="topics-container">
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}>Decentralized Systems • </div>
+                  </Observer>
 
-                  <div className="flex flex-row gap-4 py-8">
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}>Scalability • privacy • incentive mechanisms</div>
+                  </Observer>
+
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}> • mev • UX • governance & more</div>
+                  </Observer>
+                </div>
+              </div>
+            </div>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-content']}`}>
+            <div className="section">
+              <div className="flex gap-8 mb-8">
+                <div className="basis-2/4 shrink-0">
+                  <h1 className="section-header orange">About Devconnect</h1>
+
+                  <div className="mt-6">
+                    <p className={css['big-description']}>
+                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
+                      <b>
+                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
+                      </b>
+                    </p>
+
+                    <p className="large-text margin-top-less">
+                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
+                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
+                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
+                      rich history and culture of Istanbul.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="basis-2/4 shrink-0 overflow-hidden">
+                  <h1 className="section-header orange">Past Events</h1>
+
+                  <div className="flex flex-row flex-wrap gap-4 py-8 max-w-full">
                     <PastEventCard
                       text="Istanbul Schedule"
                       renderImage={() => (
