@@ -16,7 +16,10 @@ const InfiniteScroll = (props: any) => {
   const nDuplications = props.nDuplications || 2;
 
   return (
-    <div className={css["wrap"]} style={{ "--override-speed": props.speed }}>
+    <div
+      className={css["wrap"]}
+      style={{ "--override-speed": props.speed } as any}
+    >
       <div className={className}>
         {Array.from(
           Array(nDuplications)
