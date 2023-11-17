@@ -890,6 +890,10 @@ const tabs = [
       )
     },
   },
+  {
+    text: 'Emergency Number',
+    value: 'general-info',
+  },
 ] as any
 
 export const Tabs = (props: any) => {
