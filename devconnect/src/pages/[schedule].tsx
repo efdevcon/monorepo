@@ -1663,6 +1663,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const { scheduleView, setScheduleView } = props
   const favorites = useFavorites(props.events, props.edition)
+
   let {
     events,
     mobileFilterOpen,

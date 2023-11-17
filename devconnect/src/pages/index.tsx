@@ -42,6 +42,9 @@ import { Gallery } from './cowork'
 import ETHGunuCover from 'assets/images/video-archive/ETHGunu_cover.webp'
 import StakingCover from 'assets/images/video-archive/staking_cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
+import Cowork1 from 'assets/images/cowork-gallery/cowork-1.png'
+import Cowork2 from 'assets/images/cowork-gallery/cowork-2.png'
+
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
@@ -1172,9 +1175,11 @@ const Home: NextPage = (props: any) => {
                 <div className="left fill-45">
                   <div>
                     <p className={css['big-description']}>
-                      Second Devconnect was held in the bustling metropolis of{' '}
-                      <span className={css['red-underline']}>Istanbul</span>, a symbolic and physical bridge between
-                      europe and asia.
+                      <b>
+                        Second Devconnect was held in the bustling metropolis of{' '}
+                        <span className={css['red-underline']}>Istanbul</span>
+                      </b>
+                      , a symbolic and physical bridge between europe and asia.
                     </p>
 
                     <p className="large-text margin-top-less">
@@ -1237,9 +1242,27 @@ const Home: NextPage = (props: any) => {
                 <br />
                 Each event has a unique focus, ranging from beginner-friendly to expert level.
               </p>
+            </div>
+          </Scene>
 
-              <Gallery />
+          <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
+            <InfiniteScroller nDuplications={4} speed="180s" height="500px">
+              {[Cowork1, Cowork2, ETHGunuCover, StakingCover].map((src, i) => {
+                return (
+                  <ImageNew
+                    src={src}
+                    key={i}
+                    alt="Recorded Session Cover Image"
+                    className="shrink-0 !h-full !w-auto object-contain mr-4"
+                  />
+                )
+              })}
+            </InfiniteScroller>
+          </Scene>
 
+          {/* <Gallery /> */}
+          <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
+            <div className="section">
               <div>
                 <Link href="/image-gallery" className="button orange">
                   View Image Gallery (TODO: add link)
@@ -1266,7 +1289,7 @@ const Home: NextPage = (props: any) => {
                   <ImageNew
                     src={ShapesImage}
                     alt="shapes image"
-                    className="absolute h-[135%] bottom-0 object-contain object-bottom"
+                    className="absolute h-[130%] bottom-0 object-contain object-bottom"
                   />
                 </div>
               </div>
@@ -1434,15 +1457,37 @@ const Home: NextPage = (props: any) => {
             </Observer>
           </div> */}
 
-          <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
-            <InfiniteScroller nDuplications={4} speed="80s">
-              {[ETHGunuCover, StakingCover].map((src, i) => {
-                return <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
-              })}
-            </InfiniteScroller>
+          <Scene growVertically growNaturally className={`${css['scene-about-content']} mt-8`}>
+            <div className="section !overflow-visible">
+              <SwipeToScroll>
+                <div className="flex flex-nowrap">
+                  {[ETHGunuCover, StakingCover].map((src, i) => {
+                    return (
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                    )
+                  })}
+                  {[ETHGunuCover, StakingCover].map((src, i) => {
+                    return (
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                    )
+                  })}
+                  {[ETHGunuCover, StakingCover].map((src, i) => {
+                    return (
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                    )
+                  })}
+                  {[ETHGunuCover, StakingCover].map((src, i) => {
+                    return (
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                    )
+                  })}
+                </div>
+              </SwipeToScroll>
+              <p className="text-slate-300 text-xs font-bold mt-2">DRAG FOR MORE</p>
+            </div>
           </Scene>
 
-          <Scene growVertically growNaturally className={`${css['scene-content']} my-8`}>
+          <Scene growVertically growNaturally className={`${css['scene-content']} my-8 mt-3`}>
             <div className="section">
               <div className="border-bottom border-neutral-300 pb-8">
                 <div className={css['topics-header']}>
@@ -1489,8 +1534,8 @@ const Home: NextPage = (props: any) => {
 
           <Scene growVertically growNaturally className={`${css['scene-content']}`}>
             <div className="section">
-              <div className="flex mb-0 xl:mb-8 flex-col xl:flex-row">
-                <div className="basis-1/1 xl:basis-2/4 shrink-0">
+              <div className="flex mb-0 2xl:mb-8 flex-col 2xl:flex-row">
+                <div className="basis-1/1 2xl:basis-2/4 shrink-0">
                   <h1 className="section-header orange">About Devconnect</h1>
 
                   <div className="mt-6">
@@ -1510,12 +1555,29 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div>
 
-                <div className="basis-1/1 xl:basis-2/4 overflow-hidden mt-8 xl:mt-0 pl-0 xl:pl-8">
+                <div className="basis-1/1 2xl:basis-2/4 overflow-hidden mt-8 2xl:mt-0 pl-0 2xl:pl-8">
                   <h1 className="section-header orange">Past Events</h1>
 
                   <div className="flex flex-row flex-wrap gap-4 py-8 max-w-full">
                     <PastEventCard
                       text="Istanbul Schedule"
+                      className="!max-w-[350px]"
+                      image={istanbulScheduleBackground}
+                      imageAlt="Istanbul collage"
+                      link="/istanbul"
+                    />
+
+                    <PastEventCard
+                      text="Amsterdam Schedule"
+                      className="!max-w-[350px]"
+                      image={istanbulScheduleBackground}
+                      imageAlt="Amsterdam collage"
+                      link="/amsterdam"
+                    />
+
+                    {/* <PastEventCard
+                      text="Istanbul Schedule"
+                      className="max-w-[400px]"
                       renderImage={() => (
                         <ImageNew
                           src={istanbulScheduleBackground}
@@ -1523,8 +1585,16 @@ const Home: NextPage = (props: any) => {
                           alt="Amsterdam"
                         />
                       )}
+                      renderRoot={rootAttributes => {
+                        return (
+                          <Link href="/istanbul" {...rootAttributes}>
+                            {rootAttributes.children}
+                          </Link>
+                        )
+                      }}
                     />
                     <PastEventCard
+                      className="max-w-[400px]"
                       text="Amsterdam Gallery"
                       renderImage={() => (
                         <ImageNew
@@ -1533,7 +1603,14 @@ const Home: NextPage = (props: any) => {
                           alt="Amsterdam"
                         />
                       )}
-                    />
+                      renderRoot={rootAttributes => {
+                        return (
+                          <Link href="/amsterdam" {...rootAttributes}>
+                            {rootAttributes.children}
+                          </Link>
+                        )
+                      }}
+                    /> */}
                   </div>
                 </div>
               </div>

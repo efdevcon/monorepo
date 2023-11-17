@@ -7,6 +7,7 @@ type InfiniteScrollProps = {
   speed?: string;
   slow?: boolean;
   unpadded?: boolean;
+  height?: string;
   children: any;
 };
 
@@ -15,6 +16,7 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
 
   if (props.slow) className += ` ${css["slow"]}`;
   if (props.unpadded) className += ` ${css["unpadded"]}`;
+  if (props.height) className += ` h-[${props.height}]`;
 
   const nDuplications = props.nDuplications || 2;
 

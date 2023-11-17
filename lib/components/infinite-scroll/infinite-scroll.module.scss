@@ -7,7 +7,7 @@
 .marquee {
   display: flex;
   flex-wrap: nowrap;
-  width: fit-content;
+  width: max-content;
   animation: marquee var(--animation-speed) linear infinite;
   --animation-speed: var(--override-speed, 30s);
 
