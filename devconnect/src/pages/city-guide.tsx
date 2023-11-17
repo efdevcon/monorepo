@@ -1178,7 +1178,7 @@ const CityGuide: NextPage = () => {
             <div>{tabs[1].content()}</div>
 
             <Accordion>
-              {tabs.slice(2).map((tab: any) => {
+              {tabs.slice(2, tabs.length - 1).map((tab: any) => {
                 const tabContent = tab
 
                 return (
