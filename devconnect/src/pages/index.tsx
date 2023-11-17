@@ -1246,7 +1246,7 @@ const Home: NextPage = (props: any) => {
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
-            <InfiniteScroller nDuplications={4} speed="180s" height="500px">
+            <InfiniteScroller nDuplications={4} speed="180s" marqueeClassName="h-[500px]">
               {[Cowork1, Cowork2, ETHGunuCover, StakingCover].map((src, i) => {
                 return (
                   <ImageNew
@@ -1561,7 +1561,7 @@ const Home: NextPage = (props: any) => {
                   <div className="flex flex-row flex-wrap gap-4 py-8 max-w-full">
                     <PastEventCard
                       text="Istanbul Schedule"
-                      className="!max-w-[350px]"
+                      className="lg:!max-w-[350px]"
                       image={istanbulScheduleBackground}
                       imageAlt="Istanbul collage"
                       link="/istanbul"
@@ -1569,70 +1569,26 @@ const Home: NextPage = (props: any) => {
 
                     <PastEventCard
                       text="Amsterdam Schedule"
-                      className="!max-w-[350px]"
+                      className="lg:!max-w-[350px]"
                       image={istanbulScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"
                     />
-
-                    {/* <PastEventCard
-                      text="Istanbul Schedule"
-                      className="max-w-[400px]"
-                      renderImage={() => (
-                        <ImageNew
-                          src={istanbulScheduleBackground}
-                          className="h-full w-full object-fill"
-                          alt="Amsterdam"
-                        />
-                      )}
-                      renderRoot={rootAttributes => {
-                        return (
-                          <Link href="/istanbul" {...rootAttributes}>
-                            {rootAttributes.children}
-                          </Link>
-                        )
-                      }}
-                    />
-                    <PastEventCard
-                      className="max-w-[400px]"
-                      text="Amsterdam Gallery"
-                      renderImage={() => (
-                        <ImageNew
-                          src={istanbulScheduleBackground}
-                          className="h-full w-full object-fill"
-                          alt="Amsterdam"
-                        />
-                      )}
-                      renderRoot={rootAttributes => {
-                        return (
-                          <Link href="/amsterdam" {...rootAttributes}>
-                            {rootAttributes.children}
-                          </Link>
-                        )
-                      }}
-                    /> */}
                   </div>
                 </div>
               </div>
-
-              {/* <BlogReel blogs={props.blogs} /> */}
             </div>
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-faq']}`}>
-            {/* <Observer> */}
             <div className="section">
               <h1 className="section-header orange border-top padding-top-less">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
-
-              {/* <div className="padding-bottom-less border-bottom "></div> */}
             </div>
-            {/* </Observer> */}
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-faq']} section`}>
-            {/* <Observer> */}
             <div className={`clear-vertical`}>
               {/* <div className="columns border-bottom margin-bottom padding-bottom">
                   <div className="left">
@@ -1690,7 +1646,6 @@ const Home: NextPage = (props: any) => {
                 </Accordion>
               </div>
             </div>
-            {/* </Observer> */}
           </Scene>
         </main>
 
