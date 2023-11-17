@@ -42,17 +42,17 @@ import { Gallery } from './cowork'
 import ETHGunuCover from 'assets/images/video-archive/ETHGunu_cover.webp'
 import StakingCover from 'assets/images/video-archive/staking_cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
-import Cowork1 from 'assets/images/cowork-gallery/cowork-1.png'
-import Cowork2 from 'assets/images/cowork-gallery/cowork-2.png'
+// import Cowork1 from 'assets/images/cowork-gallery/cowork-1.png'
+// import Cowork2 from 'assets/images/cowork-gallery/cowork-2.png'
 
 // import BluePrint from 'assets/images/blueprint-bg.png'
 // import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
 // import YoutubeIcon from 'assets/icons/youtube.svg'
-// import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
-// import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
-// import Cowork3 from 'assets/images/event-pictures/amsterdam-2022-event-picture-1.jpg'
-// import Cowork4 from 'assets/images/event-pictures/amsterdam-2022-event-picture-5.jpg'
-// import Cowork5 from 'assets/images/event-pictures/amsterdam-2022-event-picture-3.jpg'
+import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
+import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
+import Cowork3 from 'assets/images/event-pictures/amsterdam-2022-event-picture-1.jpg'
+import Cowork4 from 'assets/images/event-pictures/amsterdam-2022-event-picture-5.jpg'
+import Cowork5 from 'assets/images/event-pictures/amsterdam-2022-event-picture-3.jpg'
 // import bgUpper from 'assets/images/istanbul-bg/bg-upper.png'
 // import bgCenter from 'assets/images/istanbul-bg/bg-center.png'
 // import bgLower from 'assets/images/istanbul-bg/bg-lower.png'
@@ -1247,7 +1247,7 @@ const Home: NextPage = (props: any) => {
 
           <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
             <InfiniteScroller nDuplications={4} speed="180s" marqueeClassName="h-[500px]">
-              {[Cowork1, Cowork2, ETHGunuCover, StakingCover].map((src, i) => {
+              {[Cowork1, Cowork2, Cowork3, Cowork4, Cowork5].map((src, i) => {
                 return (
                   <ImageNew
                     src={src}
@@ -1260,7 +1260,6 @@ const Home: NextPage = (props: any) => {
             </InfiniteScroller>
           </Scene>
 
-          {/* <Gallery /> */}
           <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
             <div className="section">
               <div>
@@ -1289,7 +1288,7 @@ const Home: NextPage = (props: any) => {
                   <ImageNew
                     src={ShapesImage}
                     alt="shapes image"
-                    className="absolute h-[130%] bottom-0 object-contain object-bottom"
+                    className="absolute h-[120%] bottom-0 object-contain object-bottom"
                   />
                 </div>
               </div>
@@ -1463,22 +1462,22 @@ const Home: NextPage = (props: any) => {
                 <div className="flex flex-nowrap">
                   {[ETHGunuCover, StakingCover].map((src, i) => {
                     return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
                     )
                   })}
                   {[ETHGunuCover, StakingCover].map((src, i) => {
                     return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
                     )
                   })}
                   {[ETHGunuCover, StakingCover].map((src, i) => {
                     return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
                     )
                   })}
                   {[ETHGunuCover, StakingCover].map((src, i) => {
                     return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[500px] mr-4" />
+                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
                     )
                   })}
                 </div>
