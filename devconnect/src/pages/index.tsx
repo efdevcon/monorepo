@@ -32,30 +32,29 @@ import { BlogReel } from 'common/components/blog-posts/BlogPosts'
 import CalendarIcon from 'assets/icons/calendar-date.svg'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
-import LibButton from 'lib/components/button'
 import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
-import { Gallery } from './cowork'
 import ETHGunuCover from 'assets/images/video-archive/ETHGunu_cover.webp'
 import StakingCover from 'assets/images/video-archive/staking_cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
-// import Cowork1 from 'assets/images/cowork-gallery/cowork-1.png'
-// import Cowork2 from 'assets/images/cowork-gallery/cowork-2.png'
 
-// import BluePrint from 'assets/images/blueprint-bg.png'
-// import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
-// import YoutubeIcon from 'assets/icons/youtube.svg'
-import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
-import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
-import Cowork3 from 'assets/images/event-pictures/amsterdam-2022-event-picture-1.jpg'
-import Cowork4 from 'assets/images/event-pictures/amsterdam-2022-event-picture-5.jpg'
-import Cowork5 from 'assets/images/event-pictures/amsterdam-2022-event-picture-3.jpg'
-// import bgUpper from 'assets/images/istanbul-bg/bg-upper.png'
-// import bgCenter from 'assets/images/istanbul-bg/bg-center.png'
-// import bgLower from 'assets/images/istanbul-bg/bg-lower.png'
+// import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
+// import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
+// import Cowork3 from 'assets/images/event-pictures/amsterdam-2022-event-picture-1.jpg'
+// import Cowork4 from 'assets/images/event-pictures/amsterdam-2022-event-picture-5.jpg'
+// import Cowork5 from 'assets/images/event-pictures/amsterdam-2022-event-picture-3.jpg'
+
+import Cowork1 from 'assets/images/cowork-recap/cowork-1.jpg'
+import Cowork2 from 'assets/images/cowork-recap/cowork-2.jpg'
+import Cowork3 from 'assets/images/cowork-recap/cowork-3.jpg'
+import Cowork4 from 'assets/images/cowork-recap/cowork-4.jpg'
+import Cowork5 from 'assets/images/cowork-recap/cowork-5.jpg'
+import Cowork6 from 'assets/images/cowork-recap/cowork-6.jpg'
+import Cowork7 from 'assets/images/cowork-recap/cowork-7.jpg'
+import Cowork8 from 'assets/images/cowork-recap/cowork-8.jpg'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -1246,8 +1245,8 @@ const Home: NextPage = (props: any) => {
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
-            <InfiniteScroller nDuplications={4} speed="180s" marqueeClassName="h-[500px]">
-              {[Cowork1, Cowork2, Cowork3, Cowork4, Cowork5].map((src, i) => {
+            <InfiniteScroller nDuplications={2} speed="180s" marqueeClassName="h-[500px]">
+              {[Cowork1, Cowork2, Cowork3, Cowork4, Cowork5, Cowork6, Cowork7, Cowork8].map((src, i) => {
                 return (
                   <ImageNew
                     src={src}
