@@ -1082,9 +1082,9 @@ const Home: NextPage = (props: any) => {
                     </p>
 
                     <div className={css['buttons']}>
-                      <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
+                      {/* <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
                         <PlayIcon /> Get cowork tickets
-                      </Link>
+                      </Link> */}
 
                       <Link href="#about" className={`button slick-purple ${css['video-recap-button']}`}>
                         <span>ISTANBUL, Türkiye</span>
@@ -1092,7 +1092,7 @@ const Home: NextPage = (props: any) => {
                       </Link>
                     </div>
                   </div>
-                  <div className={css['countdown']}>
+                  {/* <div className={css['countdown']}>
                     {mounted && timeToEvent && (
                       <>
                         {typeof timeToEvent === 'string' ? (
@@ -1113,7 +1113,7 @@ const Home: NextPage = (props: any) => {
                         )}
                       </>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -1168,7 +1168,7 @@ const Home: NextPage = (props: any) => {
                     <p className={css['big-description']}>
                       Devconnect aims to bring together Ethereum&apos;s most important{' '}
                       <b>
-                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
+                        x<span className={css['red-underline']}>builders</span>, researchers, and its community.
                       </b>
                     </p>
 
