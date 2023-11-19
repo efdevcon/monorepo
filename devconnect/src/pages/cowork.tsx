@@ -284,7 +284,7 @@ const Cowork: NextPage = (props: any) => {
               <br />
               <span className="large-text">November 13th — 19th</span>
               <br />
-              every day 09:00 - 20:00
+              every day 09:00 - 20:00 (<b>NOTE: Sunday until 18:30</b>)
             </p>
             <br />
             <AnchorLink href="#first-come-first-serve" offset="32" className="hover-underline">
