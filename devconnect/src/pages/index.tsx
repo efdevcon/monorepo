@@ -1128,7 +1128,7 @@ const Home: NextPage = (props: any) => {
                         <PlayIcon /> Get cowork tickets
                       </Link> */}
 
-                      <Link href="#about" className={`button slick-purple ${css['video-recap-button']}`}>
+                      <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
                         <span className="!mr-0">Devconnect Istanbul Recap</span>
                       </Link>
                     </div>
@@ -1193,7 +1193,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene>
 
-          <Scene growVertically growNaturally id="istanbul" className={`${css['scene-istanbul']}`}>
+          <Scene growVertically growNaturally id="recap-video" className={`${css['scene-istanbul']}`}>
             <div className="section" id="about">
               <h1 className="section-header clear-vertical" style={{ zIndex: 1 }}>
                 <span className="orange">DEVCONNECT IST</span>
@@ -1271,7 +1271,7 @@ const Home: NextPage = (props: any) => {
             <div className="section">
               <h1 className="section-header orange">Gallery</h1>
 
-              <p className={`large-text mt-4`}>
+              <p className={`large-text mt-4`} id="gallery">
                 <b>Relive the Devconnect experience</b> in Istanbul and reminisce about the meaningful conversations and
                 real-life connections we forged during an unforgettable week.
               </p>
