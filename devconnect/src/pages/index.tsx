@@ -37,8 +37,18 @@ import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
-import ETHGunuCover from 'assets/images/video-archive/ETHGunu_cover.webp'
-import StakingCover from 'assets/images/video-archive/staking_cover.webp'
+import Cover1 from 'assets/images/ist-video-archive/LightClient_Cover.webp'
+import Cover2 from 'assets/images/ist-video-archive/wallet_unconference_cover.webp'
+import Cover3 from 'assets/images/ist-video-archive/conflux_banner.webp'
+import Cover4 from 'assets/images/ist-video-archive/PROGCRYPTO_Cover.webp'
+import Cover5 from 'assets/images/ist-video-archive/solidity-submit-cover.webp'
+import Cover6 from 'assets/images/ist-video-archive/AWA_cover.webp'
+import Cover7 from 'assets/images/ist-video-archive/ethconomics_cover.webp'
+import Cover8 from 'assets/images/ist-video-archive/EVM_summit_cover.webp'
+import Cover9 from 'assets/images/ist-video-archive/ETHGunu_cover.webp'
+import Cover10 from 'assets/images/ist-video-archive/staking_cover.webp'
+import Cover11 from 'assets/images/ist-video-archive/secureum_banner.webp'
+import Cover12 from 'assets/images/ist-video-archive/EPF_Cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
 
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
@@ -465,14 +475,24 @@ const FAQ = [
       return (
         <>
           <p>
-            Your Zupass ticket proofs that you joined the Devconnect Cowork! This year, the Devconnect Cowork,
-            ZuConnect, and 8 other Devconnect events were using Zupass to issue tickets. Zupass allows you to make ZK
-            proofs of your event attendance. It's a tool built by open-source devs from the Devconnect and Zuzalu
-            communities. If you want to learn more, you can listen to the{' '}
+            Your{' '}
+            <Link href="https://zupass.org/#/login" indicateExternal>
+              Zupass
+            </Link>{' '}
+            ticket proofs that you joined the Devconnect Cowork! This year, the Devconnect Cowork, ZuConnect, and 8
+            other Devconnect events were using Zupass to issue tickets. Zupass allows you to make ZK proofs of your
+            event attendance. It's a tool built by open-source devs from the Devconnect and Zuzalu communities. If you
+            want to learn more, you can listen to the{' '}
             <Link href="https://devconnect.org">
               conversation we had with Vitalik and devs who are contributing to the Zupass project
             </Link>
             .
+          </p>
+          <p>
+            You can build on Zupass! Check out{' '}
+            <Link href="https://x.com/austingriffith/status/1724131612856627396?s=20" indicateExternal>
+              Austin Griffith’s App Starter Kit.
+            </Link>
           </p>
         </>
       )
@@ -485,7 +505,7 @@ const FAQ = [
       return (
         <>
           The ZK Devconnect Community Hub on Telegram stays open even after Devconnect. To join you need to prove that
-          you have a ticket to one of the ZK ticketed Devconnect events. If you haven't joined yet, you can do it
+          you have a ticket to one of the ZK ticketed Devconnect events. If you haven't joined yet, you can do it{' '}
           <Link href="https://t.me/zucat_bot?start=auth" indicateExternal>
             here
           </Link>
@@ -527,8 +547,19 @@ const FAQ = [
       return (
         <>
           <p>
-            Our next event will be Devcon 7 2024 in Southeast Asia! Follow Deva on Twitter to stay up to date. And for
-            updates for a future Devconnect, keep an eye on Twitter and the website for updates!{' '}
+            Our next event will be{' '}
+            <Link href="https://devcon.org/en" indicateExternal>
+              Devcon 7 2024 in Southeast Asia!
+            </Link>{' '}
+            Follow{' '}
+            <Link href="https://twitter.com/EFDevcon" indicateExternal>
+              Deva on Twitter
+            </Link>{' '}
+            to stay up to date. And for updates for a future Devconnect,
+            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
+              keep an eye on Twitter
+            </Link>{' '}
+            and the website for updates!{' '}
           </p>
         </>
       )
@@ -1129,7 +1160,7 @@ const Home: NextPage = (props: any) => {
                       </Link> */}
 
                       <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span className="!mr-0">Devconnect Istanbul Recap</span>
+                        <span className="!mr-0">Devconnect IST photo gallery</span>
                       </Link>
                     </div>
                   </div>
@@ -1205,7 +1236,7 @@ const Home: NextPage = (props: any) => {
                     <p className="large-text">
                       The vibrant metropolis of Istanbul hosted Devconnect from November 13-19.{' '}
                       <span className="border-b-[3px] border-solid font-bold border-red-500">
-                        Over 4,000 Ethereum enthusiasts
+                        Over 3500 Ethereum enthusiasts
                       </span>{' '}
                       gathered at the <b>Devconnect Cowork</b> in the Istanbul Congress Center, while many more attended
                       independent events throughout Istanbul.
@@ -1494,24 +1525,27 @@ const Home: NextPage = (props: any) => {
             <div className="section !overflow-visible">
               <SwipeToScroll>
                 <div className="flex flex-nowrap">
-                  {[ETHGunuCover, StakingCover].map((src, i) => {
+                  {[
+                    { cover: Cover1, url: 'https://app.streameth.org/devconnect/light_client_summit/archive' },
+                    { cover: Cover4, url: 'https://app.streameth.org/devconnect/progcrypto' },
+                    {
+                      cover: Cover3,
+                      url: 'https://app.streameth.org/devconnect/conflux__web3_ux_unconference/archive',
+                    },
+                    { cover: Cover2, url: 'https://app.streameth.org/devconnect/wallet_unconference/archive' },
+                    { cover: Cover5, url: 'https://app.streameth.org/devconnect/solidity_summit/archive' },
+                    { cover: Cover6, url: 'https://app.streameth.org/devconnect/autonomous_worlds_assembly' },
+                    { cover: Cover7, url: 'https://app.streameth.org/devconnect/ethconomics/archive' },
+                    { cover: Cover8, url: 'https://app.streameth.org/devconnect/evm_summit/archive' },
+                    { cover: Cover9, url: 'https://app.streameth.org/devconnect/ethgunu/archive' },
+                    { cover: Cover10, url: 'https://app.streameth.org/devconnect/staking_gathering_2023' },
+                    { cover: Cover11, url: 'https://app.streameth.org/secureum/secureum_trustx/archive' },
+                    { cover: Cover12, url: 'https://app.streameth.org/devconnect/epf_day/archive' },
+                  ].map((entry, i) => {
                     return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
-                    )
-                  })}
-                  {[ETHGunuCover, StakingCover].map((src, i) => {
-                    return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
-                    )
-                  })}
-                  {[ETHGunuCover, StakingCover].map((src, i) => {
-                    return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
-                    )
-                  })}
-                  {[ETHGunuCover, StakingCover].map((src, i) => {
-                    return (
-                      <ImageNew src={src} key={i} alt="Recorded Session Cover Image" className="min-w-[400px] mr-4" />
+                      <Link key={i} href={entry.url} className="min-w-[450px] relative mr-4 aspect-video">
+                        <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
+                      </Link>
                     )
                   })}
                 </div>
