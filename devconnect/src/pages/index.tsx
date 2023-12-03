@@ -1199,8 +1199,8 @@ const Home: NextPage = (props: any) => {
                 <span className="orange">DEVCONNECT IST</span>
               </h1>
 
-              <div className={`columns margin-bottom`}>
-                <div className="left fill-45">
+              <div className={`columns margin-bottom flex flex-col xl:flex-row`}>
+                <div className="xl:basis-1/2 align-self flex flex-col mr-[25px]">
                   <div>
                     <p className="large-text">
                       The vibrant metropolis of Istanbul hosted Devconnect from November 13-19.{' '}
@@ -1246,7 +1246,8 @@ const Home: NextPage = (props: any) => {
                     </Link>
                   </div>
                 </div>
-                <div className="right">
+
+                <div className="xl:basis-1/2 w-full md:w-3/4 md:self-start xl:w-full mt-8 xl:mt-0">
                   <div className="aspect">
                     <iframe
                       width="100%"
