@@ -521,8 +521,8 @@ const FAQ = [
       return (
         <>
           <p>
-            We value your feedback! We've sent all attendees an email (subject: “XXX) with a feedback survey. There will
-            be a POAP for your participation!
+            We value your feedback! We've sent all attendees an email with a feedback survey. There will be a POAP for
+            your participation!
           </p>
         </>
       )
@@ -1271,7 +1271,7 @@ const Home: NextPage = (props: any) => {
                     <iframe
                       width="100%"
                       height="100%"
-                      src="https://www.youtube.com/embed/6X0yIUq7fpc"
+                      src="https://www.youtube.com/embed/QoPFqV6jCTI"
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1316,8 +1316,12 @@ const Home: NextPage = (props: any) => {
           <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
             <div className="section">
               <div>
-                <Link href="/image-gallery" className="button orange">
-                  View Image Gallery (TODO: add link)
+                <Link
+                  href="https://drive.google.com/drive/folders/1DlzDuVajwDmPOtE1uqns4Na9fjn6wQvy"
+                  indicateExternal
+                  className="button orange"
+                >
+                  View Image Gallery
                 </Link>
               </div>
             </div>
