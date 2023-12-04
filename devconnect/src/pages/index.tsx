@@ -521,8 +521,8 @@ const FAQ = [
       return (
         <>
           <p>
-            We value your feedback! We've sent all attendees an email with a feedback survey. There will be a POAP for
-            your participation!
+            We value your feedback! We've sent all attendees an email (subject line: “Devconnect IST 2023 - THAT'S A
+            WRAP!") with a feedback survey. There will be a POAP for your participation!
           </p>
         </>
       )
