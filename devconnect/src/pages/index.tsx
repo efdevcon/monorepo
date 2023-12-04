@@ -1243,9 +1243,9 @@ const Home: NextPage = (props: any) => {
 
                     <p>
                       The overarching theme of Devconnect Istanbul 2023 was the enthusiasm and involvement of the local
-                      Turkish Ethereum community. ETHGünü and notDEVCON demonstrated the local impact of Ethereum. It
-                      highlighted how local communities are essential in fostering a global network, contributing unique
-                      perspectives.
+                      Turkish Ethereum community. ETHGünü and notDEVCON and d:pact demonstrated the local impact of
+                      Ethereum. It highlighted how local communities are essential in fostering a global network,
+                      contributing unique perspectives.
                     </p>
 
                     <br />
