@@ -483,7 +483,7 @@ const FAQ = [
             other Devconnect events were using Zupass to issue tickets. Zupass allows you to make ZK proofs of your
             event attendance. It's a tool built by open-source devs from the Devconnect and Zuzalu communities. If you
             want to learn more, you can listen to the{' '}
-            <Link href="https://devconnect.org">
+            <Link href="https://x.com/EFDevconnect/status/1722152791139914127?s=20">
               conversation we had with Vitalik and devs who are contributing to the Zupass project
             </Link>
             .
@@ -491,7 +491,7 @@ const FAQ = [
           <p>
             You can build on Zupass! Check out{' '}
             <Link href="https://x.com/austingriffith/status/1724131612856627396?s=20" indicateExternal>
-              Austin Griffith’s App Starter Kit.
+              Austin Griffith's App Starter Kit.
             </Link>
           </p>
         </>
@@ -521,20 +521,8 @@ const FAQ = [
       return (
         <>
           <p>
-            We value your feedback! Please <Link href="https://devconnect.org">share your feedback with us here</Link>.
-          </p>
-        </>
-      )
-    },
-  },
-  {
-    text: 'I lost an item during the event. Is there a way to get it back?',
-    value: 'lost-items',
-    content: () => {
-      return (
-        <>
-          <p>
-            Please email us at <Link href="mailto:support@devconnect.org">support@devconnect.org</Link>.
+            We value your feedback! We've sent all attendees an email (subject: “XXX) with a feedback survey. There will
+            be a POAP for your participation!
           </p>
         </>
       )
@@ -555,7 +543,7 @@ const FAQ = [
             <Link href="https://twitter.com/EFDevcon" indicateExternal>
               Deva on Twitter
             </Link>{' '}
-            to stay up to date. And for updates for a future Devconnect,
+            to stay up to date. And for updates for a future Devconnect,{' '}
             <Link href="https://twitter.com/EFDevconnect" indicateExternal>
               keep an eye on Twitter
             </Link>{' '}
@@ -1273,7 +1261,7 @@ const Home: NextPage = (props: any) => {
                       href="https://blog.ethereum.org"
                       className={`button wide orange-fill ${css['cowork-tickets-button']}`}
                     >
-                      Share Your Feedback
+                      Read the blog
                     </Link>
                   </div>
                 </div>
@@ -1626,10 +1614,10 @@ const Home: NextPage = (props: any) => {
                 <div className="basis-1/1 2xl:basis-2/4 overflow-hidden mt-8 2xl:mt-0 pl-0 2xl:pl-8">
                   <h1 className="section-header orange">Past Events</h1>
 
-                  <div className="flex flex-row flex-wrap gap-4 py-8 max-w-full">
+                  <div className="flex flex-row lg:flex-nowrap flex-wrap gap-4 py-8 max-w-full">
                     <PastEventCard
                       text="Istanbul Schedule"
-                      className="lg:!max-w-[350px]"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
                       image={istanbulScheduleBackground}
                       imageAlt="Istanbul collage"
                       link="/istanbul"
@@ -1637,7 +1625,7 @@ const Home: NextPage = (props: any) => {
 
                     <PastEventCard
                       text="Amsterdam Schedule"
-                      className="lg:!max-w-[350px]"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
                       image={istanbulScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"
