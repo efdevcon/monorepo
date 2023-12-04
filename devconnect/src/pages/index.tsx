@@ -1259,6 +1259,7 @@ const Home: NextPage = (props: any) => {
                   <div className={`margin-top ${css['nowrap']}`}>
                     <Link
                       href="https://blog.ethereum.org"
+                      indicateExternal
                       className={`button wide orange-fill ${css['cowork-tickets-button']}`}
                     >
                       Read the blog
