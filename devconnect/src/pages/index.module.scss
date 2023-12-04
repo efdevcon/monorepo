@@ -285,7 +285,8 @@
       }
 
       margin-bottom: 16px;
-      width: min(100%, 500px);
+      width: min(100%, 600px);
+      font-weight: bold;
 
       @media (max-width: $screen-lg) {
         margin-bottom: 8px;
@@ -948,7 +949,7 @@
 // }
 
 .big-description {
-  font-size: 48px;
+  font-size: 40px;
   // line-height: 56.25px;
 
   @media (max-width: $screen-lg) {
@@ -961,8 +962,10 @@
   }
 
   .red-underline {
+    // color: $color-orange-2;
     position: relative;
-    border-bottom: 3px solid #fd0909;
+    border-bottom: 3px solid #fd090996;
+    // border-radius: 22%;
   }
 }
 

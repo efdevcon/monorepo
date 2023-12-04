@@ -516,8 +516,27 @@ const useFavorites = (events: any, edition: Edition): any => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const share = searchParams.get('share')
+  const sharedEdition = searchParams.get('edition')
   const shareTitle = searchParams.get('share_title')
   const storageID = `${edition}_schedule_favorites`
+
+  React.useEffect(() => {
+    // Handle legacy shared schedules
+    const version = router.query.schedule
+
+    if (version === 'schedule') {
+      const fullPath = router.asPath
+      const details = fullPath.split('schedule').pop()
+
+      if (sharedEdition === 'istanbul') {
+        router.push(`/istanbul${details}`)
+      }
+
+      if (sharedEdition === 'amsterdam') {
+        router.push(`/amsterdam${details}`)
+      }
+    }
+  }, [router, router.asPath, sharedEdition])
 
   // Load events from localStorage
   React.useEffect(() => {
@@ -1291,11 +1310,11 @@ const useFilter = (events: any, edition: Edition, favorites: any) => {
   const [showFavorites, setShowFavorites] = React.useState(false)
   const [textSearch, setTextSearch] = React.useState('')
 
-  // Localstorage sync here
-  React.useEffect(() => {
-    // localStorage blabla
-    console.log('filter updated sync localstorage')
-  }, [showFavorites, showOnlyDomainSpecific, hideSoldOut, textSearch])
+  // // Localstorage sync here
+  // React.useEffect(() => {
+  //   // localStorage blabla
+  //   console.log('filter updated sync localstorage')
+  // }, [showFavorites, showOnlyDomainSpecific, hideSoldOut, textSearch])
 
   // Run through events collecting all the possible values to filter on for the specified keys above - looks a bit messy but w/e
   // Could hardcode the filter values too but this is future proof if someone changes the range of possible values for any of the above fields
@@ -1663,6 +1682,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const { scheduleView, setScheduleView } = props
   const favorites = useFavorites(props.events, props.edition)
+
   let {
     events,
     mobileFilterOpen,
@@ -1693,6 +1713,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
     filterAttributes.showFavorites,
     textSearch,
   ])
+
+  React.useEffect(() => {}, [])
 
   return (
     <>
@@ -2274,7 +2296,11 @@ export async function getStaticProps(context: any) {
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { schedule: 'schedule' } }, { params: { schedule: 'amsterdam' } }],
+    paths: [
+      { params: { schedule: 'schedule' } },
+      { params: { schedule: 'amsterdam' } },
+      { params: { schedule: 'istanbul' } },
+    ],
     fallback: false,
   }
 }

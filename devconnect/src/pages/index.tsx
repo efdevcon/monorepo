@@ -32,20 +32,39 @@ import { BlogReel } from 'common/components/blog-posts/BlogPosts'
 import CalendarIcon from 'assets/icons/calendar-date.svg'
 import ShapesImage from 'assets/images/shapes.png'
 import useDimensions from 'react-cool-dimensions'
-import LibButton from 'lib/components/button'
+import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
-// import BluePrint from 'assets/images/blueprint-bg.png'
-// import VideoPlaceholder from 'assets/images/devconnect-video-placeholder.png'
-// import YoutubeIcon from 'assets/icons/youtube.svg'
+import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import Cover1 from 'assets/images/ist-video-archive/LightClient_Cover.webp'
+import Cover2 from 'assets/images/ist-video-archive/wallet_unconference_cover.webp'
+import Cover3 from 'assets/images/ist-video-archive/conflux_banner.webp'
+import Cover4 from 'assets/images/ist-video-archive/PROGCRYPTO_Cover.webp'
+import Cover5 from 'assets/images/ist-video-archive/solidity-submit-cover.webp'
+import Cover6 from 'assets/images/ist-video-archive/AWA_cover.webp'
+import Cover7 from 'assets/images/ist-video-archive/ethconomics_cover.webp'
+import Cover8 from 'assets/images/ist-video-archive/EVM_summit_cover.webp'
+import Cover9 from 'assets/images/ist-video-archive/ETHGunu_cover.webp'
+import Cover10 from 'assets/images/ist-video-archive/staking_cover.webp'
+import Cover11 from 'assets/images/ist-video-archive/secureum_banner.webp'
+import Cover12 from 'assets/images/ist-video-archive/EPF_Cover.webp'
+import SwipeToScroll from 'common/components/swipe-to-scroll'
+
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
 // import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
 // import Cowork3 from 'assets/images/event-pictures/amsterdam-2022-event-picture-1.jpg'
 // import Cowork4 from 'assets/images/event-pictures/amsterdam-2022-event-picture-5.jpg'
 // import Cowork5 from 'assets/images/event-pictures/amsterdam-2022-event-picture-3.jpg'
-// import bgUpper from 'assets/images/istanbul-bg/bg-upper.png'
-// import bgCenter from 'assets/images/istanbul-bg/bg-center.png'
-// import bgLower from 'assets/images/istanbul-bg/bg-lower.png'
+
+import Cowork1 from 'assets/images/cowork-recap/cowork-1.jpg'
+import Cowork2 from 'assets/images/cowork-recap/cowork-2.jpg'
+import Cowork3 from 'assets/images/cowork-recap/cowork-3.jpg'
+import Cowork4 from 'assets/images/cowork-recap/cowork-4.jpg'
+import Cowork5 from 'assets/images/cowork-recap/cowork-5.jpg'
+import Cowork6 from 'assets/images/cowork-recap/cowork-6.jpg'
+import Cowork7 from 'assets/images/cowork-recap/cowork-7.jpg'
+import Cowork8 from 'assets/images/cowork-recap/cowork-8.jpg'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -447,8 +466,97 @@ export const FAQDuringEvent = [
   },
 ]
 
+// TODO: Add missing links
+const FAQ = [
+  {
+    text: 'Can I get a proof that I attended Devconnect? aka What is Zupass?',
+    value: 'prove-attendance',
+    content: () => {
+      return (
+        <>
+          <p>
+            Your{' '}
+            <Link href="https://zupass.org/#/login" indicateExternal>
+              Zupass
+            </Link>{' '}
+            ticket proofs that you joined the Devconnect Cowork! This year, the Devconnect Cowork, ZuConnect, and 8
+            other Devconnect events were using Zupass to issue tickets. Zupass allows you to make ZK proofs of your
+            event attendance. It's a tool built by open-source devs from the Devconnect and Zuzalu communities. If you
+            want to learn more, you can listen to the{' '}
+            <Link href="https://x.com/EFDevconnect/status/1722152791139914127?s=20">
+              conversation we had with Vitalik and devs who are contributing to the Zupass project
+            </Link>
+            .
+          </p>
+          <p>
+            You can build on Zupass! Check out{' '}
+            <Link href="https://x.com/austingriffith/status/1724131612856627396?s=20" indicateExternal>
+              Austin Griffith's App Starter Kit.
+            </Link>
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'How can I connect with other attendees, and find post-event discussions and follow-ups?',
+    value: 'community-hub',
+    content: () => {
+      return (
+        <>
+          The ZK Devconnect Community Hub on Telegram stays open even after Devconnect. To join you need to prove that
+          you have a ticket to one of the ZK ticketed Devconnect events. If you haven't joined yet, you can do it{' '}
+          <Link href="https://t.me/zucat_bot?start=auth" indicateExternal>
+            here
+          </Link>
+          .
+        </>
+      )
+    },
+  },
+  {
+    text: 'How can I provide feedback about the event?',
+    value: 'feedback-form',
+    content: () => {
+      return (
+        <>
+          <p>
+            We value your feedback! We've sent all attendees an email (subject line: “Devconnect IST 2023 - THAT'S A
+            WRAP!") with a feedback survey. There will be a POAP for your participation!
+          </p>
+        </>
+      )
+    },
+  },
+  {
+    text: 'Will there be a Devconnect 2024?',
+    value: 'devconnect-2024',
+    content: () => {
+      return (
+        <>
+          <p>
+            Our next event will be{' '}
+            <Link href="https://devcon.org/en" indicateExternal>
+              Devcon 7 2024 in Southeast Asia!
+            </Link>{' '}
+            Follow{' '}
+            <Link href="https://twitter.com/EFDevcon" indicateExternal>
+              Deva on Twitter
+            </Link>{' '}
+            to stay up to date. And for updates for a future Devconnect,{' '}
+            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
+              keep an eye on Twitter
+            </Link>{' '}
+            and the website for updates!{' '}
+          </p>
+        </>
+      )
+    },
+  },
+]
+
 // FAQ changes during event to be more pertinent
-// const FAQBeforeEvent = [
+// const FAQ = [
 //   {
 //     text: 'How can I get involved?',
 //     value: 'how-involve',
@@ -846,12 +954,7 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
         <CodeOfConduct />
       </Modal>
       <Observer repeating activeClassName={css['visible']} observerOptions={{ threshold: 0.7 }}>
-        {/* <div className={css['footer-wrapper']} id="footer-wrapper">
-          <div className={css['gradient-overlay']} id="footer-gradient"></div> */}
-
         <div className={className}>
-          {/* <LogoBig className={css['background']} /> */}
-
           <div className={css['gradient-overlay']} id="footer-gradient"></div>
           <div className={`${css['footer']}`}>
             <div style={{ position: 'relative' }}>
@@ -875,10 +978,6 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                       method="post"
                     >
                       <div className={css['input-container']}>
-                        {/* <div>
-                        <label>First name</label>
-                        <input type="text" name="name" />
-                      </div> */}
                         <div>
                           <label>Email</label>
                           <input type="email" required name="email" />
@@ -888,18 +987,6 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                       <button className="button white sm">Subscribe to newsletter</button>
                     </form>
                   </div>
-                  {/* <a target="_blank" rel="noreferrer" href="https://devcon.org" className={css['road-to-devcon']}>
-                  <p className={`${css['title']} extra-large-text title`}>
-                    A road to <br /> devcon event
-                  </p>
-                 <Image src={RoadToDevcon} alt="Road to devcon: man and dog" />
-                </a>
-
-                <p className={`${css['subtext']} dark-grey`}>Brought to you by the Ethereum Foundation</p>
-                <p className={`${css['email']} medium-text`}>support@devconnect.org</p>
-              </div>  */}
-
-                  {/* <FooterMenu onClickMenuItem={onClickMenuItem} /> */}
                 </div>
               </div>
             </div>
@@ -916,26 +1003,7 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   <Link href="https://devcon.org">Devcon</Link>
                   <Link href="mailto:support@devconnect.org">Contact Us</Link>
                   <Link href="https://ethereum.foundation">Ethereum Foundation</Link>
-
-                  {/* <a
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter') {
-                        setCodeOfConductModalOpen(!codeOfConductModalOpen)
-                      }
-                    }}
-                    onClick={(e: React.SyntheticEvent) => {
-                      e.preventDefault()
-
-                      setCodeOfConductModalOpen(!codeOfConductModalOpen)
-                    }}
-                  >
-                    Code of Conduct
-                  </a> */}
-
                   <Link href="/code-of-conduct">Code of Conduct</Link>
-
                   <Link href="https://ethereum.org/en/privacy-policy/">Privacy policy</Link>
                   <Link href="https://ethereum.org/en/terms-of-use/">Terms of use</Link>
                   <Link href="https://ethereum.org/en/cookie-policy/">Cookie policy</Link>
@@ -944,7 +1012,6 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
             </div>
           </div>
         </div>
-        {/* </div> */}
       </Observer>
     </>
   )
@@ -967,37 +1034,37 @@ const Scene = (props: any) => {
 }
 
 const Home: NextPage = (props: any) => {
-  const [dateHovered, setDateHovered] = React.useState(false)
+  // const [dateHovered, setDateHovered] = React.useState(false)
   const [hehe, setHehe] = React.useState(false)
   const organizersRef = React.useRef<any>()
   const splineRef = React.useRef<any>()
-  const [mounted, setMounted] = React.useState(false)
+  // const [mounted, setMounted] = React.useState(false)
 
-  const [timeToEvent, setTimeToEvent] = React.useState<string | null>(null)
+  // const [timeToEvent, setTimeToEvent] = React.useState<string | null>(null)
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      const timeLeft: any = getTimeUntilNovember13InTurkey()
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const timeLeft: any = getTimeUntilNovember13InTurkey()
 
-      console.log(typeof timeLeft, 'time left')
+  //     console.log(typeof timeLeft, 'time left')
 
-      if (typeof timeLeft === 'string') {
-        setTimeToEvent(timeLeft)
+  //     if (typeof timeLeft === 'string') {
+  //       setTimeToEvent(timeLeft)
 
-        return
-      }
+  //       return
+  //     }
 
-      setTimeToEvent(
-        `${timeLeft.days}D:${leftPadNumber(timeLeft.hours)}H:${leftPadNumber(timeLeft.minutes)}M:${leftPadNumber(
-          timeLeft.seconds
-        )}S`
-      )
-    }, 1000)
+  //     setTimeToEvent(
+  //       `${timeLeft.days}D:${leftPadNumber(timeLeft.hours)}H:${leftPadNumber(timeLeft.minutes)}M:${leftPadNumber(
+  //         timeLeft.seconds
+  //       )}S`
+  //     )
+  //   }, 1000)
 
-    setMounted(true)
+  //   setMounted(true)
 
-    return () => clearInterval(interval)
-  }, [])
+  //   return () => clearInterval(interval)
+  // }, [])
 
   // const [width, setWidth] = React.useState(0)
   // const { observe } = useDimensions({
@@ -1022,8 +1089,6 @@ const Home: NextPage = (props: any) => {
     <>
       <SEO />
       <div className={css.container}>
-        {/* <LibButton />
-        <div className="m-5 text-sky-400">haha</div> */}
         <main id="main" className={css.main}>
           <Scene className={css['scene-hero']}>
             <Header />
@@ -1070,11 +1135,7 @@ const Home: NextPage = (props: any) => {
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
                   <div>
-                    <p className={`${css['big-description']}`}>
-                      Meet the builders of Ethereum
-                      {/* <span className={css['red-underline']}>Meet the builders of Ethereum </span> */}
-                      {/* <span>Devconnect</span> <span>is</span> <span className={css['red-underline']}>back!</span> */}
-                    </p>
+                    <p className={`${css['big-description']}`}>Connecting the builders of Ethereum</p>
 
                     <p style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
                       Devconnect is a week-long gathering of independent Ethereum events to learn, share, and{' '}
@@ -1086,14 +1147,13 @@ const Home: NextPage = (props: any) => {
                         <PlayIcon /> Get cowork tickets
                       </Link> */}
 
-                      <Link href="#about" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span>ISTANBUL, Türkiye</span>
-                        <span>November 13-19, 2023</span>
+                      <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
+                        <span className="!mr-0">Devconnect IST photo gallery</span>
                       </Link>
                     </div>
                   </div>
-                  {/* <div className={css['countdown']}>
-                    {mounted && timeToEvent && (
+                  <div className={css['countdown']}>
+                    {/* {mounted && timeToEvent && (
                       <>
                         {typeof timeToEvent === 'string' ? (
                           <>
@@ -1112,8 +1172,8 @@ const Home: NextPage = (props: any) => {
                           </>
                         )}
                       </>
-                    )}
-                  </div> */}
+                    )} */}
+                  </div>
                 </div>
               </div>
             </div>
@@ -1152,53 +1212,67 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene>
 
-          <Scene growVertically growNaturally id="istanbul" className={`${css['scene-istanbul']}`}>
-            {/* <div className={`${css['background']} expand`}>
-              <Image src={BluePrint} objectFit="contain" alt="Building outline" />
-            </div> */}
-            {/* <Observer> */}
+          <Scene growVertically growNaturally id="recap-video" className={`${css['scene-istanbul']}`}>
             <div className="section" id="about">
               <h1 className="section-header clear-vertical" style={{ zIndex: 1 }}>
-                <span className="orange">WHY DEVCONNECT</span>
+                <span className="orange">DEVCONNECT IST</span>
               </h1>
 
-              <div className={`columns margin-bottom`}>
-                <div className="left fill-45">
+              <div className={`columns margin-bottom flex flex-col xl:flex-row`}>
+                <div className="xl:basis-1/2 align-self flex flex-col lg:mr-[25px]">
                   <div>
-                    <p className={css['big-description']}>
-                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
-                      <b>
-                        x<span className={css['red-underline']}>builders</span>, researchers, and its community.
-                      </b>
+                    <p className="large-text">
+                      The vibrant metropolis of Istanbul hosted Devconnect from November 13-19.{' '}
+                      <span className="border-b-[3px] border-solid font-bold border-red-500">
+                        Over 3500 Ethereum enthusiasts
+                      </span>{' '}
+                      gathered at the <b>Devconnect Cowork</b> in the Istanbul Congress Center, while many more attended
+                      independent events throughout Istanbul.
                     </p>
 
-                    <p className="large-text margin-top-less">
-                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
-                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
-                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
-                      rich history and culture of Istanbul.
+                    <br />
+
+                    <p>
+                      Each event offered key insights into their respective areas and highlighted crucial topics for
+                      progress within the Ethereum ecosystem. Trending topics varied from L2s and programmable
+                      cryptography to world-building, infrastructure, global impact, Ethereum's core values, and
+                      real-world use cases.
+                    </p>
+
+                    <br />
+
+                    <p>
+                      The overarching theme of Devconnect Istanbul 2023 was the enthusiasm and involvement of the local
+                      Turkish Ethereum community. ETHGünü and notDEVCON demonstrated the local impact of Ethereum. It
+                      highlighted how local communities are essential in fostering a global network, contributing unique
+                      perspectives.
+                    </p>
+
+                    <br />
+
+                    <p>
+                      <b>Thank you</b> to everyone who joined us at Devconnect Istanbul 2023! We look forward to seeing
+                      the ongoing connections and progress you all will continue to make for Ethereum.
                     </p>
                   </div>
 
                   <div className={`margin-top ${css['nowrap']}`}>
-                    <Link href="/cowork" className={`button wide orange-fill ${css['cowork-tickets-button']}`}>
-                      <PlayIcon className="icon large-text" /> COWORK TICKETS
-                    </Link>
                     <Link
-                      href="/city-guide"
-                      className={`button wide orange margin-left-less ${css['city-guide-button']}`}
+                      href="https://blog.ethereum.org/2023/12/04/devconnect-ist-wrap"
                       indicateExternal
+                      className={`button wide orange-fill ${css['cowork-tickets-button']}`}
                     >
-                      City Guide
+                      Read the blog
                     </Link>
                   </div>
                 </div>
-                <div className="right">
+
+                <div className="xl:basis-1/2 w-full md:w-3/4 md:self-start xl:w-full mt-8 xl:mt-0 xl:ml-[25px]">
                   <div className="aspect">
                     <iframe
                       width="100%"
                       height="100%"
-                      src="https://www.youtube.com/embed/6X0yIUq7fpc"
+                      src="https://www.youtube.com/embed/QoPFqV6jCTI"
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1208,83 +1282,86 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
             </div>
-            {/* </Observer> */}
 
             <div className={css['background-cityscape']}>
-              <ImageNew src={bgMerged} alt="Istanbul inspired cityscape background" />
+              <ImageNew src={bgMerged} alt="Istanbul inspired Cityscape Background" />
             </div>
-
-            {/* <div className={css['background-layers']}>
-              <ImageNew src={bgUpper} alt="Istanbul inspired background" />
-              <ImageNew src={bgLower} alt="Istanbul inspired background" />
-              <ImageNew src={bgCenter} alt="Istanbul inspired background" />
-            </div> */}
           </Scene>
 
-          <Scene growNaturally growVertically className={`${css['scene-content']}`}>
+          <Scene growVertically growNaturally className={`${css['scene-content']} mt-8`}>
+            <div className="section">
+              <h1 className="section-header orange">Gallery</h1>
+
+              <p className={`large-text mt-4`} id="gallery">
+                <b>Relive the Devconnect experience</b> in Istanbul and reminisce about the meaningful conversations and
+                real-life connections we forged during an unforgettable week.
+              </p>
+            </div>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-about-content']} my-8`}>
+            <InfiniteScroller nDuplications={2} speed="180s" marqueeClassName="h-[500px]">
+              {[Cowork1, Cowork2, Cowork3, Cowork4, Cowork5, Cowork6, Cowork7, Cowork8].map((src, i) => {
+                return (
+                  <ImageNew
+                    src={src}
+                    key={i}
+                    alt="Recorded Session Cover Image"
+                    className="shrink-0 !h-full !w-auto object-contain mr-4"
+                  />
+                )
+              })}
+            </InfiniteScroller>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
+            <div className="section">
+              <div>
+                <Link
+                  href="https://drive.google.com/drive/folders/1DlzDuVajwDmPOtE1uqns4Na9fjn6wQvy"
+                  indicateExternal
+                  className="button orange"
+                >
+                  View Image Gallery
+                </Link>
+              </div>
+            </div>
+          </Scene>
+
+          <Scene growNaturally growVertically className={`${css['scene-content']} !overflow-visible`}>
             {/* <Observer> */}
             <div className="section margin-bottom" id="about">
-              <h1 className="section-header orange margin-top-less margin-bottom-less">What to Expect</h1>
+              <div className="flex">
+                <div className="relative basis 4/4 xl:basis-3/4">
+                  <h1 className="section-header orange margin-top-less pb-5 border-top border-neutral-300 pt-8">
+                    Rewatch the Presentations
+                  </h1>
 
-              <p className="extra-large-text margin-bottom-less">
+                  <p className="large-text xl:pb-12">
+                    Don't miss out on the valuable insights from Devconnect - <b>check out the recorded sessions</b> on
+                    Streameth, perfect if you want to re-experience the talks or if you couldn't make it to Istanbul
+                    this year.
+                  </p>
+                </div>
+
+                <div className="relative hidden xl:block basis-1/3 shrink-0">
+                  <ImageNew
+                    src={ShapesImage}
+                    alt="shapes image"
+                    className="absolute h-[120%] bottom-0 object-contain object-bottom"
+                  />
+                </div>
+              </div>
+
+              {/* <p className="extra-large-text margin-bottom-less">
                 Multiple events, <u>independently</u> organized by the <span className="orange">community</span>.
                 <br />
                 Each event has a unique focus, ranging from <b>beginner-friendly to expert level.</b>
-              </p>
+              </p> */}
 
               {/* <div className="margin-top margin-bottom"></div> */}
 
-              <div className={css['topics-header']}>
-                <p className="section-header uppercase grey">Topics Include</p>
-                <Link href="/schedule" className={`orange button`} indicateExternal>
-                  View Schedule
-                </Link>
-              </div>
-
-              <div className="columns margin-top">
-                <div
-                  className={`${css['topics']} left fill-65 border-bottom padding-bottom-less`}
-                  id="topics-container"
-                >
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}>Decentralized Systems • </div>
-                  </Observer>
-
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}>Scalability • privacy • incentive mechanisms</div>
-                  </Observer>
-
-                  <Observer
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}> • mev • UX • governance & more</div>
-                  </Observer>
-                </div>
-
-                <div className={`right ${css['shapes-container']}`}>
-                  <div className={css['shapes']}>
-                    <ImageNew src={ShapesImage} alt="shapes image" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="margin-top margin-bottom-less"></div>
+              {/* <div className="margin-top margin-bottom-less"></div>
 
               <h1 className="section-header orange margin-bottom-less">Host Your Event At Devconnect</h1>
 
@@ -1321,9 +1398,8 @@ const Home: NextPage = (props: any) => {
                 >
                   Host An Event
                 </Link>
-              </div>
+              </div> */}
             </div>
-            {/* </Observer> */}
           </Scene>
 
           {/* NOTE: RETAINING FOR POST DEVCONNECT RECAP: */}
@@ -1439,20 +1515,141 @@ const Home: NextPage = (props: any) => {
             </Observer>
           </div> */}
 
+          <Scene growVertically growNaturally className={`${css['scene-about-content']} mt-8`}>
+            <div className="section !overflow-visible">
+              <SwipeToScroll>
+                <div className="flex flex-nowrap">
+                  {[
+                    { cover: Cover1, url: 'https://app.streameth.org/devconnect/light_client_summit/archive' },
+                    { cover: Cover4, url: 'https://app.streameth.org/devconnect/progcrypto' },
+                    {
+                      cover: Cover3,
+                      url: 'https://app.streameth.org/devconnect/conflux__web3_ux_unconference/archive',
+                    },
+                    { cover: Cover2, url: 'https://app.streameth.org/devconnect/wallet_unconference/archive' },
+                    { cover: Cover5, url: 'https://app.streameth.org/devconnect/solidity_summit/archive' },
+                    { cover: Cover6, url: 'https://app.streameth.org/devconnect/autonomous_worlds_assembly' },
+                    { cover: Cover7, url: 'https://app.streameth.org/devconnect/ethconomics/archive' },
+                    { cover: Cover8, url: 'https://app.streameth.org/devconnect/evm_summit/archive' },
+                    { cover: Cover9, url: 'https://app.streameth.org/devconnect/ethgunu/archive' },
+                    { cover: Cover10, url: 'https://app.streameth.org/devconnect/staking_gathering_2023' },
+                    { cover: Cover11, url: 'https://app.streameth.org/secureum/secureum_trustx/archive' },
+                    { cover: Cover12, url: 'https://app.streameth.org/devconnect/epf_day/archive' },
+                  ].map((entry, i) => {
+                    return (
+                      <Link key={i} href={entry.url} className="min-w-[450px] relative mr-4 aspect-video">
+                        <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
+                      </Link>
+                    )
+                  })}
+                </div>
+              </SwipeToScroll>
+              <p className="text-slate-300 text-xs font-bold mt-2">DRAG FOR MORE</p>
+            </div>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-content']} my-8 mt-3`}>
+            <div className="section">
+              <div className="border-bottom border-neutral-300 pb-8">
+                <div className={css['topics-header']}>
+                  <p className="section-header uppercase orange">Topics Covered</p>
+                  <Link href="/istanbul" className={`orange button`} indicateExternal>
+                    View Schedule
+                  </Link>
+                </div>
+
+                <div className={`${css['topics']} my-4`} id="topics-container">
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}>Decentralized Systems • </div>
+                  </Observer>
+
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}>Scalability • privacy • incentive mechanisms</div>
+                  </Observer>
+
+                  <Observer
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}> • mev • UX • governance & more</div>
+                  </Observer>
+                </div>
+              </div>
+            </div>
+          </Scene>
+
+          <Scene growVertically growNaturally className={`${css['scene-content']}`}>
+            <div className="section">
+              <div className="flex mb-0 2xl:mb-8 flex-col 2xl:flex-row">
+                <div className="basis-1/1 2xl:basis-2/4 shrink-0">
+                  <h1 className="section-header orange">About Devconnect</h1>
+
+                  <div className="mt-6">
+                    <p className={css['big-description']}>
+                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
+                      <b>
+                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
+                      </b>
+                    </p>
+
+                    <p className="large-text margin-top-less">
+                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
+                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
+                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
+                      rich history and culture of the unique city where we gather.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="basis-1/1 2xl:basis-2/4 overflow-hidden mt-8 2xl:mt-0 pl-0 2xl:pl-8">
+                  <h1 className="section-header orange">Past Events</h1>
+
+                  <div className="flex flex-row lg:flex-nowrap flex-wrap gap-4 py-8 max-w-full">
+                    <PastEventCard
+                      text="Istanbul Schedule"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
+                      image={istanbulScheduleBackground}
+                      imageAlt="Istanbul collage"
+                      link="/istanbul"
+                    />
+
+                    <PastEventCard
+                      text="Amsterdam Schedule"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
+                      image={istanbulScheduleBackground}
+                      imageAlt="Amsterdam collage"
+                      link="/amsterdam"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Scene>
+
           <Scene growVertically growNaturally className={`${css['scene-faq']}`}>
-            {/* <Observer> */}
             <div className="section">
               <h1 className="section-header orange border-top padding-top-less">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
-
-              {/* <div className="padding-bottom-less border-bottom "></div> */}
             </div>
-            {/* </Observer> */}
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-faq']} section`}>
-            {/* <Observer> */}
             <div className={`clear-vertical`}>
               {/* <div className="columns border-bottom margin-bottom padding-bottom">
                   <div className="left">
@@ -1491,7 +1688,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div> */}
 
-              {/* <h1 className="section-header orange">Frequently Asked Questions</h1>
+              <h1 className="section-header orange">Frequently Asked Questions</h1>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
                 <Accordion>
@@ -1508,9 +1705,8 @@ const Home: NextPage = (props: any) => {
                     )
                   })}
                 </Accordion>
-              </div> */}
+              </div>
             </div>
-            {/* </Observer> */}
           </Scene>
         </main>
 

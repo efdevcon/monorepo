@@ -17,11 +17,11 @@ module.exports = {
         destination: 'https://ef-events.notion.site/Host-an-event-at-Devconnect-8d1c95ea7f4f41d9a4239eb87ed1fb03',
         permanent: false,
       },
-      {
-        source: '/istanbul',
-        destination: 'https://devconnect.org/schedule',
-        permanent: false,
-      },
+      // {
+      //   source: '/istanbul',
+      //   destination: 'https://devconnect.org/schedule',
+      //   permanent: false,
+      // },
       {
         source: '/schedule/istanbul',
         destination: 'https://devconnect.org/schedule',

@@ -244,6 +244,28 @@ export const Row = (props: any) => {
   )
 }
 
+export const Gallery = (props: any) => {
+  return (
+    <div className={`${css['gallery']}`}>
+      <div className={css['grid-item']}>
+        <Image src={Cowork1} alt="Cowork space example" />
+      </div>
+      <div className={css['grid-item']}>
+        <Image src={Cowork2} alt="Cowork space example" />
+      </div>
+      <div className={css['grid-item']}>
+        <Image src={Cowork3} alt="Cowork space example" />
+      </div>
+      <div className={css['grid-item']}>
+        <Image src={Cowork4} alt="Cowork space example" />
+      </div>
+      <div className={css['grid-item']}>
+        <Image src={Cowork5} alt="Cowork space example" />
+      </div>
+    </div>
+  )
+}
+
 const Cowork: NextPage = (props: any) => {
   //   const [soldOut, setSoldout] = React.useState(!waves.some(wave => wave.status === 'on sale now'))
   const accordionFAQRefs = React.useRef({} as { [key: string]: any })
@@ -530,23 +552,7 @@ const Cowork: NextPage = (props: any) => {
             </div>
           </div>
           <div className={`clear`}>
-            <div className={`${css['gallery']}`}>
-              <div className={css['grid-item']}>
-                <Image src={Cowork1} alt="Cowork space example" />
-              </div>
-              <div className={css['grid-item']}>
-                <Image src={Cowork2} alt="Cowork space example" />
-              </div>
-              <div className={css['grid-item']}>
-                <Image src={Cowork3} alt="Cowork space example" />
-              </div>
-              <div className={css['grid-item']}>
-                <Image src={Cowork4} alt="Cowork space example" />
-              </div>
-              <div className={css['grid-item']}>
-                <Image src={Cowork5} alt="Cowork space example" />
-              </div>
-            </div>
+            <Gallery />
           </div>
         </div>
 
