@@ -1338,9 +1338,9 @@ const Home: NextPage = (props: any) => {
                   </h1>
 
                   <p className="large-text xl:pb-12">
-                    Don't miss out on the valuable insights from Devconnect - <b>check out the recorded sessions</b> on
-                    Streameth, perfect if you want to re-experience the talks or if you couldn't make it to Istanbul
-                    this year.
+                    Don't miss out on the valuable insights from Devconnect -{' '}
+                    <b>check out some of the recorded sessions</b> on Streameth, perfect if you want to re-experience
+                    the talks or if you couldn't make it to Istanbul this year.
                   </p>
                 </div>
 
@@ -1545,6 +1545,16 @@ const Home: NextPage = (props: any) => {
                 </div>
               </SwipeToScroll>
               <p className="text-slate-300 text-xs font-bold mt-2">DRAG FOR MORE</p>
+            </div>
+
+            <div className="section">
+              <p className="lg-text text-[black] mt-2">
+                You can also check the{' '}
+                <Link href="/istanbul">
+                  <b>schedule</b>
+                </Link>{' '}
+                to find other event's websites and recordings.
+              </p>
             </div>
           </Scene>
 
