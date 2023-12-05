@@ -19,8 +19,10 @@
 
   flex-grow: 1;
   color: $colors-monochrome-10;
-  border-bottom: 1px solid $colors-monochrome-5;
+  // border-bottom: 1px solid $colors-monochrome-5;
   padding-left: $gaps-gap-2;
+  box-shadow: 0px 1px 4px 1px rgb(146, 146, 146);
+  padding: 4px 8px;
   margin-right: $gaps-gap-4;
 
   &:focus,
