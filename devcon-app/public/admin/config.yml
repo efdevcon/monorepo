@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   repo: efdevcon/devcon-website
-  branch: '%BRANCH_PLACEHOLDER%'
+  branch: '${HEAD}'
   accept_roles:
     - admin
     - editor
@@ -11,7 +11,7 @@ slug:
   clean_accents: true
   sanitize_replacement: '-'
 
-local_backend: true
+
 publish_mode: editorial_workflow
 media_folder: public/assets/uploads/images
 public_folder: /assets/uploads/

@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-ignore
 import SlickSlider from 'react-slick'
 import css from './slider.module.scss'
 import { Button } from 'components/common/button'

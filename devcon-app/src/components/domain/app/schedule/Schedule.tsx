@@ -667,7 +667,7 @@ export const Schedule = (props: any) => {
                 <ul className={css['date-selector']}>
                   {[
                     { text: 'All', value: { readable: 'all', moment: null } },
-                    ...eventDates.map(date => {
+                    ...eventDates.map((date: any) => {
                       return {
                         text: date.readable,
                         value: date,

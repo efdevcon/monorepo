@@ -77,6 +77,7 @@ const PathNavigation = (props: PageHeroProps) => {
     }, [] as React.ReactNode[])
   }
 
+  // @ts-ignore
   return <p className={`${css['path']} font-xs text-uppercase`}>{path || props.path || pagePath}</p>
 }
 

@@ -22,7 +22,7 @@ export const NewsPage = (props: NewsProps) => {
               {data.tags.map(tag => {
                 return (
                   <div key={tag.id} className="label bold">
-                    {tag}
+                    {tag as any}
                   </div>
                 )
               })}
