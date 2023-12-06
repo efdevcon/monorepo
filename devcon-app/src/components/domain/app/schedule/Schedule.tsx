@@ -194,20 +194,19 @@ export const Schedule = (props: any) => {
 
   const listRef = useRef<any>()
 
-  const eventDates = React.useMemo(() => {
-    const dates = []
-    const end = moment.utc(event.date_to).add(1, 'days')
+  const start = moment(event.startDate)
+  const end = moment(event.endDate)
+  const daysDiff = end.diff(start, 'days')
 
-    let current = moment.utc(event.date_from)
+  const eventDates = [] as any
 
-    while (!current.isSame(end)) {
-      const next = current.clone()
-      dates.push({ readable: normalizeDate(next), moment: next })
-      current.add(1, 'days')
-    }
+  for (let i = 0; i < daysDiff + 1; i++) {
+    const nextDate = start.clone()
 
-    return dates
-  }, [event])
+    nextDate.add(i, 'days')
+
+    eventDates.push({ readable: normalizeDate(nextDate), moment: nextDate })
+  }
 
   // When selecting a specific day, open it immediately
   // When selecting all days, close them to provide a hollistic view of the events

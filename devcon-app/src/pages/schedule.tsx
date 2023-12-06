@@ -30,8 +30,8 @@ export default pageHOC((props: any) => {
         </>
       ) : (
         <>
-        <SEO title='Schedule' />
-        <Schedule {...props} />
+          <SEO title="Schedule" />
+          <Schedule {...props} />
         </>
       )}
     </AppLayout>
