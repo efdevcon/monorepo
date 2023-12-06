@@ -95,7 +95,9 @@ export const SpeakerCard = ({ speaker }: CardProps) => {
         <Link to={speakerLink} className={css['thumbnail']}>
           <div className={css['wrapper']}>
             <Image
-              src={speaker.avatar || makeBlockie(speaker.name || speaker.id)}
+              // pretalx api down so avatar links don't work atm
+              // src={speaker.avatar ?? makeBlockie(speaker.name || speaker.id)}
+              src={makeBlockie(speaker.name || speaker.id)}
               alt={speaker.name}
               objectFit="cover"
               width="64"
