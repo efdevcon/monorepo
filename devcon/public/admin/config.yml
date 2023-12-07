@@ -24,7 +24,7 @@ collections:
   - name: 'pages'
     label: 'Pages'
     label_singular: 'Page'
-    folder: 'src/content/pages'
+    folder: 'devcon-website/src/content/pages'
     slug: '{{slug}}'
     summary: '{{header}}'
     create: false
@@ -49,7 +49,7 @@ collections:
   - name: 'Sections'
     label: 'Sections'
     label_singular: 'Section'
-    folder: 'src/content/sections'
+    folder: 'devcon-website/src/content/sections'
     create: true
     i18n: true
     view_groups:
@@ -137,7 +137,7 @@ collections:
 
   - name: 'devcon'
     label: 'Devcon'
-    folder: 'src/content/devcon'
+    folder: 'devcon-website/src/content/devcon'
     identifier_field: number
     slug: '{{number}}'
     sortable_fields: ['number']
@@ -162,7 +162,7 @@ collections:
   - name: tracks
     label: Tracks
     label_singular: Track
-    folder: 'src/content/tracks'
+    folder: 'devcon-website/src/content/tracks'
     sortable_fields: ['order']
     create: true
     i18n: true
@@ -184,7 +184,7 @@ collections:
   - name: 'notification'
     label: 'Notification Strip'
     label_singular: 'Notification'
-    folder: 'src/content/notifications'
+    folder: 'devcon-website/src/content/notifications'
     i18n: true
     fields:
       - {
@@ -210,7 +210,7 @@ collections:
     label: 'App Notifications'
     create: true
     label_singular: 'App Notification'
-    folder: 'src/content/app-notifications'
+    folder: 'devcon-website/src/content/app-notifications'
     fields:
       - { name: 'title', label: 'Title', widget: 'string', required: true }
       - { name: 'body', label: 'Body', widget: 'markdown', required: true }
@@ -238,7 +238,7 @@ collections:
   - name: 'news'
     label: 'News'
     label_singular: 'News item'
-    folder: 'src/content/news'
+    folder: 'devcon-website/src/content/news'
     create: true
     i18n: true
     fields:
