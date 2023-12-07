@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  repo: efdevcon/devcon-website
+  repo: efdevcon/monorepo
   branch: '$BRANCH'
   accept_roles:
     - admin
@@ -10,7 +10,6 @@ slug:
   encoding: 'ascii'
   clean_accents: true
   sanitize_replacement: '-'
-
 
 publish_mode: editorial_workflow
 media_folder: public/assets/uploads/images
