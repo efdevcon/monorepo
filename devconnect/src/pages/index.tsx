@@ -1762,7 +1762,6 @@ export async function getStaticProps() {
         variables: content.variables,
         data: content.data,
         query: content.query,
-        //myOtherProp: 'some-other-data',
       },
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
