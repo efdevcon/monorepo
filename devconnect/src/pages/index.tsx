@@ -50,6 +50,10 @@ import Cover10 from 'assets/images/ist-video-archive/staking_cover.webp'
 import Cover11 from 'assets/images/ist-video-archive/secureum_banner.webp'
 import Cover12 from 'assets/images/ist-video-archive/EPF_Cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
+import { client } from '../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { PagesQuery } from '../../tina/__generated__/types'
 
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
 // import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
@@ -1034,6 +1038,9 @@ const Scene = (props: any) => {
 }
 
 const Home: NextPage = (props: any) => {
+  // console.log(props.cms, 'content?')
+  const { data }: { data: PagesQuery } = useTina(props.cms)
+
   // const [dateHovered, setDateHovered] = React.useState(false)
   const [hehe, setHehe] = React.useState(false)
   const organizersRef = React.useRef<any>()
@@ -1135,12 +1142,11 @@ const Home: NextPage = (props: any) => {
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
                   <div>
-                    <p className={`${css['big-description']}`}>Connecting the builders of Ethereum</p>
+                    <p className={`${css['big-description']}`}>{data.pages.catchphrase}</p>
 
-                    <p style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
-                      Devconnect is a week-long gathering of independent Ethereum events to learn, share, and{' '}
-                      <b>make progress together</b>.
-                    </p>
+                    <div style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
+                      <TinaMarkdown content={data.pages.subtext} />
+                    </div>
 
                     <div className={css['buttons']}>
                       {/* <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
@@ -1148,7 +1154,7 @@ const Home: NextPage = (props: any) => {
                       </Link> */}
 
                       <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span className="!mr-0">Devconnect IST photo gallery</span>
+                        <span className="!mr-0">{data.pages.button}</span>
                       </Link>
                     </div>
                   </div>
@@ -1748,9 +1754,16 @@ const getBlogPosts = async (maxItems: number = 6): Promise<Array<BlogPost>> => {
 }
 
 export async function getStaticProps() {
+  const content = await client.queries.pages({ relativePath: 'Index.md' })
   return {
     props: {
       blogs: await getBlogPosts(),
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+        //myOtherProp: 'some-other-data',
+      },
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
   }
