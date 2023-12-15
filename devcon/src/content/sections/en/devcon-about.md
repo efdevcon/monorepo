@@ -25,5 +25,3 @@ University clubs,
 Workshops,
 Education initiatives,
 and other community activities.**
-
-**Deadline: 31.10.2023**
