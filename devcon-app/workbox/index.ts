@@ -57,15 +57,37 @@ self.addEventListener("fetch", (e: any) => {
   // );
 });
 
-// _self.addEventListener('push', event => {
-//   const data = JSON.parse(event?.data.text() || '{}')
-//   event?.waitUntil(
-//     _self.registration.showNotification(data.title, {
-//       body: data.message,
-//       icon: '/icons/android-chrome-192x192.png',
-//     })
-//   )
-// })
+// _self.addEventListener('activate', event => {
+//   console.log('activated')
+//   if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+//         serviceWorkerRegistration.pushManager.subscribe({
+//             userVisibleOnly: true
+//         }).then(function(subscription) {
+//             console.log('User is subscribed:', subscription);
+//             // Send subscription to your server
+//         }).catch(function(err) {
+//             console.log('Failed to subscribe the user: ', err);
+//         });
+//     });
+//   }
+// });
+
+_self.addEventListener('push', event => {
+  console.log(event, 'eventaa')
+  // const data = JSON.parse(event?.data.text() || '{}')
+  _self.registration.showNotification('Ayy', {
+    body: event.data.text(),
+    icon: '/icons/android-chrome-192x192.png',
+  })
+
+  // event?.waitUntil(
+  //   _self.registration.showNotification(data.title, {
+  //     body: data.message,
+  //     icon: '/icons/android-chrome-192x192.png',
+  //   })
+  // )
+})
 
 // _self.addEventListener('notificationclick', event => {
 //   event?.notification.close()

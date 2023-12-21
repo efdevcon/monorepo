@@ -177,7 +177,7 @@ export const Dashboard = (props: any) => {
                   },
                   {
                     text: 'Devcon Manual',
-                    value: 'schedule',
+                    value: 'manual',
                     url: 'https://blog.ethereum.org/2022/10/04/devcon-manual',
                   },
                   {

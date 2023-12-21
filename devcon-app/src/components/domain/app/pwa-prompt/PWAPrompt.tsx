@@ -45,6 +45,30 @@ export const PWAPrompt = () => {
     }
   }, [requiresManualInstall, promptIfNotLocked])
 
+  useEffect(() => {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+      // run only in browser
+      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+        serviceWorkerRegistration.pushManager
+          .subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: process.env.VAPID_PUBLIC, // urlBase64ToUint8Array('YOUR_VAPID_PUBLIC_KEY')
+          })
+          .then(function (subscription) {
+            console.log('User is subscribed:', subscription)
+
+            return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+
+            // Send subscription to your server
+          })
+          .catch(function (err) {
+            console.log('Failed to subscribe the user: ', err)
+          })
+      })
+    }
+  }, [])
+
   return (
     <Modal open={open} close={() => setOpen(!open)} className={css['modal']}>
       <Image alt="Devcon wizard" objectFit="cover" className={css['background']} src={imagePWA} />
