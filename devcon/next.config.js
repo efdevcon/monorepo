@@ -108,15 +108,15 @@ const nextConfig = {
   },
   async headers() {
     return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-        ],
-      },
+      // {
+      //   source: '/(.*)',
+      //   headers: [
+      //     {
+      //       key: 'X-Frame-Options',
+      //       value: 'DENY',
+      //     },
+      //   ],
+      // },
     ]
   },
   async rewrites() {

@@ -19,8 +19,13 @@ import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
 import TestExternalRepo from 'lib/components/lib-import'
 import { Devcon7Logo } from 'components/common/devcon-7-logo'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+import { PagesQuery } from '../../tina/__generated__/types'
 
 export default pageHOC(function Index(props: any) {
+  const { data }: { data: PagesQuery } = useTina(props.cms)
+
   return (
     <div className={css['layout-default']}>
       <Header withStrip withHero />
@@ -39,6 +44,8 @@ export default pageHOC(function Index(props: any) {
       </div>
 
       <About recap content={props.sections['devcon-recap']} />
+
+      <p>အရှေ့တောင်အာရှ អាស៊ី​អា​គ្នេ​យ៏ เอเชียตะวันออกเฉียงใต้</p>
 
       <FeaturedSpeakers />
 
@@ -80,6 +87,8 @@ export async function getStaticProps(context: any) {
   )
   const tracks = GetTracks(context.locale)
 
+  const content = await client.queries.pages({ relativePath: 'Index.md' })
+
   return {
     props: {
       ...globalData,
@@ -88,6 +97,11 @@ export async function getStaticProps(context: any) {
       blogs: await GetBlogs(),
       sections,
       tracks,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
     revalidate: 1 * 60 * 30,
   }

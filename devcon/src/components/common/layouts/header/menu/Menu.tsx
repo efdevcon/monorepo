@@ -168,15 +168,15 @@ export const Menu = (props: any) => {
           <div className={css['right']}>
             <Navigation navigationData={context?.navigation} />
 
-            <div className={css['language-toggle-container']}>
+            {/* <div className={css['language-toggle-container']}>
               <LanguageToggle />
-            </div>
+            </div> */}
           </div>
 
           <Foldout foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
             <div className={css['foldout-top']}>
               <Left navigationData={context?.navigation} />
-              <LanguageToggle />
+              {/* <LanguageToggle /> */}
             </div>
             <Navigation setFoldoutOpen={props.setFoldoutOpen} navigationData={context?.navigation} mobile={true} />
           </Foldout>
