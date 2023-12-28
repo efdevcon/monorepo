@@ -15,10 +15,9 @@ import FeaturedSpeakers from 'components/domain/index/featured-speakers'
 import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
 import CircleBackground from 'assets/images/background-circles.png'
-import TriangleBackground from 'assets/images/background-triangles.png'
+// import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
 import TestExternalRepo from 'lib/components/lib-import'
-import { Devcon7Logo } from 'components/common/devcon-7-logo'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery } from '../../tina/__generated__/types'
@@ -31,8 +30,7 @@ export default pageHOC(function Index(props: any) {
       <Header withStrip withHero />
       <Hero />
 
-      {/* <Devcon7Logo />
-
+      {/*
       <TestExternalRepo /> */}
 
       <About content={props.sections['devcon-about']} />
@@ -44,8 +42,6 @@ export default pageHOC(function Index(props: any) {
       </div>
 
       <About recap content={props.sections['devcon-recap']} />
-
-      <p>အရှေ့တောင်အာရှ អាស៊ី​អា​គ្នេ​យ៏ เอเชียตะวันออกเฉียงใต้</p>
 
       <FeaturedSpeakers />
 
@@ -64,7 +60,7 @@ export default pageHOC(function Index(props: any) {
 
       <BlogReel blogs={props.blogs} />
 
-      <div className="clear-bottom"></div>
+      <div className="clear-bottom bg-slate-500 w-full h-[100px] z-10"></div>
 
       <Footer />
     </div>
