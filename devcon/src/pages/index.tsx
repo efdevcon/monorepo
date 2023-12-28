@@ -25,6 +25,7 @@ import { client } from '../../tina/__generated__/client'
 import { PagesQuery } from '../../tina/__generated__/types'
 import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import InfiniteScroller from 'lib/components/infinite-scroll'
 
 export default pageHOC(function Index(props: any) {
   const { data }: { data: PagesQuery } = useTina(props.cms)
@@ -53,7 +54,13 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div>
 
-          <div className="flex flex-col items-start mb-8 pb-8 border-bottom gap-8">
+          <div className="relative flex flex-col items-start pb-16 mb-8 border-bottom gap-8">
+            <div className={`${css['scrolling-text-background']}`}>
+              <InfiniteScroller nDuplications={2} speed="180s">
+                <p className="bold">SOUTHEAST ASIA&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+
             <div>
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section2?.top}></TinaMarkdown>
