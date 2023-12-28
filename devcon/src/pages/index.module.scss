@@ -69,3 +69,10 @@
   black 65%, 
   transparent);
 }
+
+.rainbow-text {
+  background: linear-gradient(92deg, #B2ABFE -2.27%, #FF8290 37.74%, #F3C18F 65.44%, #A1FEC8 96.22%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

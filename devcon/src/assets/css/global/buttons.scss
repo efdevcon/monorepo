@@ -60,11 +60,8 @@ button {
       cursor: auto;
     }
 
-    // dc-7
     &.rounded-purple {
-      // border-radius: 77px;
-      // border: 1px solid #7958A5;
-      --border-color: #7958A5;
+      --border-color: #787878;
       --border-width: 1px;
       --border-radius: 77px;
       background: #AEB6FF;
@@ -72,13 +69,17 @@ button {
       --color-icon: black !important;
     }
 
-    &.rounded-purple-2 {
-      border-radius: 77px;
-      // border: 1px solid #7958A5;
-      // --border-color: #7958A5;
-      // background: #AEB6FF;
-      color: black;
-      --color-icon: black !important;
+    &.rounded-dark-purple {
+      --border-color: #7958A5;
+      --border-width: 1px;
+      --border-radius: 67px;
+      background: #8B6BBB;
+      color: white;
+      --color-icon: white !important;
+
+      &:hover, &.hover {
+        background: #8746e9;
+      }
     }
 
     &.squared {

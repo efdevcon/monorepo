@@ -37,19 +37,21 @@ export default pageHOC(function Index(props: any) {
 
       <div className="bg-white z-10 overflow-hidden w-full">
         <div className="section">
-          <div className="flex mt-8 mb-8 pb-8 gap-8 border-bottom">
-            <div>
+          <div className="flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
+            <div className="basis-[1000px] shrink">
               <TitleDevcon style={{ marginBottom: '24px' }} />
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section1?.body}></TinaMarkdown>
               </div>
             </div>
-            <div className="">
-              <ImageNew src={LogoFlowers} alt="Devcon 7 Logo" />
+            <div className="flex flex-col grow shrink-0 items-center">
+              <div className="flex flex-col">
+                <ImageNew src={LogoFlowers} alt="Devcon 7 Logo" className="max-w-[400px]" />
 
-              <div className="mt-2">
-                <TitleDevcon style={{ width: '124px' }} />
-                <p className="text-xl">เอเชียตะวันออกเฉียงใต้</p>
+                <div className="mt-4 flex flex-col justify-start items-start">
+                  <TitleDevcon className="w-[124px]" />
+                  <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p>
+                </div>
               </div>
             </div>
           </div>
@@ -75,7 +77,9 @@ export default pageHOC(function Index(props: any) {
                 <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
               </div>
             </div>
-            <button className="button justify-self-start rounded-purple">{data.pages.section2?.button}</button>
+            <button className="button bold justify-self-start rounded-dark-purple">
+              {data.pages.section2?.button}
+            </button>
           </div>
 
           <div className="flex flex-col items-start mb-8 pb-8 border-bottom gap-8">
@@ -83,7 +87,9 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
             </div>
 
-            <button className="button justify-self-start rounded-purple">{data.pages.section3?.button}</button>
+            <button className="button bold justify-self-start rounded-dark-purple">
+              {data.pages.section3?.button}
+            </button>
           </div>
         </div>
         {/* <About content={props.sections['devcon-about']} /> */}
@@ -109,7 +115,21 @@ export default pageHOC(function Index(props: any) {
 
         {/* <div className="clear-bottom border-bottom"></div> */}
 
-        <TrackList tracks={props.tracks} />
+        <div className="section">
+          <div className="relative border-bottom pb-8">
+            <TrackList tracks={props.tracks} />
+
+            <button className="button bold mt-12 justify-self-start rounded-dark-purple">
+              {data.pages.section3?.button}
+            </button>
+
+            <div className={`${css['scrolling-text-background']}`}>
+              <InfiniteScroller nDuplications={2} speed="140s">
+                <p className="bold">DEVCON ARCHIVE&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+          </div>
+        </div>
 
         <BlogReel blogs={props.blogs} />
 
