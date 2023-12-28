@@ -54,9 +54,9 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div>
 
-          <div className="relative flex flex-col items-start pb-16 mb-8 border-bottom gap-8">
+          <div className="relative flex flex-col items-start pb-20 mb-8 border-bottom gap-8">
             <div className={`${css['scrolling-text-background']}`}>
-              <InfiniteScroller nDuplications={2} speed="180s">
+              <InfiniteScroller nDuplications={2} speed="140s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
             </div>
