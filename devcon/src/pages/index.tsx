@@ -14,13 +14,17 @@ import About from 'components/domain/index/about'
 import FeaturedSpeakers from 'components/domain/index/featured-speakers'
 import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
-import CircleBackground from 'assets/images/background-circles.png'
+import ImageNew from 'next/image'
+// import CircleBackground from 'assets/images/background-circles.png'
 // import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
-import TestExternalRepo from 'lib/components/lib-import'
+// import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery } from '../../tina/__generated__/types'
+import TitleDevcon from 'assets/images/devcon-title.svg'
+import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 
 export default pageHOC(function Index(props: any) {
   const { data }: { data: PagesQuery } = useTina(props.cms)
@@ -30,39 +34,82 @@ export default pageHOC(function Index(props: any) {
       <Header withStrip withHero />
       <Hero />
 
-      {/*
-      <TestExternalRepo /> */}
+      <div className="bg-white z-10 overflow-hidden w-full">
+        <div className="section">
+          <div className="flex mt-8 mb-8 pb-8 gap-8 border-bottom">
+            <div>
+              <TitleDevcon style={{ marginBottom: '24px' }} />
+              <div className="rich-text">
+                <TinaMarkdown content={data.pages.section1?.body}></TinaMarkdown>
+              </div>
+            </div>
+            <div className="">
+              <ImageNew src={LogoFlowers} alt="Devcon 7 Logo" />
 
-      <About content={props.sections['devcon-about']} />
+              <div className="mt-2">
+                <TitleDevcon style={{ width: '124px' }} />
+                <p className="text-xl">เอเชียตะวันออกเฉียงใต้</p>
+              </div>
+            </div>
+          </div>
 
-      <div className={`${css['background-container']} section`}>
-        <div className={`${css['circle-background']} expand`}>
-          <Image src={CircleBackground} alt="Circles" />
+          <div className="flex flex-col items-start mb-8 pb-8 border-bottom gap-8">
+            <div>
+              <div className="rich-text">
+                <TinaMarkdown content={data.pages.section2?.top}></TinaMarkdown>
+              </div>
+            </div>
+            <div className="flex gap-8">
+              <div className="rich-text">
+                <TinaMarkdown content={data.pages.section2?.left}></TinaMarkdown>
+              </div>
+
+              <div className="rich-text">
+                <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
+              </div>
+            </div>
+            <button className="button justify-self-start rounded-purple">{data.pages.section2?.button}</button>
+          </div>
+
+          <div className="flex flex-col items-start mb-8 pb-8 border-bottom gap-8">
+            <div className="rich-text">
+              <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
+            </div>
+
+            <button className="button justify-self-start rounded-purple">{data.pages.section3?.button}</button>
+          </div>
         </div>
-      </div>
+        {/* <About content={props.sections['devcon-about']} /> */}
 
-      <About recap content={props.sections['devcon-recap']} />
+        {/* <div className={`${css['background-container']} section`}>
+          <div className={`${css['circle-background']} expand`}>
+            <Image src={CircleBackground} alt="Circles" />
+          </div>
+        </div> */}
 
-      <FeaturedSpeakers />
+        {/* <About recap content={props.sections['devcon-recap']} /> */}
 
-      {/* <CallsToAction
+        {/* <FeaturedSpeakers /> */}
+
+        {/* <CallsToAction
         scholarApplications={props.sections['cta-scholar-applications']}
         // speakerApplications={props.sections['cta-speaker-applications']}
         // ticketPresale={props.sections['cta-ticket-presale']}
         ticketsOnSale={props.sections['tickets-on-sale-now']}
       /> */}
 
-      {/* <News data={props.news} /> */}
+        {/* <News data={props.news} /> */}
 
-      {/* <div className="clear-bottom border-bottom"></div> */}
+        {/* <div className="clear-bottom border-bottom"></div> */}
 
-      <TrackList tracks={props.tracks} />
+        <TrackList tracks={props.tracks} />
 
-      <BlogReel blogs={props.blogs} />
+        <BlogReel blogs={props.blogs} />
 
-      <div className="clear-bottom bg-slate-500 w-full h-[100px] z-10"></div>
+        <div className="clear-bottom"></div>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 })

@@ -32,9 +32,60 @@ export default defineConfig({
         path: "cms/pages",
         fields: [
           {
-            type: "string",
-            name: "testa",
-            label: "testabesta",
+            label: 'Section 1',
+            name: 'section1',
+            type: 'object',
+            fields: [
+              {
+                label: 'Body',
+                name: 'body',
+                type: 'rich-text',
+              },
+            ],
+          },
+          {
+            label: 'Section 2',
+            name: 'section2',
+            type: 'object',
+            fields: [
+              {
+                label: 'Top',
+                name: 'top',
+                type: 'rich-text',
+              },
+              {
+                label: 'Left',
+                name: 'left',
+                type: 'rich-text',
+              },
+              {
+                label: 'Right',
+                name: 'right',
+                type: 'rich-text',
+              },
+              {
+                label: 'Button',
+                name: 'button',
+                type: 'string',
+              },
+            ],
+          },
+          {
+            label: 'Section 3',
+            name: 'section3',
+            type: 'object',
+            fields: [
+              {
+                label: 'Body',
+                name: 'body',
+                type: 'rich-text',
+              },
+              {
+                label: 'Button',
+                name: 'button',
+                type: 'string',
+              }
+            ],
           },
         ],
         ui: {

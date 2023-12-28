@@ -22,6 +22,7 @@ button {
     display: inline-flex;
     align-items: center;
     position: relative;
+    border-radius: var(--border-radius);
 
     // Using pseudo element for borders so we can overlay an animating background without stripping the border away (which would also resize the button)
     &:before {
@@ -34,6 +35,8 @@ button {
       right: 0px;
       border-width: var(--border-width);
       border-color: var(--border-color);
+      border-radius: var(--border-radius);
+      background: var(--button-background);
       border-style: solid;
 
       &:hover {
@@ -55,6 +58,27 @@ button {
     &:disabled {
       pointer-events: none;
       cursor: auto;
+    }
+
+    // dc-7
+    &.rounded-purple {
+      // border-radius: 77px;
+      // border: 1px solid #7958A5;
+      --border-color: #7958A5;
+      --border-width: 1px;
+      --border-radius: 77px;
+      background: #AEB6FF;
+      color: black;
+      --color-icon: black !important;
+    }
+
+    &.rounded-purple-2 {
+      border-radius: 77px;
+      // border: 1px solid #7958A5;
+      // --border-color: #7958A5;
+      // background: #AEB6FF;
+      color: black;
+      --color-icon: black !important;
     }
 
     &.squared {
