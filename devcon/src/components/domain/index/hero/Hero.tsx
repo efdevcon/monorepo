@@ -25,7 +25,7 @@ import { Router, useRouter } from 'next/router'
 // import SEA from 'assets/images/sea-2024.png'
 // import SEAPattern from 'assets/images/sea-pattern-2024.png'
 // import { Tags } from 'components/common/tags'
-import { motion, useSpring } from 'framer-motion'
+import { motion, useSpring, useScroll } from 'framer-motion'
 
 import DC7OverlayLeft from './images/dc-7/overlay-left-dc7.png'
 import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
@@ -33,6 +33,7 @@ import DC7Logo from './images/dc-7/logo.png'
 import DC7Left from './images/dc-7/left.png'
 import DC7Right from './images/dc-7/right.png'
 import DC7Backdrop from './images/dc-7/backdrop.png'
+import { Butterflies } from './dc7/particles'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -140,7 +141,6 @@ const useCursorTracker = (ref: any) => {
 
   React.useEffect(() => {
     const handleMouseMove = (event: any) => {
-      console.log('mouse move')
       if (ref.current) {
         const { left, top, width, height } = ref.current.getBoundingClientRect()
         const centerX = left + width / 2
@@ -173,6 +173,9 @@ export const Hero = () => {
   // const [focusNextPage, setFocusNextPage] = React.useState(false)
   const backdropRef = React.useRef<any>(null)
   const { x, y } = useCursorTracker(backdropRef)
+  // const { scrollY } = useScroll()
+  // const scroll = useSpring(scrollY, { stiffness: 100000, damping: 40 })
+
   // const page = pages[currentPage]
 
   // const rotateNextPage = () => {
@@ -197,10 +200,8 @@ export const Hero = () => {
   let transformY: any = useSpring(y, { damping: 25 })
   let transformLeftX: any = useSpring(x, { damping: 25 })
   let transformLeftY: any = useSpring(y, { damping: 25 })
-  let transformLeftScale: any = useSpring(x, { damping: 25 })
   let transformRightX: any = useSpring(x, { damping: 25 })
   let transformRightY: any = useSpring(y, { damping: 25 })
-  let transformRightScale: any = useSpring(x, { damping: 25 })
 
   React.useEffect(() => {
     const xBackdrop = -x / 15
@@ -216,53 +217,39 @@ export const Hero = () => {
     transformLeftY.set(yDir)
     transformRightX.set(xDir * 1.5)
     transformRightY.set(yDir)
-    // transformLeftScale.set(Math.min(1, 1 + x / 50000))
-    // transformRightScale.set(Math.min(1, 1 + -x / 50000))
   }, [x, y])
 
   return (
     <>
       <div ref={heroEl} data-jest="hero" className={`${css['hero']} ${css['page.id']}`}>
-        <div className={css['devcon-7-background']} ref={backdropRef}>
-          <motion.div
-            className={css['backdrop']}
-            style={{ x: transformX, y: transformY }}
-            // transition={{ bounce: 0.25, duration: 0.5 }}
-          >
-            <Image src={DC7Backdrop} alt="worldmap" priority quality={100} />
+        <motion.div className={css['devcon-7-background']} ref={backdropRef} /*style={{ y: -scroll }}*/>
+          <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
+            <Image src={DC7Backdrop} alt="worldmap" priority />
           </motion.div>
-          <motion.div
-            className={css['left']}
-            style={{ x: transformLeftX, y: transformLeftY /*scale: transformLeftScale*/ }}
-            // transition={{ bounce: 0.25, duration: 0.5 }}
-          >
+          <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image src={DC7Left} alt="worldmap" priority />
           </motion.div>
-          <motion.div
-            className={css['right']}
-            // initial={{ opacity: 0 }}
-            // animate={{ opacity: 1 }}
-            style={{ x: transformLeftX, y: transformLeftY /*scale: transformRightScale*/ }}
-            // transition={{ bounce: 0.25, duration: 0.5 }}
-          >
+          <motion.div className={css['right']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image className={css['right']} src={DC7Right} alt="worldmap" priority />
           </motion.div>
-        </div>
+        </motion.div>
 
         <div className={css['devcon-7-overlay']}>
           <div className="section">
             <div className={css['flex']}>
               <div className={css['left']}>
-                {/* <div className="Logo go here">Logotime</div> */}
-                <Image className={css['dc7-logo']} src={DC7Logo} alt="worldmap" priority />
+                <div className={css['dc7-logo']}>
+                  {/* <div className={css['butterflies']}>
+                    <Butterflies />
+                  </div> */}
+                  <Image src={DC7Logo} alt="worldmap" priority />
+                </div>
                 <Image className={css['dc7-logo-text']} src={DC7OverlayLeft} alt="worldmap" priority />
-                {/* <div className="Logo go here">Sublogo</div>
-              <div className="">
-                <p>Devcon</p>
-                <p>Southeast Asia</p>
-              </div> */}
               </div>
               <div className={css['right']}>
+                <div className={css['butterflies']}>
+                  <Butterflies />
+                </div>
                 <Image className={css['dc7-logo-text']} src={DC7OverlayRight} alt="worldmap" priority />
               </div>
             </div>

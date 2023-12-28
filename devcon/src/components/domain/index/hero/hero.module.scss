@@ -194,6 +194,7 @@ $logo-offset: 50px;
 
   .left-rotated,
   .right-rotated {
+    filter: drop-shadow(0px 0px 2px #000000);
     color: white;
     position: absolute;
     height: 100%;
@@ -640,8 +641,6 @@ $logo-offset: 50px;
         transform: translateX(-5px);
       }
     }
-
-    .cta {}
   }
 }
 
@@ -840,6 +839,23 @@ $logo-offset: 50px;
     pointer-events: none;
   }
 
+  @media (max-width: $breakpoints-xl) {
+    .left {
+      display: none;
+    }
+
+    .right {
+      display: none;
+    }
+
+    .backdrop {
+      transform: scale(1) !important;
+      img {
+        transform: scale(1) !important;
+      }
+    }
+  }
+
   .left {
     position: absolute;
     height: 100%;
@@ -899,24 +915,90 @@ $logo-offset: 50px;
   height: 100%;
   bottom: 32px;
 
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+
+    > * {
+      height: 100%;
+    }
+
+    .dc7-logo {
+      margin-top: 125px !important;
+    }
+
+    img {
+      max-width: 80vw;
+    }
+
+    .flex {
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      gap: 36px;
+    }
+
+    .butterflies {
+        left: 60vw !important;
+        bottom: 60vh !important;
+    }
+    
+    .left {
+      height: 100%;
+    }
+  }
+
   .left {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
 
-    img {
-      height: auto;
+    .dc7-logo {
+      position: relative;
+      margin-top: 150px;
 
-      &:first-child {
-        margin-top: 150px;
+      img {
         width: 150px;
-      }
-
-      &:nth-child(2) {
-        width: 400px;
         filter: drop-shadow(0px 0px 4px #000000);
       }
+
+      // .butterflies {
+      //   position: absolute;
+      //   left: 20%;
+      //   height: 100%;
+      //   width: 100%;
+      //   bottom: -100%;
+      //   --butterfly-color: pink !important;
+
+      //   @keyframes fade-in {
+      //     0% {
+      //       opacity: 0;
+      //     }
+
+      //     100% {
+      //       opacity: 0;
+      //     }
+
+      //     100% {
+      //       opacity: 1;
+      //     }
+      //   }
+
+      //   animation: fade-in linear 1s forwards;
+
+      //   * {
+      //     animation-delay: 1s;
+      //   }
+      // }
+    }
+
+    .dc7-logo-text {
+      width: 400px;
+      filter: drop-shadow(0px 0px 4px #000000);
+    }
+
+    img {
+      height: auto;
     }
   }
 
@@ -933,6 +1015,14 @@ $logo-offset: 50px;
     display: flex;
     justify-content: flex-end;
 
+    .butterflies {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 20%;
+      bottom: 100%;
+    }
+
     img {
       width: 270px;
       height: auto;
@@ -940,3 +1030,4 @@ $logo-offset: 50px;
     }
   }
 }
+
