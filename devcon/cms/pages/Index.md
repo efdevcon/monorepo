@@ -37,8 +37,23 @@ section2:
     experience to the whole of Southeast Asia!
   button: Devcon 7 Update →
 section3:
-  body: "# Road to Devcon\n\n# Are you based in SEA, driven by a community-oriented spirit, and passionate about Ethereum's potential to create a positive impact?\n\nCheck out the Road to Devcon grants round and apply. \LThis initiative was born from our commitment to support the rise of new Ethereum events, grassroots communities, and educational endeavors across Southeast Asia before Devcon 7.\n"
+  body: "# **Road to Devcon**\n\n# Are you based in SEA, driven by a community-oriented spirit, and passionate about Ethereum's potential to create a positive impact?\n\nCheck out the Road to Devcon grants round and apply. \LThis initiative was born from our commitment to support the rise of new Ethereum events, grassroots communities, and educational endeavors across Southeast Asia before Devcon 7.\n"
   button: |
     Apply for RTD Grants →
+section4:
+  body: >
+    # **Devcon VI Bogotá**
+
+
+    # Tracing our roots back to ÐΞVcon 0, a humble meetup in Berlin, Devcon has
+    grown into a global beacon for the Ethereum community, uniting voices,
+    ideas, and innovations from across the world.
+
+
+    At Devcon VI, we celebrated the power of community and turned our spotlight
+    to Latin America. The Road to Devcon VI was paved with passion and
+    collaboration, as the Latin American Ethereum community hosted approximately
+    14 events across the region.
+  button: Devcon VI Recap →
 ---
 

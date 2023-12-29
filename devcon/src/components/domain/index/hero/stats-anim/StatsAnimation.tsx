@@ -81,6 +81,7 @@ const StatsAnimation = () => {
         {
           render: { fillStyle: 'transparent' },
           frictionAir: 0.05,
+          density: 0.005,
         }
       )
 
@@ -140,13 +141,14 @@ const StatsAnimation = () => {
       const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
       const colors = ['#F5D222', '#88C43F', '#E55066', '#0FADCF', '#00B3A4', '#F69022', '#E4F6FA']
 
-      stack = Composites.stack(50, 50, 100, 1, 4, 5, function (x: any, y: any) {
+      stack = Composites.stack(20, 20, 100, 1, 0, 2, function (x: any, y: any) {
         switch (Math.round(Common.random(0, 8))) {
           case 0: {
             const color = colors[Math.floor(Math.random() * colors.length)]
 
             return Bodies.polygon(x, Math.random() * height, 4, Common.random(40, 50), { render: { fillStyle: color } })
           }
+          case 2:
           case 1: {
             const color = colors[Math.floor(Math.random() * colors.length)]
 

@@ -26,6 +26,8 @@ import { PagesQuery } from '../../tina/__generated__/types'
 import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
+import StatsAnimation from 'components/domain/index/hero/stats-anim'
+import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
 
 export default pageHOC(function Index(props: any) {
   const { data }: { data: PagesQuery } = useTina(props.cms)
@@ -56,9 +58,9 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div>
 
-          <div className="relative flex flex-col items-start pb-20 mb-8 border-bottom gap-8">
+          <div className="relative flex flex-col items-start pb-20 border-bottom gap-8">
             <div className={`${css['scrolling-text-background']}`}>
-              <InfiniteScroller nDuplications={2} speed="140s">
+              <InfiniteScroller nDuplications={2} speed="200s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
             </div>
@@ -82,14 +84,40 @@ export default pageHOC(function Index(props: any) {
             </button>
           </div>
 
-          <div className="flex flex-col items-start mb-8 pb-8 border-bottom gap-8">
+          <div className="flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
+            <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+              <InfiniteScroller nDuplications={2} reverse speed="200s">
+                <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+
+            <div className="basis-[800px] shrink">
+              <div className="rich-text">
+                <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
+              </div>
+              <button className="button mt-8 bold justify-self-start rounded-dark-purple">
+                {data.pages.section3?.button}
+              </button>
+            </div>
+            <div className="flex grow shrink-0 items-center justify-center">
+              <div className={css['tilt-hover-image']}>
+                <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex flex-col items-start mb-8 border-bottom gap-8">
             <div className="rich-text">
-              <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
+              <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
             <button className="button bold justify-self-start rounded-dark-purple">
-              {data.pages.section3?.button}
+              {data.pages.section4?.button}
             </button>
+
+            <div className="h-[50vh] relative w-full">
+              <StatsAnimation />
+            </div>
           </div>
         </div>
         {/* <About content={props.sections['devcon-about']} /> */}
@@ -133,7 +161,7 @@ export default pageHOC(function Index(props: any) {
 
         <BlogReel blogs={props.blogs} />
 
-        <div className="clear-bottom"></div>
+        <div className="mb-8"></div>
 
         <Footer />
       </div>

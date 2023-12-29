@@ -1,7 +1,8 @@
 .container {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 150%;
+  bottom: -8px;
   // z-index: 1;
   // background: black;
 
@@ -10,14 +11,15 @@
   }
 
   .element {
-    font-size: 2vw;
+    font-size: 1.25vw;
     padding: 1em 0.75em;
     position: absolute;
     pointer-events: none;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 64px;
     color: white;
     white-space: nowrap;
+    cursor: pointer;
 
     @media (max-width: 600px) {
       font-size: 12px !important;

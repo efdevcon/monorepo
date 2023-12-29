@@ -87,6 +87,40 @@ export default defineConfig({
               }
             ],
           },
+          {
+            label: 'Section 4',
+            name: 'section4',
+            type: 'object',
+            fields: [
+              {
+                label: 'Body',
+                name: 'body',
+                type: 'rich-text',
+              },
+              {
+                label: 'Button',
+                name: 'button',
+                type: 'string',
+              }
+            ],
+          },
+          {
+            label: 'Section 5',
+            name: 'section5',
+            type: 'object',
+            fields: [
+              {
+                label: 'Body',
+                name: 'body',
+                type: 'rich-text',
+              },
+              {
+                label: 'Button',
+                name: 'button',
+                type: 'string',
+              }
+            ],
+          },
         ],
         ui: {
           router: ({ document }) => `/en`,
