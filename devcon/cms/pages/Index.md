@@ -5,7 +5,7 @@ subtext: "Devconnect is a week-long gathering of independent Ethereum events to 
 button: Devconnect IST Photo Gallery
 section1:
   body: >
-    # Devcon is an intensive introduction for new Ethereum explorers, a global
+    ## Devcon is an intensive introduction for new Ethereum explorers, a global
     family reunion for those already a part of our ecosystem, and a source of
     energy and creativity for all.
 
@@ -17,10 +17,10 @@ section1:
     demystified.
 section2:
   top: >
-    # **Devcon 7 — Southeast Asia**
+    ## **Devcon 7 — Southeast Asia**
 
 
-    # Devcon’s goal is to make Ethereum more accessible to communities around
+    ## Devcon’s goal is to make Ethereum more accessible to communities around
     the world and to contribute to the ongoing evolution of the global Ethereum
     ecosystem.
   left: >
@@ -37,15 +37,15 @@ section2:
     experience to the whole of Southeast Asia!
   button: Devcon 7 Update →
 section3:
-  body: "# **Road to Devcon**\n\n# Are you based in SEA, driven by a community-oriented spirit, and passionate about Ethereum's potential to create a positive impact?\n\nCheck out the Road to Devcon grants round and apply. \LThis initiative was born from our commitment to support the rise of new Ethereum events, grassroots communities, and educational endeavors across Southeast Asia before Devcon 7.\n"
+  body: "## **Road to Devcon**\n\n## Are you based in SEA, driven by a community-oriented spirit, and passionate about Ethereum's potential to create a positive impact?\n\nCheck out the Road to Devcon grants round and apply. \LThis initiative was born from our commitment to support the rise of new Ethereum events, grassroots communities, and educational endeavors across Southeast Asia before Devcon 7.\n"
   button: |
     Apply for RTD Grants →
 section4:
   body: >
-    # **Devcon VI Bogotá**
+    ## **Devcon VI Bogotá**
 
 
-    # Tracing our roots back to ÐΞVcon 0, a humble meetup in Berlin, Devcon has
+    ## Tracing our roots back to ÐΞVcon 0, a humble meetup in Berlin, Devcon has
     grown into a global beacon for the Ethereum community, uniting voices,
     ideas, and innovations from across the world.
 
@@ -55,5 +55,15 @@ section4:
     collaboration, as the Latin American Ethereum community hosted approximately
     14 events across the region.
   button: Devcon VI Recap →
+section5:
+  body: >
+    Devcon is geared toward Ethereum's builders, creators, and thinkers who wish
+    to improve this world. Programming at Devcon takes a holistic approach and
+    aims to engage all attendees through talks, panels, workshops, lightning
+    talks, and freeform learning sessions.
+  title: |
+    ## **Archive**
+section6:
+  button: View Full Archive →
 ---
 

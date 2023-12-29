@@ -145,10 +145,20 @@ export default pageHOC(function Index(props: any) {
 
         <div className="section">
           <div className="relative border-bottom pb-8">
+            <div className="rich-text">
+              <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
+            </div>
+
+            <div className="rich-text">
+              <TinaMarkdown content={data.pages.section5?.body}></TinaMarkdown>
+            </div>
+          </div>
+
+          <div className="relative border-bottom pb-8">
             <TrackList tracks={props.tracks} />
 
             <button className="button bold mt-12 justify-self-start rounded-dark-purple">
-              {data.pages.section3?.button}
+              {data.pages.section6?.button}
             </button>
 
             <div className={`${css['scrolling-text-background']}`}>
@@ -159,7 +169,14 @@ export default pageHOC(function Index(props: any) {
           </div>
         </div>
 
-        <BlogReel blogs={props.blogs} />
+        <div className="relative">
+          <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+            <InfiniteScroller nDuplications={2} reverse speed="120s">
+              <p className="bold">Blog Posts&nbsp;</p>
+            </InfiniteScroller>
+          </div>
+          <BlogReel blogs={props.blogs} />
+        </div>
 
         <div className="mb-8"></div>
 

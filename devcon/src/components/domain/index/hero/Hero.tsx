@@ -211,7 +211,7 @@ export const Hero = () => {
     transformY.set(yBackdrop)
 
     const xDir = -x / 25
-    const yDir = -y / 12.5
+    const yDir = -y / 20
 
     transformLeftX.set(xDir)
     transformLeftY.set(yDir)
