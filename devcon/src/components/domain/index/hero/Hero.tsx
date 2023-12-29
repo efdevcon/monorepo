@@ -196,12 +196,12 @@ export const Hero = () => {
   //   }
   // }, [page, focusNextPage])
 
-  let transformX: any = useSpring(x, { damping: 25 })
-  let transformY: any = useSpring(y, { damping: 25 })
-  let transformLeftX: any = useSpring(x, { damping: 25 })
-  let transformLeftY: any = useSpring(y, { damping: 25 })
-  let transformRightX: any = useSpring(x, { damping: 25 })
-  let transformRightY: any = useSpring(y, { damping: 25 })
+  let transformX: any = useSpring(x, { damping: 20 })
+  let transformY: any = useSpring(y, { damping: 20 })
+  let transformLeftX: any = useSpring(x, { damping: 20 })
+  let transformLeftY: any = useSpring(y, { damping: 20 })
+  let transformRightX: any = useSpring(x, { damping: 20 })
+  let transformRightY: any = useSpring(y, { damping: 20 })
 
   React.useEffect(() => {
     const xBackdrop = -x / 12.5
@@ -224,13 +224,13 @@ export const Hero = () => {
       <div ref={heroEl} data-jest="hero" className={`${css['hero']} ${css['page.id']}`}>
         <motion.div className={css['devcon-7-background']} ref={backdropRef} /*style={{ y: -scroll }}*/>
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
-            <Image src={DC7Backdrop} alt="worldmap" priority />
+            <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
           </motion.div>
           <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
-            <Image src={DC7Left} alt="worldmap" priority />
+            <Image src={DC7Left} alt="Left Bush" priority />
           </motion.div>
           <motion.div className={css['right']} style={{ x: transformLeftX, y: transformLeftY }}>
-            <Image className={css['right']} src={DC7Right} alt="worldmap" priority />
+            <Image className={css['right']} src={DC7Right} alt="Right Bush" priority />
           </motion.div>
         </motion.div>
 
@@ -242,15 +242,20 @@ export const Hero = () => {
                   {/* <div className={css['butterflies']}>
                     <Butterflies />
                   </div> */}
-                  <Image src={DC7Logo} alt="worldmap" priority />
+                  <Image src={DC7Logo} alt="Devcon 7 Logo" priority />
                 </div>
-                <Image className={css['dc7-logo-text']} src={DC7OverlayLeft} alt="worldmap" priority />
+                <Image
+                  className={css['dc7-logo-text']}
+                  src={DC7OverlayLeft}
+                  alt="Devcon 7 logo with location"
+                  priority
+                />
               </div>
               <div className={css['right']}>
                 <div className={css['butterflies']}>
                   <Butterflies />
                 </div>
-                <Image className={css['dc7-logo-text']} src={DC7OverlayRight} alt="worldmap" priority />
+                <Image className={css['dc7-logo-text']} src={DC7OverlayRight} alt="Event location" priority />
               </div>
             </div>
           </div>

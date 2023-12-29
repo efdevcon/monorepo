@@ -1,3 +1,4 @@
+import React, { useRef, useState } from 'react'
 import { BlogReel } from 'components/domain/blog-overview'
 import { pageHOC } from 'context/pageHOC'
 import { GetBlogs } from 'services/blogs'
@@ -14,6 +15,7 @@ import About from 'components/domain/index/about'
 import FeaturedSpeakers from 'components/domain/index/featured-speakers'
 import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
+import themes from './themes.module.scss'
 import ImageNew from 'next/image'
 // import CircleBackground from 'assets/images/background-circles.png'
 // import TriangleBackground from 'assets/images/background-triangles.png'
@@ -28,12 +30,15 @@ import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import StatsAnimation from 'components/domain/index/hero/stats-anim'
 import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
+import { motion, useInView } from 'framer-motion'
 
 export default pageHOC(function Index(props: any) {
   const { data }: { data: PagesQuery } = useTina(props.cms)
+  const scrollRef = useRef<any>(null)
+  const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
 
   return (
-    <div className={css['layout-default']}>
+    <div className={`${css['layout-default']} ${themes['index']}`}>
       <Header withStrip withHero />
       <Hero />
 
@@ -60,7 +65,7 @@ export default pageHOC(function Index(props: any) {
 
           <div className="relative flex flex-col items-start pb-20 border-bottom gap-8">
             <div className={`${css['scrolling-text-background']}`}>
-              <InfiniteScroller nDuplications={2} speed="200s">
+              <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
             </div>
@@ -86,7 +91,7 @@ export default pageHOC(function Index(props: any) {
 
           <div className="flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
-              <InfiniteScroller nDuplications={2} reverse speed="200s">
+              <InfiniteScroller nDuplications={2} reverse speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
               </InfiniteScroller>
             </div>
@@ -111,12 +116,16 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
-            <button className="button bold justify-self-start rounded-dark-purple">
+            <button className="button bold justify-self-start rounded-dark-purple z-10">
               {data.pages.section4?.button}
             </button>
 
-            <div className="h-[50vh] relative w-full">
-              <StatsAnimation />
+            <div className="sm:h-[300px] h-[350px] relative w-full" ref={scrollRef}>
+              {isInView && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
+                  <StatsAnimation />
+                </motion.div>
+              )}
             </div>
           </div>
         </div>
@@ -149,6 +158,20 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
             </div>
 
+            <div className="max-w-[50vw] mt-4 mb-4">
+              <div className="aspect">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/lgTMm7J0t7c"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+
             <div className="rich-text">
               <TinaMarkdown content={data.pages.section5?.body}></TinaMarkdown>
             </div>
@@ -162,7 +185,7 @@ export default pageHOC(function Index(props: any) {
             </button>
 
             <div className={`${css['scrolling-text-background']}`}>
-              <InfiniteScroller nDuplications={2} speed="140s">
+              <InfiniteScroller nDuplications={2} speed="70s">
                 <p className="bold">DEVCON ARCHIVE&nbsp;</p>
               </InfiniteScroller>
             </div>
@@ -171,8 +194,8 @@ export default pageHOC(function Index(props: any) {
 
         <div className="relative">
           <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
-            <InfiniteScroller nDuplications={2} reverse speed="120s">
-              <p className="bold">Blog Posts&nbsp;</p>
+            <InfiniteScroller nDuplications={2} reverse speed="100s">
+              <p className="bold">BLOG POSTS&nbsp;</p>
             </InfiniteScroller>
           </div>
           <BlogReel blogs={props.blogs} />

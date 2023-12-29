@@ -23,7 +23,9 @@ const StatsAnimation = () => {
     if (!mountContainer) return
 
     // create an engine
-    var engine = Engine.create()
+    var engine = Engine.create({
+      positionIterations: 6,
+    })
 
     // create a renderer
     var render = Render.create({
@@ -67,21 +69,21 @@ const StatsAnimation = () => {
       mouseConstraint.mouse.element.removeEventListener('touchend', mouseConstraint.mouse.mouseup)
     }
 
-    engine.positionIterations = 100
-    engine.velocityIterations = 100
+    engine.positionIterations = 6
+    engine.velocityIterations = 6
 
     const createHtmlObject = (id: string) => {
       const elem = document.getElementById(id) as any
       const elemSize = elem.getBoundingClientRect()
       const body = Bodies.rectangle(
-        Math.max(elemSize.width, Math.random() * width),
-        Math.max(elemSize.height, Math.random() * height),
-        elemSize.width,
-        elemSize.height,
+        Math.max(elemSize.width * 1.2, Math.random() * width * 0.9),
+        Math.max(elemSize.height * 1.2, Math.random() * height),
+        elemSize.width * 0.95,
+        elemSize.height * 0.95,
         {
           render: { fillStyle: 'transparent' },
-          frictionAir: 0.05,
-          density: 0.005,
+          frictionAir: 0.2,
+          density: 0.1,
         }
       )
 
@@ -117,7 +119,7 @@ const StatsAnimation = () => {
       render: {
         fillStyle: 'transparent',
         strokeStyle: 'transparent',
-        lineWidth: 1,
+        lineWidth: 50,
       },
     }
     const walls = [
@@ -141,24 +143,35 @@ const StatsAnimation = () => {
       const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
       const colors = ['#F5D222', '#88C43F', '#E55066', '#0FADCF', '#00B3A4', '#F69022', '#E4F6FA']
 
-      stack = Composites.stack(20, 20, 100, 1, 0, 2, function (x: any, y: any) {
+      const canvasWidth = width // Width of the canvas
+      const canvasHeight = height // Height of the canvas
+      const objectWidth = 58 // Width of each object
+      const objectHeight = 58 // Height of each object
+
+      const columns = Math.floor(canvasWidth / objectWidth) / 4
+      const rows = Math.floor(canvasHeight / objectHeight) / 4
+
+      const columnGap = (canvasWidth - columns * objectWidth) / (columns - 1)
+      const rowGap = (canvasHeight - rows * objectHeight) / (rows - 1)
+
+      stack = Composites.stack(0, 0, columns, rows, columnGap, rowGap, function (x: any, y: any) {
         switch (Math.round(Common.random(0, 8))) {
-          case 0: {
-            const color = colors[Math.floor(Math.random() * colors.length)]
+          // case 0: {
+          //   const color = colors[Math.floor(Math.random() * colors.length)]
 
-            return Bodies.polygon(x, Math.random() * height, 4, Common.random(40, 50), { render: { fillStyle: color } })
-          }
-          case 2:
-          case 1: {
-            const color = colors[Math.floor(Math.random() * colors.length)]
+          //   return Bodies.polygon(x, Math.random() * height, 4, Common.random(40, 50), { render: { fillStyle: color } })
+          // }
 
-            return Bodies.circle(x, Math.random() * height, Common.random(40, 50), { render: { fillStyle: color } })
-          }
-          case 2: {
-            const color = colors[Math.floor(Math.random() * colors.length)]
+          // case 1: {
+          //   const color = colors[Math.floor(Math.random() * colors.length)]
 
-            return Bodies.polygon(x, Math.random() * height, 3, Common.random(40, 50), { render: { fillStyle: color } })
-          }
+          //   return Bodies.circle(x, Math.random() * height, Common.random(40, 50), { render: { fillStyle: color } })
+          // }
+          // case 2: {
+          //   const color = colors[Math.floor(Math.random() * colors.length)]
+
+          //   return Bodies.polygon(x, Math.random() * height, 3, Common.random(40, 50), { render: { fillStyle: color } })
+          // }
 
           default:
             const radius = 29
@@ -168,11 +181,12 @@ const StatsAnimation = () => {
               render: {
                 sprite: {
                   texture: `/assets/textures/${icon}`,
-                  xScale: 0.65,
-                  yScale: 0.65,
+                  xScale: 0.7,
+                  yScale: 0.7,
                 },
               },
-              frictionAir: 0.05,
+              frictionAir: 0.15,
+              density: 0.1,
             })
         }
       })
