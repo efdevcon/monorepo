@@ -839,8 +839,10 @@ $logo-offset: 50px;
 
     .backdrop {
       transform: scale(1) !important;
+      height: 100% !important; 
       img {
         transform: scale(1) !important;
+        height: 100% !important; 
         width: 100% !important;
       }
     }
@@ -852,9 +854,9 @@ $logo-offset: 50px;
     width: 100%;
     
     img {
-      transform: scale(1.2);
+      transform: scale(1.15);
       position: absolute;
-      height: 100%;
+      height: 120%;
       width: auto;
       left: 0px;
       object-fit: cover;
@@ -868,7 +870,7 @@ $logo-offset: 50px;
     width: 100%;
 
     img {
-      transform: scale(1.2);
+      transform: scale(1.15);
       position: absolute;
       height: 100%;
       width: auto;
@@ -885,14 +887,15 @@ $logo-offset: 50px;
     user-select: none;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     transform: translateX(0) translateY(0);
 
     img {
-      transform: scale(1.05);
+      // transform: scale(1);
       position: absolute;
       object-position: center 55% !important;
-      height: 100%;
+      height: 105%;
       width: 100%;
       object-fit: cover;
     }
