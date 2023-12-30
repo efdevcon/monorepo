@@ -1,9 +1,10 @@
 import React from 'react'
 import SlickSlider from 'react-slick'
 import css from './slider.module.scss'
-import { Button } from 'components/common/button'
-import ChevronLeft from 'assets/icons/chevron_left.svg'
-import ChevronRight from 'assets/icons/chevron_right.svg'
+// import { Button } from 'components/common/button'
+import ChevronLeft from 'assets/icons/arrow_left.svg'
+import ChevronRight from 'assets/icons/arrow_right.svg'
+import { motion } from 'framer-motion'
 
 export const useSlider = (settings: any) => {
   const [currentIndex, setCurrentIndex] = React.useState(0)
@@ -65,7 +66,7 @@ export const useSlider = (settings: any) => {
 }
 
 const Arrows = (props: any) => {
-  let className = `squared sm black ghost ${css['arrow-button']}`
+  let className = `border-2 w-[40px] h-[40px] border-solid ${css['arrow-button']}`
 
   const canNext = props.currentIndex < props.nCards - props.cardsPerSlide
   const canBack = props.currentIndex > 0
@@ -74,23 +75,35 @@ const Arrows = (props: any) => {
 
   return (
     <div className={css['arrows']}>
-      <Button
+      <motion.button
         disabled={!canBack}
         className={className}
+        initial={{
+          background: '#ffffff80',
+        }}
+        whileHover={{
+          background: '#9fa1b730',
+        }}
         aria-label="Slide left"
         onClick={() => props.sliderRef.current?.slickPrev()}
       >
         <ChevronLeft />
-      </Button>
+      </motion.button>
 
-      <Button
+      <motion.button
         disabled={!canNext}
+        initial={{
+          background: '#ffffff80',
+        }}
+        whileHover={{
+          background: '#9fa1b730',
+        }}
         className={className}
         aria-label="Slide right"
         onClick={() => props.sliderRef.current?.slickNext()}
       >
         <ChevronRight />
-      </Button>
+      </motion.button>
     </div>
   )
 }
@@ -115,7 +128,7 @@ export const Slider = (props: SliderProps) => {
     <div data-type="slider-container" className={`${props.containerClassName} ${css['container']}`} style={props.style}>
       {!props.onlySlider && (
         <div className={css['top-section']}>
-          <h2>{props.title}</h2>
+          <h2 className="bold">{props.title}</h2>
 
           <Arrows {...sliderState} />
 

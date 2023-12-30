@@ -62,7 +62,6 @@ export default pageHOC(function Index(props: any) {
               </div>
             </div>
           </div>
-
           <div className="relative flex flex-col items-start pb-20 border-bottom gap-8">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
@@ -88,7 +87,6 @@ export default pageHOC(function Index(props: any) {
               {data.pages.section2?.button}
             </button>
           </div>
-
           <div className="flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               <InfiniteScroller nDuplications={2} reverse speed="150s">
@@ -111,7 +109,7 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div>
 
-          <div className="relative flex flex-col items-start mb-8 border-bottom gap-8">
+          <div className="relative flex flex-col items-start border-bottom gap-8">
             <div className="rich-text">
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
@@ -153,7 +151,13 @@ export default pageHOC(function Index(props: any) {
         {/* <div className="clear-bottom border-bottom"></div> */}
 
         <div className="section">
-          <div className="relative border-bottom pb-8">
+          <div className="relative border-bottom pb-8 pt-8">
+            <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+              {/* <InfiniteScroller nDuplications={2} speed="150s">
+                <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
+              </InfiniteScroller> */}
+            </div>
+
             <div className="rich-text">
               <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
             </div>
