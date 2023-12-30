@@ -29,6 +29,17 @@ export const Butterflies = () => {
           </div>
         </div>
       </div>
+      <div className="borboleta-3">
+        <div className="borboleta-oval-squish">
+          <div className="borboleta-oval">
+            <div className="borboleta-radial">
+              <div className="borboleta-gfx">
+                <div className="borboleta-anim"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

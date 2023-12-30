@@ -46,8 +46,8 @@ export default pageHOC(function Index(props: any) {
         <div className="section">
           <div className="flex-col lg:flex-row flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className="lg:basis-[1000px] lg:shrink">
-              <TitleDevcon style={{ marginBottom: '24px' }} />
-              <div className="rich-text">
+              <TitleDevcon className="hidden lg:block" />
+              <div className="rich-text mt-6">
                 <TinaMarkdown content={data.pages.section1?.body}></TinaMarkdown>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default pageHOC(function Index(props: any) {
                 <TinaMarkdown content={data.pages.section2?.top}></TinaMarkdown>
               </div>
             </div>
-            <div className="flex gap-8">
+            <div className="flex flex-col md:flex-row gap-8">
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section2?.left}></TinaMarkdown>
               </div>
@@ -91,14 +91,14 @@ export default pageHOC(function Index(props: any) {
               {data.pages.section2?.button}
             </button>
           </div>
-          <div className="flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
+          <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               <InfiniteScroller nDuplications={2} reverse speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
               </InfiniteScroller>
             </div>
 
-            <div className="basis-[800px] shrink">
+            <div className="md:basis-[800px] shrink">
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
               </div>
