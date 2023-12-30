@@ -3,27 +3,7 @@
   width: 100%;
   height: 200%;
   bottom: -2px;
-  // z-index: 1;
-  // background: black;
-
   :global(canvas) {
-    // > * {
-    //   z-index: 1;
-    // }
-  
-    &:after {
-      mask-image: linear-gradient(to right, 
-      transparent, 
-      black 35%, 
-      black 65%, 
-      transparent);
-  
-    }
-
-    // background: rgba(255, 247, 207, 0.431) !important;
-    // mask-image: linear-gradient(to top, 
-    // rgb(187, 27, 27),  
-    // transparent);
 
     background: transparent !important;
   }
@@ -38,7 +18,6 @@
     color: white;
     white-space: nowrap;
     cursor: pointer;
-    z-index: 1;
 
     @media (max-width: 600px) {
       font-size: 12px !important;

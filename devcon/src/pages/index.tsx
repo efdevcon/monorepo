@@ -44,19 +44,23 @@ export default pageHOC(function Index(props: any) {
 
       <div className="bg-white z-10 overflow-hidden w-full">
         <div className="section">
-          <div className="flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
-            <div className="basis-[1000px] shrink">
+          <div className="flex-col lg:flex-row flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
+            <div className="lg:basis-[1000px] lg:shrink">
               <TitleDevcon style={{ marginBottom: '24px' }} />
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section1?.body}></TinaMarkdown>
               </div>
             </div>
-            <div className="flex flex-col grow shrink-0 items-center">
-              <div className="flex flex-col">
-                <ImageNew src={LogoFlowers} alt="Devcon 7 Logo" className="max-w-[400px]" />
+            <div className="flex flex-col grow shrink-0 items-center justify-center">
+              <div className="flex flex-col justify-center items-center lg:items-start lg:justify-start">
+                <ImageNew
+                  src={LogoFlowers}
+                  alt="Devcon 7 Logo"
+                  className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
+                />
 
-                <div className="mt-4 flex flex-col justify-start items-start">
-                  <TitleDevcon className="w-[124px]" />
+                <div className="mt-4 lg:mt-4 flex flex-col justify-start items-start">
+                  <TitleDevcon className="hidden lg:block max-w-[124px] lg:max-w-auto lg:w-[124px]" />
                   <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p>
                 </div>
               </div>
@@ -109,18 +113,18 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div>
 
-          <div className="relative flex flex-col items-start border-bottom gap-8">
-            <div className="rich-text">
+          <div className="relative flex flex-col items-start border-bottom gap-8 pointer-events-none">
+            <div className="rich-text z-10">
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
-            <button className="button bold justify-self-start rounded-dark-purple z-10">
+            <button className="button bold justify-self-start rounded-dark-purple z-10 pointer-events-auto">
               {data.pages.section4?.button}
             </button>
 
-            <div className="sm:h-[300px] h-[350px] relative w-full" ref={scrollRef}>
+            <div className="sm:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto" ref={scrollRef}>
               {isInView && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
                   <StatsAnimation />
                 </motion.div>
               )}
