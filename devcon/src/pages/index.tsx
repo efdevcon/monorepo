@@ -30,12 +30,52 @@ import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import StatsAnimation from 'components/domain/index/hero/stats-anim'
 import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
+import ArchiveBackground from 'assets/images/archive/archive-logo.png'
 import { motion, useInView } from 'framer-motion'
+
+const videos = [
+  {
+    url: 'lgTMm7J0t7c',
+    title: 'Devcon VI Bogota Recap Video',
+    devcon: 6,
+  },
+  {
+    url: 'noXPewi5qOk',
+    title: 'Executing with Subtraction in the Infinite Garden',
+    author: 'Aya Miyaguchi',
+    devcon: 6,
+  },
+  {
+    url: 'UihMqcj-cqc',
+    title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon Bogotá',
+    author: 'Vitalik Buterin',
+    devcon: 6,
+  },
+  {
+    url: '-AEnRzzFpBE',
+    title: "Publisher's Denial of Digital Ownership vs Decentralization",
+    author: 'Brewster Kahle',
+    devcon: 6,
+  },
+  {
+    url: 'oLGZdLpHl1w',
+    title: 'A Conversation with Stewart Brand (Devcon4)',
+    author: 'Stewart Brand',
+    devcon: 4,
+  },
+  {
+    url: 'nzeracgPYis',
+    title: 'The Value of Cryptocurrencies in Supporting Human Rights',
+    author: 'Kurt Opsahl',
+    devcon: 6,
+  },
+]
 
 export default pageHOC(function Index(props: any) {
   const { data }: { data: PagesQuery } = useTina(props.cms)
   const scrollRef = useRef<any>(null)
   const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
+  const [video, setVideo] = React.useState(videos[0])
 
   return (
     <div className={`${css['layout-default']} ${themes['index']}`}>
@@ -155,7 +195,7 @@ export default pageHOC(function Index(props: any) {
         {/* <div className="clear-bottom border-bottom"></div> */}
 
         <div className="section">
-          <div className="relative border-bottom pb-8 pt-8">
+          <div className="relative pt-8">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               {/* <InfiniteScroller nDuplications={2} speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
@@ -166,17 +206,44 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
             </div>
 
-            <div className="max-w-[50vw] mt-4 mb-4">
-              <div className="aspect">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/lgTMm7J0t7c"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+            <div className="flex flex-col lg:flex-row gap-4 w-full mt-4 mb-4">
+              <div className="basis-[51%] relative">
+                <div className="aspect shadow-lg">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${video.url}`}
+                    className="rounded-xl"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+              <div className="h-[30vh] lg:h-auto relative grow shrink-0 border-solid border border-[#E2E3FF] bg-[#F8F9FE] rounded-xl overflow-hidden shadow-lg">
+                <div className="absolute top-0 w-full h-full opacity-15 flex justify-end">
+                  <ImageNew src={ArchiveBackground} alt="Devcon RTD Grants" className="h-[120%] object-cover" />
+                </div>
+                <div
+                  className={`absolute top-0 w-full h-full flex flex-col overflow-auto no-scrollbar ${css['archive-list']}`}
+                >
+                  {(() => {
+                    return videos.map(videoEntry => {
+                      return (
+                        <div
+                          className={`flex flex-col first:mt-2 mb-2 mx-4 py-2 border-[#E2E3FF] shrink-0 border-solid border-b last:border-none cursor-pointer ${css['video']}`}
+                          key={videoEntry.title}
+                          onClick={() => setVideo(videoEntry)}
+                        >
+                          <p className="text-xs bold">DEVCON {videoEntry.devcon}</p>
+                          <p className="bold">{videoEntry.title}</p>
+                          <p className="text-xs opacity-0.5">{videoEntry.author}</p>
+                        </div>
+                      )
+                    })
+                  })()}
+                </div>
               </div>
             </div>
 

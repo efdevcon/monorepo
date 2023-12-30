@@ -62,7 +62,7 @@ section5:
     aims to engage all attendees through talks, panels, workshops, lightning
     talks, and freeform learning sessions.
   title: |
-    ## **Archive**
+    ## **Devcon Archive**
 section6:
   button: View Full Archive →
 ---

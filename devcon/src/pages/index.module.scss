@@ -69,6 +69,20 @@
     }
   }
 
+  &.up {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      background: #e5d2ff;
+      mask-image: linear-gradient(to bottom, 
+      black,  
+      transparent);
+    }
+  }
+
   p {
     opacity: 0.15;
     letter-spacing: 12px;
@@ -113,6 +127,25 @@
 
     &:hover {
       transform: perspective(1000px) scale(0.95) rotateX(1deg) rotateY(-4deg);
+    }
+  }
+}
+
+.archive-list {
+  background: linear-gradient(to top, 
+  #c8a3ff24 0%,  
+  transparent);
+
+  .video {
+    z-index: 1;
+
+
+    &:hover {
+      p {
+        &:nth-child(2) {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
