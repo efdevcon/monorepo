@@ -196,16 +196,16 @@ export const Hero = () => {
   //   }
   // }, [page, focusNextPage])
 
-  let transformX: any = useSpring(x, { damping: 20 })
-  let transformY: any = useSpring(y, { damping: 20 })
-  let transformLeftX: any = useSpring(x, { damping: 20 })
-  let transformLeftY: any = useSpring(y, { damping: 20 })
-  let transformRightX: any = useSpring(x, { damping: 20 })
-  let transformRightY: any = useSpring(y, { damping: 20 })
+  let transformX: any = useSpring(x, { damping: 25 })
+  let transformY: any = useSpring(y, { damping: 25 })
+  let transformLeftX: any = useSpring(x, { damping: 25 })
+  let transformLeftY: any = useSpring(y, { damping: 25 })
+  let transformRightX: any = useSpring(x, { damping: 25 })
+  let transformRightY: any = useSpring(y, { damping: 25 })
 
   React.useEffect(() => {
-    const xBackdrop = -x / 12.5
-    const yBackdrop = -y / 17.5
+    const xBackdrop = -x / 10
+    const yBackdrop = -y / 20
 
     transformX.set(xBackdrop)
     transformY.set(yBackdrop)
