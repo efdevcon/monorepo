@@ -204,14 +204,14 @@ export const Hero = () => {
   let transformRightY: any = useSpring(y, { damping: 25 })
 
   React.useEffect(() => {
-    const xBackdrop = -x / 10
+    const xBackdrop = -x / 15
     const yBackdrop = -y / 20
 
     transformX.set(xBackdrop)
     transformY.set(yBackdrop)
 
     const xDir = -x / 25
-    const yDir = -y / 20
+    const yDir = -y / 12.5
 
     transformLeftX.set(xDir)
     transformLeftY.set(yDir)
