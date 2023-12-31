@@ -19,6 +19,7 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconDiscord from 'assets/icons/discord.svg'
 import { CodeOfConduct, TermsOfService } from './Legal'
 import { Modal } from 'components/common/modal'
+import { Button } from 'lib/components/button'
 
 type SocialMediaProps = {
   onShare?: () => void
@@ -128,6 +129,50 @@ export const Footer = () => {
             </div>
 
             <div className={css['col-5']}>
+              <Button size="sm" fill>
+                I am the text
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                />
+              </Button>
+              <Button size="md" fill>
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                />
+                I am the text
+              </Button>
+              <Button size="lg" fill className="flex">
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                  className="icon mr-1"
+                />
+                I am the text
+              </Button>
+              <Button size="lg" rounded fill>
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                />
+                Rounded
+              </Button>
+
+              <Button size="md" circle className="border-2">
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                />
+              </Button>
+              <Button size="md" square fill>
+                <IconArrowUpward
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  style={{ cursor: 'pointer' }}
+                />
+                {/* Square */}
+              </Button>
+
               <div className={css['scroll-up']}>
                 <IconArrowUpward
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
