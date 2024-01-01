@@ -36,6 +36,7 @@ import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
+import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import Cover1 from 'assets/images/ist-video-archive/LightClient_Cover.webp'
 import Cover2 from 'assets/images/ist-video-archive/wallet_unconference_cover.webp'
@@ -54,6 +55,7 @@ import { client } from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { PagesQuery } from '../../tina/__generated__/types'
+import { motion } from 'framer-motion'
 
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
 // import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
@@ -1547,9 +1549,15 @@ const Home: NextPage = (props: any) => {
                     { cover: Cover12, url: 'https://app.streameth.org/devconnect/epf_day/archive' },
                   ].map((entry, i) => {
                     return (
-                      <Link key={i} href={entry.url} className="min-w-[450px] relative mr-4 aspect-video">
-                        <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
-                      </Link>
+                      <motion.div
+                        key={i}
+                        className="min-w-[450px] relative mr-4 mt-1"
+                        whileHover={{ boxShadow: '0px 0px 6px 0px black' }}
+                      >
+                        <Link key={i} href={entry.url} className="">
+                          <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
+                        </Link>
+                      </motion.div>
                     )
                   })}
                 </div>
@@ -1641,7 +1649,7 @@ const Home: NextPage = (props: any) => {
                     <PastEventCard
                       text="Amsterdam Schedule"
                       className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
-                      image={istanbulScheduleBackground}
+                      image={amsterdamScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"
                     />
