@@ -128,7 +128,7 @@ export default pageHOC(function Index(props: any) {
                 <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
               </div>
             </div>
-            <Button size="md" color="purple-1" fill>
+            <Button fat color="purple-1" fill>
               {data.pages.section2?.button}
             </Button>
           </div>
@@ -143,7 +143,7 @@ export default pageHOC(function Index(props: any) {
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
               </div>
-              <Button size="md" color="purple-1" className="mt-8" fill>
+              <Button fat color="purple-1" className="mt-8" fill>
                 {data.pages.section3?.button}
               </Button>
             </div>
@@ -159,7 +159,7 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
-            <Button size="md" color="purple-1" className="relative z-10 pointer-events-auto" fill>
+            <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
               {data.pages.section4?.button}
             </Button>
 
@@ -256,7 +256,7 @@ export default pageHOC(function Index(props: any) {
           <div className="relative border-bottom pb-8">
             <TrackList tracks={props.tracks} />
 
-            <Button size="md" color="purple-1" fill className="mt-8">
+            <Button fat color="purple-1" fill className="mt-8">
               {data.pages.section6?.button}
             </Button>
 

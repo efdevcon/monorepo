@@ -10,6 +10,7 @@ type ButtonProps = {
   circle?: boolean;
   square?: boolean;
   fill?: boolean;
+  fat?: boolean;
   size?: SizeType;
   color?: ColorType;
   [key: string]: any;
@@ -67,32 +68,37 @@ export const sizes = {
     text: "text-sm",
     icon: "[&>svg]:text-[0.85em]",
     padding: "py-1 px-2",
+    fat: "py-3 px-5",
   },
   md: {
     text: "text-sm",
     icon: "[&>svg]:text-[0.85em]",
     padding: "py-1 px-3",
+    fat: "py-3 px-5",
   },
   lg: {
     text: "text-md",
     icon: "[&>svg]:text-[0.82em]",
     padding: "py-1.5 px-4",
+    fat: "py-3 px-5",
   },
 } as {
   [K in SizeType]: {
     text: string;
     padding: string;
     icon: string;
+    fat: string;
   };
 };
 
 const applySize = (
   size: ButtonProps["size"] = "md",
   square?: boolean,
-  circle?: boolean
+  circle?: boolean,
+  fat?: boolean
 ) => {
   const sizeClasses = [];
-  const { icon, text, padding } = sizes[size];
+  const { icon, text, padding, fat: fatPadding } = sizes[size];
 
   sizeClasses.push(text);
 
@@ -101,8 +107,14 @@ const applySize = (
 
     if (circle) sizeClasses.push("!rounded-full");
   } else {
+    if (fat) {
+      sizeClasses.push(fatPadding);
+      sizeClasses.push("!rounded-full");
+    } else {
+      sizeClasses.push(padding);
+    }
+
     sizeClasses.push(icon);
-    sizeClasses.push(padding);
   }
 
   return sizeClasses.join(" ");
@@ -134,6 +146,7 @@ export const Button = (props: ButtonProps) => {
     circle,
     square,
     disabled,
+    fat,
     fill,
     color = "default",
     size = "md",
@@ -146,7 +159,7 @@ export const Button = (props: ButtonProps) => {
     "inline-flex items-center justify-center",
     fill ? "" : "border border-solid",
     rounded ? "rounded-md" : "",
-    applySize(size, square, circle),
+    applySize(size, square, circle, fat),
     disabled ? "opacity-50" : "",
   ];
 
