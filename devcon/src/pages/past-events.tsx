@@ -10,10 +10,10 @@ import { usePageContext } from 'context/page-context'
 import ArrowRight from 'assets/icons/arrow_right.svg'
 import css from './past-events.module.scss'
 import { Link } from 'components/common/link'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import EventLocations from 'assets/images/event-locations.png'
 import { DevconEdition } from 'types/DevconEdition'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 
 import Berlin from 'assets/images/editions/Berlin.png'
 import London from 'assets/images/editions/London.png'
@@ -43,10 +43,7 @@ export default pageHOC(function PastEvents(props: any) {
   return (
     <Page theme={themes['about']}>
       <PageHero
-        path={[
-          { text: <span className="bold">{intl('navigation_about')}</span> },
-          { text: props.page.header },
-        ]}
+        path={[{ text: <span className="bold">{intl('navigation_about')}</span> }, { text: props.page.header }]}
         navigation={props.editions.map((edition: any) => {
           return {
             title: edition.title,
@@ -106,7 +103,7 @@ export default pageHOC(function PastEvents(props: any) {
                     {edition.links.map((link: any) => {
                       return (
                         <Link key={link.url} to={link.url}>
-                          <Button className="green lg" onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                          <Button color="green-1" fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
                             {link.title}
                           </Button>
                         </Link>

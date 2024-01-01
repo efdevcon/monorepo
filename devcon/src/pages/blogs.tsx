@@ -19,7 +19,7 @@ export default pageHOC(function BlogsTemplate(props: any) {
 
       <div className="section">
         <BlogOverview maxItems={10} blogs={props.blogs} />
-        <Tags items={pageContext?.current?.tags} viewOnly />
+        {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
       </div>
     </Page>
   )

@@ -5,6 +5,7 @@ import css from './slider.module.scss'
 import ChevronLeft from 'assets/icons/arrow_left.svg'
 import ChevronRight from 'assets/icons/arrow_right.svg'
 import { motion } from 'framer-motion'
+import { Button } from 'lib/components/button'
 
 export const useSlider = (settings: any) => {
   const [currentIndex, setCurrentIndex] = React.useState(0)
@@ -75,35 +76,24 @@ const Arrows = (props: any) => {
 
   return (
     <div className={css['arrows']}>
-      <motion.button
+      <Button
         disabled={!canBack}
-        className={className}
-        initial={{
-          background: '#ffffff80',
-        }}
-        whileHover={{
-          background: '#9fa1b730',
-        }}
+        circle
+        className="border-2"
         aria-label="Slide left"
         onClick={() => props.sliderRef.current?.slickPrev()}
       >
         <ChevronLeft />
-      </motion.button>
-
-      <motion.button
+      </Button>
+      <Button
         disabled={!canNext}
-        initial={{
-          background: '#ffffff80',
-        }}
-        whileHover={{
-          background: '#9fa1b730',
-        }}
-        className={className}
+        circle
+        className="border-2 ml-2"
         aria-label="Slide right"
         onClick={() => props.sliderRef.current?.slickNext()}
       >
         <ChevronRight />
-      </motion.button>
+      </Button>
     </div>
   )
 }

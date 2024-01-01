@@ -190,6 +190,7 @@
       margin-right: var(--thumbnail-spacing);
       margin-bottom: var(--thumbnail-spacing);
       border-radius: 100px;
+      max-width: none;
 
       @media (max-width: $breakpoints-md) {
         &:nth-last-child(-n + 1) {

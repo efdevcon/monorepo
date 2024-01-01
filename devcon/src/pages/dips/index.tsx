@@ -56,7 +56,7 @@ export default pageHOC(function DIPsTemplate(props: any) {
         <Contribute dipDescription={props.page.body} contributors={props.contributors} />
         <Proposals dips={props.dips} />
 
-        <Tags items={pageContext?.current?.tags} viewOnly />
+        {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
       </div>
     </Page>
   )
@@ -75,7 +75,7 @@ export async function getStaticProps(context: any) {
       ...globalData,
       page,
       dips,
-      contributors
+      contributors,
     },
     revalidate: 3600,
   }

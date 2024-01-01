@@ -119,7 +119,7 @@ const StatsAnimation = () => {
       render: {
         fillStyle: 'transparent',
         strokeStyle: 'transparent',
-        lineWidth: 50,
+        lineWidth: 20,
       },
     }
     const walls = [

@@ -19,7 +19,8 @@ import IconManAtDesk from 'assets/icons/man-desk.svg'
 import IconYoutube from 'assets/icons/youtube.svg'
 import ArrowRight from 'assets/icons/arrow_right.svg'
 import css from './about.module.scss'
-import { Button } from 'components/common/button'
+// import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import { VideoCard } from 'components/common/card/VideoCard'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 import About1 from 'assets/images/carousel/about/about-1.jpg'
@@ -254,7 +255,9 @@ export default pageHOC(function AboutPage(props: any) {
           <div className="left">
             <div className="markdown" dangerouslySetInnerHTML={{ __html: props.sections['share-ideas'].body }}></div>
             <Link to="/dips">
-              <Button className={`lg green ${css['button']}`}>{intl('about_improvement_proposals')}</Button>
+              <Button size="md" className="mt-6" fill color="green-1">
+                {intl('about_improvement_proposals')}
+              </Button>
             </Link>
           </div>
         </div>
@@ -267,7 +270,7 @@ export default pageHOC(function AboutPage(props: any) {
           />
         </div> */}
 
-        <Tags items={pageContext?.current?.tags} viewOnly />
+        {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
       </div>
     </Page>
   )

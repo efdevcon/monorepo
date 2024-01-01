@@ -32,6 +32,7 @@ import StatsAnimation from 'components/domain/index/hero/stats-anim'
 import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
 import ArchiveBackground from 'assets/images/archive/archive-logo.png'
 import { motion, useInView } from 'framer-motion'
+import { Button } from 'lib/components/button'
 
 const videos = [
   {
@@ -127,9 +128,9 @@ export default pageHOC(function Index(props: any) {
                 <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
               </div>
             </div>
-            <button className="button bold justify-self-start rounded-dark-purple">
+            <Button size="md" color="purple-1" fill>
               {data.pages.section2?.button}
-            </button>
+            </Button>
           </div>
           <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
@@ -142,9 +143,9 @@ export default pageHOC(function Index(props: any) {
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
               </div>
-              <button className="button mt-8 bold justify-self-start rounded-dark-purple">
+              <Button size="md" color="purple-1" className="mt-8" fill>
                 {data.pages.section3?.button}
-              </button>
+              </Button>
             </div>
             <div className="flex grow shrink-0 items-center justify-center">
               <div className={css['tilt-hover-image']}>
@@ -154,13 +155,13 @@ export default pageHOC(function Index(props: any) {
           </div>
 
           <div className="relative flex flex-col items-start border-bottom gap-8 pointer-events-none">
-            <div className="rich-text z-10">
+            <div className={`rich-text z-10 ${css['background-text']}`}>
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
-            <button className="button bold justify-self-start rounded-dark-purple z-10 pointer-events-auto">
+            <Button size="md" color="purple-1" className="relative z-10 pointer-events-auto" fill>
               {data.pages.section4?.button}
-            </button>
+            </Button>
 
             <div className="sm:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto" ref={scrollRef}>
               {isInView && (
@@ -255,9 +256,9 @@ export default pageHOC(function Index(props: any) {
           <div className="relative border-bottom pb-8">
             <TrackList tracks={props.tracks} />
 
-            <button className="button bold mt-12 justify-self-start rounded-dark-purple">
+            <Button size="md" color="purple-1" fill className="mt-8">
               {data.pages.section6?.button}
-            </button>
+            </Button>
 
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="70s">
