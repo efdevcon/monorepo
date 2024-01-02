@@ -61,7 +61,7 @@ class Firefly {
     this.angle = random(360, 0, true)
     this.rate = random(30 / 1000, 6 / 1000)
     this.speed = random(option.speed, option.speed / 8)
-    this.opacity = random(1, 0.001)
+    this.opacity = random(1, 0.5)
     this.flare = this.opacity > 0.5
     this.color = option.color
   }
@@ -108,10 +108,18 @@ export const Fireflies = props => {
       count: 75,
       color: 'rgba(236, 196, 94, 1)',
       //   color: 'rgba(236, 196, 255, 1)',
-      speed: 0.6,
+      speed: 0.2,
       radius: 2,
       ...props.settings,
     })
+
+    // new Animation(`#${props.id}`, {
+    //   count: 30,
+    //   color: 'rgba(255, 248, 0, 1)',
+    //   speed: 0.2,
+    //   radius: 2.4,
+    //   ...props.settings,
+    // })
   }, [])
 
   return <canvas id={props.id}></canvas>

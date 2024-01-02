@@ -830,10 +830,20 @@ $logo-offset: 50px;
 
   @media (max-width: $breakpoints-xl) {
     .left {
+      // transform: scale(1) !important;
+      // img {
+      //   transform: scale(1) !important;
+      //   left: -190px !important;
+      // }
       display: none;
     }
 
     .right {
+      // transform: scale(1) !important;
+      // img {
+
+      //   right: -220px !important;
+      // }
       display: none;
     }
 
@@ -956,15 +966,15 @@ $logo-offset: 50px;
     }
 
     .dc7-logo {
-      margin-top: 125px !important;
+      margin-top: 75px !important;
 
       img {
-        width: 125px !important;
+        width: 75px !important;
       }
     }
 
     img {
-      max-width: 80vw;
+      max-width: 60vw;
     }
 
     .flex {
@@ -995,7 +1005,7 @@ $logo-offset: 50px;
       margin-top: 150px;
 
       img {
-        width: 150px;
+        width: 125px;
         filter: drop-shadow(0px 0px 2px #000000);
       }
 
@@ -1032,10 +1042,12 @@ $logo-offset: 50px;
     .dc7-logo-text {
       width: 400px;
       filter: drop-shadow(0px 0px 2px #000000);
+      object-fit: cover;
     }
 
     img {
       height: auto;
+      object-fit: cover;
     }
   }
 
@@ -1064,6 +1076,7 @@ $logo-offset: 50px;
       width: 270px;
       height: auto;
       filter: drop-shadow(0px 0px 2px #000000);
+      object-fit: cover;
     }
   }
 }

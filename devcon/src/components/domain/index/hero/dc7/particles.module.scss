@@ -1,9 +1,10 @@
 @use 'assets/css/partials/index' as *;
 
-$borboleta-1-radial:20s;
-$borboleta-2-radial:30s;
-$borboleta-1-oval:2.4s;
-$borboleta-2-oval:3s;
+$speedModifier: 2;
+$borboleta-1-radial:20s * $speedModifier;
+$borboleta-2-radial:30s * $speedModifier;
+$borboleta-1-oval:2.4s * $speedModifier;
+$borboleta-2-oval:3s * $speedModifier;
 
 .butterflies {
     position: absolute;
@@ -111,7 +112,7 @@ $borboleta-2-oval:3s;
         animation: borboleta-gfx-upright-loop $borboleta-2-radial linear infinite;
     }
 
-    --butterfly-color: #e2e53a;
+    --butterfly-color: #ddddb8;
 
     .borboleta-anim{
         $circle:radial-gradient(closest-side at 50% 50%,var(--butterfly-color) 50%,transparentize(white,1) 50%);
