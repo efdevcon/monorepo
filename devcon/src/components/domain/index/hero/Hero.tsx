@@ -289,7 +289,7 @@ export const Hero = () => {
 
         {/* <div className={css['page-background']}></div> */}
 
-        <div className="absolute flex center w-full bottom-[32px] justify-center opacity-40">
+        <div className="absolute center w-full bottom-[32px] justify-center opacity-40 hidden xl:flex">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
             <g className="nc-icon-wrapper" fill="#ffffff20">
               <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
