@@ -230,7 +230,6 @@ export const Hero = () => {
               <Fireflies settings={{ color: 'rgba(236, 196, 94, 1)' }} id="lower-fireflies" />
             </div>
           </motion.div>
-
           <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image src={DC7Left} alt="Left Bush" priority />
           </motion.div>
@@ -289,6 +288,24 @@ export const Hero = () => {
         )} */}
 
         {/* <div className={css['page-background']}></div> */}
+
+        <div className="absolute flex center w-full bottom-[32px] justify-center opacity-40">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
+            <g className="nc-icon-wrapper" fill="#ffffff20">
+              <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
+                <path
+                  d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
+                  fill="#ffffff"
+                ></path>
+                <path
+                  d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
+                  fill="#ffffff"
+                  data-color="color-2"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
 
         <div className={css['left-rotated']}>
           <p className={'text-uppercase'}>{intl('global_subtitle')}</p>

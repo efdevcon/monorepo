@@ -245,6 +245,11 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
+          title: 'Get Involved',
+          url: '/dips',
+          type: 'page',
+        },
+        {
           title: intl('navigation_forum'),
           url: 'https://forum.devcon.org/',
           type: 'link',

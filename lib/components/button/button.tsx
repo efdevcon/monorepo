@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import css from "./button.module.scss";
 
-type ColorType = "default" | "purple-1" | "green-1";
+type ColorType = "default" | "black-1" | "purple-1" | "green-1";
 type SizeType = "sm" | "md" | "lg";
 
 type ButtonProps = {
@@ -20,6 +20,7 @@ type ColorProps = {
   color: string;
   background: string;
   hover: string;
+  border?: string;
 };
 
 export const colors = {
@@ -32,6 +33,17 @@ export const colors = {
     ghost: {
       color: "#9FA1B7",
       hover: "#9FA1B720",
+    },
+  },
+  "black-1": {
+    fill: {
+      color: "#ffffff",
+      background: "#454545",
+      hover: "#2e2c2c",
+    },
+    ghost: {
+      color: "#88c43f",
+      hover: "#88c43f20",
     },
   },
   "purple-1": {
@@ -121,15 +133,18 @@ const applySize = (
 };
 
 const applyColor = (color: ColorType, fill?: boolean) => {
-  const { color: chosenColor, background } =
-    colors[color][fill ? "fill" : "ghost"];
+  const {
+    color: chosenColor,
+    background,
+    border,
+  } = colors[color][fill ? "fill" : "ghost"];
 
   const obj: any = {
     "--color-icon": chosenColor,
     "--icon-color": chosenColor,
     "--button-color": chosenColor,
     "--button-text-color": chosenColor,
-    "--button-border-color": chosenColor,
+    "--button-border-color": border || chosenColor,
   };
 
   if (background) {
