@@ -23,6 +23,7 @@ import Prague from 'assets/images/editions/Prague.png'
 import Osaka from 'assets/images/editions/Osaka.png'
 import Bogota from 'assets/images/editions/Bogota.png'
 import { useTranslations } from 'next-intl'
+import HeroBackground from 'assets/images/pages/hero-bgs/about-bg (3).png'
 
 function getEditionImage(edition: number) {
   if (edition === 0) return Berlin
@@ -43,6 +44,7 @@ export default pageHOC(function PastEvents(props: any) {
   return (
     <Page theme={themes['about']}>
       <PageHero
+        heroBackground={HeroBackground}
         path={[{ text: <span className="bold">{intl('navigation_about')}</span> }, { text: props.page.header }]}
         navigation={props.editions.map((edition: any) => {
           return {
@@ -103,7 +105,7 @@ export default pageHOC(function PastEvents(props: any) {
                     {edition.links.map((link: any) => {
                       return (
                         <Link key={link.url} to={link.url}>
-                          <Button color="green-1" fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                          <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
                             {link.title}
                           </Button>
                         </Link>

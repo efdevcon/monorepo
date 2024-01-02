@@ -17,7 +17,7 @@ import IconPeople from 'assets/icons/people.svg'
 import { Link } from 'components/common/link'
 import { AutoScroller } from 'components/domain/dips/overview/contribute/Contribute'
 import HorizontalLooper from 'components/common/horizontal-looper'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 // impact
 import wat from 'assets/images/supporters-page/impact/wat.png'
 import l2beat from 'assets/images/supporters-page/impact/l2-beat.png'
@@ -71,6 +71,7 @@ import swarm from 'assets/images/supporters-page/supporters/swarm.png'
 import tenderly from 'assets/images/supporters-page/supporters/tenderly.png'
 import thesis from 'assets/images/supporters-page/supporters/thesis.png'
 import upshot from 'assets/images/supporters-page/supporters/upshot.png'
+import HeroBackground from 'assets/images/pages/hero-bgs/dips-bg.png'
 
 /*
   Add links to everything
@@ -201,6 +202,7 @@ export default pageHOC(function SatelliteEvents(props: any) {
   return (
     <Page theme={themes['teal']}>
       <PageHero
+        heroBackground={HeroBackground}
         path={[{ text: <span className="bold">Get Involved</span> }, { text: props.page.header }]}
         title={pageContext?.current?.title}
         navigation={[

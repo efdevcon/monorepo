@@ -27,8 +27,7 @@ import About1 from 'assets/images/carousel/about/about-1.jpg'
 import About2 from 'assets/images/carousel/about/about-2.jpg'
 import About3 from 'assets/images/carousel/about/about-3.jpg'
 import About4 from 'assets/images/carousel/about/about-4.jpg'
-import Image from 'next/image'
-import HeroBackground from 'assets/images/pages/hero-bgs/about-bg (2).png'
+import HeroBackground from 'assets/images/pages/hero-bgs/about-bg (3).png'
 
 export default pageHOC(function AboutPage(props: any) {
   const pageContext = usePageContext()
@@ -268,7 +267,7 @@ export default pageHOC(function AboutPage(props: any) {
           <div className="left">
             <div className="markdown" dangerouslySetInnerHTML={{ __html: props.sections['share-ideas'].body }}></div>
             <Link to="/dips">
-              <Button size="md" className="mt-6" fill color="green-1">
+              <Button className="mt-6" fat fill color="green-1">
                 {intl('about_improvement_proposals')}
               </Button>
             </Link>

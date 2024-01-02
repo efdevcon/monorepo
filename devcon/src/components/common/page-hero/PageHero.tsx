@@ -9,6 +9,7 @@ import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import { Button } from 'components/common/button'
 import Image from 'next/legacy/image'
+import ImageNew from 'next/image'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 
 type NavigationLink = {
@@ -100,11 +101,13 @@ export const PageHero = (props: PageHeroProps) => {
     // '--strip-height': `${stripHeight}px`,
   }
 
+  let bgStyle: any = {}
+
   if (props.background) {
-    style.backgroundImage = `url(${props.background})`
-    style.backgroundSize = 'cover'
-    style['-webkit-mask-image'] =
-      '-webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
+    bgStyle.backgroundImage = `url(${props.background})`
+    bgStyle.backgroundSize = 'cover'
+    // bgStyle['-webkit-mask-image'] =
+    //   '-webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
   }
 
   let className = `${css['hero']} margin-bottom`
@@ -147,13 +150,24 @@ export const PageHero = (props: PageHeroProps) => {
 
   return (
     <div id="page-hero" className={className} style={style}>
-      <div className="section relative h-[50vh]">
-        {/* {props.heroBackground && (
-          <div className="absolute w-full h-full">
-            <Image className="h-full w-full object-contain" src={props.heroBackground} alt="Hero background"></Image>
+      {props.heroBackground && (
+        <div className={`${css['background-layer']} absolute w-full h-full`}>
+          <div className={css['background-layer-theme']} />
+          <div className="section h-full w-full !flex lg:!grid">
+            <div className={`h-full w-full ${css['background-image']}`}>
+              <ImageNew
+                className={`object-cover h-full w-full`}
+                src={props.heroBackground}
+                alt="Hero background"
+              ></ImageNew>
+            </div>
           </div>
-        )} */}
-        {/* add to section: h-[50vh] <-- for when bg image is set */}
+          <div className={css['background-layer-theme-logo']} />
+          <div className={css['background-layer-theme-gradient']} />
+        </div>
+      )}
+
+      <div className="section relative h-[55vh]">
         <div className={css['info']}>
           <PathNavigation {...props} />
 
