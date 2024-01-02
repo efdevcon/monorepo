@@ -15,6 +15,7 @@ import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import css from './news.module.scss'
 import { Link } from 'components/common/link'
+import HeroBackground from 'assets/images/pages/hero-bgs/news-bg.png'
 
 const limit = 10
 
@@ -39,7 +40,7 @@ export default pageHOC(function NewsTemplate(props: any) {
 
   return (
     <Page theme={themes['news']}>
-      <PageHero />
+      <PageHero heroBackground={HeroBackground} />
 
       <div className="section">
         <NewsOverview newsItems={props.news} />
