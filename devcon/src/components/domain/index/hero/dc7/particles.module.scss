@@ -1,7 +1,5 @@
 @use 'assets/css/partials/index' as *;
 
-// @import "compass/css3";
-
 $borboleta-1-radial:20s;
 $borboleta-2-radial:30s;
 $borboleta-1-oval:2.4s;
@@ -11,7 +9,7 @@ $borboleta-2-oval:3s;
     position: absolute;
     height: 100%;
     width: 100%;
-    opacity: 0.7;
+    opacity: 0.9;
 
     @keyframes borboletas-pos-loop {
         0% { 
@@ -67,13 +65,6 @@ $borboleta-2-oval:3s;
         }
     }
 
-    // @include keyframes(borboletas-pos-loop){
-    //     0% {@include transform(translate(0,0));}
-    //     25% {@include transform(translate(100px,0));}
-    //     50% {@include transform(translate(30px,-70px));}
-    //     75% {@include transform(translate(00px,20px));}
-    //     100% {@include transform(translate(-100px,-50px));}
-    // }
     .borboletas {
         position:absolute;
         animation: borboletas-pos-loop 7s ease-in-out infinite alternate-reverse;
@@ -81,13 +72,8 @@ $borboleta-2-oval:3s;
     
     .borboleta-oval-squish{
         transform: scale(0.3,1); 
-        // @include transform(scale(0.3,1));
     }
     
-    // @include keyframes(borboleta-radial-loop) {
-    //     0%   { @include transform(rotate(0)); }
-    //     100% { @include transform(rotate(360deg)); }
-    // }
     .borboleta-1{
         animation: borboleta-radial-loop $borboleta-1-radial linear infinite;
     }
@@ -95,10 +81,6 @@ $borboleta-2-oval:3s;
         animation: borboleta-radial-loop $borboleta-2-radial linear infinite;
     }
     
-    // @include keyframes(borboleta-oval-loop) {
-    // 0%   { @include transform(rotate(0) scale(3.3,1)); }
-    // 100% { @include transform(rotate(-360deg) scale(3.3,1)); }
-    // }
     .borboleta-oval{
         position:absolute;
         animation: borboleta-radial-loop $borboleta-1-oval linear infinite;
@@ -119,24 +101,15 @@ $borboleta-2-oval:3s;
         position:absolute;
         top:0;
         left:0;
-        // background:red;
         width:25px;
         height:20px;
     }
-    // @include keyframes(borboleta-gfx-upright-loop){
-    // 0%   { @include transform(rotate(0)); }
-    // 100% { @include transform(rotate(-360deg)); }
-    // }	
     .borboleta-1 .borboleta-gfx{
         animation: borboleta-gfx-upright-loop $borboleta-1-radial linear infinite;
     }
     .borboleta-2 .borboleta-gfx{
         animation: borboleta-gfx-upright-loop $borboleta-2-radial linear infinite;
     }
-    // @include keyframes(borboleta-anim-loop){
-    //     0% 	 {@include transform(scale(1,1.2) rotate(40deg));}
-    //     100% {@include transform(scale(0.7,-1) rotate(-40deg));}
-    // }
 
     --butterfly-color: #f8f57f;
 

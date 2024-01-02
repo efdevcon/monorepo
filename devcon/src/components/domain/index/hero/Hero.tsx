@@ -33,7 +33,8 @@ import DC7Logo from './images/dc-7/logo.png'
 import DC7Left from './images/dc-7/left.png'
 import DC7Right from './images/dc-7/right.png'
 import DC7Backdrop from './images/dc-7/backdrop.png'
-import { Butterflies } from './dc7/particles'
+import { Butterflies, Butterflies2 } from './dc7/particles'
+import { Fireflies } from './dc7/fireflies'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -225,13 +226,67 @@ export const Hero = () => {
         <motion.div className={css['devcon-7-background']} ref={backdropRef} /*style={{ y: -scroll }}*/>
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
             <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
+
+            <div className="absolute top-0 w-full h-[25vh]">
+              <Fireflies settings={{ count: 200, speed: 0.1, radius: 2 }} id="upper-fireflies" />
+            </div>
+
+            <div className="absolute bottom-0 w-full h-[35vh]">
+              <Fireflies settings={{ count: 200, speed: 0.3, radius: 2 }} id="bottom-fireflies-2" />
+            </div>
+
+            {/* <div className="absolute bottom-0 w-full h-[20vh] overflow-hidden">
+              <Fireflies id="lower-fireflies" />
+            </div> */}
           </motion.div>
+
+          {/* <div className="absolute top-0 w-full h-[30vh] overflow-hidden">
+            <Fireflies id="upper-fireflies" />
+          </div> */}
+
+          {/* <div className="absolute bottom-0 w-full h-[40vh] overflow-hidden">
+            <Fireflies id="lower-fireflies" />
+          </div> */}
+
           <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image src={DC7Left} alt="Left Bush" priority />
+            <div className="absolute top-0 h-full w-[20vw]">
+              <Fireflies settings={{ count: 150, speed: 0.5, radius: 2.5 }} id="left-fireflies" />
+            </div>
           </motion.div>
           <motion.div className={css['right']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image className={css['right']} src={DC7Right} alt="Right Bush" priority />
+            <div className="absolute top-0 right-0 h-full w-[20vw]">
+              <Fireflies settings={{ count: 150, speed: 0.5, radius: 2.5 }} id="right-fireflies" />
+            </div>
           </motion.div>
+
+          {/* <div className="absolute bottom-0 w-full h-full">
+            <Fireflies settings={{ color: 'rgba(236, 196, 94, 1)' }} id="lower-fireflies" />
+          </div> */}
+
+          {/* <div className="absolute left-0 h-full w-[40vh] overflow-hidden">
+            <Fireflies id="left-fireflies" />
+          </div>
+
+          <div className="absolute right-0 h-full w-[40vh] overflow-hidden">
+            <Fireflies id="right-fireflies" />
+          </div> */}
+          {/* <div className="absolute top-0 w-full h-[30vh] overflow-hidden">
+            <Fireflies id="upper-fireflies" />
+          </div>
+
+          <div className="absolute bottom-0 w-full h-[30vh] overflow-hidden z-10">
+            <Fireflies id="lower-fireflies" />
+          </div> */}
+
+          {/* <div className="absolute top-0 w-full h-[30vh] overflow-hidden">
+            <Fireflies id="upper-fireflies" />
+          </div> */}
+
+          {/* <div className="absolute bottom-0 w-full h-[20vh] overflow-hidden z-10">
+            <Fireflies id="lower-fireflies" />
+          </div> */}
         </motion.div>
 
         <div className={css['devcon-7-overlay']}>
@@ -239,17 +294,19 @@ export const Hero = () => {
             <div className={css['flex']}>
               <div className={css['left']}>
                 <div className={css['dc7-logo']}>
-                  {/* <div className={css['butterflies']}>
-                    <Butterflies />
-                  </div> */}
                   <Image src={DC7Logo} alt="Devcon 7 Logo" priority />
                 </div>
-                <Image
-                  className={css['dc7-logo-text']}
-                  src={DC7OverlayLeft}
-                  alt="Devcon 7 logo with location"
-                  priority
-                />
+                <div className="relative">
+                  <div className="absolute left-[45%] bottom-[20%] w-full h-full z-10">
+                    <Butterflies2 />
+                  </div>
+                  <Image
+                    className={css['dc7-logo-text']}
+                    src={DC7OverlayLeft}
+                    alt="Devcon 7 logo with location"
+                    priority
+                  />
+                </div>
               </div>
               <div className={css['right']}>
                 <div className={css['butterflies']}>

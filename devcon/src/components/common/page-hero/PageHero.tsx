@@ -40,12 +40,15 @@ type PageHeroProps = {
   title?: string | false
   titleSubtext?: string
   titleClassName?: string
+  className?: string
   path?: string | PathSegment[]
   description?: string
+  heroBackground?: any
   scenes?: Scene[]
   background?: string
   cta?: Array<CTALink>
   renderCustom?(props?: any): JSX.Element
+  renderCustomBackground?(props?: any): JSX.Element
   navigation?: Array<NavigationLink>
   children?: React.ReactNode
 }
@@ -79,7 +82,7 @@ const PathNavigation = (props: PageHeroProps) => {
 
   // @ts-ignore
   // TODO: type fix
-  return <p className={`${css['path']} font-xs text-uppercase`}>{path || props.path || pagePath}</p>
+  return <p className={`${css['path']} font-xs text-uppercase z-10`}>{path || props.path || pagePath}</p>
 }
 
 export const PageHero = (props: PageHeroProps) => {
@@ -109,6 +112,7 @@ export const PageHero = (props: PageHeroProps) => {
   if (props.navigation) className += ` ${css['with-navigation']}`
   if (props.scenes) className += ` ${css['with-scenes']}`
   if (props.children) className += ` ${css['as-background']}`
+  if (props.className) className += ` ${props.className}`
 
   const setNextScene = React.useMemo(
     () => (increment: number) => {
@@ -141,7 +145,14 @@ export const PageHero = (props: PageHeroProps) => {
 
   return (
     <div id="page-hero" className={className} style={style}>
+      {/* {props.heroBackground && (
+        <div className="absolute w-full h-full">
+          <Image className="h-full w-full object-cover" src={props.heroBackground} alt="Hero background"></Image>
+        </div>
+      )} */}
+
       <div className="section">
+        {/* add to section: h-[50vh] <-- for when bg image is set */}
         <div className={css['info']}>
           <PathNavigation {...props} />
 

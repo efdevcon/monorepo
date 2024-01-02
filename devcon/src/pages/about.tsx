@@ -27,6 +27,8 @@ import About1 from 'assets/images/carousel/about/about-1.jpg'
 import About2 from 'assets/images/carousel/about/about-2.jpg'
 import About3 from 'assets/images/carousel/about/about-3.jpg'
 import About4 from 'assets/images/carousel/about/about-4.jpg'
+import Image from 'next/image'
+import HeroBackground from 'assets/images/pages/hero-bgs/about-bg (2).png'
 
 export default pageHOC(function AboutPage(props: any) {
   const pageContext = usePageContext()
@@ -35,6 +37,15 @@ export default pageHOC(function AboutPage(props: any) {
   return (
     <Page theme={themes['about']}>
       <PageHero
+        // className="h-[500px]"
+        // renderCustomBackground={() => {
+        //   return (
+        //     <div className="absolute w-full h-full">
+        //       <Image className="h-full w-full object-cover" src={HeroBackground} alt="Hero background"></Image>
+        //     </div>
+        //   )
+        // }}
+        heroBackground={HeroBackground}
         path={[{ text: <span className="bold">{intl('about_title')}</span> }, { text: props.page.header }]}
         navigation={[
           {
@@ -49,18 +60,18 @@ export default pageHOC(function AboutPage(props: any) {
             title: intl('about_communities'),
             to: '#communities',
           },
-          {
-            title: intl('about_support'),
-            to: '#support',
-          },
+          // {
+          //   title: intl('about_support'),
+          //   to: '#support',
+          // },
           {
             title: intl('about_get_involved'),
-            to: '#involve',
+            to: '#get-involved',
           },
-          {
-            title: 'FAQ',
-            to: '#faq',
-          },
+          // {
+          //   title: 'FAQ',
+          //   to: '#faq',
+          // },
         ]}
       />
 
@@ -249,7 +260,9 @@ export default pageHOC(function AboutPage(props: any) {
           </div>
         </div> */}
 
-        <h2 className="spaced clear-top">{props.sections['share-ideas'].title}</h2>
+        <h2 className="spaced clear-top" id="get-involved">
+          {props.sections['share-ideas'].title}
+        </h2>
 
         <div className="two-columns clear-bottom">
           <div className="left">
