@@ -71,7 +71,7 @@ import swarm from 'assets/images/supporters-page/supporters/swarm.png'
 import tenderly from 'assets/images/supporters-page/supporters/tenderly.png'
 import thesis from 'assets/images/supporters-page/supporters/thesis.png'
 import upshot from 'assets/images/supporters-page/supporters/upshot.png'
-import HeroBackground from 'assets/images/pages/hero-bgs/dips-bg.jpg'
+import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
 
 /*
   Add links to everything

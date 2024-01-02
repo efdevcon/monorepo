@@ -227,7 +227,7 @@ export const Hero = () => {
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
             <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
             <div className="absolute bottom-0 w-full h-full">
-              <Fireflies settings={{ color: 'rgba(236, 196, 94, 1)' }} id="lower-fireflies" />
+              <Fireflies id="lower-fireflies" />
             </div>
           </motion.div>
           <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
@@ -289,17 +289,17 @@ export const Hero = () => {
 
         {/* <div className={css['page-background']}></div> */}
 
-        <div className="absolute center w-full bottom-[32px] justify-center opacity-40 hidden xl:flex">
+        <div className="absolute center w-full bottom-[32px] justify-center hidden xl:flex">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
-            <g className="nc-icon-wrapper" fill="#ffffff20">
+            <g className="nc-icon-wrapper" fill="#B1ABFE">
               <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
                 <path
                   d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                  fill="#ffffff"
+                  fill="B1ABFE"
                 ></path>
                 <path
                   d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                  fill="#ffffff"
+                  fill="B1ABFE"
                   data-color="color-2"
                 ></path>
               </g>

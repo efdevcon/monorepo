@@ -51,7 +51,7 @@ class Animation {
       ctx.closePath()
       ctx.fillStyle = firefly.color
       ctx.shadowBlur = firefly.radius * 5
-      ctx.shadowColor = 'yellow'
+      ctx.shadowColor = 'pink'
       ctx.fill()
     })
   }
@@ -111,7 +111,8 @@ export const Fireflies = props => {
   React.useEffect(() => {
     const animation = new Animation(`#${props.id}`, {
       count: 75,
-      color: 'rgba(236, 196, 94, 1)',
+      // color: 'rgba(236, 196, 94, 1)',
+      color: 'rgba(221, 221, 184, 1)',
       speed: 0.2,
       radius: 2.5,
       ...props.settings,

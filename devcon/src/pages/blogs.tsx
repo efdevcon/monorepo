@@ -9,13 +9,14 @@ import { GetPage } from 'services/page'
 import { GetBlogs } from 'services/blogs'
 import { Tags } from 'components/common/tags'
 import { usePageContext } from 'context/page-context'
+import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 
 export default pageHOC(function BlogsTemplate(props: any) {
   const pageContext = usePageContext()
 
   return (
     <Page theme={themes['news']}>
-      <PageHero />
+      <PageHero heroBackground={HeroBackground} />
 
       <div className="section">
         <BlogOverview maxItems={10} blogs={props.blogs} />

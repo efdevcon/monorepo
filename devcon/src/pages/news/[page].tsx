@@ -15,7 +15,7 @@ import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import css from './news.module.scss'
 import { Link } from 'components/common/link'
-import HeroBackground from 'assets/images/pages/hero-bgs/news-bg.jpg'
+import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 
 const limit = 10
 

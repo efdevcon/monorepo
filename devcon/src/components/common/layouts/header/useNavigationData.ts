@@ -111,11 +111,11 @@ const useNavigationData = () => {
             url: '/dips',
             type: 'page',
           },
-          {
-            title: intl('navigation_supporters'),
-            url: '/supporters',
-            type: 'page',
-          },
+          // {
+          //   title: intl('navigation_supporters'),
+          //   url: '/supporters',
+          //   type: 'page',
+          // },
           // {
           //   title: intl('navigation_participate'),
           //   url: '#',
