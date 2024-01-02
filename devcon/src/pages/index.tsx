@@ -196,14 +196,14 @@ export default pageHOC(function Index(props: any) {
         {/* <div className="clear-bottom border-bottom"></div> */}
 
         <div className="section">
-          <div className="relative pt-8">
+          <div className="relative pt-9">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               {/* <InfiniteScroller nDuplications={2} speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
               </InfiniteScroller> */}
             </div>
 
-            <div className="rich-text">
+            <div className="rich-text mb-7">
               <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
             </div>
 

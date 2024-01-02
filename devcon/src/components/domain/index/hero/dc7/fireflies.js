@@ -105,7 +105,7 @@ function setOpacity(color, opacity) {
 export const Fireflies = props => {
   React.useEffect(() => {
     new Animation(`#${props.id}`, {
-      count: 100,
+      count: 75,
       color: 'rgba(236, 196, 94, 1)',
       //   color: 'rgba(236, 196, 255, 1)',
       speed: 0.6,

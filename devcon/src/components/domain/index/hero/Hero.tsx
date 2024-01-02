@@ -227,13 +227,13 @@ export const Hero = () => {
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
             <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
 
-            <div className="absolute top-0 w-full h-[25vh]">
+            {/* <div className="absolute top-0 w-full h-[25vh]">
               <Fireflies settings={{ count: 200, speed: 0.1, radius: 2 }} id="upper-fireflies" />
             </div>
 
             <div className="absolute bottom-0 w-full h-[35vh]">
               <Fireflies settings={{ count: 200, speed: 0.3, radius: 2 }} id="bottom-fireflies-2" />
-            </div>
+            </div> */}
 
             {/* <div className="absolute bottom-0 w-full h-[20vh] overflow-hidden">
               <Fireflies id="lower-fireflies" />
@@ -250,20 +250,20 @@ export const Hero = () => {
 
           <motion.div className={css['left']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image src={DC7Left} alt="Left Bush" priority />
-            <div className="absolute top-0 h-full w-[20vw]">
+            {/* <div className="absolute top-0 h-full w-[20vw]">
               <Fireflies settings={{ count: 150, speed: 0.5, radius: 2.5 }} id="left-fireflies" />
-            </div>
+            </div> */}
           </motion.div>
           <motion.div className={css['right']} style={{ x: transformLeftX, y: transformLeftY }}>
             <Image className={css['right']} src={DC7Right} alt="Right Bush" priority />
-            <div className="absolute top-0 right-0 h-full w-[20vw]">
+            {/* <div className="absolute top-0 right-0 h-full w-[20vw]">
               <Fireflies settings={{ count: 150, speed: 0.5, radius: 2.5 }} id="right-fireflies" />
-            </div>
+            </div> */}
           </motion.div>
 
-          {/* <div className="absolute bottom-0 w-full h-full">
+          <div className="absolute bottom-0 w-full h-full">
             <Fireflies settings={{ color: 'rgba(236, 196, 94, 1)' }} id="lower-fireflies" />
-          </div> */}
+          </div>
 
           {/* <div className="absolute left-0 h-full w-[40vh] overflow-hidden">
             <Fireflies id="left-fireflies" />
@@ -297,8 +297,8 @@ export const Hero = () => {
                   <Image src={DC7Logo} alt="Devcon 7 Logo" priority />
                 </div>
                 <div className="relative">
-                  <div className="absolute left-[45%] bottom-[20%] w-full h-full z-10">
-                    <Butterflies2 />
+                  <div className="absolute left-[45%] bottom-[0%] w-full h-full z-10 hidden lg:block">
+                    <Butterflies />
                   </div>
                   <Image
                     className={css['dc7-logo-text']}
@@ -310,7 +310,7 @@ export const Hero = () => {
               </div>
               <div className={css['right']}>
                 <div className={css['butterflies']}>
-                  <Butterflies />
+                  <Butterflies2 />
                 </div>
                 <Image className={css['dc7-logo-text']} src={DC7OverlayRight} alt="Event location" priority />
               </div>
