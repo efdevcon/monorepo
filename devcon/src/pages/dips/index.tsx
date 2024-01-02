@@ -11,7 +11,7 @@ import { getGlobalData } from 'services/global'
 import { GetPage } from 'services/page'
 import { Tags } from 'components/common/tags'
 import { GetContributors, GetDIPs } from 'services/dips'
-import HeroBackground from 'assets/images/pages/hero-bgs/dips-bg.png'
+import HeroBackground from 'assets/images/pages/hero-bgs/dips-bg.jpg'
 
 export default pageHOC(function DIPsTemplate(props: any) {
   const pageContext = usePageContext()

@@ -242,7 +242,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 325px;
+    min-height: 250px;
 
     @media (max-width: $breakpoints-lg) {
       min-height: 225px;
@@ -253,8 +253,11 @@
     }
 
     h1 {
+      font-family: $fonts-secondary;
       position: relative;
       display: block;
+      line-height: 100%;
+      font-size: 7rem;
 
       @media (max-width: $breakpoints-lg) {
         font-size: 6rem;

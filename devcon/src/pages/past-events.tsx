@@ -23,7 +23,7 @@ import Prague from 'assets/images/editions/Prague.png'
 import Osaka from 'assets/images/editions/Osaka.png'
 import Bogota from 'assets/images/editions/Bogota.png'
 import { useTranslations } from 'next-intl'
-import HeroBackground from 'assets/images/pages/hero-bgs/about-bg.png'
+import HeroBackground from 'assets/images/pages/hero-bgs/about-bg.jpg'
 
 function getEditionImage(edition: number) {
   if (edition === 0) return Berlin
