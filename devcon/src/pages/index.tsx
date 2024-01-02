@@ -33,6 +33,7 @@ import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
 import ArchiveBackground from 'assets/images/archive/archive-logo.png'
 import { motion, useInView } from 'framer-motion'
 import { Button } from 'lib/components/button'
+import { Link } from 'components/common/link'
 
 const videos = [
   {
@@ -128,9 +129,12 @@ export default pageHOC(function Index(props: any) {
                 <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
               </div>
             </div>
-            <Button fat color="purple-1" fill>
-              {data.pages.section2?.button}
-            </Button>
+
+            <Link to="https://blog.ethereum.org/en/2023/02/28/devcon-7-update">
+              <Button fat color="purple-1" fill href="">
+                {data.pages.section2?.button}
+              </Button>
+            </Link>
           </div>
           <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
@@ -143,14 +147,18 @@ export default pageHOC(function Index(props: any) {
               <div className="rich-text">
                 <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
               </div>
-              <Button fat color="purple-1" className="mt-8" fill>
-                {data.pages.section3?.button}
-              </Button>
+              <Link to="https://esp.ethereum.foundation/devcon-grants">
+                <Button fat color="purple-1" className="mt-8" fill>
+                  {data.pages.section3?.button}
+                </Button>
+              </Link>
             </div>
             <div className="flex grow shrink-0 items-center justify-center">
-              <div className={css['tilt-hover-image']}>
-                <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
-              </div>
+              <Link to="https://esp.ethereum.foundation/devcon-grants">
+                <div className={css['tilt-hover-image']}>
+                  <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
+                </div>
+              </Link>
             </div>
           </div>
 
@@ -159,9 +167,11 @@ export default pageHOC(function Index(props: any) {
               <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
             </div>
 
-            <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
-              {data.pages.section4?.button}
-            </Button>
+            <Link to="https://blog.ethereum.org/en/2022/11/17/devcon-vi-wrap">
+              <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
+                {data.pages.section4?.button}
+              </Button>
+            </Link>
 
             <div className="sm:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto" ref={scrollRef}>
               {isInView && (
@@ -256,9 +266,11 @@ export default pageHOC(function Index(props: any) {
           <div className="relative border-bottom pb-8">
             <TrackList tracks={props.tracks} />
 
-            <Button fat color="purple-1" fill className="mt-8">
-              {data.pages.section6?.button}
-            </Button>
+            <Link to="https://archive.devcon.org">
+              <Button fat color="purple-1" fill className="mt-8">
+                {data.pages.section6?.button}
+              </Button>
+            </Link>
 
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="70s">
