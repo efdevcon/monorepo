@@ -106,6 +106,8 @@
   &.custom-background {
     border-bottom: none;
 
+    mask-image: linear-gradient(from right, black, transparent);
+
     .path {
       // Might be problematic depending on image colors
       color: white;

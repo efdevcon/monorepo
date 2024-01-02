@@ -26,11 +26,16 @@ class Animation {
     return canvas
   }
 
+  stop = () => {
+    window.cancelAnimationFrame(this.animationFrameId)
+    window.removeEventListener('resize', this.resize)
+  }
+
   draw = () => {
     var drawer = this.draw.bind(this)
 
     this.redraw()
-    window.requestAnimationFrame(drawer)
+    this.animationFrameId = window.requestAnimationFrame(drawer)
   }
 
   redraw = () => {
@@ -83,7 +88,7 @@ class Firefly {
   }
 
   flicker = () => {
-    if (this.opacity >= 1 || this.opacity <= 0.001) {
+    if (this.opacity >= 1 || this.opacity <= 0.5) {
       this.flare = !this.flare
     }
 
@@ -104,15 +109,18 @@ function setOpacity(color, opacity) {
 
 export const Fireflies = props => {
   React.useEffect(() => {
-    new Animation(`#${props.id}`, {
+    const animation = new Animation(`#${props.id}`, {
       count: 75,
       color: 'rgba(236, 196, 94, 1)',
-      //   color: 'rgba(236, 196, 255, 1)',
       speed: 0.2,
-      radius: 2,
+      radius: 2.5,
       ...props.settings,
     })
 
+    // Cleanup function
+    return () => {
+      animation.stop()
+    }
     // new Animation(`#${props.id}`, {
     //   count: 30,
     //   color: 'rgba(255, 248, 0, 1)',

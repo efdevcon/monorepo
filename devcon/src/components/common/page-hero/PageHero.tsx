@@ -103,6 +103,8 @@ export const PageHero = (props: PageHeroProps) => {
   if (props.background) {
     style.backgroundImage = `url(${props.background})`
     style.backgroundSize = 'cover'
+    style['-webkit-mask-image'] =
+      '-webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
   }
 
   let className = `${css['hero']} margin-bottom`
@@ -145,13 +147,12 @@ export const PageHero = (props: PageHeroProps) => {
 
   return (
     <div id="page-hero" className={className} style={style}>
-      {/* {props.heroBackground && (
-        <div className="absolute w-full h-full">
-          <Image className="h-full w-full object-cover" src={props.heroBackground} alt="Hero background"></Image>
-        </div>
-      )} */}
-
-      <div className="section">
+      <div className="section relative h-[50vh]">
+        {/* {props.heroBackground && (
+          <div className="absolute w-full h-full">
+            <Image className="h-full w-full object-contain" src={props.heroBackground} alt="Hero background"></Image>
+          </div>
+        )} */}
         {/* add to section: h-[50vh] <-- for when bg image is set */}
         <div className={css['info']}>
           <PathNavigation {...props} />
