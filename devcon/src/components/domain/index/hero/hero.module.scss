@@ -102,7 +102,7 @@ $logo-offset: 50px;
   overflow: hidden;
   flex-grow: 1;
   position: relative;
-  height: calc(100vh - env(safe-area-inset-bottom));
+  min-height: calc(100vh - env(safe-area-inset-bottom));
   width: 100%;
   // background: linear-gradient(45deg, #f17c58, #f374a4, #24aadb);
   // background: linear-gradient(45deg, #0744c6, #fb0f69, #24aadb);
@@ -948,6 +948,12 @@ $logo-offset: 50px;
     z-index: 1;
   }
 
+  @media (orientation: landscape) {
+    img {
+      max-width: 25vw !important;
+    }
+  }
+
 
   @media (max-width: $breakpoints-lg) {
     &:before {
@@ -972,6 +978,16 @@ $logo-offset: 50px;
       }
     }
 
+    .left {
+      transform: translateX(-5px);
+    }
+
+    .right {
+      img {
+        max-width: 45vw;
+      }
+    }
+
     img {
       max-width: 60vw;
     }
@@ -980,7 +996,7 @@ $logo-offset: 50px;
       flex-direction: column !important;
       justify-content: flex-start !important;
       align-items: flex-start !important;
-      gap: 36px;
+      gap: 16px;
     }
 
     .butterflies {
