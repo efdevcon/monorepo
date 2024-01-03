@@ -51,7 +51,7 @@ class Animation {
       ctx.closePath()
       ctx.fillStyle = firefly.color
       ctx.shadowBlur = firefly.radius * 5
-      ctx.shadowColor = 'pink'
+      ctx.shadowColor = 'white'
       ctx.fill()
     })
   }
