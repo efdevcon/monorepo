@@ -16,7 +16,7 @@ section1:
     unique place for collaboration, where the brightest minds in Ethereum come
     together to share, innovate, and build. It's a space for learning and
     teaching, where the latest Ethereum technology is both showcased and
-    demystified.
+    demystified
 section2:
   top: >
     ## **Devcon 7 — Southeast Asia**
