@@ -167,7 +167,7 @@ export const PageHero = (props: PageHeroProps) => {
         </div>
       )}
 
-      <div className="section relative h-[55vh]">
+      <div className="section relative h-[55vh] max-h-[600px]">
         <div className={css['info']}>
           <PathNavigation {...props} />
 
