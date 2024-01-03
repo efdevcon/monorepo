@@ -22,7 +22,7 @@ const FourOhFour = pageHOC(() => {
 
       <div className="section clear-top clear-bottom">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="mb-4">Page Not Found >:(</h1>
+          <h1 className="mb-4">Page Not Found</h1>
           <Image src={Image404} alt="Man looking for something" style={{ width: 'min(100%, 600px)' }} />
         </div>
       </div>
