@@ -7,14 +7,6 @@ section6:
   button: View Full Archive →
 section1:
   body: >
-    ##
-
-
-    **Welcome to Devcon!**\
-
-
-
-
     ## Discover Ethereum and its community at Devcon, the conference for
     developers, thinkers, and makers and a place for learning, knowledge
     sharing, and fun.
@@ -81,4 +73,3 @@ section5:
     ## **Devcon Archive**
   button: View Full Archive →
 ---
-

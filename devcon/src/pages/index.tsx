@@ -130,7 +130,7 @@ export default pageHOC(function Index(props: any) {
               </div>
             </div>
 
-            <Link to="https://blog.ethereum.org/en/2023/02/28/devcon-7-update">
+            <Link to="https://blog.ethereum.org/2024/01/03/devcon-sea-announcement">
               <Button fat color="purple-1" fill href="">
                 {data.pages.section2?.button}
               </Button>
