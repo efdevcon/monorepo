@@ -118,21 +118,14 @@ export default defineConfig({
                 label: 'Title',
                 name: 'title',
                 type: 'rich-text',
-              }
-            ],
-          },
-          {
-            label: 'Section 6',
-            name: 'section6',
-            type: 'object',
-            fields: [
+              },
               {
                 label: 'Button',
                 name: 'button',
                 type: 'string',
               }
             ],
-          },
+          }
         ],
         ui: {
           router: ({ document }) => `/en`,

@@ -268,7 +268,7 @@ export default pageHOC(function Index(props: any) {
 
             <Link to="https://archive.devcon.org">
               <Button fat color="purple-1" fill className="mt-8">
-                {data.pages.section6?.button}
+                {data.pages.section5?.button}
               </Button>
             </Link>
 

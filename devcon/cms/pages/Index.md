@@ -3,6 +3,8 @@ title: Test
 catchphrase: Connecting the builders of Ethereum
 subtext: "Devconnect is a week-long gathering of independent Ethereum events to learn, share, and\_**make progress together.**\n"
 button: Devconnect IST Photo Gallery
+section6:
+  button: View Full Archive →
 section1:
   body: >
     ## Devcon is an intensive introduction for new Ethereum explorers, a global
@@ -63,7 +65,6 @@ section5:
     talks, and freeform learning sessions.
   title: |
     ## **Devcon Archive**
-section6:
   button: View Full Archive →
 ---
 
