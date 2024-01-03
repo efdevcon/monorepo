@@ -10,10 +10,10 @@ section1:
     ##
 
 
-    ## Discover Ethereum and its community at Devcon, 
+    ## **Discover Ethereum and its community at Devcon,**
 
 
-    #### the conference for developers, thinkers, and makers and a place for
+    ### the conference for developers, thinkers, and makers and a place for
     learning, knowledge sharing, and fun.
 
 
