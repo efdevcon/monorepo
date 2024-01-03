@@ -15,6 +15,10 @@
     --animation-speed: 80s;
   }
 
+  &.reverse {
+    animation-direction: reverse;
+  }
+
   &.unpadded {
     > * {
       padding-right: 0px !important;

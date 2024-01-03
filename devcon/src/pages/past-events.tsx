@@ -10,10 +10,10 @@ import { usePageContext } from 'context/page-context'
 import ArrowRight from 'assets/icons/arrow_right.svg'
 import css from './past-events.module.scss'
 import { Link } from 'components/common/link'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import EventLocations from 'assets/images/event-locations.png'
 import { DevconEdition } from 'types/DevconEdition'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 
 import Berlin from 'assets/images/editions/Berlin.png'
 import London from 'assets/images/editions/London.png'
@@ -23,6 +23,7 @@ import Prague from 'assets/images/editions/Prague.png'
 import Osaka from 'assets/images/editions/Osaka.png'
 import Bogota from 'assets/images/editions/Bogota.png'
 import { useTranslations } from 'next-intl'
+import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 
 function getEditionImage(edition: number) {
   if (edition === 0) return Berlin
@@ -43,10 +44,8 @@ export default pageHOC(function PastEvents(props: any) {
   return (
     <Page theme={themes['about']}>
       <PageHero
-        path={[
-          { text: <span className="bold">{intl('navigation_about')}</span> },
-          { text: props.page.header },
-        ]}
+        heroBackground={HeroBackground}
+        path={[{ text: <span className="bold">{intl('navigation_about')}</span> }, { text: props.page.header }]}
         navigation={props.editions.map((edition: any) => {
           return {
             title: edition.title,
@@ -106,7 +105,7 @@ export default pageHOC(function PastEvents(props: any) {
                     {edition.links.map((link: any) => {
                       return (
                         <Link key={link.url} to={link.url}>
-                          <Button className="green lg" onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                          <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
                             {link.title}
                           </Button>
                         </Link>

@@ -11,6 +11,7 @@ import { getGlobalData } from 'services/global'
 import { GetPage } from 'services/page'
 import { Tags } from 'components/common/tags'
 import { GetContributors, GetDIPs } from 'services/dips'
+import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
 
 export default pageHOC(function DIPsTemplate(props: any) {
   const pageContext = usePageContext()
@@ -19,6 +20,7 @@ export default pageHOC(function DIPsTemplate(props: any) {
   return (
     <Page theme={themes['teal']}>
       <PageHero
+        heroBackground={HeroBackground}
         path={[{ text: <span className="bold">Get Involved</span> }, { text: props.page.header }]}
         // cta={[
         //   {
@@ -56,7 +58,7 @@ export default pageHOC(function DIPsTemplate(props: any) {
         <Contribute dipDescription={props.page.body} contributors={props.contributors} />
         <Proposals dips={props.dips} />
 
-        <Tags items={pageContext?.current?.tags} viewOnly />
+        {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
       </div>
     </Page>
   )
@@ -75,7 +77,7 @@ export async function getStaticProps(context: any) {
       ...globalData,
       page,
       dips,
-      contributors
+      contributors,
     },
     revalidate: 3600,
   }

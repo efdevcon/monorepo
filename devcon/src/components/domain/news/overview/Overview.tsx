@@ -13,7 +13,6 @@ type NewsOverviewProps = {
 
 // const PrevNext = () => {
 //   const context = usePageContext()
-
 //   const { currentPage, numPages, lang }: any = context.pageContext
 //   const isFirst = currentPage === 1
 //   const isSecond = currentPage === 2

@@ -1,7 +1,6 @@
 @use 'assets/css/partials/index' as *;
 
-.button,
-button {
+.button {
   // Sometimes the button element can be useful for semantic reasons, add "plain" class to remove default styles
   cursor: pointer;
   touch-action: manipulation;
@@ -22,6 +21,7 @@ button {
     display: inline-flex;
     align-items: center;
     position: relative;
+    border-radius: var(--border-radius);
 
     // Using pseudo element for borders so we can overlay an animating background without stripping the border away (which would also resize the button)
     &:before {
@@ -34,6 +34,8 @@ button {
       right: 0px;
       border-width: var(--border-width);
       border-color: var(--border-color);
+      border-radius: var(--border-radius);
+      background: var(--button-background);
       border-style: solid;
 
       &:hover {
@@ -55,6 +57,28 @@ button {
     &:disabled {
       pointer-events: none;
       cursor: auto;
+    }
+
+    &.rounded-purple {
+      --border-color: transparent;
+      --border-width: 1px;
+      --border-radius: 77px;
+      background: #AEB6FF;
+      color: black;
+      --color-icon: black !important;
+    }
+
+    &.rounded-dark-purple {
+      // --border-color: #7958A5;
+      --border-width: 1px;
+      --border-radius: 67px;
+      background: #8B6BBB;
+      color: white;
+      --color-icon: white !important;
+
+      &:hover, &.hover {
+        background: #8746e9;
+      }
     }
 
     &.squared {

@@ -31,3 +31,129 @@
     left: 0px;
   }
 }
+
+.scrolling-text-background {
+  height: fit-content;
+  color: #7958A5;
+  font-size: 220px;
+  line-height: 1em;
+  z-index: -1;
+  width: 100%; 
+  bottom: 0px;
+  position: absolute;
+  padding-top: 60px;
+
+  &.alternate {
+    bottom: auto;
+    top: 0px;
+    padding-top: 0px;
+    padding-bottom: 60px;
+
+    p {
+      text-align: start;
+      mask-image: linear-gradient(to bottom, 
+      black 30%,  
+      transparent);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 100%;
+      background: #ffe3cd;
+      mask-image: linear-gradient(to bottom, 
+      black,  
+      transparent);
+    }
+  }
+
+  &.up {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      background: #e5d2ff;
+      mask-image: linear-gradient(to bottom, 
+      black,  
+      transparent);
+    }
+  }
+
+  p {
+    opacity: 0.15;
+    letter-spacing: 12px;
+    mask-image: linear-gradient(to top, 
+    black 30%,  
+    transparent);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: #e5d2ff;
+    mask-image: linear-gradient(to top, 
+    black,  
+    transparent);
+  }
+
+  mask-image: linear-gradient(to right, 
+  transparent, 
+  black 35%, 
+  black 65%, 
+  transparent);
+}
+
+.rainbow-text {
+  background: linear-gradient(92deg, #B2ABFE -2.27%, #FF8290 37.74%, #F3C18F 65.44%, #A1FEC8 96.22%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tilt-hover-image {
+  img {
+    object-fit: contain;
+    height: 100% !important;
+    width: auto !important;
+    transition: .5s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: perspective(1000px) scale(0.95) rotateX(1deg) rotateY(-4deg);
+    }
+  }
+}
+
+.archive-list {
+  background: linear-gradient(to top, 
+  #c8a3ff24 0%,  
+  transparent);
+
+  .video {
+    z-index: 1;
+
+
+    &:hover {
+      p {
+        &:nth-child(2) {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.background-text {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3)
+}

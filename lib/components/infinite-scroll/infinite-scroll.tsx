@@ -5,6 +5,7 @@ type InfiniteScrollProps = {
   // May have to repeat content more than twice if there isn't a lot to loop over
   nDuplications?: number;
   speed?: string;
+  reverse?: boolean;
   slow?: boolean;
   unpadded?: boolean;
   marqueeClassName?: string;
@@ -14,6 +15,7 @@ type InfiniteScrollProps = {
 const InfiniteScroll = (props: InfiniteScrollProps) => {
   let className = css["marquee"];
 
+  if (props.reverse) className += ` ${css["reverse"]}`;
   if (props.slow) className += ` ${css["slow"]}`;
   if (props.unpadded) className += ` ${css["unpadded"]}`;
   if (props.marqueeClassName) className += ` ${props.marqueeClassName}`;

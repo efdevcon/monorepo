@@ -17,7 +17,7 @@ import MaxSemenchuk from './speaker-images/max-semenchuk.png'
 import VitalikButerin from './speaker-images/vitalik-buterin.png'
 import KurtOpsahl from './speaker-images/kurt-opsahl.png'
 import IXShells from './speaker-images/ix-shells.png'
-import Background from './speaker-images/background.png'
+// import Background from './speaker-images/background.png'
 import { useTranslations } from 'next-intl'
 import { useDraggableLink } from 'components/domain/devcon-week/schedule'
 // import { useDr}

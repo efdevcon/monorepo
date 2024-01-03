@@ -1,4 +1,6 @@
+@use 'global/tailwind.scss';
 @use 'assets/css/partials/index' as *;
+@use 'global/cms';
 @use 'global/general';
 @use 'global/buttons';
 @use 'global/list';
@@ -36,9 +38,9 @@ html {
     font-size: 14px;
   }
 
-  @media (max-width: $breakpoints-md) {
-    font-size: 12px;
-  }
+  // @media (max-width: $breakpoints-md) {
+  //   font-size: 12px;
+  // }
 }
 
 body {

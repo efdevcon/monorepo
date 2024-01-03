@@ -46,6 +46,11 @@
 }
 
 .card {
+  > * {
+    border: 1px solid #E2E3FF;
+    border-radius: 4px;
+  }
+
   &.layer-1 {
     [data-type="flip-card-front"], [data-type="flip-card-back"] {
       background: #E6F0FF;
