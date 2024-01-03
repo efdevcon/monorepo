@@ -10,11 +10,14 @@ section1:
     ##
 
 
-    ## **Discover Ethereum and its community at Devcon,**
+    **Welcome to Devcon!**\
 
 
-    ### the conference for developers, thinkers, and makers and a place for
-    learning, knowledge sharing, and fun.
+
+
+    ## Discover Ethereum and its community at Devcon, the conference for
+    developers, thinkers, and makers and a place for learning, knowledge
+    sharing, and fun.
 
 
     Devcon is more than just a conference with talks and presentations. It’s a
