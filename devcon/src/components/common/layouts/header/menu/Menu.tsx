@@ -92,14 +92,14 @@ export const Menu = (props: any) => {
   const context = usePageContext()
 
   let buttons: ButtonProps['buttons'] = [
-    {
-      key: 'account',
-      tooltip: {
-        content: 'Account',
-      },
-      icon: <AccountIcon />,
-      url: 'https://app.devcon.org/login',
-    },
+    // {
+    //   key: 'account',
+    //   tooltip: {
+    //     content: 'Account',
+    //   },
+    //   icon: <AccountIcon />,
+    //   url: 'https://app.devcon.org/login',
+    // },
     {
       key: 'mobile-menu-toggle',
       icon: props.foldoutOpen ? <IconCross style={{ width: '0.8em' }} /> : <IconMenu />,
