@@ -7,16 +7,27 @@ section6:
   button: View Full Archive →
 section1:
   body: >
-    ## Devcon is an intensive introduction for new Ethereum explorers, a global
-    family reunion for those already a part of our ecosystem, and a source of
-    energy and creativity for all.
+    ##
+
+
+    ## Discover Ethereum and its community at Devcon, 
+
+
+    #### the conference for developers, thinkers, and makers and a place for
+    learning, knowledge sharing, and fun.
 
 
     Devcon is more than just a conference with talks and presentations. It’s a
-    unique place for collaboration, where the brightest minds in Ethereum come
-    together to share, innovate, and build. It's a space for learning and
-    teaching, where the latest Ethereum technology is both showcased and
-    demystified
+    unique place for inspiration, where passionate builders, engineers,
+    designers, researchers, community organizers, and artists come together to
+    share updates and ideas. It's a space for learning and teaching, where the
+    latest Ethereum technology is both showcased and demystified.
+
+
+    Whether you're a seasoned Ethereum expert or just starting, Devcon is for
+    you. It’s an intensive introduction for new Ethereum explorers, a global
+    family reunion for those already a part of our ecosystem, and a source of
+    energy and creativity for all.
 section2:
   top: >
     ## **Devcon 7 — Southeast Asia**
