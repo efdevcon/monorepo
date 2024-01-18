@@ -7,9 +7,11 @@ section6:
   button: View Full Archive →
 section1:
   body: >
-    ## Discover Ethereum and its community at Devcon, the conference for
-    developers, thinkers, and makers and a place for learning, knowledge
-    sharing, and fun.
+    ## Discover Ethereum and its community at Devcon!
+
+
+    **Devcon is the Ethereum conference for developers, thinkers, and makers.
+    Join Devcon and empower yourself to build and use decentralized systems.**
 
 
     Devcon is more than just a conference with talks and presentations. It’s a
@@ -73,3 +75,4 @@ section5:
     ## **Devcon Archive**
   button: View Full Archive →
 ---
+
