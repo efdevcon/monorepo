@@ -71,20 +71,19 @@ export const Room = (props: Props) => {
     .filter(i => bookmarkedSessions?.find(bookmark => bookmark.id === i.id))
   const pastSessions = sortedSessions.filter(i => sessionSearch(search, i)).filter(i => !moment.utc(i.end).isAfter(now))
 
-  const eventDates = React.useMemo(() => {
-    const dates = []
-    const end = moment.utc(props.event.date_to).add(1, 'days')
+  const start = moment(props.event.startDate)
+  const end = moment(props.event.endDate)
+  const daysDiff = end.diff(start, 'days')
 
-    let current = moment.utc(props.event.date_from)
+  const eventDates = [] as any
 
-    while (!current.isSame(end)) {
-      const next = current.clone()
-      dates.push({ readable: normalizeDate(next), moment: next })
-      current.add(1, 'days')
-    }
+  for (let i = 0; i < daysDiff + 1; i++) {
+    const nextDate = start.clone()
 
-    return dates
-  }, [props.event])
+    nextDate.add(i, 'days')
+
+    eventDates.push({ readable: normalizeDate(nextDate), moment: nextDate })
+  }
 
   const upcomingSessionsData = getSessionsByDatesAndTimeslots(upcomingSessions, eventDates)
   const attendingSessionsData = getSessionsByDatesAndTimeslots(attendingSessions, eventDates)

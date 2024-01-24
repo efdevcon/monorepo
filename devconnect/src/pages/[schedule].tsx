@@ -721,7 +721,7 @@ const Timeline = (props: any) => {
             {event['Stable ID'] === 'Cowork' && (
               <div className={css['image']}>
                 {(() => {
-                  if (props.edition === 'istanbul') return <DevconnectIstanbul style={{ width: '50px' }} />
+                  if (props.edition === 'istanbul') return <DevconnectIstanbul style={{ width: '30px' }} />
                   if (props.edition === 'amsterdam') return <DevconnectAmsterdam style={{ width: '50px' }} />
                 })()}
               </div>

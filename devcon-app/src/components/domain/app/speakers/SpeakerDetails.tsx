@@ -57,7 +57,9 @@ export const SpeakerDetails = (props: any) => {
 
       <div className={css['image']}>
         <Image
-          src={props.speaker.avatar ?? makeBlockie(props.speaker.name || props.speaker.id)}
+          // pretalx api down so avatar links don't work atm
+          // src={props.speaker.avatar ?? makeBlockie(props.speaker.name || props.speaker.id)}
+          src={makeBlockie(props.speaker.name || props.speaker.id)}
           alt={props.speaker.name}
           objectFit="contain"
           layout="fill"

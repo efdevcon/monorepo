@@ -25,5 +25,3 @@ clubes universitarios,
 Talleres de trabajo,
 Iniciativas de educación,
 y otras actividades comunitarias.**
-
-**Fecha límite: 31.10.2023**

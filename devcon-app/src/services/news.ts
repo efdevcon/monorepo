@@ -1,5 +1,6 @@
 import { NewsItem } from 'types/NewsItem'
 import { BASE_CONTENT_FOLDER } from 'utils/constants'
+// @ts-ignore
 import nodeFetch from 'node-fetch'
 import matter from 'gray-matter'
 import { GetTags } from 'services/page'

@@ -6,7 +6,7 @@ type ButtonContent = {
   text?: string
   className?: string
   onClick: () => void
-  render: () => void
+  render: () => React.ReactNode
 }
 
 type ButtonOverlayProps = {

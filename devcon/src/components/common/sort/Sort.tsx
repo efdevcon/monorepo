@@ -72,10 +72,11 @@ export const presetSortingMethods: any = {
 export const useSort = (
   data: any[],
   fields: Field[],
+  initialSort = 0,
   resetOnThirdClick = true,
   defaultDirection: 'asc' | 'desc' = 'asc'
 ): SortState => {
-  const [sortBy, setSortBy] = React.useState<number>(0)
+  const [sortBy, setSortBy] = React.useState<number>(initialSort)
   const [sortDirection, setSortDirection] = React.useState<any>(defaultDirection)
 
   const setSort = (nextsortBy: number) => {

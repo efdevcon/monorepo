@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "dev-inspect": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "cd ../lib && yarn && cd ../devconnect && next build",
+    "build": "tinacms build && cd ../lib && yarn && cd ../devconnect && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -44,11 +44,13 @@
     "stats.js": "^0.17.0",
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.3.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tinacms": "^1.5.28"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.1",
-    "@types/node": "16.11.11",
+    "@tinacms/cli": "^1.5.39",
+    "@types/node": "^20.10.4",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "eslint": "7",

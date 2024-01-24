@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
-  repo: efdevcon/devcon-website
-  branch: '$BRANCH'
+  repo: efdevcon/monorepo
+  branch: main
   accept_roles:
     - admin
     - editor
@@ -11,9 +11,8 @@ slug:
   clean_accents: true
   sanitize_replacement: '-'
 
-
 publish_mode: editorial_workflow
-media_folder: public/assets/uploads/images
+media_folder: devcon/public/assets/uploads/images
 public_folder: /assets/uploads/
 
 i18n:
@@ -25,7 +24,7 @@ collections:
   - name: 'pages'
     label: 'Pages'
     label_singular: 'Page'
-    folder: 'src/content/pages'
+    folder: 'devcon/src/content/pages'
     slug: '{{slug}}'
     summary: '{{header}}'
     create: false
@@ -50,7 +49,7 @@ collections:
   - name: 'Sections'
     label: 'Sections'
     label_singular: 'Section'
-    folder: 'src/content/sections'
+    folder: 'devcon/src/content/sections'
     create: true
     i18n: true
     view_groups:
@@ -138,7 +137,7 @@ collections:
 
   - name: 'devcon'
     label: 'Devcon'
-    folder: 'src/content/devcon'
+    folder: 'devcon/src/content/devcon'
     identifier_field: number
     slug: '{{number}}'
     sortable_fields: ['number']
@@ -163,7 +162,7 @@ collections:
   - name: tracks
     label: Tracks
     label_singular: Track
-    folder: 'src/content/tracks'
+    folder: 'devcon/src/content/tracks'
     sortable_fields: ['order']
     create: true
     i18n: true
@@ -185,7 +184,7 @@ collections:
   - name: 'notification'
     label: 'Notification Strip'
     label_singular: 'Notification'
-    folder: 'src/content/notifications'
+    folder: 'devcon/src/content/notifications'
     i18n: true
     fields:
       - {
@@ -211,7 +210,7 @@ collections:
     label: 'App Notifications'
     create: true
     label_singular: 'App Notification'
-    folder: 'src/content/app-notifications'
+    folder: 'devcon/src/content/app-notifications'
     fields:
       - { name: 'title', label: 'Title', widget: 'string', required: true }
       - { name: 'body', label: 'Body', widget: 'markdown', required: true }
@@ -239,7 +238,7 @@ collections:
   - name: 'news'
     label: 'News'
     label_singular: 'News item'
-    folder: 'src/content/news'
+    folder: 'devcon/src/content/news'
     create: true
     i18n: true
     fields:

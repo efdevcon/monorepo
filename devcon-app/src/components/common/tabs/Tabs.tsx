@@ -9,11 +9,11 @@ interface TabsProps {
   tabContentClassName?: string
 }
 
-const isValidTab = (children: React.ReactChildren, tab: string) => {
+const isValidTab = (children: React.ReactNode, tab: string) => {
   return React.Children.toArray(children).some((child: any) => child?.props?.title === tab)
 }
 
-const findFirstValidTab = (children: React.ReactChildren): any => {
+const findFirstValidTab = (children: React.ReactNode): any => {
   // Children can be invalid (happens when a child is rendered conditionally), so we'll loop until we find the first valid child
   return React.Children.toArray(children).find(child => !!child)
 }
@@ -22,7 +22,7 @@ export const Tabs = React.forwardRef((props: TabsProps, ref: any) => {
   const isBrowser = typeof window !== 'undefined'
   const router = useRouter()
   const useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect
-  
+
   const tabFromQueryString = router.query['tab'] as string
   const defaultTab = props.children ? findFirstValidTab(props.children)?.props?.title : ''
   const [activeTab, setActiveTab] = useState(defaultTab)

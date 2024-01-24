@@ -82,6 +82,7 @@ export const Proposals = (props: ProposalsProps) => {
         : dipsWithLink.filter(dip => dip.status.toLowerCase() === activeFilter?.toLowerCase())
     },
   })
+
   const tableColumns: Array<TableColumn> = [
     {
       title: '#',
@@ -215,7 +216,7 @@ export const Proposals = (props: ProposalsProps) => {
         {/* <Filter {...filterState} /> */}
       </div>
 
-      <Table itemKey="number" items={filteredDips} columns={tableColumns} />
+      <Table itemKey="number" items={filteredDips} columns={tableColumns} initialSort={3} />
       <div className="clear-bottom"></div>
     </section>
   )

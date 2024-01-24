@@ -978,9 +978,9 @@ $logo-offset: 50px;
       }
     }
 
-    .left {
-      transform: translateX(-5px);
-    }
+    // .left {
+    //   transform: translateX(-5px);
+    // }
 
     .right {
       img {
@@ -996,7 +996,7 @@ $logo-offset: 50px;
       flex-direction: column !important;
       justify-content: flex-start !important;
       align-items: flex-start !important;
-      gap: 16px;
+      gap: 32px;
     }
 
     .butterflies {
@@ -1056,7 +1056,7 @@ $logo-offset: 50px;
 
     .dc7-logo-text {
       width: 400px;
-      filter: drop-shadow(0px 0px 2px #000000);
+      filter: drop-shadow(0px 1px 4px #000000);
       object-fit: cover;
     }
 

@@ -36,6 +36,7 @@ import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
 import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
+import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import Cover1 from 'assets/images/ist-video-archive/LightClient_Cover.webp'
 import Cover2 from 'assets/images/ist-video-archive/wallet_unconference_cover.webp'
@@ -50,6 +51,11 @@ import Cover10 from 'assets/images/ist-video-archive/staking_cover.webp'
 import Cover11 from 'assets/images/ist-video-archive/secureum_banner.webp'
 import Cover12 from 'assets/images/ist-video-archive/EPF_Cover.webp'
 import SwipeToScroll from 'common/components/swipe-to-scroll'
+import { client } from '../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import { PagesQuery } from '../../tina/__generated__/types'
+import { motion } from 'framer-motion'
 
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
 // import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
@@ -1034,6 +1040,9 @@ const Scene = (props: any) => {
 }
 
 const Home: NextPage = (props: any) => {
+  // console.log(props.cms, 'content?')
+  const { data }: { data: PagesQuery } = useTina(props.cms)
+
   // const [dateHovered, setDateHovered] = React.useState(false)
   const [hehe, setHehe] = React.useState(false)
   const organizersRef = React.useRef<any>()
@@ -1135,12 +1144,11 @@ const Home: NextPage = (props: any) => {
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
                   <div>
-                    <p className={`${css['big-description']}`}>Connecting the builders of Ethereum</p>
+                    <p className={`${css['big-description']}`}>{data.pages.catchphrase}</p>
 
-                    <p style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
-                      Devconnect is a week-long gathering of independent Ethereum events to learn, share, and{' '}
-                      <b>make progress together</b>.
-                    </p>
+                    <div style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
+                      <TinaMarkdown content={data.pages.subtext} />
+                    </div>
 
                     <div className={css['buttons']}>
                       {/* <Link href="/cowork" className={`button orange-fill wide ${css['ticket-button']}`}>
@@ -1148,7 +1156,7 @@ const Home: NextPage = (props: any) => {
                       </Link> */}
 
                       <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span className="!mr-0">Devconnect IST photo gallery</span>
+                        <span className="!mr-0">{data.pages.button}</span>
                       </Link>
                     </div>
                   </div>
@@ -1243,9 +1251,9 @@ const Home: NextPage = (props: any) => {
 
                     <p>
                       The overarching theme of Devconnect Istanbul 2023 was the enthusiasm and involvement of the local
-                      Turkish Ethereum community. ETHGünü and notDEVCON demonstrated the local impact of Ethereum. It
-                      highlighted how local communities are essential in fostering a global network, contributing unique
-                      perspectives.
+                      Turkish Ethereum community. ETHGünü and notDEVCON and d:pact demonstrated the local impact of
+                      Ethereum. It highlighted how local communities are essential in fostering a global network,
+                      contributing unique perspectives.
                     </p>
 
                     <br />
@@ -1338,9 +1346,13 @@ const Home: NextPage = (props: any) => {
                   </h1>
 
                   <p className="large-text xl:pb-12">
-                    Don't miss out on the valuable insights from Devconnect - <b>check out the recorded sessions</b> on
-                    Streameth, perfect if you want to re-experience the talks or if you couldn't make it to Istanbul
-                    this year.
+                    Don't miss out on valuable insights from Devconnect - Streameth has recorded some of the Devconnect
+                    events, check them out if you want to re-experience talks or if you couldn't make it to Istanbul
+                    this year. You can also check out the{' '}
+                    <Link href="/istanbul">
+                      <b>schedule</b>
+                    </Link>{' '}
+                    to find other event's websites and recordings.
                   </p>
                 </div>
 
@@ -1537,9 +1549,15 @@ const Home: NextPage = (props: any) => {
                     { cover: Cover12, url: 'https://app.streameth.org/devconnect/epf_day/archive' },
                   ].map((entry, i) => {
                     return (
-                      <Link key={i} href={entry.url} className="min-w-[450px] relative mr-4 aspect-video">
-                        <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
-                      </Link>
+                      <motion.div
+                        key={i}
+                        className="min-w-[450px] relative mr-4 mt-1"
+                        whileHover={{ boxShadow: '0px 0px 6px 0px black' }}
+                      >
+                        <Link key={i} href={entry.url} className="">
+                          <ImageNew src={entry.cover} alt="Recorded Session Cover Image" className="w-full h-full" />
+                        </Link>
+                      </motion.div>
                     )
                   })}
                 </div>
@@ -1631,7 +1649,7 @@ const Home: NextPage = (props: any) => {
                     <PastEventCard
                       text="Amsterdam Schedule"
                       className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
-                      image={istanbulScheduleBackground}
+                      image={amsterdamScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"
                     />
@@ -1744,9 +1762,15 @@ const getBlogPosts = async (maxItems: number = 6): Promise<Array<BlogPost>> => {
 }
 
 export async function getStaticProps() {
+  const content = await client.queries.pages({ relativePath: 'Index.md' })
   return {
     props: {
       blogs: await getBlogPosts(),
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
   }

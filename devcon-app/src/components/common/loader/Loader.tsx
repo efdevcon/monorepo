@@ -33,7 +33,7 @@ export const Loader = (props: LoaderProps) => {
     if (props.error) return props.messages.error?.message || 'Error :-('
     if (props.loading) return props.messages.loading?.message || 'Loading...'
     if (props.noResults) return props.messages.noResults?.message || 'No results'
-  })()
+  })() as string
 
   return (
     <div className={className} style={{ '--headerHeight': `${headerHeight}px` } as any}>
