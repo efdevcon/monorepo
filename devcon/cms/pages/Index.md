@@ -24,7 +24,7 @@ section1:
     Whether you're a seasoned Ethereum expert or just starting, Devcon is for
     you. It’s an intensive introduction for new Ethereum explorers, a global
     family reunion for those already a part of our ecosystem, and a source of
-    energy and creativity for all.
+    energy and creativity for all..
 section2:
   top: >
     ## **Devcon 7 — Southeast Asia**
