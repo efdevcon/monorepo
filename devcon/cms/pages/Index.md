@@ -11,7 +11,7 @@ section1:
 
 
     **Devcon is the Ethereum conference for developers, thinkers, and makers.
-    Join Devcon and empower yourself to build and use decentralized systems.**
+    Join Devcon and empower yourself to use and build decentralized systems.**
 
 
     Devcon is more than just a conference with talks and presentations. It’s a
