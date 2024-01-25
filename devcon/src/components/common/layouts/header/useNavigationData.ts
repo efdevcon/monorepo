@@ -111,6 +111,11 @@ const useNavigationData = () => {
             url: '/dips',
             type: 'page',
           },
+          {
+            title: 'RTD Grants',
+            url: 'https://esp.ethereum.foundation/devcon-grants',
+            type: 'link',
+          },
           // {
           //   title: intl('navigation_supporters'),
           //   url: '/supporters',
