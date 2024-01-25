@@ -22,9 +22,8 @@ import ImageNew from 'next/image'
 import { GetContentSections, GetTracks } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { client } from '../../tina/__generated__/client'
-import { PagesQuery } from '../../tina/__generated__/types'
+import { PagesQuery, PagesIndex } from '../../tina/__generated__/types'
 import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
@@ -34,6 +33,7 @@ import ArchiveBackground from 'assets/images/archive/archive-logo.png'
 import { motion, useInView } from 'framer-motion'
 import { Button } from 'lib/components/button'
 import { Link } from 'components/common/link'
+import RichText from 'lib/components/tina-cms/RichText'
 
 const videos = [
   {
@@ -74,7 +74,8 @@ const videos = [
 ]
 
 export default pageHOC(function Index(props: any) {
-  const { data }: { data: PagesQuery } = useTina(props.cms)
+  const { data } = useTina<PagesQuery>(props.cms)
+  const pages = data.pages as PagesIndex
   const scrollRef = useRef<any>(null)
   const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
   const [video, setVideo] = React.useState(videos[0])
@@ -89,8 +90,8 @@ export default pageHOC(function Index(props: any) {
           <div className="flex-col lg:flex-row flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className="lg:basis-[1000px] lg:shrink">
               <TitleDevcon className="hidden lg:block" />
-              <div className="rich-text mt-6">
-                <TinaMarkdown content={data.pages.section1?.body}></TinaMarkdown>
+              <div className="mt-6">
+                <RichText content={data.pages.section1?.body}></RichText>
               </div>
             </div>
             <div className="flex flex-col grow shrink-0 items-center justify-center">
@@ -116,23 +117,17 @@ export default pageHOC(function Index(props: any) {
             </div>
 
             <div>
-              <div className="rich-text">
-                <TinaMarkdown content={data.pages.section2?.top}></TinaMarkdown>
-              </div>
+              <RichText content={pages.section2?.top}></RichText>
             </div>
             <div className="flex flex-col md:flex-row gap-8">
-              <div className="rich-text">
-                <TinaMarkdown content={data.pages.section2?.left}></TinaMarkdown>
-              </div>
+              <RichText content={pages.section2?.left}></RichText>
 
-              <div className="rich-text">
-                <TinaMarkdown content={data.pages.section2?.right}></TinaMarkdown>
-              </div>
+              <RichText content={pages.section2?.right}></RichText>
             </div>
 
             <Link to="https://blog.ethereum.org/2024/01/03/devcon-sea-announcement">
               <Button fat color="purple-1" fill href="">
-                {data.pages.section2?.button}
+                {pages.section2?.button}
               </Button>
             </Link>
           </div>
@@ -144,12 +139,11 @@ export default pageHOC(function Index(props: any) {
             </div>
 
             <div className="md:basis-[800px] shrink">
-              <div className="rich-text">
-                <TinaMarkdown content={data.pages.section3?.body}></TinaMarkdown>
-              </div>
+              <RichText content={pages.section3?.body}></RichText>
+
               <Link to="https://esp.ethereum.foundation/devcon-grants">
                 <Button fat color="purple-1" className="mt-8" fill>
-                  {data.pages.section3?.button}
+                  {pages.section3?.button}
                 </Button>
               </Link>
             </div>
@@ -163,13 +157,13 @@ export default pageHOC(function Index(props: any) {
           </div>
 
           <div className="relative flex flex-col items-start border-bottom gap-8 pointer-events-none">
-            <div className={`rich-text z-10 ${css['background-text']}`}>
-              <TinaMarkdown content={data.pages.section4?.body}></TinaMarkdown>
+            <div className={`z-10 ${css['background-text']}`}>
+              <RichText content={pages.section4?.body}></RichText>
             </div>
 
             <Link to="https://blog.ethereum.org/en/2022/11/17/devcon-vi-wrap">
               <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
-                {data.pages.section4?.button}
+                {pages.section4?.button}
               </Button>
             </Link>
 
@@ -213,8 +207,8 @@ export default pageHOC(function Index(props: any) {
               </InfiniteScroller> */}
             </div>
 
-            <div className="rich-text mb-7">
-              <TinaMarkdown content={data.pages.section5?.title}></TinaMarkdown>
+            <div className="mb-7">
+              <RichText content={pages.section5?.title}></RichText>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-4 w-full mt-4 mb-4">
@@ -258,9 +252,7 @@ export default pageHOC(function Index(props: any) {
               </div>
             </div>
 
-            <div className="rich-text">
-              <TinaMarkdown content={data.pages.section5?.body}></TinaMarkdown>
-            </div>
+            <RichText content={pages.section5?.body}></RichText>
           </div>
 
           <div className="relative border-bottom pb-8">
@@ -268,7 +260,7 @@ export default pageHOC(function Index(props: any) {
 
             <Link to="https://archive.devcon.org">
               <Button fat color="purple-1" fill className="mt-8">
-                {data.pages.section5?.button}
+                {pages.section5?.button}
               </Button>
             </Link>
 
@@ -313,7 +305,7 @@ export async function getStaticProps(context: any) {
   )
   const tracks = GetTracks(context.locale)
 
-  const content = await client.queries.pages({ relativePath: 'Index.md' })
+  const content = await client.queries.pages({ relativePath: 'index.mdx' })
 
   return {
     props: {

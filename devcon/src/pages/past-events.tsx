@@ -24,6 +24,9 @@ import Osaka from 'assets/images/editions/Osaka.png'
 import Bogota from 'assets/images/editions/Bogota.png'
 import { useTranslations } from 'next-intl'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+import { PagesPast_Events, PagesQuery } from '../../tina/__generated__/types'
 
 function getEditionImage(edition: number) {
   if (edition === 0) return Berlin
@@ -40,6 +43,8 @@ function getEditionImage(edition: number) {
 export default pageHOC(function PastEvents(props: any) {
   const intl = useTranslations()
   const pageContext = usePageContext()
+  const { data } = useTina<PagesQuery>(props.cms)
+  const pages = data.pages as PagesPast_Events
 
   return (
     <Page theme={themes['about']}>
@@ -134,11 +139,18 @@ export async function getStaticProps(context: any) {
     .sort((a, b) => b.number - a.number)
     .filter(i => i.startDate && i.startDate < new Date().getTime())
 
+  const content = await client.queries.pages({ relativePath: 'past_events.mdx' })
+
   return {
     props: {
       ...globalData,
       page,
       editions: sortedEditions,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
   }
 }
