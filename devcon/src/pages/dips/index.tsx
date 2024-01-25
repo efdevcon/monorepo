@@ -12,6 +12,7 @@ import { GetPage } from 'services/page'
 import { Tags } from 'components/common/tags'
 import { GetContributors, GetDIPs } from 'services/dips'
 import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
+import { Tag } from 'types/DIP'
 
 export default pageHOC(function DIPsTemplate(props: any) {
   const pageContext = usePageContext()
@@ -68,15 +69,14 @@ export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
   const page = await GetPage('/dips', context.locale)
   const dips = await GetDIPs()
+  const dipsWithoutCommunityHub = dips.filter(dip => dip.tags.every(tag => tag !== ('Community Hub' as any)))
   const contributors = await GetContributors()
-
-  // console.log(dips, 'hello')
 
   return {
     props: {
       ...globalData,
       page,
-      dips,
+      dips: dipsWithoutCommunityHub,
       contributors,
     },
     revalidate: 3600,
