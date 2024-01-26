@@ -91,7 +91,7 @@ export default pageHOC(function Index(props: any) {
             <div className="lg:basis-[1000px] lg:shrink">
               <TitleDevcon className="hidden lg:block" />
               <div className="mt-6">
-                <RichText content={data.pages.section1?.body}></RichText>
+                <RichText content={pages.section1?.body}></RichText>
               </div>
             </div>
             <div className="flex flex-col grow shrink-0 items-center justify-center">
