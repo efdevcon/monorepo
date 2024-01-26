@@ -160,11 +160,12 @@
       }
 
       .accordion-toggle {
-        @include fonts-xl;
+        @include fonts-lg;
         @include fonts-uppercase;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding-top: $gaps-gap-4;
         padding-bottom: $gaps-gap-4;
 

@@ -30,22 +30,20 @@ const Foldout = (props: any) => {
           <div>
             <div className={css['top']}>{props.children}</div>
 
-            {!props.isApp && (
-              <div className={css['bottom']}>
-                <div className={css['social-media']}>
-                  <p>Social</p>
-                  <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
-                </div>
-
-                <div className={css['newsletter']}>
-                  <Newsletter id="foldout_newsletter_email" />
-                </div>
-
-                <div className={css['copyright']}>
-                  <Copyright />
-                </div>
+            <div className={css['bottom']}>
+              <div className={css['social-media']}>
+                <p>Social</p>
+                <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
               </div>
-            )}
+
+              <div className={css['newsletter']}>
+                <Newsletter id="foldout_newsletter_email" />
+              </div>
+
+              <div className={css['copyright']}>
+                <Copyright />
+              </div>
+            </div>
           </div>
         </div>,
         document.body

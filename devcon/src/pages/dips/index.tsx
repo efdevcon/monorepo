@@ -13,10 +13,15 @@ import { Tags } from 'components/common/tags'
 import { GetContributors, GetDIPs } from 'services/dips'
 import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
 import { Tag } from 'types/DIP'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../../tina/__generated__/client'
+import { PagesDips, PagesQuery } from '../../../tina/__generated__/types'
 
 export default pageHOC(function DIPsTemplate(props: any) {
   const pageContext = usePageContext()
   const intl = useTranslations()
+  const { data } = useTina<PagesQuery>(props.cms)
+  const pages = data.pages as PagesDips
 
   return (
     <Page theme={themes['teal']}>
@@ -56,7 +61,7 @@ export default pageHOC(function DIPsTemplate(props: any) {
       />
 
       <div className="section">
-        <Contribute dipDescription={props.page.body} contributors={props.contributors} />
+        <Contribute dipDescription={pages.section1?.about} contributors={props.contributors} />
         <Proposals dips={props.dips} />
 
         {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
@@ -71,6 +76,7 @@ export async function getStaticProps(context: any) {
   const dips = await GetDIPs()
   const dipsWithoutCommunityHub = dips.filter(dip => dip.tags.every(tag => tag !== ('Community Hub' as any)))
   const contributors = await GetContributors()
+  const content = await client.queries.pages({ relativePath: 'dips.mdx' })
 
   return {
     props: {
@@ -78,6 +84,11 @@ export async function getStaticProps(context: any) {
       page,
       dips: dipsWithoutCommunityHub,
       contributors,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
     revalidate: 3600,
   }

@@ -94,6 +94,10 @@
     &.mobile-only {
       display: none;
 
+      @media (min-width: 700px) {
+        transform: translateX(10px);
+      }
+
       @media (max-width: 1350px) {
         touch-action: none;
         display: flex;

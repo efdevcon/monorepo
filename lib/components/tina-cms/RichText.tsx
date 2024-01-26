@@ -23,13 +23,19 @@ export default ({ content }: { content: TinaMarkdownContent }) => {
           TwoColumns,
           img: (img: any) => {
             return (
-              <Image
-                src={img?.url || ""}
-                alt={img?.alt || ""}
-                className="w-full"
-              />
+              <div className="w-full relative">
+                <Image
+                  src={img?.url || ""}
+                  alt={img?.alt || ""}
+                  layout="fill"
+                  className="!w-full !relative !h-auto"
+                />
+              </div>
             );
           },
+          // p: ({ children }: any) => {
+          //   return <div>{children}</div>;
+          // },
           // Different font sizes don't really make semantic sense as headers - we normalize all markdown headers to paragraphs, and will add header functionality separately
           h1: ({ children }: any) => {
             return (

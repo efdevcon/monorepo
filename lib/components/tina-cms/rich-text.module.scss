@@ -11,6 +11,10 @@
       display: block;
   }
 
+  a {
+    @apply text-blue-500 hover:text-blue-600 hover:underline
+  }
+
   > * {
       &:not(&:last-child) {
           margin-bottom: 1rem;
