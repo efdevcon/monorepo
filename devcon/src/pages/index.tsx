@@ -34,6 +34,7 @@ import { motion, useInView } from 'framer-motion'
 import { Button } from 'lib/components/button'
 import { Link } from 'components/common/link'
 import RichText from 'lib/components/tina-cms/RichText'
+import TextMorph from 'lib/components/text-morph/TextMorph'
 
 const videos = [
   {
@@ -102,9 +103,10 @@ export default pageHOC(function Index(props: any) {
                   className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
                 />
 
-                <div className="mt-4 lg:mt-4 flex flex-col justify-start items-start">
+                <div className="mt-4 lg:mt-4 flex flex-col justify-start items-start w-full">
                   <TitleDevcon className="hidden lg:block max-w-[124px] lg:max-w-auto lg:w-[124px]" />
-                  <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p>
+                  {/* <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p> */}
+                  <TextMorph texts={['เอเชียตะวันออกเฉียงใต้', 'SOUTHEAST ASIA']} />
                 </div>
               </div>
             </div>
