@@ -4,8 +4,8 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        {/* <Head>
-          {process.env.NODE_ENV === 'production' && (
+        <Head>
+          {/* {process.env.NODE_ENV === 'production' && (
             <script
               type="text/javascript"
               dangerouslySetInnerHTML={{
@@ -25,8 +25,8 @@ class MyDocument extends Document {
                 <!-- End Matomo Code -->`,
               }}
             />
-          )}
-        </Head> */}
+          )} */}
+        </Head>
 
         <body>
           <Main />
