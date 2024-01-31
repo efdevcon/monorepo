@@ -122,7 +122,23 @@ export const Proposals = (props: ProposalsProps) => {
       intl: 'dips_status',
       key: 'status',
       className: css['status-column'],
-      sort: SortVariation.basic,
+      sort: (item1: DIP, item2: DIP) => {
+        const a = item1.status
+        const b = item2.status
+
+        // Active first
+        if (a === 'Active') return 1
+        if (b === 'Active') return 1
+
+        // Secondary sort by number when a === b
+        if (a === b) {
+          if (item1.number > item2.number) return 1
+          if (item1.number < item2.number) return -1
+        }
+
+        // Sort by status
+        return a.localeCompare(b)
+      },
       render: (item: DIP) => {
         let labelType = 'neutral'
 
