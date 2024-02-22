@@ -9,11 +9,13 @@ import { Tags } from 'components/common/tags'
 import { getGlobalData } from 'services/global'
 import { GetPage } from 'services/page'
 import getNews from 'services/news'
-import { Button } from 'components/common/button'
+// import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import css from './news.module.scss'
 import { Link } from 'components/common/link'
+import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 
 const limit = 10
 
@@ -28,7 +30,7 @@ const ConditionalLink = ({ disabled, ...props }: any) => {
 export default pageHOC(function NewsTemplate(props: any) {
   const pageContext = usePageContext()
 
-  let className = `squared sm black ghost`
+  let className = `border-2`
 
   const canBack = props.pagination.currentPage > 0
   const canNext = props.pagination.currentPage + 1 < props.pagination.totalPages
@@ -38,20 +40,20 @@ export default pageHOC(function NewsTemplate(props: any) {
 
   return (
     <Page theme={themes['news']}>
-      <PageHero />
+      <PageHero heroBackground={HeroBackground} />
 
       <div className="section">
         <NewsOverview newsItems={props.news} />
 
         <div className={`${css['pagination']} clear-bottom`}>
           <ConditionalLink disabled={!canBack} to={prevPage}>
-            <Button disabled={!canBack} className={className} aria-label="Previous page">
+            <Button disabled={!canBack} className={className} circle aria-label="Previous page">
               <ChevronLeft />
             </Button>
           </ConditionalLink>
 
           <ConditionalLink disabled={!canNext} to={nextPage}>
-            <Button disabled={!canNext} className={className} aria-label="Next page">
+            <Button disabled={!canNext} className={className} circle aria-label="Next page">
               <ChevronRight />
             </Button>
           </ConditionalLink>

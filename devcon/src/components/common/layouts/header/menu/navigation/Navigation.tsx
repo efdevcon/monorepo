@@ -5,7 +5,7 @@ import css from './navigation.module.scss'
 import { Link as LinkType } from 'types/Link'
 import ArrowCollapse from 'assets/icons/arrow_collapse.svg'
 import ArrowDropdown from 'assets/icons/arrow_drop_down.svg'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import useNavigationData from '../../useNavigationData'
 import IconCalendar from 'assets/icons/calendar.svg'
 import IconWatch from 'assets/icons/on_demand_video.svg'
@@ -51,11 +51,11 @@ const Mobile = (props: any) => {
                     style={
                       i.highlight
                         ? {
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          width: '100%',
-                        }
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                          }
                         : undefined
                     }
                     to={i.url}
@@ -64,7 +64,8 @@ const Mobile = (props: any) => {
                     <>
                       {i.title}
                       {i.highlight === 'app' && <IconCalendar style={{ fontSize: '1em' }} />}
-                      {i.highlight === 'livestream' || i.highlight === 'archive' && <IconWatch style={{ fontSize: '1em' }} />}
+                      {i.highlight === 'livestream' ||
+                        (i.highlight === 'archive' && <IconWatch style={{ fontSize: '1em' }} />)}
                     </>
                   </Link>
                 </div>
@@ -78,7 +79,11 @@ const Mobile = (props: any) => {
                         const isHeader = child.type === 'header'
 
                         if (isHeader) {
-                          return <p key={child.title} className={css['category-header']}>{child.title}</p>
+                          return (
+                            <p key={child.title} className={css['category-header']}>
+                              {child.title}
+                            </p>
+                          )
                         }
 
                         return (
@@ -129,7 +134,7 @@ export const Navigation = (props: any) => {
               className += ` button ${css[i.highlight as any]}`
 
               if (['app', 'archive'].includes(i.highlight)) {
-                className += ` red`;
+                className += ` rounded-purple`
               } else {
                 className += ` black`
               }

@@ -11,8 +11,8 @@
   display: flex;
   justify-content: space-between;
   // margin-bottom: $gaps-gap-4;
-  padding-bottom: $gaps-gap-4;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  // padding-bottom: $gaps-gap-4;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .menu {
@@ -93,6 +93,10 @@
 
     &.mobile-only {
       display: none;
+
+      @media (min-width: 700px) {
+        transform: translateX(10px);
+      }
 
       @media (max-width: 1350px) {
         touch-action: none;

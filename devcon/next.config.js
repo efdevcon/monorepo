@@ -18,6 +18,7 @@ const nextConfig = {
       'blog.ethereum.org',
       'img.youtube.com',
       'www.gravatar.com',
+      'assets.tina.io'
     ],
   },
   i18n: {
@@ -108,15 +109,15 @@ const nextConfig = {
   },
   async headers() {
     return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-        ],
-      },
+      // {
+      //   source: '/(.*)',
+      //   headers: [
+      //     {
+      //       key: 'X-Frame-Options',
+      //       value: 'DENY',
+      //     },
+      //   ],
+      // },
     ]
   },
   async rewrites() {

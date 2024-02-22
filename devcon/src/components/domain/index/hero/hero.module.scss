@@ -102,14 +102,14 @@ $logo-offset: 50px;
   overflow: hidden;
   flex-grow: 1;
   position: relative;
-  height: calc(100vh - env(safe-area-inset-bottom));
+  min-height: calc(100vh - env(safe-area-inset-bottom));
   width: 100%;
   // background: linear-gradient(45deg, #f17c58, #f374a4, #24aadb);
   // background: linear-gradient(45deg, #0744c6, #fb0f69, #24aadb);
 
   // background: linear-gradient(45deg, #0744c6, #160b14, #0094a1);
   // background: linear-gradient(45deg, #91008f, #6c61a2, #76b1ff);
-  background: linear-gradient(45deg, #91008f, #5c7093, #000280d6);
+  background: linear-gradient(45deg, #bf0bbc, #5c7093, #000280d6);
 
   // background-size: 600% 100%;
   // animation: gradient 16s linear infinite;
@@ -194,6 +194,7 @@ $logo-offset: 50px;
 
   .left-rotated,
   .right-rotated {
+    filter: drop-shadow(0px 0px 2px #000000);
     color: white;
     position: absolute;
     height: 100%;
@@ -516,7 +517,6 @@ $logo-offset: 50px;
   }
 
   &.recap {
-
     background: linear-gradient(45deg, #1b1b1b, #282828, #212121);
     // background: linear-gradient(45deg, #f4734c, #f39e74, #d37840);
     // background: linear-gradient(45deg, #5865f1, #74abf3, #4bb5b3);
@@ -640,8 +640,6 @@ $logo-offset: 50px;
         transform: translateX(-5px);
       }
     }
-
-    .cta {}
   }
 }
 
@@ -820,3 +818,281 @@ $logo-offset: 50px;
     }
   }
 }
+
+
+.devcon-7-background {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+
+  @media (max-width: $breakpoints-xl) {
+    .left {
+      // transform: scale(1) !important;
+      // img {
+      //   transform: scale(1) !important;
+      //   left: -190px !important;
+      // }
+      display: none;
+    }
+
+    .right {
+      // transform: scale(1) !important;
+      // img {
+
+      //   right: -220px !important;
+      // }
+      display: none;
+    }
+
+    .backdrop {
+      transform: scale(1) !important;
+      height: 100% !important; 
+      img {
+        transform: scale(1) !important;
+        height: 100% !important; 
+        width: 100% !important;
+      }
+    }
+  }
+
+  .left {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    
+    img {
+      transform: scale(1.15);
+      position: absolute;
+      height: 120%;
+      width: auto;
+      left: 0px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+  }
+
+  .right {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    img {
+      transform: scale(1.15);
+      position: absolute;
+      height: 100%;
+      width: auto;
+      right: 0px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+  }
+
+  .backdrop {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: translateX(0) translateY(0);
+
+    img {
+      // transform: scale(1);
+      position: absolute;
+      object-position: center 55% !important;
+      height: 105%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+  }
+}
+
+.devcon-7-overlay {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  // bottom: 32px;
+  padding-bottom: 32px;
+
+  &:before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: '';
+    // -webkit-box-shadow:inset 0px 0px 0px 10px rgb(98, 98, 98);
+    // -moz-box-shadow:inset 0px 0px 0px 10px #f00;
+    box-shadow: inset 0px 0px 300px 0px rgb(4, 0, 17);
+    pointer-events: none;
+  }
+
+  // Add extra box shadow strength on bottom by layering 
+  &:after {
+    z-index: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: '';
+    box-shadow: inset 0px -100px 300px 0px rgb(0, 3, 20);
+    pointer-events: none;
+  }
+
+  > * {
+    z-index: 1;
+  }
+
+  @media (orientation: landscape) {
+    img {
+      max-width: 25vw !important;
+    }
+  }
+
+
+  @media (max-width: $breakpoints-lg) {
+    &:before {
+      box-shadow: inset 0px 0px 150px 0px rgba(2, 0, 20, 0.893);
+    }
+
+    &:after {
+      box-shadow: inset 0px -100px 150px 0px rgb(0, 3, 20);
+    }
+
+    flex-direction: column;
+
+    > * {
+      height: 100%;
+    }
+
+    .dc7-logo {
+      margin-top: 75px !important;
+
+      img {
+        width: 75px !important;
+      }
+    }
+
+    // .left {
+    //   transform: translateX(-5px);
+    // }
+
+    .right {
+      img {
+        max-width: 45vw;
+      }
+    }
+
+    img {
+      max-width: 60vw;
+    }
+
+    .flex {
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      gap: 32px;
+    }
+
+    .butterflies {
+        left: 60vw !important;
+        bottom: 60vh !important;
+    }
+    
+    .left {
+      height: 100%;
+    }
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+    .dc7-logo {
+      position: relative;
+      margin-top: 150px;
+
+      img {
+        width: 125px;
+        filter: drop-shadow(0px 0px 2px #000000);
+      }
+
+      // .butterflies {
+      //   position: absolute;
+      //   left: 20%;
+      //   height: 100%;
+      //   width: 100%;
+      //   bottom: -100%;
+      //   --butterfly-color: pink !important;
+
+      //   @keyframes fade-in {
+      //     0% {
+      //       opacity: 0;
+      //     }
+
+      //     100% {
+      //       opacity: 0;
+      //     }
+
+      //     100% {
+      //       opacity: 1;
+      //     }
+      //   }
+
+      //   animation: fade-in linear 1s forwards;
+
+      //   * {
+      //     animation-delay: 1s;
+      //   }
+      // }
+    }
+
+    .dc7-logo-text {
+      width: 400px;
+      filter: drop-shadow(0px 1px 4px #000000);
+      object-fit: cover;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .right {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+
+    .butterflies {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 20%;
+      bottom: 100%;
+    }
+
+    img {
+      width: 270px;
+      height: auto;
+      filter: drop-shadow(0px 0px 2px #000000);
+      object-fit: cover;
+    }
+  }
+}
+

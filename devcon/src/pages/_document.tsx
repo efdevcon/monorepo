@@ -11,17 +11,17 @@ export default class AppDocument extends Document {
 
           {/* Adding the specific font weights for bold (e.g. 700) makes the font look so much worse :-P Bit of a mystery, since bolding works fine without it (probably just a fallback that happens to look good) */}
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Space+Mono&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap"
             rel="stylesheet"
           />
 
-          {process.env.NODE_ENV === 'production' && (
+          {/* {process.env.NODE_ENV === 'production' && (
             <script
               type="text/javascript"
               dangerouslySetInnerHTML={{
                 __html: `<!-- Matomo -->
                 var _paq = window._paq = window._paq || [];
-                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" 
                 _paq.push(["setExcludedQueryParams", ["code","gist"]]);
                 _paq.push(['trackPageView']);
                 _paq.push(['enableLinkTracking']);
@@ -35,7 +35,7 @@ export default class AppDocument extends Document {
               <!-- End Matomo Code -->`,
               }}
             />
-          )}
+          )} */}
         </Head>
 
         <body>

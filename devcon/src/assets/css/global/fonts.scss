@@ -8,10 +8,14 @@
   @include fonts-secondary;
 }
 
+[data-cms-header] {
+  @include fonts-secondary;
+}
+
 // Headers
 h1,
 .h1 {
-  @include fonts-secondary;
+  // @include fonts-secondary;
   @include fonts-bold;
   font-size: $sizes-size-16 + $sizes-size-16;
   line-height: 125%;
@@ -24,6 +28,7 @@ h1,
 h2,
 .h2,
 .title {
+  @include fonts-secondary;
   @include fonts-bold;
   font-size: 24px;
   line-height: 120%;

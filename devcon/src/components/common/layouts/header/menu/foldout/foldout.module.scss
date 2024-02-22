@@ -21,9 +21,14 @@
   @include fonts-md;
   overflow-x: hidden;
   overflow-y: auto;
-  display: grid;
+  display: none !important;
+
+  @media (max-width: 1350px) {
+    display: grid !important;
+  }
+
   position: fixed;
-  padding-top: calc(16px + var(--headerHeight));
+  padding-top: calc(4px + var(--headerHeight));
   padding-bottom: 16px;
   background: $colors-monochrome-1;
   color: $colors-main;

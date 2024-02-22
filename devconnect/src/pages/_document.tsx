@@ -5,13 +5,13 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {process.env.NODE_ENV === 'production' && (
+          {/* {process.env.NODE_ENV === 'production' && (
             <script
               type="text/javascript"
               dangerouslySetInnerHTML={{
                 __html: `<!-- Matomo -->
                   var _paq = window._paq = window._paq || [];
-                  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                  /* tracker methods like "setCustomDimension" should be called before "trackPageView" 
                   _paq.push(["setExcludedQueryParams", ["code","gist"]]);
                   _paq.push(['trackPageView']);
                   _paq.push(['enableLinkTracking']);
@@ -25,7 +25,7 @@ class MyDocument extends Document {
                 <!-- End Matomo Code -->`,
               }}
             />
-          )}
+          )} */}
         </Head>
 
         <body>

@@ -9,6 +9,7 @@ import ChevronLeft from 'assets/icons/chevron_left.svg'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import { Button } from 'components/common/button'
 import Image from 'next/legacy/image'
+import ImageNew from 'next/image'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 
 type NavigationLink = {
@@ -40,12 +41,15 @@ type PageHeroProps = {
   title?: string | false
   titleSubtext?: string
   titleClassName?: string
+  className?: string
   path?: string | PathSegment[]
   description?: string
+  heroBackground?: any
   scenes?: Scene[]
   background?: string
   cta?: Array<CTALink>
   renderCustom?(props?: any): JSX.Element
+  renderCustomBackground?(props?: any): JSX.Element
   navigation?: Array<NavigationLink>
   children?: React.ReactNode
 }
@@ -79,7 +83,7 @@ const PathNavigation = (props: PageHeroProps) => {
 
   // @ts-ignore
   // TODO: type fix
-  return <p className={`${css['path']} font-xs text-uppercase`}>{path || props.path || pagePath}</p>
+  return <p className={`${css['path']} font-xs text-uppercase z-10`}>{path || props.path || pagePath}</p>
 }
 
 export const PageHero = (props: PageHeroProps) => {
@@ -97,9 +101,13 @@ export const PageHero = (props: PageHeroProps) => {
     // '--strip-height': `${stripHeight}px`,
   }
 
+  let bgStyle: any = {}
+
   if (props.background) {
-    style.backgroundImage = `url(${props.background})`
-    style.backgroundSize = 'cover'
+    bgStyle.backgroundImage = `url(${props.background})`
+    bgStyle.backgroundSize = 'cover'
+    // bgStyle['-webkit-mask-image'] =
+    //   '-webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))'
   }
 
   let className = `${css['hero']} margin-bottom`
@@ -109,6 +117,7 @@ export const PageHero = (props: PageHeroProps) => {
   if (props.navigation) className += ` ${css['with-navigation']}`
   if (props.scenes) className += ` ${css['with-scenes']}`
   if (props.children) className += ` ${css['as-background']}`
+  if (props.className) className += ` ${props.className}`
 
   const setNextScene = React.useMemo(
     () => (increment: number) => {
@@ -141,7 +150,24 @@ export const PageHero = (props: PageHeroProps) => {
 
   return (
     <div id="page-hero" className={className} style={style}>
-      <div className="section">
+      {props.heroBackground && (
+        <div className={`${css['background-layer']} absolute w-full h-full`}>
+          <div className={css['background-layer-theme']} />
+          <div className="section h-full w-full !flex lg:!grid">
+            <div className={`h-full w-full ${css['background-image']}`}>
+              <ImageNew
+                className={`object-cover h-full w-full`}
+                src={props.heroBackground}
+                alt="Hero background"
+              ></ImageNew>
+            </div>
+          </div>
+          <div className={css['background-layer-theme-logo']} />
+          <div className={css['background-layer-theme-gradient']} />
+        </div>
+      )}
+
+      <div className="section relative h-[55vh] max-h-[600px]">
         <div className={css['info']}>
           <PathNavigation {...props} />
 

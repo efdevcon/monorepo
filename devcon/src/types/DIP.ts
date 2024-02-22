@@ -25,6 +25,7 @@ export enum Tag {
   'Software',
   'Communications',
   'Sponsorships',
+  'Community Hub',
   'Other',
 }
 

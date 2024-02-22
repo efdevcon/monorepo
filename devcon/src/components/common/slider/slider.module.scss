@@ -58,12 +58,35 @@
   flex-wrap: nowrap;
 
   .arrow-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-shrink: 0;
-    padding: 8px;
+    // padding: 8px;
     touch-action: none;
+    border-radius: 100%;
+    // width: 1.5em;
+    // height: 1.5em;
+    border-color: #9FA1B7;
+    --color-icon: #9FA1B7;
+    cursor: pointer;
+
+    svg {
+      font-size: 0.8em;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      background: transparent !important;
+      // border-color: lighten(#9FA1B7, 50%);
+    }
+
+    > * {
+      flex-shrink: 0;
+    }
 
     &:last-child {
-      margin-left: $gaps-gap-5;
+      margin-left: 8px;
     }
 
     // &:not(.always-buttons) {

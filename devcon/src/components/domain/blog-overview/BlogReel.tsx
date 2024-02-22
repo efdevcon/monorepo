@@ -39,11 +39,11 @@ export function BlogReel(props: Props) {
 
   return (
     <div className="section no-overflow">
-      <div className="content margin-top">
+      <div className="content mt-4">
         <div className={`${css['cards']}`}>
           <Slider sliderProps={sliderProps} title="Devcon Blog">
             {props.blogs.map((blog: BlogPost, i: number) => {
-              let className = css['card']
+              let className = `${css['card']} !rounded-xl`
 
               if (i === props.blogs.length - 1) className += ` ${css['last']}`
 

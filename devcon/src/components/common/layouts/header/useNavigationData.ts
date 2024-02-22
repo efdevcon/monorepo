@@ -112,10 +112,15 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: intl('navigation_supporters'),
-            url: '/supporters',
-            type: 'page',
+            title: 'RTD Grants',
+            url: 'https://esp.ethereum.foundation/devcon-grants',
+            type: 'link',
           },
+          // {
+          //   title: intl('navigation_supporters'),
+          //   url: '/supporters',
+          //   type: 'page',
+          // },
           // {
           //   title: intl('navigation_participate'),
           //   url: '#',
@@ -242,6 +247,11 @@ const useNavigationData = () => {
         {
           title: intl('navigation_about'),
           url: '/about',
+          type: 'page',
+        },
+        {
+          title: 'Get Involved',
+          url: '/dips',
           type: 'page',
         },
         {

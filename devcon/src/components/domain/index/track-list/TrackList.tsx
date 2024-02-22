@@ -1,7 +1,7 @@
 import React from 'react'
 import css from './track-list.module.scss'
 import Accordion from 'components/common/accordion'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import Layer1 from 'assets/images/tracks/big-icons/Layer 1 Protocol.svg'
 import Cryptoeconomics from 'assets/images/tracks/big-icons/Cryptoeconomics.svg'
 import DeveloperInfra from 'assets/images/tracks/big-icons/Developer Infrastructure.svg'
@@ -12,7 +12,7 @@ import Security from 'assets/images/tracks/big-icons/Security.svg'
 import Staking from 'assets/images/tracks/big-icons/Staking & Validator Experience.svg'
 import UXDesign from 'assets/images/tracks/big-icons/UX & Design.svg'
 import ZKPs from 'assets/images/tracks/big-icons/ZKPs and Privacy.svg'
-import TriangleBackground from 'assets/images/background-triangles.png'
+// import TriangleBackground from 'assets/images/background-triangles.png'
 import { Track } from 'types/Track'
 import { Card } from 'components/common/card'
 import { Slider, useSlider } from 'components/common/slider'
@@ -116,25 +116,25 @@ export function getTrackImage(id?: string, className?: string) {
 
 const getArchiveSlug = (id?: string) => {
   if (id === 'layer-1') return 'Layer%201%20Protocol'
-  if (id === 'layer-2s') return 'Layer%202s';
-  if (id === 'developer-infrastructure') return 'Developer%20Infrastructure';
-  if (id === 'governance-coordination') return 'Governance%20%26%20Coordination';
-  if (id === 'ux-design') return 'UX%20%26%20Design';
-  if (id === 'staking-validator-experience') return 'Staking%20%26%20Validator%20Experience';
-  if (id === 'security') return 'Security';
-  if (id === 'zkps') return 'ZKPs%3A%20Privacy%2C%20Identity%2C%20Infrastructure%2C%20%26%20More';
-  if (id === 'opportunity-global-impact') return 'Opportunity%20%26%20Global%20Impact';
-  if (id === 'cryptoeconomics') return 'Cryptoeconomics';
+  if (id === 'layer-2s') return 'Layer%202s'
+  if (id === 'developer-infrastructure') return 'Developer%20Infrastructure'
+  if (id === 'governance-coordination') return 'Governance%20%26%20Coordination'
+  if (id === 'ux-design') return 'UX%20%26%20Design'
+  if (id === 'staking-validator-experience') return 'Staking%20%26%20Validator%20Experience'
+  if (id === 'security') return 'Security'
+  if (id === 'zkps') return 'ZKPs%3A%20Privacy%2C%20Identity%2C%20Infrastructure%2C%20%26%20More'
+  if (id === 'opportunity-global-impact') return 'Opportunity%20%26%20Global%20Impact'
+  if (id === 'cryptoeconomics') return 'Cryptoeconomics'
 }
 
 const Tracks = (props: Props) => {
   const sliderProps = useSlider(settings)
 
   return (
-    <div className={`section ${css['container']}`} id="tracks">
-      <div className={`${css['background']} expand`}>
+    <div className={`${css['container']}`} id="tracks">
+      {/* <div className={`${css['background']} expand`}>
         <Image src={TriangleBackground} alt="Triangles" />
-      </div>
+      </div> */}
       {/* <h2 className="border-top clear-top">Tracks</h2> */}
 
       <div className={css['tracks']}>
@@ -145,7 +145,11 @@ const Tracks = (props: Props) => {
             className += ` ${css[track.id]}`
 
             return (
-              <FlipCard key={track.slug} className={className} to={`https://archive.devcon.org/archive/watch?order=desc&sort=edition&tags=${getArchiveSlug(track.id)}`}>
+              <FlipCard
+                key={track.slug}
+                className={className}
+                to={`https://archive.devcon.org/archive/watch?order=desc&sort=edition&tags=${getArchiveSlug(track.id)}`}
+              >
                 <div className={css['image']}>{getTrackImage(track.id)}</div>
                 <div className={css['details']}>
                   <p className={css['title']}>{track.title}</p>

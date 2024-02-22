@@ -5,20 +5,15 @@ import { Navigation } from './navigation'
 import { usePageContext } from 'context/page-context'
 import { Link as LinkType } from 'types/Link'
 import { Foldout } from './foldout'
-import { useRouter } from 'next/router'
 import IconMenu from 'assets/icons/menu.svg'
 import AccountIcon from 'assets/icons/account.svg'
 import IconCross from 'assets/icons/cross.svg'
-import SearchIcon from 'assets/icons/search.svg'
+// import SearchIcon from 'assets/icons/search.svg'
 import { Tooltip } from 'components/common/tooltip'
-import BackIcon from 'assets/icons/subdirectory-left.svg'
-import BellIcon from 'assets/icons/bell-simple.svg'
-import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
+// import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
 import useNavigationData from '../useNavigationData'
 import { TippyProps } from '@tippyjs/react'
-import { Notifications } from 'components/domain/app/notifications'
-import { useAppContext } from 'context/app-context'
-import { useAccountContext } from 'context/account-context'
+// import { Notifications } from 'components/domain/app/notifications'
 
 type ButtonProps = {
   buttons: {
@@ -94,20 +89,17 @@ const Buttons = (props: ButtonProps) => {
 }
 
 export const Menu = (props: any) => {
-  const router = useRouter()
   const context = usePageContext()
-  const appContext = useAppContext()
-  const accountContext = useAccountContext()
 
   let buttons: ButtonProps['buttons'] = [
-    {
-      key: 'account',
-      tooltip: {
-        content: 'Account',
-      },
-      icon: <AccountIcon />,
-      url: 'https://app.devcon.org/login',
-    },
+    // {
+    //   key: 'account',
+    //   tooltip: {
+    //     content: 'Account',
+    //   },
+    //   icon: <AccountIcon />,
+    //   url: 'https://app.devcon.org/login',
+    // },
     {
       key: 'mobile-menu-toggle',
       icon: props.foldoutOpen ? <IconCross style={{ width: '0.8em' }} /> : <IconMenu />,
@@ -116,48 +108,7 @@ export const Menu = (props: any) => {
     },
   ]
 
-  if (props.isApp) {
-    const notifications = context?.appNotifications
-    const seenNotifications = appContext.seenNotifications
-
-    const countUnreadNotifications = notifications ? notifications.length - Object.values(seenNotifications).length : 0
-
-    buttons = [
-      {
-        key: 'notifications',
-        tooltip: {
-          content: 'Notifications',
-        },
-        icon: (
-          <div className={css['app-notifications']}>
-            <BellIcon style={props.foldoutOpen ? { opacity: 0.7 } : {}} />
-            {countUnreadNotifications > 0 && <div className={css['counter']}>{countUnreadNotifications}</div>}
-          </div>
-        ),
-        onClick: () => props.setFoldoutOpen(!props.foldoutOpen),
-      },
-      {
-        key: 'account',
-        tooltip: {
-          content: 'Account',
-        },
-        icon: <AccountIcon />,
-        url: accountContext.account ? '/app' : '/app/login',
-      },
-      {
-        key: 'back-button',
-        tooltip: {
-          content: 'Leave App',
-        },
-        icon: <BackIcon style={{ fontSize: '1.2em', transform: 'translateX(-2px)' }} />,
-        url: '/',
-      },
-    ]
-  }
-
   let className = css['menu']
-
-  if (props.isApp) className += ` ${css['is-app']}`
 
   return (
     <div className={className}>
@@ -168,15 +119,15 @@ export const Menu = (props: any) => {
           <div className={css['right']}>
             <Navigation navigationData={context?.navigation} />
 
-            <div className={css['language-toggle-container']}>
+            {/* <div className={css['language-toggle-container']}>
               <LanguageToggle />
-            </div>
+            </div> */}
           </div>
 
           <Foldout foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
             <div className={css['foldout-top']}>
               <Left navigationData={context?.navigation} />
-              <LanguageToggle />
+              {/* <LanguageToggle /> */}
             </div>
             <Navigation setFoldoutOpen={props.setFoldoutOpen} navigationData={context?.navigation} mobile={true} />
           </Foldout>
@@ -184,15 +135,6 @@ export const Menu = (props: any) => {
       )}
 
       <Buttons buttons={buttons} />
-
-      {/* <Search open={props.setSearchOpen} /> */}
-
-      {/* Mobile */}
-      {props.isApp && (
-        <Foldout isApp foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
-          <Notifications />
-        </Foldout>
-      )}
     </div>
   )
 }

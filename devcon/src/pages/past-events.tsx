@@ -10,47 +10,32 @@ import { usePageContext } from 'context/page-context'
 import ArrowRight from 'assets/icons/arrow_right.svg'
 import css from './past-events.module.scss'
 import { Link } from 'components/common/link'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import EventLocations from 'assets/images/event-locations.png'
-import { DevconEdition } from 'types/DevconEdition'
-import { Button } from 'components/common/button'
-
-import Berlin from 'assets/images/editions/Berlin.png'
-import London from 'assets/images/editions/London.png'
-import Shanghai from 'assets/images/editions/Shanghai.png'
-import Cancun from 'assets/images/editions/Cancun.png'
-import Prague from 'assets/images/editions/Prague.png'
-import Osaka from 'assets/images/editions/Osaka.png'
-import Bogota from 'assets/images/editions/Bogota.png'
+import { Button } from 'lib/components/button'
 import { useTranslations } from 'next-intl'
-
-function getEditionImage(edition: number) {
-  if (edition === 0) return Berlin
-  if (edition === 1) return London
-  if (edition === 2) return Shanghai
-  if (edition === 3) return Cancun
-  if (edition === 4) return Prague
-  if (edition === 5) return Osaka
-  if (edition === 6) return Bogota
-
-  return ''
-}
+import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+import { PagesPast_Events, PagesQuery } from '../../tina/__generated__/types'
+import RichText from 'lib/components/tina-cms/RichText'
 
 export default pageHOC(function PastEvents(props: any) {
   const intl = useTranslations()
   const pageContext = usePageContext()
+  const { data } = useTina<PagesQuery>(props.cms)
+  const pages = data.pages as PagesPast_Events
+  const events = pages.events || []
 
   return (
     <Page theme={themes['about']}>
       <PageHero
-        path={[
-          { text: <span className="bold">{intl('navigation_about')}</span> },
-          { text: props.page.header },
-        ]}
-        navigation={props.editions.map((edition: any) => {
+        heroBackground={HeroBackground}
+        path={[{ text: <span className="bold">{intl('navigation_about')}</span> }, { text: props.page.header }]}
+        navigation={events.map((event: any) => {
           return {
-            title: edition.title,
-            to: `#${edition.id}`,
+            title: event.title,
+            to: `#${event.title}`,
           }
         })}
       />
@@ -58,10 +43,7 @@ export default pageHOC(function PastEvents(props: any) {
       <div className="section">
         <div className={`two-columns ${css['about']} clear-bottom border-bottom margin-bottom`}>
           <div className={`left ${css['left']}`}>
-            <div className="section-markdown">
-              <h2 className="spaced">{props.page.title}</h2>
-              <div className="markdown" dangerouslySetInnerHTML={{ __html: props.page.body }} />
-            </div>
+            <RichText content={pages.section1?.about} />
 
             <div className={css['links']}>
               {/* <Link to="/program" className="text-uppercase hover-underline font-lg bold">
@@ -84,35 +66,35 @@ export default pageHOC(function PastEvents(props: any) {
           <h2>{intl('past_events_past_devcons')}</h2>
         </div>
 
-        {props.editions.map((edition: DevconEdition, index: number) => {
-          const isLast = index === props.editions.length - 1
+        {events.map((event, index: number) => {
+          if (!event) return
+
+          const isLast = index === events.length - 1
 
           let className = 'clear-bottom clear-top'
 
           if (!isLast) className += ` border-bottom`
 
           return (
-            <div key={edition.id} id={edition.id} className={className}>
+            <div key={event.title} id={event.title} className={className}>
               <div className={css['edition']}>
                 <div className={css['left']}>
-                  {getEditionImage(edition.number) && (
-                    <Image src={getEditionImage(edition.number)} alt={`${edition.title} event image`} />
-                  )}
+                  <div className="relative w-full">
+                    <Image
+                      src={event.image || ''}
+                      alt={`${event.title} event image`}
+                      className="!w-full !h-auto !relative"
+                    />
+                  </div>
                 </div>
                 <div className={css['right']}>
-                  <h2 className="spaced">{edition.title}</h2>
-                  <div className="markdown" dangerouslySetInnerHTML={{ __html: edition.description }}></div>
-                  <div className={css['links']}>
-                    {edition.links.map((link: any) => {
-                      return (
-                        <Link key={link.url} to={link.url}>
-                          <Button className="green lg" onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
-                            {link.title}
-                          </Button>
-                        </Link>
-                      )
-                    })}
-                  </div>
+                  <h2 className="my-4">{event.title}</h2>
+                  <RichText content={event.description} />
+                  <Link className="mt-5" key={event.button_link} to={event.button_link}>
+                    <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                      {event.button}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -130,16 +112,18 @@ export default pageHOC(function PastEvents(props: any) {
 export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
   const page = await GetPage('/past-events', context.locale)
-  const editions = await GetDevconEditions(context.locale)
-  const sortedEditions = editions
-    .sort((a, b) => b.number - a.number)
-    .filter(i => i.startDate && i.startDate < new Date().getTime())
+
+  const content = await client.queries.pages({ relativePath: 'past_events.mdx' })
 
   return {
     props: {
       ...globalData,
       page,
-      editions: sortedEditions,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
   }
 }

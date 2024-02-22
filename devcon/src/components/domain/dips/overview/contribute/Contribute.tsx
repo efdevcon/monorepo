@@ -8,10 +8,11 @@ import { useTranslations } from 'next-intl'
 import { chunkArray } from 'utils/chunk-array'
 import Image from 'next/legacy/image'
 import { usePageContext } from 'context/page-context'
+import RichText from 'lib/components/tina-cms/RichText'
 
 type ContributeProps = {
   contributors: Array<Contributor>
-  dipDescription: any
+  dipDescription?: any
 }
 
 type ThumbnailProps = {
@@ -142,14 +143,13 @@ export const Contribute = (props: ContributeProps) => {
 
   return (
     <section id="contribute" className={css['section']}>
-      <p className="h2 spaced">{page?.title ?? intl('dips_contribute')}</p>
-
       <div className={css['container']}>
         <div className={css['left-section']}>
-          <div
+          <RichText content={props.dipDescription} />
+          {/* <div
             dangerouslySetInnerHTML={{ __html: props.dipDescription }}
             className={`${css['dip-description']} markdown`}
-          />
+          /> */}
           <div className={css['links']}>
             <Link to="https://forum.devcon.org" indicateExternal className="text-uppercase font-lg bold">
               {intl('dips_visit_forum')}
@@ -160,7 +160,9 @@ export const Contribute = (props: ContributeProps) => {
           </div>
         </div>
         <div className={css['contributors']}>
-          <AutoScroller contributors={props.contributors} />
+          <div className="my-4 md:my-12">
+            <AutoScroller contributors={props.contributors} />
+          </div>
           <div className={css['info']}>
             <p>* {intl('dips_contributors')}</p> <Github />
           </div>

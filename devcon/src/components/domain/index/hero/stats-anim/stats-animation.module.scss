@@ -1,23 +1,24 @@
 .container {
   position: absolute;
   width: 100%;
-  height: 100%;
-  // z-index: 1;
-  // background: black;
-
+  height: 200%;
+  bottom: -2px;
   :global(canvas) {
+
     background: transparent !important;
   }
 
   .element {
-    font-size: 2vw;
-    padding: 1em 0.75em;
+    // box-shadow: 0px 0px 3px 1px rgb(87, 87, 87);
+    font-size: min(1.3vw, 32px);
+    padding: 1.1em 1em;
     position: absolute;
     pointer-events: none;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 32px;
     color: white;
     white-space: nowrap;
+    cursor: pointer;
 
     @media (max-width: 600px) {
       font-size: 12px !important;

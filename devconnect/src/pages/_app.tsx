@@ -1,3 +1,4 @@
+import React from 'react'
 import 'styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
@@ -7,6 +8,11 @@ export const robotoCondensed = Roboto_Condensed({
   variable: '--font-roboto-condensed',
   weight: ['400', '700'],
 })
+import { init } from '@socialgouv/matomo-next'
+
+const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
+const MATOMO_SITE_ID = '29'
+let matomoAdded = false
 
 // Safari 100vh works poorly - this is the workaround
 if (typeof window !== 'undefined') {
@@ -22,6 +28,13 @@ if (typeof window !== 'undefined') {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  React.useEffect(() => {
+    if (!matomoAdded && process.env.NODE_ENV === 'production') {
+      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
+      matomoAdded = true
+    }
+  }, [])
+
   return (
     <>
       <style jsx global>{`

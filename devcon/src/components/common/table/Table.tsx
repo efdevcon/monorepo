@@ -77,35 +77,36 @@ export const TableHeader = (props: HeaderProps) => {
 }
 
 export const TableRows = (props: RowProps) => {
-  return <>
-    {props.items.map(item => {
-      return (
-        <div key={item[props.itemKey]} className={css['row']}>
-          {props.columns.map(column => {
-            const value = item[column.key]
+  return (
+    <>
+      {props.items.map(item => {
+        return (
+          <div key={item[props.itemKey]} className={css['row']}>
+            {props.columns.map(column => {
+              const value = item[column.key]
 
-            let className = css['cell']
+              let className = css['cell']
 
-            if (column.className) className = `${column.className} ${className}`
+              if (column.className) className = `${column.className} ${className}`
 
-            return (
-              <div key={column.key} className={className}>
-                {column.render ? column.render(item) : <p>{value}</p>}
-                {/* 
+              return (
+                <div key={column.key} className={className}>
+                  {column.render ? column.render(item) : <p>{value}</p>}
+                  {/* 
               TODO: build error
               {column.render ? column.render(item, column) : <p>{value}</p>} */}
-              </div>
-            )
-          })}
-        </div>
-      )
-    })
-    }
-  </>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })}
+    </>
+  )
 }
 
 export const Table = (props: TableProps) => {
-  const { sortedData, sortBy, setSortBy, sortDirection } = useSort(props.items, props.columns)
+  const { sortedData, sortBy, setSortBy, sortDirection } = useSort(props.items, props.columns, props.initialSort)
 
   return (
     <div className={css['container']}>
