@@ -255,7 +255,10 @@
 }
 
 .app-phones {
+  display: flex;
+  justify-content: flex-end;
+
   @media (min-width: $breakpoints-sm) {
-    height: 100px;
+    // height: 100px;
   }
 }

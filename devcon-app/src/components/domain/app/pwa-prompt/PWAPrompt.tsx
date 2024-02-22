@@ -48,30 +48,36 @@ export const PWAPrompt = () => {
   useEffect(() => {
     // @ts-ignore
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
-      // run only in browser
       navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-        serviceWorkerRegistration.pushManager
-          .subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: process.env.VAPID_PUBLIC, // urlBase64ToUint8Array('YOUR_VAPID_PUBLIC_KEY')
-          })
-          .then(function (subscription) {
-            console.log('User is subscribed:', subscription)
+        // Check if the user is already subscribed
+        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+          if (subscription) {
+            console.log('User is already subscribed:', subscription)
+          } else {
+            // User is not subscribed, proceed to subscribe
+            serviceWorkerRegistration.pushManager
+              .subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: process.env.VAPID_PUBLIC,
+              })
+              .then(function (subscription) {
+                console.log('User is subscribed:', subscription)
 
-            return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
-
-            // Send subscription to your server
-          })
-          .catch(function (err) {
-            console.log('Failed to subscribe the user: ', err)
-          })
+                // Send subscription to your server
+                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+              })
+              .catch(function (err) {
+                console.log('Failed to subscribe the user: ', err)
+              })
+          }
+        })
       })
     }
   }, [])
 
   return (
-    <Modal open={open} close={() => setOpen(!open)} className={css['modal']}>
-      <Image alt="Devcon wizard" objectFit="cover" className={css['background']} src={imagePWA} />
+    <Modal open={open} close={() => setOpen(!open)} className={`no-scrollbar ${css['modal']}`}>
+      <Image alt="Devcon wizard" className={`${css['background']} object-cover h-full w-full`} src={imagePWA} />
       <div className={css['content']}>
         <div className={css['tag']}>
           <p className="font-xs bold">DEVCON PASSPORT APP</p>
@@ -133,5 +139,132 @@ export const PWAPrompt = () => {
         </div>
       </div>
     </Modal>
+  )
+}
+
+// Subscribe/unsubscribe to push notifications manually
+export const SubscribePushNotification = () => {
+  const [pwaEnabled, setPwaEnabled] = React.useState(false)
+  const [dummyValue, setDummyValue] = React.useState('')
+  const [pushSubscription, setPushSubscription] = React.useState<any>(null)
+
+  React.useEffect(() => {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+      setPwaEnabled(true)
+
+      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+        // Check if the user is already subscribed
+        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+          if (subscription) {
+            setPushSubscription(subscription)
+
+            console.log('saving subscription!')
+          } else {
+            // User is not subscribed, proceed to subscribe
+            serviceWorkerRegistration.pushManager
+              .subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: process.env.VAPID_PUBLIC,
+              })
+              .then(function (subscription) {
+                console.log('User is subscribed:', subscription)
+
+                // Send subscription to your server
+                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+              })
+              .catch(function (err) {
+                console.log('Failed to subscribe the user: ', err)
+              })
+          }
+        })
+      })
+    }
+  }, [])
+
+  console.log(pushSubscription, 'push subscription')
+
+  if (!pwaEnabled) return null
+
+  return (
+    <div className="flex flex-col gap-4 items-start justify-start">
+      {!pushSubscription && (
+        <Button
+          className="green sm"
+          onClick={() => {
+            navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+              // Check if the user is already subscribed
+              serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+                if (subscription) {
+                  setPushSubscription(subscription)
+                } else {
+                  // User is not subscribed, proceed to subscribe
+                  serviceWorkerRegistration.pushManager
+                    .subscribe({
+                      userVisibleOnly: true,
+                      applicationServerKey: process.env.VAPID_PUBLIC,
+                    })
+                    .then(function (subscription) {
+                      setPushSubscription(subscription)
+                      console.log('User is subscribed:', subscription)
+
+                      // Send subscription to your server
+                      return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+                    })
+                    .catch(function (err) {
+                      console.log('Failed to subscribe the user: ', err)
+                    })
+                }
+              })
+            })
+          }}
+        >
+          Subscribe to push notifications
+        </Button>
+      )}
+
+      {pushSubscription && (
+        <Button
+          className="red sm"
+          onClick={() => {
+            pushSubscription
+              .unsubscribe()
+              .then(() => {
+                setPushSubscription(null)
+                console.log('UnpushSubscription successful')
+              })
+              // .then(() => {
+              //   removePushSubscriptionFromServer(pushSubscription)
+              // })
+              .catch((error: Error) => {
+                // Unsubscription failed
+                console.log('Unsubscription failed:', error)
+              })
+          }}
+        >
+          Unsubscribe from push notifications
+        </Button>
+      )}
+
+      {process.env.NODE_ENV === 'development' && (
+        <div className="flex gap-4">
+          <input
+            type="text"
+            className="shadow-xl border border-slate-200 border-solid p-1"
+            value={dummyValue}
+            onChange={e => setDummyValue(e.target.value)}
+          ></input>
+
+          <Button
+            className="green sm shadow-xl"
+            onClick={() => {
+              fetch('/api/notifications/send', { method: 'POST', body: dummyValue })
+            }}
+          >
+            Send notification
+          </Button>
+        </div>
+      )}
+    </div>
   )
 }

@@ -99,10 +99,8 @@ export const SpeakerCard = ({ speaker }: CardProps) => {
               // src={speaker.avatar ?? makeBlockie(speaker.name || speaker.id)}
               src={makeBlockie(speaker.name || speaker.id)}
               alt={speaker.name}
-              objectFit="cover"
               width="64"
               height="64"
-              // layout="fixed"
             />
           </div>
         </Link>

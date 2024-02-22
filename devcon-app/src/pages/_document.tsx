@@ -14,7 +14,8 @@ export default class AppDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Space+Mono&display=swap"
             rel="stylesheet"
           />
-
+          {/*   TODO: Get another app ID - this is sharing a site id with devcon.org
+            Also install a nextjs plugin to track inline page views ()
           <script
             type="text/javascript"
             dangerouslySetInnerHTML={{
@@ -32,7 +33,7 @@ export default class AppDocument extends Document {
                   g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
                   })();`,
             }}
-          />
+          /> */}
         </Head>
 
         <body>

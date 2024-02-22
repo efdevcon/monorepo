@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { withSessionRoute } from "server/withIronSession"
-import webPush from 'web-push';
+import webPush, { PushSubscription } from 'web-push';
 
 // const repo = new UserAccountRepository()
 
@@ -28,12 +28,18 @@ webPush.setVapidDetails(
     process.env.VAPID_PRIVATE as string
 );
 
-const subscriptions = [] as any;
+// Mock database
+export let subscriptions = [] as any;
+export const clearSubscriptions = (invalidSubscriptions: PushSubscription[]) => {
+    subscriptions = subscriptions.filter((subscription: PushSubscription) => invalidSubscriptions.every(invalidSubscription => invalidSubscription.endpoint !== subscription.endpoint));
+}
 
 export const post = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.body) {
         subscriptions.push(JSON.parse(req.body));
     }
+
+    console.log(subscriptions, 'subscription added')
 
     return res.status(200).send({ code: 200, message: req.body.subscription })
 }

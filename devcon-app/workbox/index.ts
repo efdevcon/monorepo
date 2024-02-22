@@ -74,19 +74,11 @@ self.addEventListener("fetch", (e: any) => {
 // });
 
 _self.addEventListener('push', event => {
-  console.log(event, 'eventaa')
-  // const data = JSON.parse(event?.data.text() || '{}')
-  _self.registration.showNotification('Ayy', {
+  console.log(event, 'push event')
+  _self.registration.showNotification('Devcon App', {
     body: event.data.text(),
     icon: '/icons/android-chrome-192x192.png',
   })
-
-  // event?.waitUntil(
-  //   _self.registration.showNotification(data.title, {
-  //     body: data.message,
-  //     icon: '/icons/android-chrome-192x192.png',
-  //   })
-  // )
 })
 
 // _self.addEventListener('notificationclick', event => {

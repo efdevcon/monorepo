@@ -9,8 +9,8 @@ require('dotenv').config();
 
 webPush.setVapidDetails(
   'mailto:devcon-website@ethereum.org',
-  process.env.VAPID_PUBLIC,
-  process.env.VAPID_PRIVATE
+  process.env.VAPID_PUBLIC as any,
+  process.env.VAPID_PRIVATE as any
 );
 
 export class NotificationController {
@@ -42,7 +42,7 @@ export class NotificationController {
     }
   }
 
-  public async createNotification(req: Request, res: Response) {
+  public async createNotification(req: Request & any, res: Response) {
     try {
       await this._repository.create({ content: { title: 'Testing PWA Push notifications', message: 'Lorem ipsum message body etc' }});
       await this._repository.create({ content: { title: 'Testing PWA Push notifications', message: 'Lorem ipsum message body etc' }, recipient: req.user });
@@ -54,7 +54,7 @@ export class NotificationController {
     }
   }
 
-  public async getNotifications(req: Request, res: Response) {
+  public async getNotifications(req: Request & any, res: Response) {
     try {
       const result = await this._repository._model.find({ recipient: req.user });
 
@@ -130,7 +130,7 @@ export class NotificationController {
 
   private async unsubscribe(userID: string) {
     try {
-      await this._userRepository._model.updateOne({ _id: Types.ObjectId(userID) }, { $unset: { pushSubscription: 1 }}); 
+      await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $unset: { pushSubscription: 1 }}); 
     } catch(e) {
       console.error(e, 'Unsubscribe failed');
 
@@ -140,7 +140,7 @@ export class NotificationController {
 
   private async subscribe(userID: string, subscription: any) {
     try {
-      await this._userRepository._model.updateOne({ _id: Types.ObjectId(userID) }, { $set: { pushSubscription: subscription } });
+      await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $set: { pushSubscription: subscription } });
     } catch(e) {
       console.error(e, 'Subscribe failed');
 
@@ -148,20 +148,20 @@ export class NotificationController {
     }
   }
 
-  public async createSubscription(req: Request, res: Response) {
+  public async createSubscription(req: Request & any, res: Response) {
     await this.subscribe(req.user, req.body);
 
     res.status(200).send({ code: 200, message: 'OK', data: 'Subscribed' })
   }
 
-  public async deleteSubscription(req: Request, res: Response) {
+  public async deleteSubscription(req: Request & any, res: Response) {
     await this.unsubscribe(req.user);
 
     res.status(200).send({ code: 200, message: 'OK', data: 'Unsubscribed' })
   }
 
-  public async testNotification(req: Request, res: Response) {
-    const user = await this._userRepository._model.findById(Types.ObjectId(req.user));
+  public async testNotification(req: Request & any, res: Response) {
+    const user: any = await this._userRepository._model.findById(new Types.ObjectId(req.user));
     await this.pushNotification(req.user, { [req.user]: user.pushSubscription });
     // console.log(user)
 

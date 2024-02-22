@@ -81,6 +81,12 @@ export const Dashboard = (props: any) => {
   const pageContext = usePageContext()
   const { now } = useAppContext()
 
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const sliderSettings = {
     infinite: true,
     touchThreshold: 100,
@@ -264,7 +270,7 @@ export const Dashboard = (props: any) => {
           </div>
         </div>
 
-        {pageContext?.appNotifications[0] && (
+        {mounted && pageContext?.appNotifications[0] && (
           <CollapsedSection
             className={css['latest-notification']}
             open={openNotifications}
@@ -281,7 +287,7 @@ export const Dashboard = (props: any) => {
           </CollapsedSection>
         )}
 
-        {upcomingSessions && upcomingSessions.length > 0 && (
+        {mounted && upcomingSessions && upcomingSessions.length > 0 && (
           <CollapsedSection open={openUpcomingSessions} setOpen={() => setOpenUpcomingSessions(!openUpcomingSessions)}>
             <CollapsedSectionHeader styleOpened>
               <p className="app-header">Your Next Sessions</p>
@@ -292,7 +298,7 @@ export const Dashboard = (props: any) => {
           </CollapsedSection>
         )}
 
-        {suggestedSessions.length > 0 && (
+        {mounted && suggestedSessions.length > 0 && (
           <CollapsedSection
             open={openSuggestedSessions}
             setOpen={() => setOpenSuggestedSessions(!openSuggestedSessions)}

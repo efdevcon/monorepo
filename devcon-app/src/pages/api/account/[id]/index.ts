@@ -7,7 +7,7 @@ const repo = new UserAccountRepository()
 
 export default withSessionRoute(async function route(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query
-    console.log(req.method, '/api/account/[id]', id)
+    // console.log(req.method, '/api/account/[id]', id)
     
     if (req.method === 'PUT') {
         return put(req, res)

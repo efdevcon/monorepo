@@ -67,6 +67,9 @@ export const Home = (props: any) => {
   const activeAddress = useActiveAddress()
   const avatar = useAvatar()
   const loggedIn = !!accountContext.account
+
+  console.log(loggedIn, 'logged in')
+
   const accountContextOptions = [
     {
       text: 'Settings',
@@ -180,14 +183,7 @@ export const Home = (props: any) => {
               bodyRightRender={() => {
                 return (
                   <div className={css['app-phones']}>
-                    <Image
-                      src={AppPhones}
-                      objectFit="contain"
-                      objectPosition="right"
-                      // width="100%"
-                      // height="100%"
-                      alt="Phones showing app preview"
-                    />
+                    <Image src={AppPhones} className="max-w-[110px] object-right" alt="Phones showing app preview" />
                   </div>
                 )
               }}

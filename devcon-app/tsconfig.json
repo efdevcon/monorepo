@@ -3,12 +3,12 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      // "lib/*": ["../../lib/*"]
+      "lib/*": ["../../lib/*"]
     }
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["next-env.d.ts", "src"],
+  "include": ["next-env.d.ts", "src", "tina"],
   "exclude": ["node_modules"]
 }

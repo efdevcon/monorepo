@@ -15,6 +15,7 @@ import Image from 'next/image'
 import AppLogo from 'assets/images/app-logo.svg'
 import { useLocalStorage } from 'hooks/useLocalStorage'
 import { Link } from 'components/common/link'
+import { SubscribePushNotification } from '../pwa-prompt/PWAPrompt'
 import App from 'next/app'
 
 const filters = [
@@ -59,7 +60,7 @@ export const NotificationCard = React.forwardRef((props: any, ref: any) => {
     markAsSeen,
   }))
 
-  let className = css['notification-block']
+  let className = `!shadow-lg ${css['notification-block']}`
 
   if (!notificationSeen) className += ` ${css['highlight']}`
 
@@ -146,6 +147,10 @@ export const Notifications = (props: any) => {
           />
         )
       })}
+
+      <h2 className="font-lg-fixed mt-8 mb-2">Push Notifications</h2>
+
+      <SubscribePushNotification />
 
       <div className={css['background']}>
         <AppLogo />
