@@ -4,7 +4,7 @@ import IconBack from 'assets/icons/app-back.svg'
 import { Link } from 'components/common/link'
 import IconSwirl from 'assets/icons/swirl.svg'
 import { useRouter } from 'next/router'
-import SwipeToScroll from 'components/common/swipe-to-scroll'
+import SwipeToScroll from 'lib/components/swipe-to-scroll'
 import { useHistory } from '../history-tracker'
 
 export type NavLink = {

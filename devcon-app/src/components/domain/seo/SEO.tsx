@@ -1,8 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
-
 import { Twitter } from './Twitter'
 import { PWA } from './PWA'
 import { SITE_URL } from 'utils/constants'

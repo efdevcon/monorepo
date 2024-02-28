@@ -1,3 +1,0 @@
----
-title: Public Good Supporters
----

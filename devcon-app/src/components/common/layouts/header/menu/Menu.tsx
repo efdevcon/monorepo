@@ -1,11 +1,11 @@
 import React from 'react'
 import css from './menu.module.scss'
 import { Link } from 'components/common/link'
-import { Navigation } from './navigation'
 import { usePageContext } from 'context/page-context'
 import { Link as LinkType } from 'types/Link'
 import { Foldout } from './foldout'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import IconMenu from 'assets/icons/menu.svg'
 import AccountIcon from 'assets/icons/account.svg'
 import IconCross from 'assets/icons/cross.svg'
@@ -13,8 +13,9 @@ import SearchIcon from 'assets/icons/search.svg'
 import { Tooltip } from 'components/common/tooltip'
 import BackIcon from 'assets/icons/subdirectory-left.svg'
 import BellIcon from 'assets/icons/bell-simple.svg'
-import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
-import useNavigationData from '../useNavigationData'
+// import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
+// import useNavigationData from '../useNavigationData'
+import { GetAppNotifications } from 'services/notifications'
 import { TippyProps } from '@tippyjs/react'
 import { Notifications } from 'components/domain/app/notifications'
 import { useAppContext } from 'context/app-context'
@@ -31,27 +32,27 @@ type ButtonProps = {
   }[]
 }
 
-export const Left = (props: any) => {
-  const navigationData = useNavigationData()
+// export const Left = (props: any) => {
+//   const navigationData = useNavigationData()
 
-  return (
-    <div className={css['left']}>
-      {navigationData.top.map((i: LinkType) => {
-        return (
-          <Link
-            indicateExternal
-            key={`top-${i.url}`}
-            external
-            to={i.url}
-            className={`hover-underline ${css['highlighted-link']}`}
-          >
-            {i.title}
-          </Link>
-        )
-      })}
-    </div>
-  )
-}
+//   return (
+//     <div className={css['left']}>
+//       {navigationData.top.map((i: LinkType) => {
+//         return (
+//           <Link
+//             indicateExternal
+//             key={`top-${i.url}`}
+//             external
+//             to={i.url}
+//             className={`hover-underline ${css['highlighted-link']}`}
+//           >
+//             {i.title}
+//           </Link>
+//         )
+//       })}
+//     </div>
+//   )
+// }
 
 const Buttons = (props: ButtonProps) => {
   const router = useRouter()
@@ -95,11 +96,12 @@ const Buttons = (props: ButtonProps) => {
   )
 }
 
-export const Menu = (props: any) => {
+export const Menu = async (props: any) => {
   const router = useRouter()
-  const context = usePageContext()
+  // const context = usePageContext()
   const appContext = useAppContext()
   const accountContext = useAccountContext()
+  const notifications = await GetAppNotifications()
 
   let buttons: ButtonProps['buttons'] = [
     {
@@ -119,7 +121,7 @@ export const Menu = (props: any) => {
   ]
 
   if (props.isApp) {
-    const notifications = context?.appNotifications
+    // const notifications = context?.appNotifications
     const seenNotifications = appContext.seenNotifications
 
     const countUnreadNotifications = notifications ? notifications.length - Object.values(seenNotifications).length : 0

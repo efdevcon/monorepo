@@ -68,8 +68,6 @@ export const Home = (props: any) => {
   const avatar = useAvatar()
   const loggedIn = !!accountContext.account
 
-  console.log(loggedIn, 'logged in')
-
   const accountContextOptions = [
     {
       text: 'Settings',

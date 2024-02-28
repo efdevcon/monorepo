@@ -4,7 +4,7 @@ import { Session as SessionType } from 'types/Session'
 import { defaultSlugify } from 'utils/formatting'
 import moment from 'moment'
 import fs from 'fs'
-import fetch from 'cross-fetch'
+// import fetch from 'cross-fetch'
 // import sessionData from 'content/session-data.json'
 // import speakerData from 'content/speakers-data.json'
 // import roomsData from 'content/rooms-data.json'
@@ -46,35 +46,33 @@ export const fuseOptions = {
   ],
 }
 
-console.log('Pretalx Service', eventName)
+// export async function ImportSchedule() {
+//   console.log('Import Pretalx Event Schedule..')
+//   const rooms = await GetRooms(false)
+//   fs.writeFile('./src/content/rooms-data.json', JSON.stringify(rooms, null, 2), function (err) {
+//     if (err) {
+//       console.log(err)
+//     }
+//   })
+//   console.log('Rooms imported', rooms.length)
 
-export async function ImportSchedule() {
-  console.log('Import Pretalx Event Schedule..')
-  const rooms = await GetRooms(false)
-  fs.writeFile('./src/content/rooms-data.json', JSON.stringify(rooms, null, 2), function (err) {
-    if (err) {
-      console.log(err)
-    }
-  })
-  console.log('Rooms imported', rooms.length)
+//   const sessions = await GetSessions(false)
+//   fs.writeFile('./src/content/session-data.json', JSON.stringify(sessions, null, 2), function (err) {
+//     if (err) {
+//       console.log(err)
+//     }
+//   })
+//   console.log('Sessions imported', sessions.length)
 
-  const sessions = await GetSessions(false)
-  fs.writeFile('./src/content/session-data.json', JSON.stringify(sessions, null, 2), function (err) {
-    if (err) {
-      console.log(err)
-    }
-  })
-  console.log('Sessions imported', sessions.length)
-
-  const speakers = await GetSpeakers(false)
-  const filtered = speakers.filter(i => sessions.map(x => x.speakers.map(y => y.id)).some(x => x.includes(i.id)))
-  fs.writeFile('./src/content/speakers-data.json', JSON.stringify(filtered, null, 2), function (err) {
-    if (err) {
-      console.log(err)
-    }
-  })
-  console.log('Speakers imported', filtered.length)
-}
+//   const speakers = await GetSpeakers(false)
+//   const filtered = speakers.filter(i => sessions.map(x => x.speakers.map(y => y.id)).some(x => x.includes(i.id)))
+//   fs.writeFile('./src/content/speakers-data.json', JSON.stringify(filtered, null, 2), function (err) {
+//     if (err) {
+//       console.log(err)
+//     }
+//   })
+//   console.log('Speakers imported', filtered.length)
+// }
 
 export async function GetEvent(): Promise<any> {
   const event = await get(`/events/${eventName}`)
@@ -85,7 +83,7 @@ export async function GetEvent(): Promise<any> {
 export async function GetSessions(fromCache = true): Promise<Array<SessionType>> {
   // if (fromCache) return sessionData as SessionType[]
 
-  const sessions = await get(`/events/${eventName}/sessions`)
+  const sessions = await get(`/events/${eventName}/sessions?size=50`)
 
   return sessions.map((session: any) => {
     const startTS = moment.utc(session.slot_start).subtract(5, 'hours')
@@ -103,47 +101,6 @@ export async function GetSessions(fromCache = true): Promise<Array<SessionType>>
         : [],
     }
   })
-
-  // const talks = await exhaustResource(`/events/${eventName}/talks`)
-  // const rooms = await GetRooms(fromCache)
-  // const speakers = await GetSpeakers()
-
-  // const sessions = talks.map((i: any) => {
-  //   const expertise = i.answers?.find((i: any) => i.question.id === expertiseQuestionId)?.answer as string
-  //   const tagsAnswer = i.answers?.find((i: any) => i.question.id === tagsQuestionId)?.answer as string
-
-  //   return {
-  //     id: i.code,
-  //     speakers: i.speakers.map((x: any) => {
-  //       return {
-  //         id: x.code,
-  //         name: x.name,
-  //         description: x.biography,
-  //         twitter: speakers.find(speaker => x.code === speaker.id)?.twitter,
-  //         avatar: x.avatar ?? '',
-  //       }
-  //     }),
-  //     title: i.title,
-  //     track: i.track?.en ?? '',
-  //     duration: i.duration,
-  //     start: moment.utc(i.slot.start).subtract(5, 'hours').valueOf(),
-  //     end: moment.utc(i.slot.end).subtract(5, 'hours').valueOf(),
-  //     room: rooms.find(x => x.name === i.slot?.room?.en) || null,
-  //     type: i.submission_type?.en ?? '',
-  //     description: i.description,
-  //     abstract: i.abstract ?? '',
-  //     expertise: expertise ?? '',
-  //     // image?: string
-  //     // resources?: string[]
-  //     tags: tagsAnswer
-  //       ? tagsAnswer.includes(',')
-  //         ? tagsAnswer.split(',').map(i => i.replace(/['"]+/g, '').trim())
-  //         : tagsAnswer.split(' ').map(i => i.replace(/['"]+/g, '').trim())
-  //       : [],
-  //   }
-  // })
-
-  // return sessions
 }
 
 export async function GetSessionsBySpeaker(id: string): Promise<Array<SessionType>> {
@@ -277,39 +234,22 @@ export async function GetSpeakers(fromCache = true): Promise<Array<Speaker>> {
   return speakers
 }
 
-// Pretalx fetch utility; can probably remove since we use the api, but keeping for now, just in case we'll need it in the future
-// async function exhaustResource(slug: string, limit = defaultLimit, offset = 0, results = [] as any): Promise<any> {
-//   return get(`${slug}${slug.includes('?') ? '&' : '?'}limit=${limit}&offset=${offset}`).then((data: any) => {
-//     results.push(data.results)
-//     if (data.next) {
-//       console.log('GET', slug, 'TOTAL COUNT', data.count)
-//       return exhaustResource(slug, defaultLimit, offset + defaultLimit, results)
-//     } else {
-//       console.log('Return results', slug, results.flat().length)
-//       return results.flat()
-//     }
-//   })
-// }
-
 async function get(slug: string) {
-  if (cache.has(slug)) {
-    return cache.get(slug)
-  }
-
-  // const response = await fetch(`${baseUrl}${slug}`, {
-  //   headers: {
-  //     Authorization: `Token ${process.env.PRETALX_API_KEY}`,
-  //   },
-  // })
+  // if (cache.has(slug)) {
+  //   return cache.get(slug)
+  // }
 
   const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
 
-  let data = response
+  let data;
 
   // Extract nested items when using api.devcon.org
   if (response.data) data = response.data
-  if (response.data.items) data = data.data.items
+  if (response.data.items) data = response.data.items
 
-  cache.set(slug, data)
+  // console.log(data.length, 'hello')
+
+  // cache.set(slug, data)
+
   return data
 }

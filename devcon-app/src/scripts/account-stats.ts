@@ -1,7 +1,10 @@
 import dbConnect from "../utils/dbConnect"
 import { UserAccountRepository } from "server/repositories/UserAccountRepository"
-import sessionData from 'content/session-data.json'
-import speakerData from 'content/speakers-data.json'
+// import sessionData from 'content/session-data.json'
+// import speakerData from 'content/speakers-data.json'
+
+const sessionData: any[] = []
+const speakerData: any[] = []
 
 Run()
 

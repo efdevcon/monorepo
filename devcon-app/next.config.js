@@ -1,11 +1,12 @@
-const withPWA = require('next-pwa')
+// const withPWA = require('next-pwa')
 const webpack = require('webpack')
-const { nanoid } = require('nanoid')
-const { PHASE_PRODUCTION_BUILD } = require('next/constants')
-const getGeneratedPrecacheEntries = require('./precache')
-const getStaticPrecacheEntries = require('./precache-public')
-const { withSentryConfig } = require('@sentry/nextjs')
+// const { nanoid } = require('nanoid')
+// const { PHASE_PRODUCTION_BUILD } = require('next/constants')
+// const getGeneratedPrecacheEntries = require('./precache')
+// const getStaticPrecacheEntries = require('./precache-public')
+// const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
+const withSerwistInit = require('@serwist/next').default
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -36,13 +37,14 @@ const nextConfig = {
         ...config.plugins,
         new webpack.DefinePlugin({
           'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
+          // Used to generate push subscriptions
           'process.env.VAPID_PUBLIC': JSON.stringify(process.env.VAPID_PUBLIC),
         }),
       ],
-      // resolve: {
-      //   ...config.resolve,
-      //   modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
-      // },
+      resolve: {
+        ...config.resolve,
+        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
+      },
       module: {
         ...config.module,
         rules: [
@@ -137,39 +139,49 @@ const nextConfig = {
   },
 }
 
-const createConfig = phase => {
-  const buildId = nanoid()
+// const createConfig = phase => {
+//   const buildId = nanoid()
 
-  let config = {
-    ...nextConfig,
-    generateBuildId: () => buildId,
-  }
+//   let config = {
+//     ...nextConfig,
+//     generateBuildId: () => buildId,
+//   }
 
-  // if (phase === PHASE_PRODUCTION_BUILD) {
-  const pwaConfig = withPWA({
-    dest: '/public',
-    additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    dynamicStartUrl: false,
-    customWorkerDir: 'workbox',
-    cacheOnFrontEndNav: true,
-    ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
-    buildExcludes: [/media\/.*$/, /\.map$/],
-    // fallbacks: {
-    //   image:
-    //     'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-    // },
-  })
+//   if (phase === PHASE_PRODUCTION_BUILD) {
+//     const pwaConfig = withPWA({
+//       dest: '/public',
+//       additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
+//       mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+//       dynamicStartUrl: false,
+//       customWorkerDir: 'workbox',
+//       cacheOnFrontEndNav: true,
+//       ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
+//       buildExcludes: [/media\/.*$/, /\.map$/],
+//       // fallbacks: {
+//       //   image:
+//       //     'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+//       // },
+//     })
 
-  return pwaConfig(config)
-  // }
+//     return pwaConfig(config)
+//   }
 
-  return config
-}
+//   return config
+// }
 
 // const config = createConfig()
 
-module.exports = createConfig
+const withSerwist = withSerwistInit({
+  // Note: This is only an example. If you use Pages Router,
+  // use something else that works, such as "service-worker/index.ts".
+  swSrc: 'src/app/sw.js',
+  swDest: 'public/sw.js',
+  // disable: process.env.NODE_ENV !== 'production',
+})
+
+module.exports = withSerwist(nextConfig)
+
+// module.exports = createConfig
 
 // module.exports = withSentryConfig(
 //   (phase, { defaultConfig }) => {

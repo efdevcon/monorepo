@@ -1,12 +1,10 @@
-NOTES ON PWA:
-
-    next-pwa uses workbox under the hood, it emits: sw.js and workbox.****.js
+next-pwa uses workbox under the hood, it emits: sw.js and workbox.\*\*\*\*.js
 
     These files work like this:
         The service worker (sw.js) is registered, and Workbox (workbox.****.js) scripts are imported.
         self.skipWaiting() is invoked to ensure the new service worker will activate immediately after installation.
         Workbox precacheAndRoute lists resources to be precached during the install event that Workbox manages internally.
-        When the installation phase is complete (including precaching), if self.skipWaiting() was called, the service worker will
+        When the installation phase is complete (including precaching), if self.skipWaiting() was called, the service worker will activate immediately.
 
     Update logic:
         Whenever a user opens the pwa, it will fetch "sw.js" - if this changed (even a single byte), the service worker will kick into gear and go through the listed steps above.
@@ -18,3 +16,13 @@ NOTES ON PWA:
 
         Lets say page A and B both return the full schedule data in getStaticProps - nextjs will then generate a .json file for each of these pages - and both would be precached in the end. This is
         obviously inefficient, so it's better to fetch this data in some shared manner.
+
+Open issues:
+
+    Nextjs doesn't seem to play well with the walletconnect/web3modal version we use - probably have to update there to get it working again.
+
+    How to handle SEO combined with PWA data requirements?
+        https://nextjs.org/docs/app/building-your-application/caching
+        Nextjs has a fetch cache size limit of 2mb;
+            this means we can't fetch all sessions in one request, we have to break them apart
+            which also means the caching is

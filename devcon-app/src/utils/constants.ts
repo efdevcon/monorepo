@@ -1,9 +1,9 @@
-import intl from 'content/i18n/en.json' // Default language
+// import intl from 'content/i18n/en.json' // Default language
 
 export const SITE_URL = 'https://devcon.org/'
 export const EMAIL_DEVCON = 'support@devcon.org'
 export const LINK_ETHEREUM_FOUNDATION = 'https://ethereum.foundation'
-export const COPYRIGHT_NOTICE = '© 2022 — Ethereum Foundation. All Rights Reserved.'
+export const COPYRIGHT_NOTICE = '© 2024 — Ethereum Foundation. All Rights Reserved.'
 export const STREAMING_URL = 'https://live.devcon.org/'
 export const APP_URL = 'https://app.devcon.org/'
 export const API_URL = 'https://api.devcon.org/'

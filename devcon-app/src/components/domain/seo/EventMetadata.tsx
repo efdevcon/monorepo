@@ -1,13 +1,14 @@
 import React from 'react'
 
 interface EventMetadataProps {
-    title: string
-    description: string
-    image: string
+  title: string
+  description: string
+  image: string
 }
 
+// TODO: Update for bangkok
 export function EventMetadata(props: EventMetadataProps) {
-    const eventJsonLd = `{
+  const eventJsonLd = `{
         "@context": "https://schema.org",
         "@type": "Event",
         "name": "${props.title}",
@@ -45,8 +46,5 @@ export function EventMetadata(props: EventMetadataProps) {
         }
     }`
 
-    return <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: eventJsonLd }}
-        key="event-jsonld" />
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: eventJsonLd }} key="event-jsonld" />
 }

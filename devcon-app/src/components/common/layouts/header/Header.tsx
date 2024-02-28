@@ -18,8 +18,6 @@ type HeaderProps = {
 
 export const Header = React.memo(({ withStrip, withHero, className, isApp }: HeaderProps) => {
   const ref = useRef(null)
-  const router = useRouter()
-  const isScrolled = useIsScrolled()
   const [foldoutOpen, setFoldoutOpen] = React.useState(false)
   const [searchOpen, setSearchOpen] = React.useState(false)
   useOnOutsideClick(ref, () => setSearchOpen(false))
@@ -75,20 +73,6 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
       </div>
     </header>
   )
-
-  if (withHero) {
-    let headerContainerClass = `${css['header-fixed-container']}`
-
-    if (isScrolled) {
-      headerContainerClass += ` ${css['scrolled']}`
-    }
-
-    return (
-      <div className={headerContainerClass} id="header-strip">
-        {body}
-      </div>
-    )
-  }
 
   return body
 })

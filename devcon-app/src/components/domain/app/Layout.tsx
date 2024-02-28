@@ -7,18 +7,22 @@ import { SEO } from 'components/domain/seo'
 import { useAccountContext } from 'context/account-context'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { AppContext } from 'context/app-context'
+import { GetSessions, GetSpeakers } from 'services/programming'
 
 type LayoutProps = {
   children: React.ReactChild | React.ReactChild[]
 }
 
-export const AppLayout = (props: LayoutProps) => {
+export const AppLayout = async (props: LayoutProps) => {
   const accountContext = useAccountContext()
   // const loggedIn = !!accountContext.account
 
   const headerHeight = useGetElementHeight('header')
   const upperNavHeight = useGetElementHeight('inline-nav')
   const lowerNavHeight = useGetElementHeight('bottom-nav')
+
+  const sessions = await GetSessions()
+  const speakers = await GetSpeakers()
 
   return (
     <AppContext>

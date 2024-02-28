@@ -1,4 +1,0 @@
----
-title: Rifa
-excludeFromFAQ: true
----

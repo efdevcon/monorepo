@@ -14,18 +14,18 @@ export function flattenMessages(nestedMessages: any, prefix = '') {
   }, {})
 }
 
-export async function getMessages(locale: string, dontFlatten?: boolean) {
-  if (locale === 'es') {
-    const beforeFlatten = (await import(`../content/i18n/es.json`)).default
+// export async function getMessages(locale: string, dontFlatten?: boolean) {
+//   if (locale === 'es') {
+//     const beforeFlatten = (await import(`../content/i18n/es.json`)).default
 
-    if (dontFlatten) return beforeFlatten;
+//     if (dontFlatten) return beforeFlatten;
     
-    return flattenMessages(beforeFlatten);
-  }
+//     return flattenMessages(beforeFlatten);
+//   }
 
-  const beforeFlatten = (await import(`../content/i18n/en.json`)).default
+//   const beforeFlatten = (await import(`../content/i18n/en.json`)).default
 
-  if (dontFlatten) return beforeFlatten;
+//   if (dontFlatten) return beforeFlatten;
     
-  return flattenMessages(beforeFlatten);
-}
+//   return flattenMessages(beforeFlatten);
+// }

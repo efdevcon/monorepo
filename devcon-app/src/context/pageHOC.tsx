@@ -12,6 +12,7 @@ type Props = {
   notification: Notification
   appNotifications: Notification[]
   page: Page
+  children?: any
 }
 
 export const pageHOC =

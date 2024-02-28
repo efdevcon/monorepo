@@ -22,16 +22,22 @@ export const pwaUtilities = {
       // Don't prompt if already installed
       if (pwaUtilities.isStandalone()) {
         console.log('standalone preventing prompt')
-       
+
         return; 
       }
+
+      console.log('running')
 
       if (pwaUtilities.isIOS()) {
         setRequiresManualInstall('ios');
       } else if (pwaUtilities.isSamsungBrowser()) {
         setRequiresManualInstall('samsung');
+      } else {
+        togglePrompt();
       }
     }, [])
+
+    console.log(requiresManualInstall, 'hello hello')
 
     // Detect when browser is ready to install the PWA
     React.useEffect(() => {

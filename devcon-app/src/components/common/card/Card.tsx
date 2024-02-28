@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { GetExcerpt } from 'utils/formatting'
 import css from './card.module.scss'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
-import { useTranslations } from 'next-intl'
+// import { useTranslations } from 'next-intl'
 
 interface CardProps {
   title: string
@@ -56,7 +56,7 @@ export const BasicCard = React.forwardRef((props: BasicCardProps, ref: any) => {
 })
 
 export const Card = React.forwardRef((props: CardProps, ref: any) => {
-  const intl = useTranslations()
+  // const intl = useTranslations()
 
   const link =
     props.expandLink || !props.linkUrl ? (
@@ -70,13 +70,13 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
   const readMore =
     props.expandLink || !props.linkUrl ? (
       <div className={css['read-more']}>
-        {intl('readmore')}
+        Read More
         <IconArrowRight />
       </div>
     ) : (
       <Link to={props.linkUrl} className={css['read-more']}>
         <>
-          {intl('readmore')}
+          Read More
           <IconArrowRight />
         </>
       </Link>

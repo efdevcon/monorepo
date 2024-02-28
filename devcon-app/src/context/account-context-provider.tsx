@@ -2,9 +2,10 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { utils, providers } from 'ethers'
 import { UserAccount } from 'types/UserAccount'
 import { AccountContext, AccountContextType } from './account-context'
-import { getWeb3Modal } from 'utils/web3'
+// import { getWeb3Modal } from 'utils/web3'
 import { SignedMessage } from 'types/SignedMessage'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Web3Provider } from '@ethersproject/providers'
 import { VerificationToken } from 'types/VerificationToken'
 import { Session } from 'types/Session'
@@ -57,8 +58,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }, [])
 
   async function connectWeb3(): Promise<providers.Web3Provider | undefined> {
+    return
     try {
-      const web3Modal = getWeb3Modal()
+      const web3Modal: any = {} // getWeb3Modal()
       if (!web3Modal) {
         console.error('Unable to initialize web3Modal')
         return

@@ -6,7 +6,8 @@ import IconHome from 'assets/icons/home.svg'
 import IconInfo from 'assets/icons/info-filled.svg'
 import IconSchedule from 'assets/icons/schedule.svg'
 import { Link } from 'components/common/link'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
+import { useRouter, usePathname } from 'next/navigation'
 import { NavLink, isSelected } from './AppNav'
 // import { pwaUtilities } from 'components/domain/app/pwa-prompt/pwa-utilities'
 // import { useIsStandalone } from 'utils/pwa-link'
@@ -47,7 +48,8 @@ const navItems = [
 ] as NavLinkWithIcon[]
 
 export const BottomNav = () => {
-  const router = useRouter()
+  // const router = useRouter()
+  const pathname = usePathname()
   // const isStandalone = useIsStandalone()
   // const [extraPadding, setExtraPadding] = React.useState(true)
 
@@ -116,7 +118,7 @@ export const BottomNav = () => {
         {navItems.map(navItem => {
           let className = css['nav-item']
 
-          const selected = isSelected(navItem, router.pathname) // navItem.navItem.useIsActive(router.pathname) // normalizedPathname.includes(navItem.to)
+          const selected = isSelected(navItem, pathname) // navItem.navItem.useIsActive(router.pathname) // normalizedPathname.includes(navItem.to)
 
           if (selected) className += ` ${css['selected']}`
 

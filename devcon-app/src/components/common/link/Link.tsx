@@ -1,3 +1,4 @@
+'use client'
 import React, { ReactNode } from 'react'
 import { default as NextLink } from 'next/link'
 import NorthEast from 'assets/icons/north_east.svg'
@@ -15,8 +16,10 @@ type LinkProps = {
 }
 
 const Link = React.forwardRef(
-  ({ children, indicateExternal, external, allowDrag, locale, to, ...rest }: LinkProps, ref: any) => {
+  ({ children, indicateExternal, external, allowDrag, locale, to, href, ...rest }: LinkProps, ref: any) => {
     const dragging = React.useRef(false)
+
+    to = to || href
 
     const linkAttributes = {
       ...rest,

@@ -1,14 +1,21 @@
 {
   "extends": "../base.tsconfig.json",
   "compilerOptions": {
+    "types": ["@serwist/next/typings"],
     "baseUrl": "./src",
     "paths": {
-      "lib/*": ["../../lib/*"]
-    }
+      "lib/*": ["../../lib/*", "webworker"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": ["next-env.d.ts", "src", "tina"],
+  "include": ["next-env.d.ts", "src", "tina", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

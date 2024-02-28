@@ -45,6 +45,8 @@ export const PWAPrompt = () => {
     }
   }, [requiresManualInstall, promptIfNotLocked])
 
+  console.log(requiresManualInstall, 'requires manual install')
+
   useEffect(() => {
     // @ts-ignore
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
