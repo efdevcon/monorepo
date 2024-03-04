@@ -1,43 +1,45 @@
 const path = require('path')
-const sessionData = require('./src/content/session-data.json')
-const speakerData = require('./src/content/speakers-data.json')
-const roomData = require('./src/content/rooms-data.json')
 
 const pages = [
   {
     route: '/',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
   {
     route: '/login',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
   {
     route: '/schedule',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
-  {
-    route: '/side-events',
-    precacheHtml: true,
-    precacheJson: true,
-  },
+  // {
+  //   route: '/side-events',
+  //   precacheHtml: true,
+  //   precacheJson: true,
+  // },
   {
     route: '/speakers',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
   {
-    route: '/info',
+    route: '/404',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
+  // {
+  //   route: '/info',
+  //   precacheHtml: true,
+  //   precacheJson: true,
+  // },
   {
     route: '/venue',
     precacheHtml: true,
-    precacheJson: true,
+    // precacheJson: true,
   },
   // {
   //   route: '/schedule',

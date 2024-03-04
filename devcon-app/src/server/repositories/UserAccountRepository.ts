@@ -1,4 +1,4 @@
-import { GetSessions } from 'services/programming'
+import { fetchSessions } from 'services/event-data'
 import { UserAccount, UserSchedule } from 'types/UserAccount'
 import { getRandomUsername, getUsername } from 'utils/account'
 import dbConnect from 'utils/dbConnect'
@@ -41,7 +41,7 @@ export class UserAccountRepository extends BaseRepository<UserAccount> implement
       const user = await this._model.findOne({ _id: userId }) as UserAccount
       if (!user) return
 
-      const sessions = await GetSessions()
+      const sessions = await fetchSessions()
       // username above all
       if (user.username) {
         return {

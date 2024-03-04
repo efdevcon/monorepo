@@ -104,7 +104,9 @@ export const Notifications = (props: any) => {
   // const [basicFilter, setBasicFilter] = React.useState('all')
 
   const unseenNotifications =
-    pageContext && Object.values(seenNotifications).length < pageContext.appNotifications?.length
+    pageContext &&
+    pageContext.appNotifications &&
+    Object.values(seenNotifications).length < pageContext.appNotifications?.length
 
   return (
     <div className={css['container']}>
@@ -138,15 +140,16 @@ export const Notifications = (props: any) => {
         ]}
       /> */}
 
-      {pageContext?.appNotifications.map(notification => {
-        return (
-          <NotificationCard
-            key={notification.id}
-            notification={notification}
-            ref={(ref: any) => (notificationRefs.current[notification.id] = ref)}
-          />
-        )
-      })}
+      {pageContext?.appNotifications &&
+        pageContext?.appNotifications.map(notification => {
+          return (
+            <NotificationCard
+              key={notification.id}
+              notification={notification}
+              ref={(ref: any) => (notificationRefs.current[notification.id] = ref)}
+            />
+          )
+        })}
 
       <h2 className="font-lg-fixed mt-8 mb-2">Push Notifications</h2>
 

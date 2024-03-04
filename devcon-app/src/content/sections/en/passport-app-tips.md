@@ -1,3 +1,0 @@
----
-title: Passport App Tips
----

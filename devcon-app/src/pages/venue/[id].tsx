@@ -2,9 +2,8 @@ import { AppLayout } from 'components/domain/app/Layout'
 import { Room } from 'components/domain/app/venue'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { GetEvent, GetRooms, GetSessionsByRoom } from 'services/programming'
+import { fetchEvent, fetchRooms, fetchSessionsByRoom } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
-import { getGlobalData } from 'services/global'
 import { SEO } from 'components/domain/seo'
 
 export default pageHOC((props: any) => {
@@ -17,7 +16,7 @@ export default pageHOC((props: any) => {
 })
 
 export async function getStaticPaths() {
-  const rooms = await GetRooms()
+  const rooms = await fetchRooms()
   const paths = rooms.map(i => {
     return { params: { id: i.id } }
   })
@@ -30,7 +29,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const id = context.params.id
-  const room = (await GetRooms()).find(i => i.id === id)
+  const room = (await fetchRooms()).find(i => i.id === id)
 
   if (!room) {
     return {
@@ -41,11 +40,10 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      ...(await getGlobalData(context.locale, true)),
       page: DEFAULT_APP_PAGE,
-      event: await GetEvent(),
+      event: await fetchEvent(),
       room,
-      sessions: await GetSessionsByRoom(id),
+      sessions: await fetchSessionsByRoom(id),
     },
   }
 }

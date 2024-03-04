@@ -74,3 +74,53 @@ $border: 1px solid $colors-monochrome-5;
     transform: rotate(360deg);
   }
 }
+
+/* HTML: <div class="loader"></div> */
+
+.loader {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: all ease-out 1s;
+  z-index: 5;
+  pointer-events: none;
+
+  &.loaded {
+    opacity: 0;
+  }
+
+  .indicator {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+  }
+
+  .indicator::before,
+  .indicator::after {    
+    content:"";
+    grid-area: 1/1;
+    --c:no-repeat radial-gradient(farthest-side,#424242 92%,#0000);
+    background: 
+      var(--c) 50%  0, 
+      var(--c) 50%  100%, 
+      var(--c) 100% 50%, 
+      var(--c) 0    50%;
+    background-size: 12px 12px;
+    animation: l12 1s infinite;
+  }
+  .indicator::before {
+    margin: 4px;
+    filter: hue-rotate(45deg);
+    background-size: 8px 8px;
+    animation-timing-function: linear
+  }
+  
+  @keyframes l12 { 
+    100%{transform: rotate(.5turn)}
+  }
+}

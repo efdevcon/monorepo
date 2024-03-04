@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import css from './foldout.module.scss'
 import { Newsletter } from 'components/common/newsletter'
-import { SocialMedia } from 'components/common/layouts/footer'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { Copyright } from 'components/common/layouts/Copyright'
 import { createPortal } from 'react-dom'
@@ -32,7 +31,7 @@ const Foldout = (props: any) => {
           <div className={css['bottom']}>
             <div className={css['social-media']}>
               <p>Social</p>
-              <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
+              {/* <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} /> */}
             </div>
 
             <div className={css['newsletter']}>

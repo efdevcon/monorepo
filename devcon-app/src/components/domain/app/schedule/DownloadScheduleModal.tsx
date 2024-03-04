@@ -22,19 +22,21 @@ export const DownloadScheduleModal = (props: Props) => {
 
   async function download(type: 'csv' | 'ics') {
     if (type === 'csv') {
-      var csv = Papa.unparse(props.sessions.map(i => {
-        return {
-          'Subject': i.title,
-          'Start Date': moment.utc(i.start).format('L'), // 05/30/2020
-          'Start Time': moment.utc(i.start).format('LT'), // 10:00 AM
-          'End Date': moment.utc(i.end).format('L'),
-          'End Time': moment.utc(i.end).format('LT'),
-          'All Day Event': false,
-          'Description': i.description ?? '',
-          'Location': `${i.room?.name}${i.room?.info ? ` - ${i.room.info}` : ''}`,
-        }
-      }))
-      var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      var csv = Papa.unparse(
+        props.sessions.map(i => {
+          return {
+            Subject: i.title,
+            'Start Date': moment.utc(i.start).format('L'), // 05/30/2020
+            'Start Time': moment.utc(i.start).format('LT'), // 10:00 AM
+            'End Date': moment.utc(i.end).format('L'),
+            'End Time': moment.utc(i.end).format('LT'),
+            'All Day Event': false,
+            Description: i.description ?? '',
+            Location: `${i.room?.name}${i.room?.info ? ` - ${i.room.info}` : ''}`,
+          }
+        })
+      )
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
       FileSaver.saveAs(blob, `${moment().format('YYYYMMDDTHHmmss')}_sessions.csv`)
     }
 
@@ -45,7 +47,7 @@ export const DownloadScheduleModal = (props: Props) => {
         zip.file(`${i.title}.ics`, ics)
       })
 
-      zip.generateAsync({ type: "blob" }).then(function (blob) {
+      zip.generateAsync({ type: 'blob' }).then(function (blob) {
         FileSaver.saveAs(blob, `${moment().format('YYYYMMDDTHHmmss')}_sessions.zip`)
       })
     }
@@ -59,22 +61,32 @@ export const DownloadScheduleModal = (props: Props) => {
         <div className={css['download']}>
           <p>Download your entire Devcon schedule in .csv or .ics files to import into your own calendar app.</p>
 
-          <p>E.g. import your .csv into <Link to='https://calendar.google.com/calendar/u/0/r/settings/export'>Google Calendar</Link></p>
+          <p>
+            E.g. import your .csv into{' '}
+            <Link to="https://calendar.google.com/calendar/u/0/r/settings/export">Google Calendar</Link>
+          </p>
 
           <p>
-            <Button className='red' onClick={() => download('csv')}>
+            <Button className="red" onClick={() => download('csv')}>
               CSV
-            </Button>&nbsp;
-            <Button className='red' onClick={() => download('ics')}>
+            </Button>
+            &nbsp;
+            <Button className="red" onClick={() => download('ics')}>
               ICS
             </Button>
           </p>
 
-          <p>*Warning session changes and updates will not be reflected. We advise you export on day of or when you have fully compiled your schedule.</p>
+          <p>
+            *Warning session changes and updates will not be reflected. We advise you export on day of or when you have
+            fully compiled your schedule.
+          </p>
         </div>
       </Modal>
 
-      <DownloadIcon style={{ cursor: 'pointer', fontSize: '22px', marginRight: '-4px' }} onClick={() => setInfoOpen(true)} />
+      <DownloadIcon
+        style={{ cursor: 'pointer', fontSize: '22px', marginRight: '-4px' }}
+        onClick={() => setInfoOpen(true)}
+      />
     </>
   )
 }

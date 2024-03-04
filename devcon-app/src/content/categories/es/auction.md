@@ -1,4 +1,0 @@
----
-title: Subasta
-excludeFromFAQ: true
----

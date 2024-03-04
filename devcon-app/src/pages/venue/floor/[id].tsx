@@ -5,7 +5,7 @@ import { pageHOC } from 'context/pageHOC'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { getGlobalData } from 'services/global'
-import { GetFloors, GetRooms } from 'services/programming'
+import { fetchFloors, fetchRooms } from 'services/event-data'
 import { Room } from 'types/Room'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
 import { defaultSlugify } from 'utils/formatting'
@@ -30,7 +30,7 @@ export default pageHOC(({ sessions, ...props }: any) => {
 })
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const floors = await GetFloors()
+  const floors = await fetchFloors()
 
   return {
     paths: floors.map(i => ({ params: { id: defaultSlugify(i) } })),
@@ -39,8 +39,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Props, Params> = async context => {
-  const rooms = await GetRooms()
-  const floors = await GetFloors()
+  const rooms = await fetchRooms()
+  const floors = await fetchFloors()
   const floor = floors.find(i => defaultSlugify(i) === context.params?.id)
   if (!floor) return { props: null, notFound: true }
 

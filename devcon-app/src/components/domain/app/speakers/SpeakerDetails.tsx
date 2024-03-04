@@ -18,7 +18,7 @@ import IconAdded from 'assets/icons/person-added.svg'
 
 export const SpeakerDetails = (props: any) => {
   const { account, setSpeakerFavorite } = useAccountContext()
-  const isSpeakerFavorited = account?.appState?.speakers?.some((speaker: any) => speaker === props.speaker.id)
+  const isSpeakerFavorited = props.speakers?.some((speaker: any) => speaker === props.speaker.id)
   const splitName = props.speaker.name.split(' ') as string[]
   const firstName = splitName.shift()
   const lastName = splitName.join(' ')
@@ -99,7 +99,7 @@ export const SpeakerDetails = (props: any) => {
           <p className={css['body']}>{props.speaker.description}</p>
         </div>
 
-        {props.speaker.sessions.length > 0 && (
+        {props.speaker?.sessions?.length > 0 && (
           <div className={css['sessions']}>
             <p className="font-lg bold margin-top-less margin-bottom-less">Sessions</p>
             {props.speaker.sessions.map((i: Session) => {

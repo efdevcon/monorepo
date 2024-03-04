@@ -30,6 +30,8 @@ const nextConfig = {
   //   hideSourceMaps: true,
   // },
   webpack: (config, { buildId }) => {
+    console.log(config.modules, 'resolve hello')
+
     return {
       ...config,
       plugins: [
@@ -39,10 +41,16 @@ const nextConfig = {
           'process.env.VAPID_PUBLIC': JSON.stringify(process.env.VAPID_PUBLIC),
         }),
       ],
-      // resolve: {
-      //   ...config.resolve,
-      //   modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
-      // },
+      resolve: {
+        ...config.resolve,
+        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
+        fallback: {
+          tls: false,
+          net: false,
+          fs: false,
+          // Add other native modules here
+        },
+      },
       module: {
         ...config.module,
         rules: [

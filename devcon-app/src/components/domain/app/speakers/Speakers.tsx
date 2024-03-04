@@ -357,6 +357,8 @@ export const Speakers = (props: any) => {
   // const sortedBy = sortState.fields[sortState.sortBy]
   const noResults = speakers.length === 0
 
+  console.log(sortedSpeakers, 'sorted speakers')
+
   return (
     <>
       <AppNav

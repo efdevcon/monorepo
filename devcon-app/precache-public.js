@@ -17,6 +17,7 @@ function getStaticPrecacheEntries(pwaOptions) {
     .sync(
       [
         '**/*',
+        '!admin',
         '!workbox-*.js',
         '!workbox-*.js.map',
         '!worker-*.js',

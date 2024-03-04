@@ -2,9 +2,8 @@ import { AppLayout } from 'components/domain/app/Layout'
 import { SpeakerDetails } from 'components/domain/app/speakers'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { GetSessionsBySpeaker, GetSpeaker, GetSpeakers } from 'services/programming'
+import { fetchSessionsBySpeaker, fetchSpeaker, fetchSpeakers } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
-import { getGlobalData } from 'services/global'
 import { SEO } from 'components/domain/seo'
 
 export default pageHOC((props: any) => {
@@ -19,7 +18,8 @@ export default pageHOC((props: any) => {
 })
 
 export async function getStaticPaths() {
-  const speakers = await GetSpeakers()
+  const speakers = await fetchSpeakers()
+
   const paths = speakers.map(i => {
     return { params: { id: i.id } }
   })
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  const speaker = await GetSpeaker(context.params.id)
+  const speaker = await fetchSpeaker(context.params.id)
 
   if (!speaker) {
     return {
@@ -40,17 +40,15 @@ export async function getStaticProps(context: any) {
     }
   }
 
-  const sessions = await GetSessionsBySpeaker(speaker.id)
+  const sessions = await fetchSessionsBySpeaker(speaker.id)
 
   return {
     props: {
-      ...(await getGlobalData(context.locale, true)),
       page: DEFAULT_APP_PAGE,
       speaker: {
         ...speaker,
         sessions,
       },
-      // sessions,
     },
   }
 }

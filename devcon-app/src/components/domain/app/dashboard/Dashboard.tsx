@@ -270,7 +270,7 @@ export const Dashboard = (props: any) => {
           </div>
         </div>
 
-        {mounted && pageContext?.appNotifications[0] && (
+        {mounted && pageContext?.appNotifications && pageContext.appNotifications[0] && (
           <CollapsedSection
             className={css['latest-notification']}
             open={openNotifications}

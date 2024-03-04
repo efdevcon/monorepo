@@ -2,7 +2,7 @@ import { AppLayout } from 'components/domain/app/Layout'
 import { Session } from 'components/domain/app/session'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { GetSessions, GetSpeakers } from 'services/programming'
+import { fetchSessions } from 'services/event-data'
 import { API_URL, DEFAULT_APP_PAGE, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
 import { getGlobalData } from 'services/global'
 import { Session as SessionType } from 'types/Session'
@@ -62,7 +62,7 @@ export default pageHOC((props: any) => {
 })
 
 export async function getStaticPaths() {
-  const sessions = await GetSessions()
+  const sessions = await fetchSessions()
   const paths = sessions.map(i => {
     return { params: { id: i.id } }
   })
@@ -74,7 +74,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  const sessions = await GetSessions()
+  const sessions = await fetchSessions()
   const session = sessions.find(i => i.id === context.params.id)
 
   if (!session) {
@@ -88,8 +88,6 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      ...(await getGlobalData(context.locale, true)),
-      page: DEFAULT_APP_PAGE,
       relatedSessions: related,
       session,
     },

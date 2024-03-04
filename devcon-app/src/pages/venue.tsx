@@ -2,7 +2,7 @@ import { AppLayout } from 'components/domain/app/Layout'
 import { Venue } from 'components/domain/app/venue'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { GetFloors, GetRooms, GetSessions, GetEvent } from 'services/programming'
+import { fetchFloors, fetchRooms, fetchSessions, fetchEvent } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
 import { getGlobalData } from 'services/global'
 import { useRouter } from 'next/router'
@@ -41,7 +41,7 @@ export default pageHOC(({ sessions, ...props }: any) => {
   return (
     <AppLayout>
       <>
-        <SEO title='Agora Convention Center' />
+        <SEO title="Agora Convention Center" />
         <Venue {...props} />
       </>
     </AppLayout>
@@ -49,17 +49,16 @@ export default pageHOC(({ sessions, ...props }: any) => {
 })
 
 export async function getStaticProps(context: any) {
-  const rooms = await GetRooms()
-  const floors = await GetFloors()
+  const rooms = await fetchRooms()
+  const floors = await fetchFloors()
 
   return {
     props: {
-      ...(await getGlobalData(context.locale, true)),
       page: DEFAULT_APP_PAGE,
       rooms,
-      event: await GetEvent(),
+      event: await fetchEvent(),
       floors,
-      sessions: await GetSessions(),
+      sessions: await fetchSessions(),
     },
   }
 }

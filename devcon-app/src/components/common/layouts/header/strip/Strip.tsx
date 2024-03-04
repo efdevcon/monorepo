@@ -42,9 +42,9 @@ export const Strip = ({ withHero }: HeaderProps) => {
       {notification && (
         <div className={css['body']}>
           <div className={css['notification']}>
-            {context?.notification.label && (
+            {/* {context?.notification.label && (
               <Label type={context?.notification.labelType || 'notification'}>{context?.notification.label}</Label>
-            )}
+            )} */}
 
             {notification.url ? (
               <Link to={notification.url} indicateExternal className="hover-underline">

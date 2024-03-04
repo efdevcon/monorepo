@@ -1,41 +1,36 @@
 import React, { ComponentType } from 'react'
 import { NavigationData } from 'types/NavigationData'
 import { Notification } from 'types/Notification'
-import { Page } from 'types/Page'
+// import { Page } from 'types/Page'
 import { PageContext } from './page-context'
-import { SEO } from 'components/domain/seo'
-import moment from 'moment'
+// import { SEO } from 'components/domain/seo'
+// import moment from 'moment'
+// import { fetchSessions, fetchSpeakers } from 'services/event-data'
+
+import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 type Props = {
-  data: any
   navigationData: NavigationData
   notification: Notification
   appNotifications: Notification[]
-  page: Page
+  // page: Page
+  [key: string]: any
 }
 
-export const pageHOC =
-  (PageContent: ComponentType<Props>, mapDataToContext?: (props: Props) => { [key: string]: any }) =>
-  (props: Props) => {
-    const context = {
-      data: props.data,
-      navigation: props.navigationData,
-      notification: props.notification, // For notification strip - could probably rename this
-      appNotifications: props.appNotifications,
-      ...(mapDataToContext && mapDataToContext(props)),
-      current: props.page,
-    }
-
-    // if (props.page.lang === 'es') {
-    //   require('moment/locale/es')
-    //   moment.locale('es')
-    // } else {
-    //   moment.locale('en')
-    // }
-
-    return (
-      <PageContext.Provider value={context}>
-        <PageContent {...props} />
-      </PageContext.Provider>
-    )
+export const pageHOC = (PageContent: ComponentType<Props>) => (props: Props) => {
+  const context = {
+    navigation: props.navigationData,
+    notification: props.notification, // For notification strip - could probably rename this
+    appNotifications: [], // props.appNotifications,
+    // ...(mapDataToContext && mapDataToContext(props)),
+    // current: props.page,
+    current: DEFAULT_APP_PAGE,
   }
+
+  return (
+    // @ts-ignore
+    <PageContext.Provider value={context}>
+      <PageContent {...props} />
+    </PageContext.Provider>
+  )
+}

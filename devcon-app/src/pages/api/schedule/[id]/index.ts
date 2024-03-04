@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { GetSessions } from 'services/programming'
+import { fetchSessions } from 'services/event-data'
 import { DEFAULT_MAX_CACHE_AGE, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         const { id } = req.query
-        const sessions = await GetSessions()
+        const sessions = await fetchSessions()
         const session = sessions.find(i => i.id === id)
 
         if (process.env.NODE_ENV === 'production') {

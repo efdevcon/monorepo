@@ -1,7 +1,7 @@
 import React from 'react'
 import css from './menu.module.scss'
 import { Link } from 'components/common/link'
-import { Navigation } from './navigation'
+// import { Navigation } from './navigation'
 import { usePageContext } from 'context/page-context'
 import { Link as LinkType } from 'types/Link'
 import { Foldout } from './foldout'
@@ -14,7 +14,6 @@ import { Tooltip } from 'components/common/tooltip'
 import BackIcon from 'assets/icons/subdirectory-left.svg'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
-import useNavigationData from '../useNavigationData'
 import { TippyProps } from '@tippyjs/react'
 import { Notifications } from 'components/domain/app/notifications'
 import { useAppContext } from 'context/app-context'
@@ -29,28 +28,6 @@ type ButtonProps = {
     onClick?: any
     tooltip?: TippyProps
   }[]
-}
-
-export const Left = (props: any) => {
-  const navigationData = useNavigationData()
-
-  return (
-    <div className={css['left']}>
-      {navigationData.top.map((i: LinkType) => {
-        return (
-          <Link
-            indicateExternal
-            key={`top-${i.url}`}
-            external
-            to={i.url}
-            className={`hover-underline ${css['highlighted-link']}`}
-          >
-            {i.title}
-          </Link>
-        )
-      })}
-    </div>
-  )
 }
 
 const Buttons = (props: ButtonProps) => {
@@ -197,11 +174,9 @@ export const Menu = (props: any) => {
       {/* <Search open={props.setSearchOpen} /> */}
 
       {/* Mobile */}
-      {props.isApp && (
-        <Foldout isApp foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
-          <Notifications />
-        </Foldout>
-      )}
+      <Foldout isApp foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
+        <Notifications />
+      </Foldout>
     </div>
   )
 }
