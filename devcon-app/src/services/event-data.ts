@@ -100,12 +100,7 @@ export const fetchSessions = async (): Promise<SessionType[]> => {
             ...session,
             start: startTS.valueOf(),
             end: endTS.valueOf(),
-            duration: startTS.diff(endTS, 'minutes'),
-            // tags: session.tags
-            // ? session.tags.includes(',')
-            //     ? session.tags.split(',').map((i: any) => i.replace(/['"]+/g, '').trim())
-            //     : session.tags.split(' ').map((i: any) => i.replace(/['"]+/g, '').trim())
-            // : [],
+            duration: startTS.diff(endTS, 'minutes')
         }
     })
 }
@@ -162,6 +157,7 @@ export const getRelatedSessions = async (id: string, sessions: Array<SessionType
   if (!session) return [];
 
   const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
+    ?.split(',')
     ?.map(i => `"${i}"`)
     .join(' | ')}`;
 

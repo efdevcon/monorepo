@@ -2,7 +2,7 @@ import { AppLayout } from 'components/domain/app/Layout'
 import { Session } from 'components/domain/app/session'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { fetchSessions } from 'services/event-data'
+import { fetchSessions, useSessionData } from 'services/event-data'
 import { API_URL, DEFAULT_APP_PAGE, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
 import { getGlobalData } from 'services/global'
 import { Session as SessionType } from 'types/Session'
@@ -36,6 +36,7 @@ export function GetRelatedSessions(id: string, sessions: SessionType[]): Array<S
 
   const fuse = new Fuse(sessions, options)
   const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
+    ?.split(',')
     ?.map(i => `"${i}"`)
     .join(' | ')}`
   const result = fuse.search(query)

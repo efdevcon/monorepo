@@ -256,7 +256,8 @@ export const Schedule = (props: any) => {
       if (session.speakers.some(speaker => speaker.name.toLowerCase().includes(lowerCaseSearch)))
         matchesAnySearch = true
       if (session.description && session.description.toLowerCase().includes(lowerCaseSearch)) matchesAnySearch = true
-      if (session.tags?.some(tag => tag.toLowerCase().includes(lowerCaseSearch))) matchesAnySearch = true
+      if (session.tags && session.tags?.split(',').some(tag => tag.toLowerCase().includes(lowerCaseSearch)))
+        matchesAnySearch = true
 
       if (!matchesAnySearch) return false
     }

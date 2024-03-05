@@ -1,9 +1,9 @@
-import { ImportSchedule } from "../services/programming"
+// import { ImportSchedule } from "../services/programming"
 
-Run()
+// Run()
 
-async function Run() {
-    console.log('Run Pretalx importer..')
+// async function Run() {
+//     console.log('Run Pretalx importer..')
 
-    await ImportSchedule()
-}
+//     await ImportSchedule()
+// }

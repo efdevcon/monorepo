@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from 'components/common/button'
 import css from './add-to-calendar.module.scss'
-import { useTranslations } from 'next-intl'
 import { Modal } from 'components/common/modal'
 import { Link } from 'components/common/link'
 import AddToCalendarIcon from 'assets/icons/calendar.svg'
@@ -91,7 +90,6 @@ export const generateAddToCalendarUrls = (event: EventData) => {
 
 const AddToCalendar = (props: any) => {
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
-  const intl = useTranslations()
 
   const { google, ics } = generateAddToCalendarUrls(
     props.event || {
@@ -113,14 +111,14 @@ const AddToCalendar = (props: any) => {
         React.cloneElement(props.children, { onClick: triggerModal })
       ) : (
         <Button className={`${css['button']} bold black text-uppercase hover`} onClick={triggerModal}>
-          <AddToCalendarIcon /> <span className={css['button-text']}>{intl('add-to-calendar')}</span>
+          <AddToCalendarIcon /> <span className={css['button-text']}>Add To Calendar</span>
         </Button>
       )}
 
       {calendarModalOpen && (
         <Modal className={css['modal']} open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
           <div className={css['modal-content']}>
-            <p className="bold uppercase clear-bottom">{intl('add-to-calendar')}:</p>
+            <p className="bold uppercase clear-bottom">Add To Calendar:</p>
 
             <div className={css['buttons']}>
               <a
@@ -138,7 +136,10 @@ const AddToCalendar = (props: any) => {
                 <Button className="black ghost">Google Calendar</Button>
               </Link>
             </div>
-            <p className='clear-top'>*Warning session changes and updates will not be reflected. We advise you export on day of or when you have fully compiled your schedule.</p>
+            <p className="clear-top">
+              *Warning session changes and updates will not be reflected. We advise you export on day of or when you
+              have fully compiled your schedule.
+            </p>
           </div>
         </Modal>
       )}

@@ -24,5 +24,5 @@ export interface Session {
   expertise?: string
   image?: string
   resources?: string[]
-  tags?: string[]
+  tags?: string
 }

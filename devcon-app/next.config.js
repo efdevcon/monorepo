@@ -6,6 +6,7 @@ const getGeneratedPrecacheEntries = require('./precache')
 const getStaticPrecacheEntries = require('./precache-public')
 const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -30,12 +31,11 @@ const nextConfig = {
   //   hideSourceMaps: true,
   // },
   webpack: (config, { buildId }) => {
-    console.log(config.modules, 'resolve hello')
-
     return {
       ...config,
       plugins: [
         ...config.plugins,
+        // new BundleAnalyzerPlugin(),
         new webpack.DefinePlugin({
           'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
           'process.env.VAPID_PUBLIC': JSON.stringify(process.env.VAPID_PUBLIC),
@@ -48,7 +48,6 @@ const nextConfig = {
           tls: false,
           net: false,
           fs: false,
-          // Add other native modules here
         },
       },
       module: {
