@@ -165,6 +165,19 @@ const dips: Template = {
   ],
 }
 
+const road_to_devcon: Template = {
+  name: 'road_to_devcon',
+  label: 'road_to_devcon',
+  fields: [
+    {
+      label: 'section 1',
+      name: 'section1',
+      type: 'object',
+      fields: [createRichText('about', { required: true })],
+    },
+  ],
+}
+
 const past_events: Template = {
   name: 'past_events',
   label: 'past_events',
@@ -237,7 +250,7 @@ export default defineConfig({
         label: 'Pages',
         path: 'cms/pages',
         format: 'mdx',
-        templates: [index, dips, past_events],
+        templates: [index, dips, past_events, road_to_devcon],
         ui: {
           router: ({ document }) => {
             const filename = document._sys.filename
@@ -249,6 +262,8 @@ export default defineConfig({
                 return '/dips'
               case 'past_events':
                 return '/past-events'
+              case 'road_to_devcon':
+                return '/road-to-devcon'
               default:
                 return filename
             }
