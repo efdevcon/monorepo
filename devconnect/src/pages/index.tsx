@@ -1533,7 +1533,7 @@ const Home: NextPage = (props: any) => {
                 <div className="flex flex-nowrap">
                   {[
                     { cover: Cover1, url: 'https://app.streameth.org/devconnect/light_client_summit/archive' },
-                    { cover: Cover4, url: 'https://app.streameth.org/devconnect/progcrypto' },
+                    { cover: Cover4, url: 'https://www.youtube.com/@PROGCRYPTO/videos' },
                     {
                       cover: Cover3,
                       url: 'https://app.streameth.org/devconnect/conflux__web3_ux_unconference/archive',
