@@ -74,6 +74,35 @@ const videos = [
   },
 ]
 
+export const RoadToDevconGrants = ({ pages }: any) => {
+  return (
+    <div className="flex-col md:flex-row flex relative pt-12 mb-8 gap-8 items-center">
+      <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+        <InfiniteScroller nDuplications={2} reverse speed="150s">
+          <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
+        </InfiniteScroller>
+      </div>
+
+      <div className="md:basis-[800px] shrink">
+        <RichText content={pages.section3?.body}></RichText>
+
+        <Link to="https://esp.ethereum.foundation/devcon-grants">
+          <Button fat color="purple-1" className="mt-8" fill>
+            {pages.section3?.button}
+          </Button>
+        </Link>
+      </div>
+      <div className="flex grow shrink-0 items-center justify-center">
+        <Link to="https://esp.ethereum.foundation/devcon-grants">
+          <div className={css['tilt-hover-image']}>
+            <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
+          </div>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 export default pageHOC(function Index(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesIndex
@@ -133,7 +162,9 @@ export default pageHOC(function Index(props: any) {
               </Button>
             </Link>
           </div>
-          <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
+
+          <RoadToDevconGrants pages={pages} />
+          {/* <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               <InfiniteScroller nDuplications={2} reverse speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
@@ -156,9 +187,9 @@ export default pageHOC(function Index(props: any) {
                 </div>
               </Link>
             </div>
-          </div>
+          </div> */}
 
-          <div className="relative flex flex-col items-start border-bottom gap-8 pointer-events-none">
+          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 border-top pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>
             </div>

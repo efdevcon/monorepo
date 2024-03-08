@@ -50,6 +50,7 @@ type PageHeroProps = {
   cta?: Array<CTALink>
   renderCustom?(props?: any): JSX.Element
   renderCustomBackground?(props?: any): JSX.Element
+  renderNavigationRight?(props?: any): JSX.Element
   navigation?: Array<NavigationLink>
   children?: React.ReactNode
 }
@@ -167,7 +168,9 @@ export const PageHero = (props: PageHeroProps) => {
         </div>
       )}
 
-      <div className="section relative h-[55vh] max-h-[600px]">
+      {props.children}
+
+      <div className="section relative h-[55vh] max-h-[600px]" data-type="page-hero-content">
         <div className={css['info']}>
           <PathNavigation {...props} />
 
@@ -198,70 +201,15 @@ export const PageHero = (props: PageHeroProps) => {
             </div>
           )}
 
-          {props.children}
-
-          {props.scenes && (
-            <div className={css['scenes']}>
-              {props.scenes.map((scene: any, i: number) => {
-                const selected = i === currentScene
-
-                let className = css['scene']
-
-                if (selected) className += ` ${css['active']}`
-
-                return (
-                  <div key={i} className={className}>
-                    {scene.content()}
-                  </div>
-                )
-              })}
-
-              <div className={css['controls-dots']}>
-                {props.scenes.map((_: any, i: number) => {
-                  const selected = i === currentScene
-
-                  let className = css['dot']
-
-                  if (selected) className += ` ${css['active']}`
-
-                  return (
-                    <div key={i} className={className} onClick={() => setCurrentScene(i)}>
-                      <div className={css['circle']}></div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              <div className={css['controls']}>
-                {props.scenes[currentScene].callToAction()}
-
-                <div className={css['arrows']}>
-                  <Button
-                    className={`${css['arrow']} white squared`}
-                    aria-label="View previous slide"
-                    onClick={() => setNextScene(-1)}
-                  >
-                    <ChevronLeft />
-                  </Button>
-                  <Button
-                    className={`${css['arrow']} white squared`}
-                    aria-label="View next slide"
-                    onClick={() => setNextScene(1)}
-                  >
-                    <ChevronRight />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-
           {props.renderCustom && props.renderCustom()}
         </div>
       </div>
+
       {props.navigation && (
         <div className={`${css['page-navigation-container']} section`}>
           <div className="expand-right">
             <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+              {/* <div className="flex justify-between"> */}
               <div id="page-navigation" className={`${css['page-navigation']}`}>
                 {props.navigation &&
                   props.navigation.map(link => {
@@ -276,6 +224,8 @@ export const PageHero = (props: PageHeroProps) => {
                       </Link>
                     )
                   })}
+                {/* </div> */}
+                {/* <>{props.renderNavigationRight && <div>{props.renderNavigationRight()}</div>}</> */}
               </div>
             </SwipeToScroll>
           </div>

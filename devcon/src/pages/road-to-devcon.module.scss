@@ -1,0 +1,27 @@
+.position-container {
+    background: linear-gradient(to right, #3E318A, #377AB9, #F794F3); 
+
+    [data-type="swipe-to-scroll-container"] {
+        height: 100% !important;
+    }
+}
+
+.page-hero {
+    color: white;
+    overflow: hidden;
+
+    [data-type="page-hero-content"] {
+        pointer-events: none;
+        height: 600px !important;
+        max-height: none !important;
+    }
+}
+
+.horizontal-container {
+    // background: linear-gradient(to right, #3E318A, #377AB9, #F794F3);
+    width: max-content;
+}
+
+.content {
+    --custom-fade-color: rgb(202, 202, 255);
+}
