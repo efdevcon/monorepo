@@ -24,6 +24,7 @@ import { Fireflies } from 'components/domain/index/hero/dc7/fireflies'
 import { Table, TableColumn } from 'components/common/table/Table'
 import { SortVariation } from 'components/common/sort'
 import { RoadToDevconGrants } from 'pages'
+import useKeyBinding from 'lib/useKeybinding'
 
 // https://codesandbox.io/p/sandbox/framer-motion-parallax-i9gwuc?file=%2Fsrc%2FApp.tsx%3A13%2C16-13%2C61&from-embed=
 
@@ -45,7 +46,7 @@ const useIntersectionRatio = (options?: any) => {
 
   useEffect(() => {
     const observerOptions = {
-      root: options.root || null,
+      root: document.getElementById(options.root) || null,
       rootMargin: options.rootMargin || '0px',
       threshold: options.threshold || new Array(101).fill(0).map((_, index) => index * 0.01),
     }
@@ -68,7 +69,7 @@ const useIntersectionRatio = (options?: any) => {
     }
   }, [options.root, options.rootMargin, options.threshold])
 
-  return [ref, intersectionRatio] as any
+  return { ref, intersectionRatio } as any
 }
 
 const items = [
@@ -227,38 +228,56 @@ const tableColumns: Array<TableColumn> = [
   },
 ]
 
+/*
+  const slide = (pageTitle: string, props: any) => {
+    const targetSlide = props.pageRefs.current[pageTitle]
+
+    if (!targetSlide) return
+
+    const offsetLeft = targetSlide.offsetLeft
+
+    props.pageTrackRef.current.style.transform = `translateX(-${offsetLeft}px)`
+    props.lastX.current = offsetLeft
+  }
+*/
+
 export default pageHOC(function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
   const pages = data.pages as PagesRoad_To_Devcon
   const grantsPages = grantsData.pages as PagesIndex
+  const controlsRef = useRef<any>()
 
-  const ref1 = useRef(null)
-  const ref2 = useRef(null)
-  const ref3 = useRef(null)
-  const ref4 = useRef(null)
+  const sections = [
+    useIntersectionRatio({
+      root: 'intersection-root',
+    }),
+    useIntersectionRatio({
+      root: 'intersection-root',
+    }),
+    useIntersectionRatio({
+      root: 'intersection-root',
+    }),
+    useIntersectionRatio({
+      root: 'intersection-root',
+    }),
+  ]
 
-  const [ref, intersectionRatio] = useIntersectionRatio({
-    threshold: [0, 0.25, 0.5, 0.75, 1],
-  })
+  const ratios = sections.map(section => parseFloat(section.intersectionRatio))
+  const highestRatio = Math.max(...ratios)
+  const currentSlide =
+    highestRatio === 0 ? -1 : sections.findIndex(section => section.intersectionRatio === highestRatio)
 
-  // console.log(intersectionRatio, 'intersection ratio')
+  const goToSection = (index: number) => {
+    if (!sections[index]) return
 
-  // const x = useParallax(intersectionRatio, 300)
+    const offsetLeft = sections[index].ref.current.offsetLeft
 
-  // const isInView1 = useInView(ref1, { root: ['-100px, '100px'] })
-  // const isInView2 = useInView(ref2)
-  // const isInView3 = useInView(ref3)
-  // const isInView4 = useInView(ref4)
+    controlsRef.current.setX(offsetLeft)
+  }
 
-  // const x = useParallax(isInView1, 200);
-
-  // console.log(isInView1, 'is in view1')
-  // console.log(isInView2, 'is in view2')
-  // console.log(isInView3, 'is in view3')
-  // console.log(isInView4, 'is in view4')
-
-  // console.log(x, 'x')
+  useKeyBinding(() => goToSection(currentSlide - 1), ['ArrowLeft'])
+  useKeyBinding(() => goToSection(currentSlide + 1), ['ArrowRight'])
 
   return (
     <Page theme={themes['teal']}>
@@ -271,8 +290,25 @@ export default pageHOC(function RoadToDevcon(props: any) {
             to: '#journey',
           },
           {
-            title: <span className="h-[0px]">••••</span>,
-            to: '#journey',
+            title: (
+              <span>
+                {sections.map((section, index) => {
+                  if (index === currentSlide) {
+                    return (
+                      <span key={index} onClick={() => goToSection(index)} className="text-red-500">
+                        •
+                      </span>
+                    )
+                  }
+
+                  return (
+                    <span key={index} onClick={() => goToSection(index)}>
+                      •
+                    </span>
+                  )
+                })}
+              </span>
+            ),
           },
           {
             title: 'Events',
@@ -291,13 +327,17 @@ export default pageHOC(function RoadToDevcon(props: any) {
         //   return 'hello'
         // }}
       >
-        <div className={`${css['position-container']} absolute top-0 right-0 left-0 bottom-0 z-0`}>
+        <div
+          className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
+          id="intersection-root"
+        >
+          {/* <div className="z-100 absolute top-0 bottom-0 w-[1000px] h-full bg-slate-900"></div> */}
           <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
             <Fireflies id="road" />
           </div>
-          <SwipeToScroll>
+          <SwipeToScroll slideControls={controlsRef}>
             <div className={`${css['horizontal-container']} flex no-wrap h-full w-content relative`}>
-              <div className="relative shrink-0 min-w-[100vw] h-full">
+              <div className="relative shrink-0 min-w-[100vw] h-full" ref={sections[0].ref}>
                 <div className="section h-full my-4">
                   <div className="z-10 flex no-wrap">
                     <div className="relative flex flex-col justify-center h-full max-w-[90vw]">
@@ -328,7 +368,6 @@ export default pageHOC(function RoadToDevcon(props: any) {
                       transition={{ duration: 1 }}
                     >
                       <Image
-                        ref={ref}
                         priority
                         src={DevaGlobe}
                         alt="Deva flying across globe"
@@ -338,7 +377,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
                   </div>
                 </div>
               </div>
-              <div className="relative h-full flex justify-center">
+              <div className="relative h-full flex justify-center" ref={sections[1].ref}>
                 <div className="flex no-wrap">
                   <div className="flex flex-col self-center justify-center h-full max-w-[40vw]">
                     <p className="text-slate-100 mt-8">
@@ -370,7 +409,6 @@ export default pageHOC(function RoadToDevcon(props: any) {
                     transition={{ duration: 1.2 }}
                   >
                     <Image
-                      ref={ref2}
                       src={GirlSchematics}
                       priority
                       alt="Girl holding Ethereum schematics"
@@ -379,7 +417,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
                   </motion.div>
                 </div>
               </div>
-              <div className="relative shrink-0 min-w-[80vw] h-full">
+              <div className="relative shrink-0 min-w-[80vw] h-full" ref={sections[2].ref}>
                 <div className="section h-full">
                   <div className="flex no-wrap">
                     <div className="flex flex-col justify-center h-full">
@@ -404,7 +442,6 @@ export default pageHOC(function RoadToDevcon(props: any) {
                       transition={{ duration: 1 }}
                     >
                       <Image
-                        ref={ref3}
                         src={BoyDoge}
                         priority
                         alt="Ethereum themed boy and dog"
@@ -414,7 +451,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
                   </div>
                 </div>
               </div>
-              <div className="shrink-0 min-w-[20vw] max-w-[600px] flex">
+              <div className="shrink-0 min-w-[20vw] max-w-[600px] flex" ref={sections[3].ref}>
                 <div className="section">
                   <div className="flex flex-col justify-center  h-full">
                     <p className="text-slate-100 mt-8">

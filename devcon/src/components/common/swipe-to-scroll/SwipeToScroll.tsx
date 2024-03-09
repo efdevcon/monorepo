@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useImperativeHandle } from 'react'
 import css from './sts.module.scss'
 import { useDrag } from 'react-use-gesture'
 import useDimensions from 'react-cool-dimensions'
@@ -12,6 +12,7 @@ type SwipeToScrollProps = {
     ['right']?: boolean
   }
   alwaysShowscrollIndicators?: boolean
+  slideControls?: any
 }
 
 const SwipeToScroll = (props: SwipeToScrollProps) => {
@@ -21,6 +22,9 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   const [isNativeScroll, setIsNativeScroll] = React.useState(true)
   const [scrollIndicatorClass, setScrollIndicatorClass] = React.useState('')
   const lastX = React.useRef(0)
+  const maxScrollRef = React.useRef<number>(0)
+
+  maxScrollRef.current = maxScroll
 
   // Whether or not to display a scroll indicator
   const syncScrollIndicators = React.useCallback(
@@ -115,6 +119,26 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
       window.removeEventListener('resize', resizeListener)
     }
   }, [reset])
+
+  if (props.slideControls) {
+    useImperativeHandle(
+      props.slideControls,
+      () => {
+        return {
+          lastX,
+          setX: (x: any) => {
+            const scrollContainer = el.current!
+
+            lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
+            console.log(lastX.current, 'next x')
+            scrollContainer.style.transform = `translateX(-${lastX.current}px)`
+            scrollContainer.style.transition = `all 0.15s ease-out`
+          },
+        }
+      },
+      []
+    )
+  }
 
   const bind = useDrag(({ down, delta }) => {
     const scrollContainer = el.current!

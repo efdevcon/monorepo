@@ -13,8 +13,8 @@ import ImageNew from 'next/image'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 
 type NavigationLink = {
-  to: string
-  title: string
+  to?: string
+  title: string | any
 }
 
 type CTALink = {
@@ -213,16 +213,20 @@ export const PageHero = (props: PageHeroProps) => {
               <div id="page-navigation" className={`${css['page-navigation']}`}>
                 {props.navigation &&
                   props.navigation.map(link => {
-                    return (
-                      <Link
-                        key={link.to + link.title}
-                        to={link.to}
-                        indicateExternal
-                        className="font-xs bold text-uppercase hover-underline"
-                      >
-                        {link.title}
-                      </Link>
-                    )
+                    if (link.to) {
+                      return (
+                        <Link
+                          key={link.to + link.title}
+                          to={link.to}
+                          indicateExternal
+                          className="font-xs bold text-uppercase hover-underline"
+                        >
+                          {link.title}
+                        </Link>
+                      )
+                    } else {
+                      return <div className="font-xs bold text-uppercase">{link.title}</div>
+                    }
                   })}
                 {/* </div> */}
                 {/* <>{props.renderNavigationRight && <div>{props.renderNavigationRight()}</div>}</> */}
