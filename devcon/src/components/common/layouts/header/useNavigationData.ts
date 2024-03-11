@@ -107,6 +107,11 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
+            title: 'Road to Devcon',
+            url: '/road-to-devcon',
+            type: 'page',
+          },
+          {
             title: 'DIPs',
             url: '/dips',
             type: 'page',

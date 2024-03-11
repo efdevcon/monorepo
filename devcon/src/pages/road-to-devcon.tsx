@@ -184,7 +184,7 @@ const tableColumns: Array<TableColumn> = [
   {
     title: 'Location',
     key: 'location',
-    className: css['index-column'],
+    className: css['location-column'],
     sort: SortVariation.basic,
     render: item => {
       return <p>Helloooo</p>
@@ -228,19 +228,6 @@ const tableColumns: Array<TableColumn> = [
   },
 ]
 
-/*
-  const slide = (pageTitle: string, props: any) => {
-    const targetSlide = props.pageRefs.current[pageTitle]
-
-    if (!targetSlide) return
-
-    const offsetLeft = targetSlide.offsetLeft
-
-    props.pageTrackRef.current.style.transform = `translateX(-${offsetLeft}px)`
-    props.lastX.current = offsetLeft
-  }
-*/
-
 export default pageHOC(function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
@@ -271,6 +258,8 @@ export default pageHOC(function RoadToDevcon(props: any) {
   const goToSection = (index: number) => {
     if (!sections[index]) return
 
+    window.scrollTo(0, 0)
+
     const offsetLeft = sections[index].ref.current.offsetLeft
 
     controlsRef.current.setX(offsetLeft)
@@ -280,147 +269,186 @@ export default pageHOC(function RoadToDevcon(props: any) {
   useKeyBinding(() => goToSection(currentSlide + 1), ['ArrowRight'])
 
   return (
-    <Page theme={themes['teal']}>
-      <PageHero
-        className={css['page-hero']}
-        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Road To Devcon' }]}
-        navigation={[
-          {
-            title: 'Journey',
-            to: '#journey',
-          },
-          {
-            title: (
-              <span>
-                {sections.map((section, index) => {
-                  if (index === currentSlide) {
+    <>
+      <div className="" id="journey"></div>
+      <Page theme={themes['teal']}>
+        <PageHero
+          className={css['page-hero']}
+          path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Road To Devcon' }]}
+          navigation={[
+            {
+              title: 'Journey',
+              to: '#journey',
+            },
+            {
+              title: (
+                <span>
+                  {sections.map((section, index) => {
+                    if (index === currentSlide) {
+                      return (
+                        <span key={index} onClick={() => goToSection(index)} className="text-red-500">
+                          •
+                        </span>
+                      )
+                    }
+
                     return (
-                      <span key={index} onClick={() => goToSection(index)} className="text-red-500">
+                      <span key={index} onClick={() => goToSection(index)}>
                         •
                       </span>
                     )
-                  }
-
-                  return (
-                    <span key={index} onClick={() => goToSection(index)}>
-                      •
-                    </span>
-                  )
-                })}
-              </span>
-            ),
-          },
-          {
-            title: 'Events',
-            to: '#events',
-          },
-          {
-            title: 'Grants',
-            to: '#grants',
-          },
-          {
-            title: 'Communities',
-            to: '#communities',
-          },
-        ]}
-        // renderNavigationRight={() => {
-        //   return 'hello'
-        // }}
-      >
-        <div
-          className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
-          id="intersection-root"
+                  })}
+                </span>
+              ),
+            },
+            {
+              title: 'Events',
+              to: '#events',
+            },
+            {
+              title: 'Grants',
+              to: '#grants',
+            },
+            // {
+            //   title: 'Communities',
+            //   to: '#communities',
+            // },
+          ]}
+          // renderNavigationRight={() => {
+          //   return 'hello'
+          // }}
         >
-          {/* <div className="z-100 absolute top-0 bottom-0 w-[1000px] h-full bg-slate-900"></div> */}
-          <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
-            <Fireflies id="road" />
-          </div>
-          <SwipeToScroll slideControls={controlsRef}>
-            <div className={`${css['horizontal-container']} flex no-wrap h-full w-content relative`}>
-              <div className="relative shrink-0 min-w-[100vw] h-full" ref={sections[0].ref}>
-                <div className="section h-full my-4">
-                  <div className="z-10 flex no-wrap">
-                    <div className="relative flex flex-col justify-center h-full max-w-[90vw]">
-                      <Image src={WonkaFont} alt="Colorful road to devcon header" className="z-1 max-w-[220px] mb-4" />
-                      <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[215px]" />
+          <div
+            className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
+            id="intersection-root"
+          >
+            {/* <div className="z-100 absolute top-0 bottom-0 w-[1000px] h-full bg-slate-900"></div> */}
+            <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
+              <Fireflies id="road" />
+            </div>
+            <SwipeToScroll slideControls={controlsRef}>
+              <div className={`${css['horizontal-container']} flex no-wrap h-full w-content relative`}>
+                <div className="relative shrink-0 min-w-[100vw] h-full" ref={sections[0].ref}>
+                  <div className="section h-full my-4">
+                    <div className="z-10 flex no-wrap">
+                      <div className="relative flex flex-col justify-center h-full max-w-[90vw]">
+                        <Image
+                          src={WonkaFont}
+                          alt="Colorful road to devcon header"
+                          className="z-1 max-w-[220px] mb-4"
+                        />
+                        <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[215px]" />
+                        <p className="text-slate-100 mt-8">
+                          Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
+                          Ethereum's vast universe.
+                        </p>
+                        <p className="text-slate-100 mt-8">
+                          Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find
+                          their tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of
+                          mavericks, just like you.
+                        </p>
+
+                        <p className="text-slate-400 text-sm mt-4">
+                          DRAG to embark on the journey on the road to devcon →{' '}
+                        </p>
+
+                        <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
+                      </div>
+                      <motion.div
+                        className="flex"
+                        // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                      >
+                        <Image
+                          priority
+                          src={DevaGlobe}
+                          alt="Deva flying across globe"
+                          className="object-contain object-bottom min-h-[70%]"
+                        />
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+                <div className="relative h-full flex justify-center" ref={sections[1].ref}>
+                  <div className="flex no-wrap">
+                    <div className="flex flex-col self-center justify-center h-full max-w-[40vw]">
                       <p className="text-slate-100 mt-8">
-                        Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
-                        Ethereum's vast universe.
+                        You, who resonate with the tales of coders who hack with relentless passion, community leaders
+                        who envisioned radical unity, artists who paint their dreams with the colors of the wild
+                        unknown, and economists who slice through the new-age economy.
                       </p>
                       <p className="text-slate-100 mt-8">
-                        Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their
-                        tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks,
-                        just like you.
+                        But these adventurers often feel held back by too much control that stifles their creativity and
+                        independence. They long for freedom, for a place where they can fully express their values,
+                        where innovation isn't just a buzzword but the very essence. Each of them in their own way, is
+                        itching for a revolution, for a platform that can transform their wild visions into reality.
                       </p>
 
-                      <p className="text-slate-400 text-sm mt-4">
-                        DRAG to embark on the journey on the road to devcon →{' '}
+                      <p className="text-slate-100 mt-4">
+                        {' '}
+                        That's where Ethereum comes in, a network that promises independence, no central control, and
+                        unbridled innovation. But let's face it, diving into Ethereum's values and technological vision
+                        is like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of
+                        technical jargon and knowledge gaps.{' '}
                       </p>
-
-                      <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
                     </div>
                     <motion.div
-                      className="flex"
+                      className="flex max-w-[65vw] self-end"
                       // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
                       initial={{ opacity: 0, x: 100 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1 }}
+                      transition={{ duration: 1.2 }}
                     >
                       <Image
+                        src={GirlSchematics}
                         priority
-                        src={DevaGlobe}
-                        alt="Deva flying across globe"
-                        className="object-contain object-bottom min-h-[70%]"
+                        alt="Girl holding Ethereum schematics"
+                        className="object-contain object-bottom h-full"
                       />
                     </motion.div>
                   </div>
                 </div>
-              </div>
-              <div className="relative h-full flex justify-center" ref={sections[1].ref}>
-                <div className="flex no-wrap">
-                  <div className="flex flex-col self-center justify-center h-full max-w-[40vw]">
-                    <p className="text-slate-100 mt-8">
-                      You, who resonate with the tales of coders who hack with relentless passion, community leaders who
-                      envisioned radical unity, artists who paint their dreams with the colors of the wild unknown, and
-                      economists who slice through the new-age economy.
-                    </p>
-                    <p className="text-slate-100 mt-8">
-                      But these adventurers often feel held back by too much control that stifles their creativity and
-                      independence. They long for freedom, for a place where they can fully express their values, where
-                      innovation isn't just a buzzword but the very essence. Each of them in their own way, is itching
-                      for a revolution, for a platform that can transform their wild visions into reality.
-                    </p>
+                <div className="relative shrink-0 min-w-[80vw] h-full" ref={sections[2].ref}>
+                  <div className="section h-full">
+                    <div className="flex no-wrap">
+                      <div className="flex flex-col justify-center h-full">
+                        <p className="text-slate-100 mt-8">
+                          Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
+                          Ethereum's vast universe.
+                        </p>
+                        <p className="text-slate-100 mt-8">
+                          Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find
+                          their tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of
+                          mavericks, just like you.
+                        </p>
 
-                    <p className="text-slate-100 mt-4">
-                      {' '}
-                      That's where Ethereum comes in, a network that promises independence, no central control, and
-                      unbridled innovation. But let's face it, diving into Ethereum's values and technological vision is
-                      like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of technical
-                      jargon and knowledge gaps.{' '}
-                    </p>
+                        <p className="text-slate-100 mt-4">DRAG to embark on the journey on the road to devcon → </p>
+                      </div>
+                      <motion.div
+                        className="flex"
+                        // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                      >
+                        <Image
+                          src={BoyDoge}
+                          priority
+                          alt="Ethereum themed boy and dog"
+                          className="object-contain object-bottom h-full"
+                        />
+                      </motion.div>
+                    </div>
                   </div>
-                  <motion.div
-                    className="flex max-w-[65vw] self-end"
-                    // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
-                    initial={{ opacity: 0, x: 100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2 }}
-                  >
-                    <Image
-                      src={GirlSchematics}
-                      priority
-                      alt="Girl holding Ethereum schematics"
-                      className="object-contain object-bottom h-full"
-                    />
-                  </motion.div>
                 </div>
-              </div>
-              <div className="relative shrink-0 min-w-[80vw] h-full" ref={sections[2].ref}>
-                <div className="section h-full">
-                  <div className="flex no-wrap">
-                    <div className="flex flex-col justify-center h-full">
+                <div className="shrink-0 min-w-[20vw] max-w-[600px] flex" ref={sections[3].ref}>
+                  <div className="section">
+                    <div className="flex flex-col justify-center  h-full">
                       <p className="text-slate-100 mt-8">
                         Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
                         Ethereum's vast universe.
@@ -433,72 +461,40 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
                       <p className="text-slate-100 mt-4">DRAG to embark on the journey on the road to devcon → </p>
                     </div>
-                    <motion.div
-                      className="flex"
-                      // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
-                      initial={{ opacity: 0, x: 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1 }}
-                    >
-                      <Image
-                        src={BoyDoge}
-                        priority
-                        alt="Ethereum themed boy and dog"
-                        className="object-contain object-bottom h-full"
-                      />
-                    </motion.div>
                   </div>
                 </div>
               </div>
-              <div className="shrink-0 min-w-[20vw] max-w-[600px] flex" ref={sections[3].ref}>
-                <div className="section">
-                  <div className="flex flex-col justify-center  h-full">
-                    <p className="text-slate-100 mt-8">
-                      Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
-                      Ethereum's vast universe.
-                    </p>
-                    <p className="text-slate-100 mt-8">
-                      Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their
-                      tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks,
-                      just like you.
-                    </p>
+            </SwipeToScroll>
+          </div>
+        </PageHero>
 
-                    <p className="text-slate-100 mt-4">DRAG to embark on the journey on the road to devcon → </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwipeToScroll>
+        <div className={`section ${css['content']}`} id="events">
+          <div className="flex justify-between items-center mb-6">
+            <p className="h2">RTD Events</p>
+            <motion.input
+              className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
+              type="email"
+              name="email"
+              whileFocus={{ boxShadow: '0px 0px 4px 0px black' }}
+              placeholder="Search"
+              // {...emailField}
+            />
+          </div>
+
+          <div className="flex border-b border-solid border-[#b9b9b9]">
+            <p className="cursor-pointer hover:font-bold px-4 py-2 font-bold">All</p>
+            <p className="cursor-pointer hover:font-bold px-4 py-2">Meetups</p>
+            <p className="cursor-pointer hover:font-bold px-4 py-2">Past Events</p>
+          </div>
+
+          <Table itemKey="number" items={items} columns={tableColumns} />
+
+          <div className="" id="grants">
+            <RoadToDevconGrants pages={grantsPages} />
+          </div>
         </div>
-      </PageHero>
-
-      <div className={`section ${css['content']}`}>
-        <div className="flex justify-between items-center mb-6">
-          <p className="h2">RTD Events</p>
-          <motion.input
-            className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
-            type="email"
-            name="email"
-            whileFocus={{ boxShadow: '0px 0px 4px 0px black' }}
-            placeholder="Search"
-            // {...emailField}
-          />
-        </div>
-
-        <div className="flex border-b border-solid border-[#b9b9b9]">
-          <p className="cursor-pointer hover:font-bold px-4 py-2 font-bold">All</p>
-          <p className="cursor-pointer hover:font-bold px-4 py-2">Meetups</p>
-          <p className="cursor-pointer hover:font-bold px-4 py-2">Past Events</p>
-        </div>
-
-        <Table itemKey="number" items={items} columns={tableColumns} />
-
-        <div className="">
-          <RoadToDevconGrants pages={grantsPages} />
-        </div>
-      </div>
-    </Page>
+      </Page>
+    </>
   )
 })
 
