@@ -23,6 +23,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   const [scrollIndicatorClass, setScrollIndicatorClass] = React.useState('')
   const lastX = React.useRef(0)
   const maxScrollRef = React.useRef<number>(0)
+  const onXChangeCallback = React.useRef<any>(null)
 
   maxScrollRef.current = maxScroll
 
@@ -87,6 +88,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     if (el.current) {
       const scrollContainer = el.current
       lastX.current = 0
+      if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
       scrollContainer.style.transform = `translateX(0px)`
       syncScrollIndicators(scrollContainer)
     }
@@ -121,18 +123,28 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   }, [reset])
 
   if (props.slideControls) {
+    // eslint-disable-next-line
     useImperativeHandle(
       props.slideControls,
       () => {
         return {
           lastX,
+          maxScrollRef,
           setX: (x: any) => {
             const scrollContainer = el.current!
 
             lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
-            console.log(lastX.current, 'next x')
             scrollContainer.style.transform = `translateX(-${lastX.current}px)`
-            scrollContainer.style.transition = `all 0.15s ease-out`
+            scrollContainer.style.transition = `all 0.25s ease-out`
+
+            setTimeout(() => {
+              scrollContainer.style.transition = `none`
+            }, 500)
+
+            if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
+          },
+          subscribeX: (callback: any) => {
+            onXChangeCallback.current = callback
           },
         }
       },
@@ -144,6 +156,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     const scrollContainer = el.current!
 
     lastX.current = Math.min(Math.max(0, lastX.current - delta[0]), maxScroll)
+    if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`
 
     if (down) {

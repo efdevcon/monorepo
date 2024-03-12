@@ -25,6 +25,11 @@ import { Table, TableColumn } from 'components/common/table/Table'
 import { SortVariation } from 'components/common/sort'
 import { RoadToDevconGrants } from 'pages'
 import useKeyBinding from 'lib/useKeybinding'
+import ArrowLeftIcon from 'assets/icons/box_arrow_left.svg'
+import ArrowRightIcon from 'assets/icons/box_arrow_right.svg'
+import CircleArrowRightIcon from 'assets/icons/circle_arrow_right.svg'
+import { Link } from 'components/common/link'
+import { Button } from 'lib/components/button'
 
 // https://codesandbox.io/p/sandbox/framer-motion-parallax-i9gwuc?file=%2Fsrc%2FApp.tsx%3A13%2C16-13%2C61&from-embed=
 
@@ -74,100 +79,112 @@ const useIntersectionRatio = (options?: any) => {
 
 const items = [
   {
-    date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    _key: '1',
+    date: 'Sort testaaa',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '2',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '3',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '4',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '5',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '6',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '7',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '8',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '9',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '10',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '11',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
   {
+    _key: '12',
     date: '5th feb',
-    location: '5th feb',
-    event: '5th feb',
-    organizer: '5th feb',
-    social: '5th feb',
-    website: '5th feb',
+    location: '6th feb',
+    event: '7th feb',
+    organizer: '8th feb',
+    social: '9th feb',
+    website: '10th feb',
   },
 ]
 
@@ -175,58 +192,228 @@ const tableColumns: Array<TableColumn> = [
   {
     title: 'Date',
     key: 'date',
-    className: css['index-column'],
     sort: SortVariation.basic,
     render: item => {
-      return <p>Helloooo</p>
+      return <p>{item.date}</p>
     },
   },
   {
     title: 'Location',
     key: 'location',
-    className: css['location-column'],
+    className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p>Helloooo</p>
+      return <p>{item.location}</p>
     },
   },
   {
     title: 'Event',
     key: 'event',
-    className: css['name-column'],
     sort: SortVariation.basic,
     render: item => {
-      return <p>Hellooo2</p>
+      return <p>{item.event}</p>
     },
   },
   {
     title: 'Organizer',
     key: 'organizer',
-    className: css['name-column'],
+    className: '!hidden lg:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p>Hellooo2</p>
+      return <p>{item.organizer}</p>
     },
   },
   {
     title: 'Social',
     key: 'social',
-    className: css['name-column'],
+    className: '!hidden lg:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p>Hellooo2</p>
+      return <p>{item.social}</p>
     },
   },
   {
     title: 'Website',
     key: 'website',
-    className: css['name-column'],
     sort: SortVariation.basic,
     render: item => {
-      return <p>Hellooo2</p>
+      return <p>{item.website}</p>
     },
   },
 ]
+
+const Hero = (props: any) => {
+  const [showDragIndicator, setShowDragIndicator] = React.useState(true)
+  const { controlsRef, sections } = props
+
+  useEffect(() => {
+    controlsRef.current.subscribeX((x: any) => {
+      if (x > 100) {
+        setShowDragIndicator(false)
+      } else {
+        setShowDragIndicator(true)
+      }
+    })
+  }, [controlsRef.current])
+
+  return (
+    <div
+      className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
+      id="intersection-root"
+    >
+      <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
+        <Fireflies id="road" />
+      </div>
+      <SwipeToScroll slideControls={controlsRef}>
+        <div className={`${css['horizontal-container']} flex no-wrap h-full w-content relative`}>
+          <div className="relative shrink-0 min-w-[100vw] h-full" ref={sections[0].ref}>
+            <div className="section h-full my-4">
+              <div className="flex no-wrap relative">
+                <motion.div
+                  className="absolute right-0 top-0"
+                  animate={{ opacity: showDragIndicator ? '100%' : '0%', x: showDragIndicator ? '0%' : '-10%' }}
+                  transition={{ bounceDamping: 100, duration: 0.8, type: 'tween' }}
+                >
+                  <div className={`${css['drag-to-continue']} bg-slate-700 text-sm rounded shadow-lg py-2 px-4`}>
+                    <p className="pr-1">
+                      <span>Drag or use arrow keys to continue</span>
+                      <span>Swipe to continue</span>
+                    </p>
+                    <CircleArrowRightIcon className={`icon ${css['circle-arrow-right-icon']}`} />
+                  </div>
+                </motion.div>
+                <div className="z-10 relative left-0 flex flex-col justify-center h-full max-w-[90vw]">
+                  <Image src={WonkaFont} alt="Colorful road to devcon header" className="z-1 max-w-[220px] mb-4" />
+                  <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[215px]" />
+                  <p className="text-slate-100 mt-8">
+                    Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of Ethereum's
+                    vast universe.
+                  </p>
+                  <p className="text-slate-100 mt-8">
+                    Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their
+                    tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks, just
+                    like you.
+                  </p>
+
+                  <p className="text-slate-400 text-sm mt-4">DRAG to embark on the journey on the road to devcon → </p>
+
+                  <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
+                </div>
+                <motion.div
+                  className={`flex relative z-1 ${css['mask-image']}`}
+                  initial={{ x: 50 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1 }}
+                >
+                  <Image
+                    priority
+                    src={DevaGlobe}
+                    alt="Deva flying across globe"
+                    className="object-contain object-bottom min-h-[70%]"
+                  />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center h-full w-[600px] max-w-[100vw]" ref={sections[1].ref}>
+            <p className="text-slate-100 h2 ">Journey on the Road to Devcon</p>
+            <p className="text-slate-100 mt-6">
+              You, who resonate with the tales of coders who hack with relentless passion, community leaders who
+              envisioned radical unity, artists who paint their dreams with the colors of the wild unknown, and
+              economists who slice through the new-age economy. But these adventurers often feel held back by too much
+              control that stifles their creativity and independence. They long for freedom, for a place where they can
+              fully express their values, where innovation isn't just a buzzword but the very essence. Each of them in
+              their own way, is itching for a revolution, for a platform that can transform their wild visions into
+              reality.
+            </p>
+
+            <p className="text-slate-100 mt-4 text-sm">
+              That's where Ethereum comes in, a network that promises independence, no central control, and unbridled
+              innovation. But let's face it, diving into{' '}
+              <Link
+                indicateExternal
+                to="https://vitalik.eth.limo/general/2023/12/28/cypherpunk.html"
+                className="text-underline"
+              >
+                Ethereum's values and technological vision
+              </Link>{' '}
+              is like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of technical
+              jargon and knowledge gaps.{' '}
+            </p>
+          </div>
+
+          <motion.div
+            className="flex h-full relative max-w-[60vw] ml-4 mr-20"
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <Image
+              src={GirlSchematics}
+              priority
+              alt="Girl holding Ethereum schematics"
+              className="object-contain object-bottom h-full"
+            />
+          </motion.div>
+
+          <div
+            className="flex flex-col items-center justify-center h-full w-[600px] max-w-[100vw]"
+            ref={sections[2].ref}
+          >
+            <p className="text-slate-100">
+              Here's where my role begins. It&apos;s my mission to lead you down the Road to Devcon, the ultimate
+              gathering of Ethereum's wild hearts and passionate community. At Devcon, you are welcomed by a tribe that
+              nurtures your growth. Through fiery dialogues, hands-on workshops, and interactions with our peers,
+              together we untangle Ethereum's mysteries, forming bonds and friendships that stand the test of time.
+            </p>
+            <p className="text-slate-100 mt-8">
+              This year, the Road to Devcon winds through the vibrant landscapes of Southeast Asia, a region pulsating
+              with the energy of innovation and change. This road is more than just a path leading to a destination,
+              it's a journey of discovery, a melting pot of diverse minds. It's here that new explorers like you are
+              shaping the road together, organizing events where we delve deep to untangle Ethereum's mysteries.
+            </p>
+          </div>
+
+          <motion.div
+            className="flex h-full relative max-w-[60vw] ml-4 mr-20"
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <Image
+              src={BoyDoge}
+              priority
+              alt="Ethereum themed boy and dog"
+              className="object-contain object-bottom h-full"
+            />
+          </motion.div>
+
+          <div
+            className="flex flex-col items-center justify-center h-full w-[600px] max-w-[100vw] mr-20"
+            ref={sections[3].ref}
+          >
+            <p className="text-slate-100">
+              So, to all you curious spirits out there, I say: Embrace your wild side and join us on the Road to Devcon.
+              Together, we're shaping a bold and empowered future. This is your call to adventure, to be part of
+              something bigger, something wilder. Let's make this journey an opportunity to tap into your untamed
+              potential to shape your decentralized and empowered future.
+            </p>
+
+            <Link to="https://esp.ethereum.foundation/devcon-grants">
+              <Button fat color="purple-1" className="mt-8" fill>
+                Learn about RTD Grants →
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </SwipeToScroll>
+    </div>
+  )
+}
 
 export default pageHOC(function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
@@ -260,9 +447,17 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
     window.scrollTo(0, 0)
 
+    // We need to know how far the element is from the side of the screen to align with the rest of the content
+    // The calculations are quite complicated so we'll left curve it and look at a piece of content that respects the layout and match its padding to the side
+    const padding = (() => {
+      const randomBoundedElement = document.getElementById('dont-remove-me-the-hero-needs-me')
+
+      return randomBoundedElement?.offsetLeft || 0
+    })()
+
     const offsetLeft = sections[index].ref.current.offsetLeft
 
-    controlsRef.current.setX(offsetLeft)
+    controlsRef.current.setX(offsetLeft - padding)
   }
 
   useKeyBinding(() => goToSection(currentSlide - 1), ['ArrowLeft'])
@@ -281,19 +476,20 @@ export default pageHOC(function RoadToDevcon(props: any) {
               to: '#journey',
             },
             {
+              key: 'journey-indicator',
               title: (
                 <span>
                   {sections.map((section, index) => {
                     if (index === currentSlide) {
                       return (
-                        <span key={index} onClick={() => goToSection(index)} className="text-red-500">
+                        <span key={index} onClick={() => goToSection(index)} className="cursor-pointer text-red-500">
                           •
                         </span>
                       )
                     }
 
                     return (
-                      <span key={index} onClick={() => goToSection(index)}>
+                      <span className="cursor-pointer" key={index} onClick={() => goToSection(index)}>
                         •
                       </span>
                     )
@@ -314,162 +510,12 @@ export default pageHOC(function RoadToDevcon(props: any) {
             //   to: '#communities',
             // },
           ]}
-          // renderNavigationRight={() => {
-          //   return 'hello'
-          // }}
         >
-          <div
-            className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
-            id="intersection-root"
-          >
-            {/* <div className="z-100 absolute top-0 bottom-0 w-[1000px] h-full bg-slate-900"></div> */}
-            <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
-              <Fireflies id="road" />
-            </div>
-            <SwipeToScroll slideControls={controlsRef}>
-              <div className={`${css['horizontal-container']} flex no-wrap h-full w-content relative`}>
-                <div className="relative shrink-0 min-w-[100vw] h-full" ref={sections[0].ref}>
-                  <div className="section h-full my-4">
-                    <div className="z-10 flex no-wrap">
-                      <div className="relative flex flex-col justify-center h-full max-w-[90vw]">
-                        <Image
-                          src={WonkaFont}
-                          alt="Colorful road to devcon header"
-                          className="z-1 max-w-[220px] mb-4"
-                        />
-                        <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[215px]" />
-                        <p className="text-slate-100 mt-8">
-                          Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
-                          Ethereum's vast universe.
-                        </p>
-                        <p className="text-slate-100 mt-8">
-                          Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find
-                          their tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of
-                          mavericks, just like you.
-                        </p>
-
-                        <p className="text-slate-400 text-sm mt-4">
-                          DRAG to embark on the journey on the road to devcon →{' '}
-                        </p>
-
-                        <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
-                      </div>
-                      <motion.div
-                        className="flex"
-                        // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                      >
-                        <Image
-                          priority
-                          src={DevaGlobe}
-                          alt="Deva flying across globe"
-                          className="object-contain object-bottom min-h-[70%]"
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative h-full flex justify-center" ref={sections[1].ref}>
-                  <div className="flex no-wrap">
-                    <div className="flex flex-col self-center justify-center h-full max-w-[40vw]">
-                      <p className="text-slate-100 mt-8">
-                        You, who resonate with the tales of coders who hack with relentless passion, community leaders
-                        who envisioned radical unity, artists who paint their dreams with the colors of the wild
-                        unknown, and economists who slice through the new-age economy.
-                      </p>
-                      <p className="text-slate-100 mt-8">
-                        But these adventurers often feel held back by too much control that stifles their creativity and
-                        independence. They long for freedom, for a place where they can fully express their values,
-                        where innovation isn't just a buzzword but the very essence. Each of them in their own way, is
-                        itching for a revolution, for a platform that can transform their wild visions into reality.
-                      </p>
-
-                      <p className="text-slate-100 mt-4">
-                        {' '}
-                        That's where Ethereum comes in, a network that promises independence, no central control, and
-                        unbridled innovation. But let's face it, diving into Ethereum's values and technological vision
-                        is like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of
-                        technical jargon and knowledge gaps.{' '}
-                      </p>
-                    </div>
-                    <motion.div
-                      className="flex max-w-[65vw] self-end"
-                      // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
-                      initial={{ opacity: 0, x: 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2 }}
-                    >
-                      <Image
-                        src={GirlSchematics}
-                        priority
-                        alt="Girl holding Ethereum schematics"
-                        className="object-contain object-bottom h-full"
-                      />
-                    </motion.div>
-                  </div>
-                </div>
-                <div className="relative shrink-0 min-w-[80vw] h-full" ref={sections[2].ref}>
-                  <div className="section h-full">
-                    <div className="flex no-wrap">
-                      <div className="flex flex-col justify-center h-full">
-                        <p className="text-slate-100 mt-8">
-                          Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
-                          Ethereum's vast universe.
-                        </p>
-                        <p className="text-slate-100 mt-8">
-                          Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find
-                          their tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of
-                          mavericks, just like you.
-                        </p>
-
-                        <p className="text-slate-100 mt-4">DRAG to embark on the journey on the road to devcon → </p>
-                      </div>
-                      <motion.div
-                        className="flex"
-                        // style={{ transform: `translateX(${intersectionRatio * 300}px)` }}
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                      >
-                        <Image
-                          src={BoyDoge}
-                          priority
-                          alt="Ethereum themed boy and dog"
-                          className="object-contain object-bottom h-full"
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                </div>
-                <div className="shrink-0 min-w-[20vw] max-w-[600px] flex" ref={sections[3].ref}>
-                  <div className="section">
-                    <div className="flex flex-col justify-center  h-full">
-                      <p className="text-slate-100 mt-8">
-                        Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of
-                        Ethereum's vast universe.
-                      </p>
-                      <p className="text-slate-100 mt-8">
-                        Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their
-                        tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks,
-                        just like you.
-                      </p>
-
-                      <p className="text-slate-100 mt-4">DRAG to embark on the journey on the road to devcon → </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SwipeToScroll>
-          </div>
+          <Hero controlsRef={controlsRef} sections={sections} />
         </PageHero>
 
         <div className={`section ${css['content']}`} id="events">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-6" id="dont-remove-me-the-hero-needs-me">
             <p className="h2">RTD Events</p>
             <motion.input
               className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
@@ -482,14 +528,14 @@ export default pageHOC(function RoadToDevcon(props: any) {
           </div>
 
           <div className="flex border-b border-solid border-[#b9b9b9]">
-            <p className="cursor-pointer hover:font-bold px-4 py-2 font-bold">All</p>
-            <p className="cursor-pointer hover:font-bold px-4 py-2">Meetups</p>
-            <p className="cursor-pointer hover:font-bold px-4 py-2">Past Events</p>
+            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2 font-bold">All</p>
+            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2">Meetups</p>
+            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2">Past Events</p>
           </div>
 
-          <Table itemKey="number" items={items} columns={tableColumns} />
+          <Table itemKey="_key" items={items} columns={tableColumns} />
 
-          <div className="" id="grants">
+          <div className="mt-4 border-solid" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
           </div>
         </div>

@@ -14,6 +14,7 @@ import SwipeToScroll from 'components/common/swipe-to-scroll'
 
 type NavigationLink = {
   to?: string
+  key?: string
   title: string | any
 }
 
@@ -225,7 +226,11 @@ export const PageHero = (props: PageHeroProps) => {
                         </Link>
                       )
                     } else {
-                      return <div className="font-xs bold text-uppercase">{link.title}</div>
+                      return (
+                        <div className="font-xs bold text-uppercase" key={link.key}>
+                          {link.title}
+                        </div>
+                      )
                     }
                   })}
                 {/* </div> */}
