@@ -57,7 +57,7 @@ export const ModalContent = (props: ModalContentProps) => {
   );
 };
 
-export const Modal = (props: ModalProps): React.ReactNode => {
+export const Modal = (props: ModalProps): any => {
   if (!props.open) return <></>;
 
   let className = css["modal"];
