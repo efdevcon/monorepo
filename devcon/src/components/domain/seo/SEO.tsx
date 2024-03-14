@@ -34,8 +34,7 @@ export function SEO(props: SEOProps) {
   }
 
   const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
-  const globalDescription =
-    'Devcon is an intensive introduction for new Ethereum explorers, a global family reunion for those already a part of our ecosystem, and a source of energy and creativity for all.'
+  const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
   const globalImage = 'https://www.devcon.org/assets/images/dc7-og.png'
   const canonical = props.canonicalUrl || ''
 
