@@ -88,23 +88,29 @@ export default pageHOC(function Index(props: any) {
   const [video, setVideo] = React.useState(videos[0])
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
 
-  const cal = generateCalendarExport({
-    timezone: 'Asia/Bangkok',
-    PRODID: 'devcon.org',
-    icsFileName: 'Devcon 7',
-    entries: [
-      {
-        start: moment.utc('2024-11-12T08:00:00'),
-        end: moment.utc('2024-11-16T00:00:00'),
-        description: 'Devcon - The Ethereum Developer Conference',
-        title: 'Devcon 7',
-        location: {
-          url: 'https://devcon.org',
-          text: 'QNSCC — Queen Sirikit National Convention Center',
-        },
-      },
-    ],
-  })
+  const [cal, setCal] = React.useState<any>(null)
+
+  React.useEffect(() => {
+    setCal(
+      generateCalendarExport({
+        timezone: 'Asia/Bangkok',
+        PRODID: 'devcon.org',
+        icsFileName: 'Devcon 7',
+        entries: [
+          {
+            start: moment.utc('2024-11-12T08:00:00'),
+            end: moment.utc('2024-11-16T00:00:00'),
+            description: 'Devcon - The Ethereum Developer Conference',
+            title: 'Devcon 7',
+            location: {
+              url: 'https://devcon.org',
+              text: 'QNSCC — Queen Sirikit National Convention Center',
+            },
+          },
+        ],
+      })
+    )
+  }, [])
 
   return (
     <div className={`${css['layout-default']} ${themes['index']}`}>
@@ -155,36 +161,38 @@ export default pageHOC(function Index(props: any) {
                   <AddCalendarIcon className="icon" />
                 </Button>
 
-                <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
-                  <ModalContent
-                    className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
-                    close={() => setCalendarModalOpen(false)}
-                  >
-                    <div className="relative">
-                      <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
-                      <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
-                    </div>
-                    <div className="p-4">
-                      <p className="font-bold">Add Devcon to your calendar!</p>
-
-                      <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
-
-                      <div className="flex mt-4 flex-row gap-4 items-center">
-                        <a {...cal.icsAttributes}>
-                          <Button fat color="purple-1">
-                            <span className="mr-2">Download (.ics)</span>
-                            <AddCalendarIcon className="icon" />
-                          </Button>
-                        </a>
-                        <Link to={cal.googleCalUrl} className="h-full">
-                          <Button fat color="purple-1" fill>
-                            Google Calendar
-                          </Button>
-                        </Link>
+                {cal && (
+                  <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
+                    <ModalContent
+                      className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
+                      close={() => setCalendarModalOpen(false)}
+                    >
+                      <div className="relative">
+                        <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
+                        <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
                       </div>
-                    </div>
-                  </ModalContent>
-                </Modal>
+                      <div className="p-4">
+                        <p className="font-bold">Add Devcon to your calendar!</p>
+
+                        <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
+
+                        <div className="flex mt-4 flex-row gap-4 items-center">
+                          <a {...cal.icsAttributes}>
+                            <Button fat color="purple-1">
+                              <span className="mr-2">Download (.ics)</span>
+                              <AddCalendarIcon className="icon" />
+                            </Button>
+                          </a>
+                          <Link to={cal.googleCalUrl} className="h-full">
+                            <Button fat color="purple-1" fill>
+                              Google Calendar
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </ModalContent>
+                  </Modal>
+                )}
               </div>
             </div>
           </div>
