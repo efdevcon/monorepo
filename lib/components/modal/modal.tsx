@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 type ModalContentProps = {
   className?: string;
   close?: () => void;
-  children: React.ReactNode;
+  children: any;
   noBodyScroll?: boolean;
   [key: string]: any;
 };
@@ -16,7 +16,7 @@ type ModalProps = {
   open: boolean;
   className?: string;
   close: () => void;
-  children: React.ReactNode;
+  children: any;
   [key: string]: any;
 };
 
