@@ -98,8 +98,8 @@ export default pageHOC(function Index(props: any) {
         icsFileName: 'Devcon 7',
         entries: [
           {
-            start: moment.utc('2024-11-12T08:00:00'),
-            end: moment.utc('2024-11-16T00:00:00'),
+            start: moment.utc('2024-11-12'),
+            end: moment.utc('2024-11-16'),
             description: 'Devcon - The Ethereum Developer Conference',
             title: 'Devcon 7',
             location: {
