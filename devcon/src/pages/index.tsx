@@ -35,6 +35,12 @@ import { Button } from 'lib/components/button'
 import { Link } from 'components/common/link'
 import RichText from 'lib/components/tina-cms/RichText'
 import TextMorph from 'lib/components/text-morph/TextMorph'
+import BangkokVenue from 'assets/images/dc-7/venue.png'
+import AddCalendarIcon from 'assets/icons/calendar.svg'
+import { generateCalendarExport } from 'lib/components/add-to-calendar'
+import { Modal, ModalContent } from 'lib/components/modal'
+import CalendarExport from 'lib/assets/images/modal-export.png'
+import moment from 'moment'
 
 const videos = [
   {
@@ -80,6 +86,25 @@ export default pageHOC(function Index(props: any) {
   const scrollRef = useRef<any>(null)
   const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
   const [video, setVideo] = React.useState(videos[0])
+  const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
+
+  const cal = generateCalendarExport({
+    timezone: 'Asia/Bangkok',
+    PRODID: 'devcon.org',
+    icsFileName: 'Devcon 7',
+    entries: [
+      {
+        start: moment.utc('2024-11-12T08:00:00'),
+        end: moment.utc('2024-11-16T00:00:00'),
+        description: 'Devcon - The Ethereum Developer Conference',
+        title: 'Devcon 7',
+        location: {
+          url: 'https://devcon.org',
+          text: 'QNSCC — Queen Sirikit National Convention Center',
+        },
+      },
+    ],
+  })
 
   return (
     <div className={`${css['layout-default']} ${themes['index']}`}>
@@ -88,38 +113,121 @@ export default pageHOC(function Index(props: any) {
 
       <div className="bg-white z-10 overflow-hidden w-full">
         <div className="section">
-          <div className="flex-col lg:flex-row flex mt-8 mb-8 pb-8 gap-8 border-bottom items-center">
-            <div className="lg:basis-[1000px] lg:shrink">
+          <div className="flex flex-col justify-center lg:flex-row gap-8 border-bottom mt-8 mb-8 pb-8">
+            <div className="grow">
               <TitleDevcon className="hidden lg:block" />
-              <div className="mt-6">
+              <div className="lg:mt-6">
                 <RichText content={pages.section1?.body}></RichText>
               </div>
             </div>
-            <div className="flex flex-col grow shrink-0 items-center justify-center">
-              <div className="flex flex-col justify-center items-center lg:items-start lg:justify-start">
-                <ImageNew
-                  src={LogoFlowers}
-                  alt="Devcon 7 Logo"
-                  className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
-                />
-
-                <div className="mt-4 lg:mt-4 flex flex-col justify-start items-start w-full">
-                  <TitleDevcon className="hidden lg:block max-w-[124px] lg:max-w-auto lg:w-[124px]" />
-                  {/* <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p> */}
-                  <TextMorph texts={['เอเชียตะวันออกเฉียงใต้', 'SOUTHEAST ASIA']} />
+            <div className="flex w-full flex-col grow shrink-0 justify-center max-w-[420px] lg:grow-0">
+              <div className="flex justify-between w-full gap-8">
+                <ImageNew src={BangkokVenue} alt="Devcon 7 Bangkok VEnue" className="max-w-[162px]" />
+                <p className="text-lg font-secondary text-[#8B6BBB] bold">
+                  QNSCC —<br className="hidden lg:inline-block" /> Queen Sirikit National{' '}
+                  <br className="hidden lg:inline-block" />
+                  Convention Center
+                </p>
+              </div>
+              <p className="mt-4 mb-5">
+                60 Queen Sirikit National Convention Center, Ratchadaphisek Road, Khlong Toei Sub-district, Khlong Toei
+                District, <b>Bangkok, Thailand</b>
+              </p>
+              <Link
+                className="text-underline font-secondary text-sm self-start bold"
+                indicateExternal
+                to="https://maps.app.goo.gl/XLGaN7B9zViAe3DB6"
+              >
+                Venue Direction
+              </Link>
+              <div className="hidden lg:block border-bottom my-6"></div>
+              <div className="block lg:hidden my-2"></div>
+              <div className="flex justify-between items-center">
+                <div className="font-secondary">
+                  <p className="uppercase bold leading-tight text-">BANGKOK, THAILAND</p>
+                  <p className="text-xl leading-tight">
+                    <span className="text-[#B1ABFE] bold">12—15</span> Nov, 2024
+                  </p>
                 </div>
+
+                <Button fat color="purple-1" onClick={() => setCalendarModalOpen(true)}>
+                  <span className="mr-2">Add to Calendar</span>
+                  <AddCalendarIcon className="icon" />
+                </Button>
+
+                <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
+                  <ModalContent
+                    className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
+                    close={() => setCalendarModalOpen(false)}
+                  >
+                    <div className="relative">
+                      <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
+                      <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
+                    </div>
+                    <div className="p-4">
+                      <p className="font-bold">Add Devcon to your calendar!</p>
+
+                      <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
+
+                      <div className="flex mt-4 flex-row gap-4 items-center">
+                        <a {...cal.icsAttributes}>
+                          <Button fat color="purple-1">
+                            <span className="mr-2">Download (.ics)</span>
+                            <AddCalendarIcon className="icon" />
+                          </Button>
+                        </a>
+                        <Link to={cal.googleCalUrl} className="h-full">
+                          <Button fat color="purple-1" fill>
+                            Google Calendar
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </ModalContent>
+                </Modal>
               </div>
             </div>
           </div>
-          <div className="relative flex flex-col items-start pb-20 border-bottom gap-8">
+          <div className="relative flex flex-col items-start pb-20 border-bottom gap-8 xl:gap-6">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
             </div>
 
-            <div>
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8">
               <RichText content={pages.section2?.top}></RichText>
+
+              <div className="flex flex-col items-center justify-center">
+                <ImageNew
+                  src={LogoFlowers}
+                  alt="Devcon 7 Logo"
+                  className="w-[85%] max-w-[250px] lg:w-auto lg:max-w-[315px]"
+                />
+
+                <div className="mt-2 lg:mt-2 flex flex-col justify-center items-center w-full">
+                  <TitleDevcon className="md:block max-w-[124px] md:max-w-auto md:w-[124px]" />
+                  {/* <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p> */}
+                  <div className="uppercase">
+                    <TextMorph
+                      texts={[
+                        'Southeast Asia',
+                        'เอเชียตะวันออกเฉียงใต้',
+                        'Timog-silangang Asya',
+                        'អាស៊ី​អា​គ្នេ​យ៏',
+                        'Sudeste da Ásia',
+                        'အရှေ့တောင်အာရှ',
+                        'Đông Nam Á',
+                        'தென்கிழக்கு ஆசியா',
+                        'Asia Tenggara',
+                        'ఆగ్నేయ ఆసియా',
+                        '东南亚',
+                        'ອາຊີຕາເວັນອອກສ່ຽງໃຕ້',
+                      ]}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex flex-col md:flex-row gap-8">
               <RichText content={pages.section2?.left}></RichText>
