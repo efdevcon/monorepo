@@ -495,8 +495,7 @@ const FAQ = [
           <p>
             <b>Devconnect</b> on the other hand, is a week to make progress, dive deep into specific topics among fellow
             experts, to co-work and collaborate. It is structurally entirely different from Devcon, and consists of many
-            individual events, organized by you the community, that each cover one topic in depth. and remove "How can I
-            give ffeedback"
+            individual events, organized by you the community, that each cover one topic in depth.
           </p>
         </>
       )
@@ -544,20 +543,6 @@ const FAQ = [
             here
           </Link>
           .
-        </>
-      )
-    },
-  },
-  {
-    text: 'How can I provide feedback about the event?',
-    value: 'feedback-form',
-    content: () => {
-      return (
-        <>
-          <p>
-            We value your feedback! We've sent all attendees an email (subject line: “Devconnect IST 2023 - THAT'S A
-            WRAP!") with a feedback survey. There will be a POAP for your participation!
-          </p>
         </>
       )
     },
