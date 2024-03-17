@@ -4,7 +4,7 @@ import css from "./rich-text.module.scss";
 
 const TwoColumns = (data: any) => {
   return (
-    <div className="grid grid-cols-2 gap-8 w-full">
+    <div className="grid md:grid-cols-2 gap-8 w-full grid-cols-1">
       <div className="grow">
         <TinaMarkdown content={data?.left} />
       </div>

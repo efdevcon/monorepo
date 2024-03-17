@@ -1092,6 +1092,18 @@ $logo-offset: 50px;
       height: auto;
       filter: drop-shadow(0px 0px 2px #000000);
       object-fit: cover;
+
+      &.mobile {
+        display: none !important;
+
+        @media (max-width: $breakpoints-lg) {
+          display: block !important;
+        }
+      }
+
+      @media (max-width: $breakpoints-lg) {
+        display: none;
+      }
     }
   }
 }
