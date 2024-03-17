@@ -260,17 +260,6 @@ const tableColumns: Array<TableColumn> = [
 
 const Hero = (props: any) => {
   const { controlsRef, sections } = props
-  // const [showDragIndicator, setShowDragIndicator] = React.useState(true)
-
-  // useEffect(() => {
-  //   controlsRef.current.subscribeX((x: any) => {
-  //     if (x > 100) {
-  //       setShowDragIndicator(false)
-  //     } else {
-  //       setShowDragIndicator(true)
-  //     }
-  //   })
-  // }, [controlsRef.current])
 
   useWindowWidth('window-width')
 
@@ -363,7 +352,7 @@ const Hero = (props: any) => {
             <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
           </div>
 
-          <div className="lg:hidden flex w-[50vw] justify-center relative">
+          <div className="lg:hidden flex w-[50vw] justify-center items-end relative">
             <motion.div
               className={`flex relative ${css['image']} w-[200%] shrink-0`}
               // initial={{ x: 50 }}
