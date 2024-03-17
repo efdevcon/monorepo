@@ -51,6 +51,7 @@ type PageHeroProps = {
   cta?: Array<CTALink>
   renderCustom?(props?: any): JSX.Element
   renderCustomBackground?(props?: any): JSX.Element
+  renderCustomNavigation?(props?: any): JSX.Element
   renderNavigationRight?(props?: any): JSX.Element
   navigation?: Array<NavigationLink>
   children?: React.ReactNode
@@ -205,6 +206,8 @@ export const PageHero = (props: PageHeroProps) => {
           {props.renderCustom && props.renderCustom()}
         </div>
       </div>
+
+      {props.renderCustomNavigation && props.renderCustomNavigation()}
 
       {props.navigation && (
         <div className={`${css['page-navigation-container']} section`}>

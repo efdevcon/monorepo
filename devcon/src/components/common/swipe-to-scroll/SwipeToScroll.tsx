@@ -23,9 +23,11 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   const [scrollIndicatorClass, setScrollIndicatorClass] = React.useState('')
   const lastX = React.useRef(0)
   const maxScrollRef = React.useRef<number>(0)
+  const isNativeScrollRef = React.useRef<any>(false)
   const onXChangeCallback = React.useRef<any>(null)
 
   maxScrollRef.current = maxScroll
+  isNativeScrollRef.current = isNativeScroll
 
   // Whether or not to display a scroll indicator
   const syncScrollIndicators = React.useCallback(
@@ -88,7 +90,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     if (el.current) {
       const scrollContainer = el.current
       lastX.current = 0
-      if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
+      if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
       scrollContainer.style.transform = `translateX(0px)`
       syncScrollIndicators(scrollContainer)
     }
@@ -133,15 +135,25 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
           setX: (x: any) => {
             const scrollContainer = el.current!
 
+            if (isNativeScrollRef.current) {
+              scrollContainer.scrollTo({
+                left: x,
+                top: 0,
+                behavior: 'smooth', // This enables smooth scrolling
+              })
+
+              return
+            }
+
             lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
             scrollContainer.style.transform = `translateX(-${lastX.current}px)`
             scrollContainer.style.transition = `all 0.25s ease-out`
 
             setTimeout(() => {
               scrollContainer.style.transition = `none`
-            }, 500)
+            }, 250)
 
-            if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
+            if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
           },
           subscribeX: (callback: any) => {
             onXChangeCallback.current = callback
@@ -156,7 +168,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
     const scrollContainer = el.current!
 
     lastX.current = Math.min(Math.max(0, lastX.current - delta[0]), maxScroll)
-    if (onXChangeCallback.current) onXChangeCallback.current(lastX.current)
+    if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`
 
     if (down) {
@@ -186,6 +198,9 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
         // This prevents selection (text, image) while dragging
         onMouseDown={e => {
           e.preventDefault()
+        }}
+        onScroll={(e: any) => {
+          if (onXChangeCallback.current) onXChangeCallback.current(e.target.scrollLeft)
         }}
       >
         {props.children}
