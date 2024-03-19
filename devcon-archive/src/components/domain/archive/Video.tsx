@@ -197,7 +197,7 @@ export const Video = (props: VideoProps) => {
                   <Tab title="IPFS">
                     <div className="aspect">
                       <video controls autoPlay={false}>
-                        <source src={`https://ipfs.io/ipfs/${props.video.ipfsHash}`} />
+                        <source src={`https://cloudflare-ipfs.com/ipfs/${props.video.ipfsHash}`} />
                       </video>
                     </div>
                   </Tab>

@@ -41,7 +41,7 @@ export const Banner = (props: Props) => {
 
   let ctaLink = ''
   if (props.type === 'IPFS') {
-    ctaLink = `https://ipfs.io/ipfs/${props.hash}`
+    ctaLink = `https://cloudflare-ipfs.com/ipfs/${props.hash}`
   }
   if (props.type === 'Swarm') {
     ctaLink = `https://gateway.ethswarm.org/access/${props.hash}`
