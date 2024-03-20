@@ -29,19 +29,12 @@ import IconChevronLeft from 'assets/icons/chevron_left.svg'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
 
-// https://codesandbox.io/p/sandbox/framer-motion-parallax-i9gwuc?file=%2Fsrc%2FApp.tsx%3A13%2C16-13%2C61&from-embed=
-
-// function useParallax(value: number, distance: number) {
-//   const motionValue = useMotionValue(value)
-
-//   // Update the motion value whenever `value` changes
-//   useEffect(() => {
-//     motionValue.set(value)
-//   }, [value, motionValue])
-
-//   // Apply the transformation based on the updated motion value
-//   return useTransform(motionValue, [0, 1], [-distance, distance])
-// }
+import Lyra from 'components/domain/road/images/rtd/lyra.png'
+import LyraClouds from 'components/domain/road/images/rtd/lyra-clouds.png'
+import Aria from 'components/domain/road/images/rtd/aria.png'
+import AriaClouds from 'components/domain/road/images/rtd/aria-clouds.png'
+import Deva from 'components/domain/road/images/rtd/deva.png'
+import Globe from 'components/domain/road/images/rtd/deva-globe-2.png'
 
 // Custom hook to observe resize events and update a CSS variable
 const useWindowWidth = (cssVariableName: string) => {
@@ -258,10 +251,137 @@ const tableColumns: Array<TableColumn> = [
   },
 ]
 
+const clamp = (number: number, min: number, max: number) => {
+  return Math.max(min, Math.min(number, max))
+}
+
+const useHorizontalParallax = (transformMin = 0, transformMax = 100, reverse = false) => {
+  const targetRef = useRef<any>(null)
+  const anchorRef = useRef<any>(null)
+
+  const observerCallback = (entries: any) => {
+    entries.forEach((entry: any) => {
+      const { boundingClientRect, rootBounds } = entry
+
+      if (!rootBounds) return
+
+      const ratio = entry.intersectionRatio
+
+      // Calculate midpoint of the viewport
+      const viewportMidpoint = rootBounds.width / 2
+      // Calculate the midpoint of the element
+      const elementMidpoint = boundingClientRect.left + boundingClientRect.width / 2
+
+      // Determine if the element is past the midpoint of the viewport
+      const intersectionRatioDecreasing = viewportMidpoint >= elementMidpoint
+      let transformPercentage
+
+      if (intersectionRatioDecreasing) {
+        const ratioPastMidpoint = (1 - ratio) / 2 + 0.5
+
+        transformPercentage = ratioPastMidpoint * 100
+      } else {
+        transformPercentage = (ratio * 100) / 2
+      }
+
+      let computedTranslate = clamp(transformPercentage, transformMin, transformMax) + ''
+
+      if (reverse) computedTranslate = `-${computedTranslate}`
+
+      targetRef.current.style.transform = `translateX(${computedTranslate}%)`
+    })
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: new Array(101).fill(0).map((_, i) => i * 0.01),
+    })
+
+    if (anchorRef.current) {
+      observer.observe(anchorRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return {
+    targetRef,
+    anchorRef,
+  }
+}
+
+const ParallaxImage = ({ intersectionRatio }: any) => {
+  const targetRef = useRef<any>(null)
+  const anchorRef = useRef<any>(null)
+
+  const observerCallback = (entries: any) => {
+    entries.forEach((entry: any) => {
+      const { boundingClientRect, rootBounds } = entry
+
+      if (!rootBounds) return
+
+      const ratio = entry.intersectionRatio
+
+      // Calculate midpoint of the viewport
+      const viewportMidpoint = rootBounds.width / 2
+      // Calculate the midpoint of the element
+      const elementMidpoint = boundingClientRect.left + boundingClientRect.width / 2
+
+      // Determine if the element is past the midpoint of the viewport
+      const intersectionRatioDecreasing = viewportMidpoint >= elementMidpoint
+      let transformPercentage
+
+      if (intersectionRatioDecreasing) {
+        const ratioPastMidpoint = (1 - ratio) / 2 + 0.5
+
+        transformPercentage = ratioPastMidpoint * 100
+      } else {
+        transformPercentage = (ratio * 100) / 2
+      }
+
+      targetRef.current.style.transform = `translateX(${transformPercentage}%)`
+    })
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: new Array(101).fill(0).map((_, i) => i * 0.01),
+    })
+
+    if (anchorRef.current) {
+      observer.observe(anchorRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div className="relative h-[70%]">
+      <Image className="object-contain object-bottom w-full" src={Globe} alt="hahaha" />
+      <Image
+        className="absolute top-0 left-auto right-auto object-contain w-[70%]"
+        src={Deva}
+        ref={targetRef}
+        alt="hahaha"
+      />
+      <div ref={anchorRef} className="w-[100vw] absolute top-0 h-full pointer-events-none">
+        {/* This invisible anchor controls the animation of the plane but does not move itself */}
+      </div>
+    </div>
+  )
+}
+
 const Hero = (props: any) => {
-  const { controlsRef, sections } = props
+  const { controlsRef, sections, goToSection } = props
 
   useWindowWidth('window-width')
+
+  const parallaxes = [
+    useHorizontalParallax(),
+    useHorizontalParallax(0, 50, true),
+    useHorizontalParallax(),
+    useHorizontalParallax(),
+  ]
 
   return (
     <div
@@ -277,6 +397,7 @@ const Hero = (props: any) => {
           className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}
           ref={sections[0].ref}
         >
+          {/* Desktop version first slide */}
           <div className="relative hidden lg:block lg:w-[var(--window-width)] h-full">
             <div className="section h-full pt-4">
               <div className="flex no-wrap relative">
@@ -288,14 +409,14 @@ const Hero = (props: any) => {
                   />
                   <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px]" />
                   <p className="text-slate-100 mt-8">
-                    Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of Ethereum's
-                    vast universe.
+                    Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
+                    wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and
+                    community.
                   </p>
                   <p className="text-slate-100 mt-4">
-                    Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their
-                    tribe. And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks, just
-                    like you.
+                    And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
                   </p>
+                  <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
 
                   <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
 
@@ -316,12 +437,13 @@ const Hero = (props: any) => {
                 </div>
 
                 <motion.div
-                  className={`flex relative`}
+                  className={`flex relative `}
                   initial={{ x: 50 }}
                   whileInView={{ x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 >
+                  {/* <ParallaxImage intersectionRatio={sections[0].intersectionRatio} /> */}
                   <Image
                     priority
                     src={DevaGlobe}
@@ -333,6 +455,7 @@ const Hero = (props: any) => {
             </div>
           </div>
 
+          {/* Mbbile version first slide */}
           <div className="lg:hidden flex flex-col lg:justify-center align-start h-full w-[600px] max-w-[100vw] px-[16px] xl:px-[64px] z-10">
             <Image
               src={WonkaFont}
@@ -341,13 +464,13 @@ const Hero = (props: any) => {
             />
             <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px]" />
             <p className="text-slate-100 mt-8">
-              Hey there, I'm Deva, the Devcon unicorn, a guiding light to the wonderstruck wanderers of Ethereum's vast
-              universe.
+              Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
+              wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and community.
             </p>
             <p className="text-slate-100 mt-4">
-              Since the dawn of Devcon, I have been the beacon for young explorers, guiding them to find their tribe.
-              And now, once again, the Road to Devcon calls, beckoning a new generation of mavericks, just like you.
+              And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
             </p>
+            <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
 
             <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
           </div>
@@ -370,7 +493,32 @@ const Hero = (props: any) => {
           </div>
 
           <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-base bold lg:text-lg" ref={sections[1].ref}>
+            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[1].ref}>
+              Why Devcon is for You
+            </p>
+            <p className="text-slate-100 mt-2 lg:mt-4 lg:text-base">
+              Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
+              kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
+              to fully understand just online.
+            </p>
+            <p className="text-slate-100 mt-4">
+              At Devcon, we explore Ethereum together through fiery dialogues, workshops, and peer-to-peer interactions.
+              It’s where you are welcomed by a tribe that nurtures your growth, and where you build new relationships
+              and networks.
+            </p>
+
+            <p className="text-slate-100 mt-4">
+              Explore{' '}
+              <Link to="/" className="text-underline">
+                Devcon
+              </Link>
+              , or{' '}
+              <span onClick={() => goToSection(2)} className="text-underline cursor-pointer">
+                keep following me for more
+              </span>
+              . 🦄✨
+            </p>
+            {/* <p className="text-slate-100 text-base bold lg:text-lg" ref={sections[1].ref}>
               Journey on the Road to Devcon
             </p>
             <p className="text-slate-100 mt-2 lg:mt-6 text-sm lg:text-base">
@@ -395,12 +543,12 @@ const Hero = (props: any) => {
               </Link>{' '}
               is like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of technical
               jargon and knowledge gaps.{' '}
-            </p>
+            </p> */}
           </div>
 
           <div className="flex w-[50vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} w-[220%] lg:w-[55vw] shrink-0`}
+              className={`flex relative items-end ${css['mask-image']} w-[220%] lg:w-[55vw] shrink-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -412,25 +560,37 @@ const Hero = (props: any) => {
                 alt="Girl holding Ethereum schematics"
                 className="object-contain object-bottom h-full"
               />
+              {/* <ParallaxImage intersectionRatio={sections[1].intersectionRatio} /> */}
             </motion.div>
           </div>
 
-          <div className="flex flex-col items-center lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-sm lg:text-base" ref={sections[2].ref}>
-              Here's where my role begins. It&apos;s my mission to lead you down the Road to Devcon, the ultimate
-              gathering of Ethereum's wild hearts and passionate community. At Devcon, you are welcomed by a tribe that
-              nurtures your growth. Through fiery dialogues, hands-on workshops, and interactions with our peers,
-              together we untangle Ethereum's mysteries, forming bonds and friendships that stand the test of time.
+          <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[2].ref}>
+              What is the Road to Devcon?
             </p>
-            <p className="text-slate-100 mt-8 text-sm lg:text-base">
-              This year, the Road to Devcon winds through the vibrant landscapes of Southeast Asia, a region pulsating
-              with the energy of innovation and change. This road is more than just a path leading to a destination,
-              it's a journey of discovery, a melting pot of diverse minds. It's here that new explorers like you are
-              shaping the road together, organizing events where we delve deep to untangle Ethereum's mysteries.
+
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
+              organized by the active local communities in Southeast Asia.
+            </p>
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              Explorers like you are shaping the road together, diving into workshops and talks, empowered by Ethereum’s
+              promises and the motivation to bring this innovation to local communities, creating opportunities to learn
+              and connect.
+            </p>
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              <Link to="#events" className="text-underline">
+                Find the event that vibes with you
+              </Link>
+              . Or if you’re missing something…{' '}
+              <span className="text-underline cursor-pointer" onClick={() => goToSection(3)}>
+                follow me!
+              </span>{' '}
+              🦄✨
             </p>
           </div>
 
-          <div className="flex w-[50vw] justify-center relative lg:contents">
+          {/* <div className="flex w-[50vw] justify-center relative lg:contents">
             <motion.div
               className={`flex relative ${css['mask-image']} w-[325%] lg:w-[50vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
@@ -444,23 +604,71 @@ const Hero = (props: any) => {
                 alt="Ethereum themed boy and dog"
                 className="object-contain object-bottom h-full"
               />
+              <Image
+                className="absolute top-0 left-auto right-auto object-contain w-[70%]"
+                src={Deva}
+                ref={parallaxes[0].targetRef}
+                alt="hahaha"
+              />
+              <div ref={parallaxes[0].anchorRef} className="w-[100vw] absolute top-0 h-full pointer-events-none">
+
+              </div>
+            </motion.div>
+          </div> */}
+
+          <div className="flex w-[50vw] justify-center relative lg:contents">
+            <motion.div
+              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[50vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              // initial={{ opacity: 0, x: 100 }}
+              // whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <Image
+                src={LyraClouds}
+                priority
+                alt="Ethereum themed boy and dog"
+                className="object-contain object-bottom h-full translate-y-[12%]"
+              />
+              <Image
+                className="absolute bottom-[0%] right-0 object-contain w-[35%]"
+                src={Lyra}
+                ref={parallaxes[1].targetRef}
+                alt="Lyra and dog"
+              />
+              <div
+                ref={parallaxes[1].anchorRef}
+                className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
+              >
+                {/* This invisible anchor controls the animation of the plane but does not move itself */}
+              </div>
             </motion.div>
           </div>
 
           <div
-            className="flex flex-col items-center justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10"
+            className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10"
             // ref={sections[3].ref}
           >
-            <p className="text-slate-100 text-sm md:text-base text-center lg:text-left" ref={sections[3].ref}>
-              So, to all you curious spirits out there, I say: Embrace your wild side and join us on the Road to Devcon.
-              Together, we're shaping a bold and empowered future. This is your call to adventure, to be part of
-              something bigger, something wilder. Let's make this journey an opportunity to tap into your untamed
-              potential to shape your decentralized and empowered future.
+            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[3].ref}>
+              Become a leader: Organize an event or start a community
+            </p>
+
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to support
+              you! This is your call to adventure, to be part of something bigger, something wilder.
+            </p>
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              Imagine organizing events within your community to showcase Ethereum, or starting a new grassroots
+              community through meetups and other educational initiatives focused on Ethereum.
+            </p>
+            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+              If a fire is ignited within you, now is the time to apply for the RTD grants and be a part of building our
+              empowered, decentralized future. 🦄✨
             </p>
 
             <Link to="https://esp.ethereum.foundation/devcon-grants">
               <Button fat color="purple-1" className="mt-8" fill>
-                Learn about RTD Grants →
+                Apply For a Grant →
               </Button>
             </Link>
           </div>
@@ -618,7 +826,12 @@ export default pageHOC(function RoadToDevcon(props: any) {
             // },
           ]}
         >
-          <Hero controlsRef={controlsRef} sections={sections} showDragIndicator={showDragIndicator} />
+          <Hero
+            controlsRef={controlsRef}
+            sections={sections}
+            showDragIndicator={showDragIndicator}
+            goToSection={goToSection}
+          />
         </PageHero>
 
         <div className={`section ${css['content']}`} id="events">

@@ -147,11 +147,11 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
 
             lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
             scrollContainer.style.transform = `translateX(-${lastX.current}px)`
-            scrollContainer.style.transition = `all 0.25s ease-out`
+            scrollContainer.style.transition = `all 0.4s ease-out`
 
             setTimeout(() => {
               scrollContainer.style.transition = `none`
-            }, 250)
+            }, 400)
 
             if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
           },
