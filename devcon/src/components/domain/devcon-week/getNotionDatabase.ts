@@ -7,18 +7,18 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
     case 'rich_text':
     case 'title':
       // Extract url and url text from the Location column
-      if (key === 'Location' && property[property.type]) {
-        let locationInfo = {} as any
+      // if (key === 'Location' && property[property.type]) {
+      //   let locationInfo = {} as any
 
-        property[property.type].forEach((chunk: any) => {
-          if (chunk.href) {
-            locationInfo.url = chunk.href
-            locationInfo.text = chunk.plain_text
-          }
-        })
+      //   property[property.type].forEach((chunk: any) => {
+      //     if (chunk.href) {
+      //       locationInfo.url = chunk.href
+      //       locationInfo.text = chunk.plain_text
+      //     }
+      //   })
 
-        return locationInfo
-      }
+      //   return locationInfo
+      // }
 
       const dechunked = property[property.type]
         ? property[property.type].reduce((acc: string, chunk: any) => {

@@ -430,6 +430,65 @@ export default pageHOC(function Index(props: any) {
           <BlogReel blogs={props.blogs} />
         </div>
 
+        <div className="section mt-4">
+          <div className="my-4 h2">Frequently Asked</div>
+          <div className="flex flex-col">
+            {[
+              {
+                question: 'What is the difference between Devcon and Devconnect?',
+                answer: (
+                  <>
+                    <p className="text-sm">
+                      Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the
+                      other amazing ETH events are community-run!). Both events are Ethereum-focused but serve different
+                      purposes.
+                    </p>
+                    <br />
+                    <p className="text-sm">
+                      <b>Devcon</b> is a global Ethereum family reunion, a place to celebrate success and align on
+                      updates and direction. It is our principal event, all in one place with one big venue, and talks
+                      and workshops open to all.{' '}
+                      <Link to="https://devcon.org" indicateExternal>
+                        Devcon SEA will take place in Bangkok, Thailand between 12-15 November 2024!
+                      </Link>
+                    </p>
+                    <br />
+                    <p className="text-sm">
+                      <b>Devconnect</b> on the other hand, is a week to make progress, dive deep into specific topics
+                      among fellow experts, to co-work and collaborate. It is structurally entirely different from
+                      Devcon, and consists of many individual events, organized by you the community, that each cover
+                      one topic in depth.
+                    </p>
+                  </>
+                ),
+              },
+            ].map(({ question, answer }) => {
+              const [open, setOpen] = React.useState(false)
+
+              return (
+                <div key={question} className="w-full border-[#E2E3FF] bg-[#F8F9FE] rounded-xl shadow mb-4 ">
+                  <div
+                    className="w-full p-4 bold cursor-pointer select-none hover:opacity-95"
+                    onClick={() => setOpen(!open)}
+                  >
+                    {question}
+                  </div>
+
+                  {open && (
+                    <motion.div
+                      initial={{ y: '-20%', opacity: 0 }}
+                      animate={{ y: '0%', opacity: 100 }}
+                      className="w-full p-4 pt-2"
+                    >
+                      {answer}
+                    </motion.div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
         <div className="mb-8"></div>
 
         <Footer />

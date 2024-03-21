@@ -28,6 +28,8 @@ import IconChevronRight from 'assets/icons/chevron_right.svg'
 import IconChevronLeft from 'assets/icons/chevron_left.svg'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
+import getNotionDatabase from 'components/domain/devcon-week/getNotionDatabase'
+import moment from 'moment'
 
 import Lyra from 'components/domain/road/images/rtd/lyra.png'
 import LyraClouds from 'components/domain/road/images/rtd/lyra-clouds.png'
@@ -86,169 +88,137 @@ const useIntersectionRatio = (options?: any) => {
   return { ref, intersectionRatio } as any
 }
 
-const items = [
-  {
-    _key: '1',
-    date: 'Sort testaaa',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '2',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '3',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '4',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '5',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '6',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '7',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '8',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '9',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '10',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '11',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-  {
-    _key: '12',
-    date: '5th feb',
-    location: '6th feb',
-    event: '7th feb',
-    organizer: '8th feb',
-    social: '9th feb',
-    website: '10th feb',
-  },
-]
+function formatHumanReadableDate(startDate: string, endDate: string) {
+  const start = moment(startDate)
+  const end = moment(endDate)
+
+  if (start.isSame(end)) {
+    // If start and end date are the same, format as "Feb 3, 2024"
+    return start.format('MMM D, YYYY')
+  } else {
+    // If the start and end year are the same, include the year at the end.
+    // Format as "Feb 3 - March 5, 2024" or include the year in both dates if they are different
+    if (start.year() === end.year()) {
+      return `${start.format('MMM D')} - ${end.format('MMM D, YYYY')}`
+    } else {
+      return `${start.format('MMM D, YYYY')} - ${end.format('MMM D, YYYY')}`
+    }
+  }
+}
 
 const tableColumns: Array<TableColumn> = [
   {
     title: 'Date',
-    key: 'date',
+    key: 'Date',
     sort: SortVariation.basic,
     render: item => {
-      return <p>{item.date}</p>
+      return <p className="bold">{formatHumanReadableDate(item.Date.startDate, item.Date.endDate)}</p>
     },
   },
+  {
+    title: 'Name',
+    key: 'Name',
+    sort: SortVariation.basic,
+    render: item => {
+      return <p className="bold">{item.Name}</p>
+    },
+  },
+
   {
     title: 'Location',
-    key: 'location',
-    className: '!hidden md:!flex',
+    key: 'Location',
     sort: SortVariation.basic,
     render: item => {
-      return <p>{item.location}</p>
+      return <p className="bold">{item.Location}</p>
     },
   },
   {
-    title: 'Event',
-    key: 'event',
+    title: 'Team',
+    key: 'Team',
     sort: SortVariation.basic,
     render: item => {
-      return <p>{item.event}</p>
+      return <p className="bold">{item.Team}</p>
     },
   },
   {
-    title: 'Organizer',
-    key: 'organizer',
-    className: '!hidden lg:!flex',
+    title: 'Link',
+    key: 'Link',
     sort: SortVariation.basic,
     render: item => {
-      return <p>{item.organizer}</p>
+      if (!item.Link) return null
+
+      return (
+        <Link className="bold" to={item.Link} indicateExternal>
+          {item.Link}
+        </Link>
+      )
     },
   },
   {
     title: 'Social',
-    key: 'social',
-    className: '!hidden lg:!flex',
+    key: 'Social',
     sort: SortVariation.basic,
     render: item => {
-      return <p>{item.social}</p>
+      if (!item.Social) return null
+
+      return (
+        <Link className="bold" to={item.Social} indicateExternal>
+          {item.Social}
+        </Link>
+      )
     },
   },
-  {
-    title: 'Website',
-    key: 'website',
-    sort: SortVariation.basic,
-    render: item => {
-      return <p>{item.website}</p>
-    },
-  },
+  // {
+  //   title: 'Date',
+  //   key: 'date',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.date}</p>
+  //   },
+  // },
+  // {
+  //   title: 'Location',
+  //   key: 'location',
+  //   className: '!hidden md:!flex',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.location}</p>
+  //   },
+  // },
+  // {
+  //   title: 'Event',
+  //   key: 'event',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.event}</p>
+  //   },
+  // },
+  // {
+  //   title: 'Organizer',
+  //   key: 'organizer',
+  //   className: '!hidden lg:!flex',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.organizer}</p>
+  //   },
+  // },
+  // {
+  //   title: 'Social',
+  //   key: 'social',
+  //   className: '!hidden lg:!flex',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.social}</p>
+  //   },
+  // },
+  // {
+  //   title: 'Website',
+  //   key: 'website',
+  //   sort: SortVariation.basic,
+  //   render: item => {
+  //     return <p>{item.website}</p>
+  //   },
+  // },
 ]
 
 const clamp = (number: number, min: number, max: number) => {
@@ -376,12 +346,7 @@ const Hero = (props: any) => {
 
   useWindowWidth('window-width')
 
-  const parallaxes = [
-    useHorizontalParallax(),
-    useHorizontalParallax(0, 50, true),
-    useHorizontalParallax(),
-    useHorizontalParallax(),
-  ]
+  const parallaxes = [useHorizontalParallax(), useHorizontalParallax(0, 100), useHorizontalParallax(0, 60, true)]
 
   return (
     <div
@@ -408,7 +373,7 @@ const Hero = (props: any) => {
                     className="z-1 max-w-[150px] md:max-w-[220px] mb-4"
                   />
                   <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px]" />
-                  <p className="text-slate-100 mt-8">
+                  <p className="text-slate-100 mt-8 text-lg">
                     Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
                     wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and
                     community.
@@ -416,7 +381,13 @@ const Hero = (props: any) => {
                   <p className="text-slate-100 mt-4">
                     And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
                   </p>
-                  <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
+                  <p className="text-slate-100 mt-4 text-sm">
+                    {' '}
+                    <span className="text-underline cursor-pointer" onClick={() => goToSection(1)}>
+                      Follow me
+                    </span>
+                    , and join the journey. 🦄✨
+                  </p>
 
                   <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
 
@@ -496,18 +467,18 @@ const Hero = (props: any) => {
             <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[1].ref}>
               Why Devcon is for You
             </p>
-            <p className="text-slate-100 mt-2 lg:mt-4 lg:text-base">
+            <p className="text-slate-100 mt-4 text-lg">
               Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
               kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
               to fully understand just online.
             </p>
-            <p className="text-slate-100 mt-4">
+            <p className="text-slate-100 mt-4 text-sm">
               At Devcon, we explore Ethereum together through fiery dialogues, workshops, and peer-to-peer interactions.
               It’s where you are welcomed by a tribe that nurtures your growth, and where you build new relationships
               and networks.
             </p>
 
-            <p className="text-slate-100 mt-4">
+            <p className="text-slate-100 mt-4 text-sm">
               Explore{' '}
               <Link to="/" className="text-underline">
                 Devcon
@@ -518,34 +489,36 @@ const Hero = (props: any) => {
               </span>
               . 🦄✨
             </p>
-            {/* <p className="text-slate-100 text-base bold lg:text-lg" ref={sections[1].ref}>
-              Journey on the Road to Devcon
-            </p>
-            <p className="text-slate-100 mt-2 lg:mt-6 text-sm lg:text-base">
-              You, who resonate with the tales of coders who hack with relentless passion, community leaders who
-              envisioned radical unity, artists who paint their dreams with the colors of the wild unknown, and
-              economists who slice through the new-age economy. But these adventurers often feel held back by too much
-              control that stifles their creativity and independence. They long for freedom, for a place where they can
-              fully express their values, where innovation isn't just a buzzword but the very essence. Each of them in
-              their own way, is itching for a revolution, for a platform that can transform their wild visions into
-              reality.
-            </p>
-
-            <p className="text-slate-100 mt-4 text-sm">
-              That's where Ethereum comes in, a network that promises independence, no central control, and unbridled
-              innovation. But let's face it, diving into{' '}
-              <Link
-                indicateExternal
-                to="https://vitalik.eth.limo/general/2023/12/28/cypherpunk.html"
-                className="text-underline"
-              >
-                Ethereum's values and technological vision
-              </Link>{' '}
-              is like jumping into a wild ocean of complexity. It's easy to feel lost, adrift in a sea of technical
-              jargon and knowledge gaps.{' '}
-            </p> */}
           </div>
 
+          <div className="flex w-[70vw] justify-center relative lg:contents">
+            <motion.div
+              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              // initial={{ opacity: 0, x: 100 }}
+              // whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <Image
+                src={AriaClouds}
+                priority
+                alt="Clouds"
+                className="object-contain object-bottom h-full translate-y-[12%]"
+              />
+              <Image
+                className="absolute bottom-[-5%] left-[10%] object-contain w-[37%]"
+                src={Aria}
+                ref={parallaxes[1].targetRef}
+                alt="Aria and cat"
+              />
+              <div
+                ref={parallaxes[1].anchorRef}
+                className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
+              ></div>
+            </motion.div>
+          </div>
+
+          {/* 
           <div className="flex w-[50vw] justify-center relative lg:contents">
             <motion.div
               className={`flex relative items-end ${css['mask-image']} w-[220%] lg:w-[55vw] shrink-0`}
@@ -560,25 +533,24 @@ const Hero = (props: any) => {
                 alt="Girl holding Ethereum schematics"
                 className="object-contain object-bottom h-full"
               />
-              {/* <ParallaxImage intersectionRatio={sections[1].intersectionRatio} /> */}
             </motion.div>
-          </div>
+          </div> */}
 
           <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[2].ref}>
               What is the Road to Devcon?
             </p>
 
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 text-lg">
               The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
               organized by the active local communities in Southeast Asia.
             </p>
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 text-sm">
               Explorers like you are shaping the road together, diving into workshops and talks, empowered by Ethereum’s
               promises and the motivation to bring this innovation to local communities, creating opportunities to learn
               and connect.
             </p>
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 text-sm">
               <Link to="#events" className="text-underline">
                 Find the event that vibes with you
               </Link>
@@ -616,9 +588,9 @@ const Hero = (props: any) => {
             </motion.div>
           </div> */}
 
-          <div className="flex w-[50vw] justify-center relative lg:contents">
+          <div className="flex w-[65vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[50vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[65vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -631,17 +603,15 @@ const Hero = (props: any) => {
                 className="object-contain object-bottom h-full translate-y-[12%]"
               />
               <Image
-                className="absolute bottom-[0%] right-0 object-contain w-[35%]"
+                className="absolute bottom-[-5%] right-0 object-contain w-[35%]"
                 src={Lyra}
-                ref={parallaxes[1].targetRef}
+                ref={parallaxes[2].targetRef}
                 alt="Lyra and dog"
               />
               <div
-                ref={parallaxes[1].anchorRef}
+                ref={parallaxes[2].anchorRef}
                 className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
-              >
-                {/* This invisible anchor controls the animation of the plane but does not move itself */}
-              </div>
+              ></div>
             </motion.div>
           </div>
 
@@ -653,15 +623,15 @@ const Hero = (props: any) => {
               Become a leader: Organize an event or start a community
             </p>
 
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 lg:text-lg">
               If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to support
               you! This is your call to adventure, to be part of something bigger, something wilder.
             </p>
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 text-sm">
               Imagine organizing events within your community to showcase Ethereum, or starting a new grassroots
               community through meetups and other educational initiatives focused on Ethereum.
             </p>
-            <p className="text-slate-100 mt-4 text-sm lg:text-base">
+            <p className="text-slate-100 mt-4 text-sm">
               If a fire is ignited within you, now is the time to apply for the RTD grants and be a part of building our
               empowered, decentralized future. 🦄✨
             </p>
@@ -736,6 +706,8 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
   useKeyBinding(() => goToSection(currentSlide - 1), ['ArrowLeft'])
   useKeyBinding(() => goToSection(currentSlide + 1), ['ArrowRight'])
+
+  console.log(props.events, 'events', 'props hello')
 
   return (
     <>
@@ -853,7 +825,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
             <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2">Past Events</p>
           </div>
 
-          <Table itemKey="_key" items={items} columns={tableColumns} />
+          <Table itemKey="_key" items={props.events} columns={tableColumns} />
 
           <div className="mt-4 border-solid" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
@@ -869,10 +841,13 @@ export async function getStaticProps(context: any) {
   const content = await client.queries.pages({ relativePath: 'road_to_devcon.mdx' })
   const grantContent = await client.queries.pages({ relativePath: 'index.mdx' })
 
+  const notionID = '5199f81539da498f9e2137c3928f6e93'
+
   return {
     props: {
       ...globalData,
       page: DEFAULT_APP_PAGE,
+      events: await getNotionDatabase('en', notionID),
       cms: {
         variables: content.variables,
         data: content.data,
