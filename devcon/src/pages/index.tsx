@@ -116,6 +116,7 @@ export default pageHOC(function Index(props: any) {
   const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
   const [video, setVideo] = React.useState(videos[0])
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
+  const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
 
   const [cal, setCal] = React.useState<any>(null)
 
@@ -463,13 +464,13 @@ export default pageHOC(function Index(props: any) {
                 ),
               },
             ].map(({ question, answer }) => {
-              const [open, setOpen] = React.useState(false)
+              const open = question === openFAQ
 
               return (
                 <div key={question} className="w-full border-[#E2E3FF] bg-[#F8F9FE] rounded-xl shadow mb-4 ">
                   <div
                     className="w-full p-4 bold cursor-pointer select-none hover:opacity-95"
-                    onClick={() => setOpen(!open)}
+                    onClick={() => setOpenFAQ(open ? null : question)}
                   >
                     {question}
                   </div>
