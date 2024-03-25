@@ -261,11 +261,6 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'Get Involved',
-          url: '/dips',
-          type: 'page',
-        },
-        {
           title: intl('navigation_forum'),
           url: 'https://forum.devcon.org/',
           type: 'link',
@@ -274,6 +269,11 @@ const useNavigationData = () => {
           title: intl('navigation_blog'),
           url: '/blogs',
           type: 'page',
+        },
+        {
+          title: 'Devconnect',
+          url: 'https://devconnect.org',
+          type: 'link',
         },
         {
           title: intl('navigation_archive'),

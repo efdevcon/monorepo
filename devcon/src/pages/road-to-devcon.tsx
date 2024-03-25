@@ -110,9 +110,35 @@ const tableColumns: Array<TableColumn> = [
   {
     title: 'Date',
     key: 'Date',
-    sort: SortVariation.basic,
+    sort: (a: any, b: any) => {
+      const { startDate: startDate1 } = a
+      const { startDate: startDate2 } = b
+
+      const start1 = moment(startDate1)
+      const start2 = moment(startDate2)
+
+      // if (a.eventHasPassed && !b.eventHasPassed) {
+      //   return 1
+      // } else if (b.eventHasPassed && !a.eventHasPassed) {
+      //   return -1
+      // }
+
+      if (start1.isAfter(start2)) {
+        // if (a.eventHasPassed && b.eventHasPassed) return -1
+        return 1
+      } else if (start1.isBefore(start2)) {
+        // if (a.eventHasPassed && b.eventHasPassed) return 1
+        return -1
+      }
+
+      return 0
+    },
     render: item => {
-      return <p className="bold">{formatHumanReadableDate(item.Date.startDate, item.Date.endDate)}</p>
+      return (
+        <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
+          {formatHumanReadableDate(item.Date.startDate, item.Date.endDate)}
+        </p>
+      )
     },
   },
   {
@@ -120,24 +146,25 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bold">{item.Name}</p>
+      return <p className={`bold`}>{item.Name}</p>
     },
   },
-
   {
     title: 'Location',
     key: 'Location',
+    className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bold">{item.Location}</p>
+      return <p className="bolda">{item.Location}</p>
     },
   },
   {
     title: 'Team',
     key: 'Team',
     sort: SortVariation.basic,
+    className: '!hidden md:!flex',
     render: item => {
-      return <p className="bold">{item.Team}</p>
+      return <p className={`${css['team-col']}`}>{item.Team}</p>
     },
   },
   {
@@ -148,7 +175,7 @@ const tableColumns: Array<TableColumn> = [
       if (!item.Link) return null
 
       return (
-        <Link className="bold" to={item.Link} indicateExternal>
+        <Link className="bolda" to={item.Link} indicateExternal>
           {item.Link}
         </Link>
       )
@@ -157,68 +184,18 @@ const tableColumns: Array<TableColumn> = [
   {
     title: 'Social',
     key: 'Social',
+    className: '!hidden lg:!flex',
     sort: SortVariation.basic,
     render: item => {
       if (!item.Social) return null
 
       return (
-        <Link className="bold" to={item.Social} indicateExternal>
+        <Link className="bolda" to={item.Social} indicateExternal>
           {item.Social}
         </Link>
       )
     },
   },
-  // {
-  //   title: 'Date',
-  //   key: 'date',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.date}</p>
-  //   },
-  // },
-  // {
-  //   title: 'Location',
-  //   key: 'location',
-  //   className: '!hidden md:!flex',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.location}</p>
-  //   },
-  // },
-  // {
-  //   title: 'Event',
-  //   key: 'event',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.event}</p>
-  //   },
-  // },
-  // {
-  //   title: 'Organizer',
-  //   key: 'organizer',
-  //   className: '!hidden lg:!flex',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.organizer}</p>
-  //   },
-  // },
-  // {
-  //   title: 'Social',
-  //   key: 'social',
-  //   className: '!hidden lg:!flex',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.social}</p>
-  //   },
-  // },
-  // {
-  //   title: 'Website',
-  //   key: 'website',
-  //   sort: SortVariation.basic,
-  //   render: item => {
-  //     return <p>{item.website}</p>
-  //   },
-  // },
 ]
 
 const clamp = (number: number, min: number, max: number) => {
@@ -648,6 +625,83 @@ const Hero = (props: any) => {
   )
 }
 
+const EventsTable = React.memo(({ events }: any) => {
+  // const [filter, setFilter] = React.useState<string>('all')
+  const [includePastEvents, setIncludePastEvents] = React.useState(false)
+  const [search, setSearch] = React.useState('')
+
+  const formattedEvents = events.map((event: any) => {
+    const end = moment(event.Date.endDate).add(1, 'days')
+    const now = moment()
+
+    const eventHasPassed = now.isAfter(end)
+
+    return {
+      ...event,
+      _key: event.Name + event.Location,
+      eventHasPassed,
+    }
+  })
+
+  const filteredEvents = formattedEvents.filter((event: any) => {
+    if (!includePastEvents && event.eventHasPassed) {
+      return false
+    }
+
+    if (search.length > 0) {
+      return Object.keys(event).some(key => {
+        const value = event[key]
+        // Check if the property's value is a string and includes the search term
+        // This comparison is case-insensitive
+        return typeof value === 'string' && value.toLowerCase().includes(search.toLowerCase())
+      })
+    }
+
+    return true
+  })
+
+  return (
+    <>
+      <div className="flex justify-between items-center mb-4 gap-2">
+        <p className="h2">RTD Events</p>
+        <input
+          className={`${css['input']} rounded-full p-1.5 text-base lg:text-sm px-4 border-solid border border-slate-300`}
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search Events"
+        />
+      </div>
+
+      <div className="flex border-b border-solid border-[#b9b9b9]">
+        <p
+          className={`cursor-pointer hover:font-bold px-2 !pl-0 md:px-4 py-2.5 ${
+            !includePastEvents ? 'font-bold' : ''
+          }`}
+          onClick={() => {
+            setIncludePastEvents(false)
+          }}
+        >
+          Upcoming Events
+        </p>
+
+        <p
+          className={`cursor-pointer hover:font-bold px-2 md:px-4 py-2.5 ${includePastEvents ? 'font-bold' : ''}`}
+          onClick={() => {
+            setIncludePastEvents(!includePastEvents)
+          }}
+        >
+          Show Past Events
+        </p>
+      </div>
+
+      <div className="text-sm">
+        <Table itemKey="_key" items={filteredEvents} columns={tableColumns} initialSort={0} />
+      </div>
+    </>
+  )
+})
+
 export default pageHOC(function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
@@ -707,12 +761,10 @@ export default pageHOC(function RoadToDevcon(props: any) {
   useKeyBinding(() => goToSection(currentSlide - 1), ['ArrowLeft'])
   useKeyBinding(() => goToSection(currentSlide + 1), ['ArrowRight'])
 
-  console.log(props.events, 'events', 'props hello')
-
   return (
     <>
       <div className="" id="journey"></div>
-      <Page theme={themes['teal']}>
+      <Page theme={themes['index']}>
         <PageHero
           className={css['page-hero']}
           path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Road To Devcon' }]}
@@ -807,28 +859,12 @@ export default pageHOC(function RoadToDevcon(props: any) {
         </PageHero>
 
         <div className={`section ${css['content']}`} id="events">
-          <div className="flex justify-between items-center mb-6" id="dont-remove-me-the-hero-needs-me">
-            <p className="h2">RTD Events</p>
-            <motion.input
-              className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
-              type="email"
-              name="email"
-              whileFocus={{ boxShadow: '0px 0px 4px 0px black' }}
-              placeholder="Search"
-              // {...emailField}
-            />
-          </div>
+          <div className="" id="dont-remove-me-the-hero-needs-me"></div>
 
-          <div className="flex border-b border-solid border-[#b9b9b9]">
-            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2 font-bold">All</p>
-            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2">Meetups</p>
-            <p className="cursor-pointer hover:font-bold px-2 md:px-4 py-2">Past Events</p>
-          </div>
+          <EventsTable events={props.events} />
 
-          <Table itemKey="_key" items={props.events} columns={tableColumns} />
-
-          <div className="mt-4 border-solid" id="grants">
-            <RoadToDevconGrants pages={grantsPages} />
+          <div className="" id="grants">
+            <RoadToDevconGrants pages={grantsPages} down />
           </div>
         </div>
       </Page>

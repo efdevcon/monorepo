@@ -29,7 +29,6 @@ import { motion, useSpring, useScroll } from 'framer-motion'
 
 import DC7OverlayLeft from './images/dc-7/overlay-left-dc7.png'
 import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
-import DC7OverlayRightLeftAligned from './images/dc-7/overlay-right-dc7-left-aligned.png'
 import DC7Logo from './images/dc-7/logo.png'
 import DC7Left from './images/dc-7/left.png'
 // import DC7Left from 'assets/images/dc-7/logo-flowers.png'
@@ -264,12 +263,12 @@ export const Hero = () => {
                   <Butterflies2 />
                 </div>
                 <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority />
-                <Image
+                {/* <Image
                   className={`${css['dc7-logo-text']} ${css['mobile']}`}
                   src={DC7OverlayRightLeftAligned}
                   alt="Event location"
                   priority
-                />
+                /> */}
               </div>
             </div>
           </div>

@@ -73,7 +73,7 @@ export const useSort = (
   data: any[],
   fields: Field[],
   initialSort = 0,
-  resetOnThirdClick = true,
+  resetOnThirdClick = false,
   defaultDirection: 'asc' | 'desc' = 'asc'
 ): SortState => {
   const [sortBy, setSortBy] = React.useState<number>(initialSort)

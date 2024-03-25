@@ -149,6 +149,28 @@ const index: Template = {
         },
       ],
     },
+    {
+      label: 'Devcon Week',
+      name: 'devcon_week',
+      type: 'object',
+      fields: [
+        {
+          label: 'Body',
+          name: 'body',
+          type: 'rich-text',
+        },
+        {
+          label: 'Title',
+          name: 'title',
+          type: 'rich-text',
+        },
+        {
+          label: 'Button',
+          name: 'button',
+          type: 'string',
+        },
+      ],
+    },
   ],
 }
 

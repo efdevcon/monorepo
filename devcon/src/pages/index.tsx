@@ -80,10 +80,13 @@ const videos = [
   },
 ]
 
-export const RoadToDevconGrants = ({ pages }: any) => {
+export const RoadToDevconGrants = ({ pages, down }: any) => {
   return (
-    <div className="flex-col md:flex-row flex relative pt-12 mb-8 gap-8 items-center">
-      <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+    <div className="flex-col md:flex-row flex relative pt-12 gap-8 items-center">
+      <div
+        className={`${css['scrolling-text-background']} ${down ? '' : css['alternate']}`}
+        data-type="scrolling-background"
+      >
         <InfiniteScroller nDuplications={2} reverse speed="150s">
           <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
         </InfiniteScroller>
@@ -226,6 +229,11 @@ export default pageHOC(function Index(props: any) {
               </div>
             </div>
           </div>
+
+          <div className="relative flex flex-col items-start mb-8 pb-8 border-bottom gap-8 xl:gap-6">
+            <RichText content={pages.devcon_week?.body}></RichText>
+          </div>
+
           <div className="relative flex flex-col items-start pb-20 border-bottom gap-8 xl:gap-6">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
@@ -280,7 +288,9 @@ export default pageHOC(function Index(props: any) {
             </Link>
           </div>
 
-          <RoadToDevconGrants pages={pages} />
+          <div className="mb-4">
+            <RoadToDevconGrants pages={pages} />
+          </div>
           {/* <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               <InfiniteScroller nDuplications={2} reverse speed="150s">

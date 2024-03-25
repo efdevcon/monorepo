@@ -39,6 +39,16 @@
 
 .content {
     --custom-fade-color: rgb(202, 202, 255);
+
+    @media (min-width: 1000px) {
+      [data-type="scrolling-background"] {
+        mask-image: linear-gradient(to right, 
+        transparent, 
+        black 65%, 
+        black 90%, 
+        transparent) !important;
+      }
+    }
 }
 
 .drag-to-continue {
@@ -139,3 +149,17 @@
       border-left: 1px solid rgba(0, 0, 0, 0.1);
     }
   }
+
+.location-col {
+
+}
+
+.team-col {
+  // @media (max-width: 1000px) {
+  //   display: none;
+  // }
+}
+
+.social-col {
+
+}
