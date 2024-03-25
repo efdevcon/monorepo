@@ -202,7 +202,7 @@ const clamp = (number: number, min: number, max: number) => {
   return Math.max(min, Math.min(number, max))
 }
 
-const useHorizontalParallax = (transformMin = 0, transformMax = 100, reverse = false) => {
+const useHorizontalParallax = (onChange: (progress: number) => void) => {
   const targetRef = useRef<any>(null)
   const anchorRef = useRef<any>(null)
 
@@ -221,21 +221,23 @@ const useHorizontalParallax = (transformMin = 0, transformMax = 100, reverse = f
 
       // Determine if the element is past the midpoint of the viewport
       const intersectionRatioDecreasing = viewportMidpoint >= elementMidpoint
-      let transformPercentage
+      let progressAlongAnchor
 
       if (intersectionRatioDecreasing) {
         const ratioPastMidpoint = (1 - ratio) / 2 + 0.5
 
-        transformPercentage = ratioPastMidpoint * 100
+        progressAlongAnchor = ratioPastMidpoint * 100
       } else {
-        transformPercentage = (ratio * 100) / 2
+        progressAlongAnchor = (ratio * 100) / 2
       }
 
-      let computedTranslate = clamp(transformPercentage, transformMin, transformMax) + ''
+      onChange(progressAlongAnchor)
 
-      if (reverse) computedTranslate = `-${computedTranslate}`
+      // let computedTranslate = clamp(progressAlongAnchor, transformMin, transformMax) + ''
 
-      targetRef.current.style.transform = `translateX(${computedTranslate}%)`
+      // if (reverse) computedTranslate = `-${computedTranslate}`
+
+      // targetRef.current.style.transform = `translateX(${computedTranslate}%)`
     })
   }
 
@@ -323,7 +325,27 @@ const Hero = (props: any) => {
 
   useWindowWidth('window-width')
 
-  const parallaxes = [useHorizontalParallax(), useHorizontalParallax(0, 100), useHorizontalParallax(0, 60, true)]
+  const firstParallax = useHorizontalParallax(progress => {})
+
+  const secondParallaxCloud = useRef<any>()
+  const secondParallax = useHorizontalParallax(progress => {
+    secondParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
+      progress / 10
+    }%) translateY(14%)`
+    secondParallax.targetRef.current.style.transform = `scale(${
+      80 + progress / 5
+    }%) translateX(-${progress}%) translateY(10%)`
+  })
+
+  const thirdParallaxCloud = useRef<any>()
+  const thirdParallax = useHorizontalParallax(progress => {
+    thirdParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
+      progress / 10
+    }%) translateY(15%)`
+    thirdParallax.targetRef.current.style.transform = `scale(${80 + progress / 5}%) translateX(-${
+      progress / 1.5
+    }%) translateY(10%)`
+  })
 
   return (
     <div
@@ -480,16 +502,17 @@ const Hero = (props: any) => {
                 src={AriaClouds}
                 priority
                 alt="Clouds"
+                ref={secondParallaxCloud}
                 className="object-contain object-bottom h-full translate-y-[12%]"
               />
               <Image
-                className="absolute bottom-[-5%] left-[10%] object-contain w-[37%]"
+                className="absolute bottom-[-5%] left-[20%] object-contain w-[37%]"
                 src={Aria}
-                ref={parallaxes[1].targetRef}
+                ref={secondParallax.targetRef}
                 alt="Aria and cat"
               />
               <div
-                ref={parallaxes[1].anchorRef}
+                ref={secondParallax.anchorRef}
                 className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
               ></div>
             </motion.div>
@@ -576,17 +599,18 @@ const Hero = (props: any) => {
               <Image
                 src={LyraClouds}
                 priority
+                ref={thirdParallaxCloud}
                 alt="Ethereum themed boy and dog"
                 className="object-contain object-bottom h-full translate-y-[12%]"
               />
               <Image
                 className="absolute bottom-[-5%] right-0 object-contain w-[35%]"
                 src={Lyra}
-                ref={parallaxes[2].targetRef}
+                ref={thirdParallax.targetRef}
                 alt="Lyra and dog"
               />
               <div
-                ref={parallaxes[2].anchorRef}
+                ref={thirdParallax.anchorRef}
                 className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
               ></div>
             </motion.div>
@@ -675,8 +699,8 @@ const EventsTable = React.memo(({ events }: any) => {
 
       <div className="flex border-b border-solid border-[#b9b9b9]">
         <p
-          className={`no-select cursor-pointer hover:font-bold px-2 !pl-0 md:px-4 py-2.5 ${
-            !includePastEvents ? 'font-bold' : ''
+          className={`no-select  cursor-pointer border-b border-solid border-[#b9b9b9] translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
+            !includePastEvents ? 'font-bold border-black ' : ''
           }`}
           onClick={() => {
             setIncludePastEvents(false)
@@ -686,8 +710,8 @@ const EventsTable = React.memo(({ events }: any) => {
         </p>
 
         <p
-          className={`no-select cursor-pointer hover:font-bold px-2 md:px-4 py-2.5 ${
-            includePastEvents ? 'font-bold' : ''
+          className={`no-select cursor-pointer border-b border-solid border-[#b9b9b9] translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
+            includePastEvents ? 'font-bold border-black' : ''
           }`}
           onClick={() => {
             setIncludePastEvents(!includePastEvents)
