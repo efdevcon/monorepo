@@ -82,7 +82,7 @@ const videos = [
 
 export const RoadToDevconGrants = ({ pages, down }: any) => {
   return (
-    <div className="flex-col md:flex-row flex relative pt-12 gap-8 items-center">
+    <div className="flex-col md:flex-row flex relative pt-12 gap-8 items-center" data-type="rtd-container">
       <div
         className={`${css['scrolling-text-background']} ${down ? '' : css['alternate']}`}
         data-type="scrolling-background"

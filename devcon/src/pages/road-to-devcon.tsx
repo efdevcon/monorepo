@@ -170,7 +170,7 @@ const tableColumns: Array<TableColumn> = [
   {
     title: 'Link',
     key: 'Link',
-    sort: SortVariation.basic,
+    // sort: SortVariation.basic,
     render: item => {
       if (!item.Link) return null
 
@@ -185,7 +185,7 @@ const tableColumns: Array<TableColumn> = [
     title: 'Social',
     key: 'Social',
     className: '!hidden lg:!flex',
-    sort: SortVariation.basic,
+    // sort: SortVariation.basic,
     render: item => {
       if (!item.Social) return null
 
@@ -675,7 +675,7 @@ const EventsTable = React.memo(({ events }: any) => {
 
       <div className="flex border-b border-solid border-[#b9b9b9]">
         <p
-          className={`cursor-pointer hover:font-bold px-2 !pl-0 md:px-4 py-2.5 ${
+          className={`no-select cursor-pointer hover:font-bold px-2 !pl-0 md:px-4 py-2.5 ${
             !includePastEvents ? 'font-bold' : ''
           }`}
           onClick={() => {
@@ -686,7 +686,9 @@ const EventsTable = React.memo(({ events }: any) => {
         </p>
 
         <p
-          className={`cursor-pointer hover:font-bold px-2 md:px-4 py-2.5 ${includePastEvents ? 'font-bold' : ''}`}
+          className={`no-select cursor-pointer hover:font-bold px-2 md:px-4 py-2.5 ${
+            includePastEvents ? 'font-bold' : ''
+          }`}
           onClick={() => {
             setIncludePastEvents(!includePastEvents)
           }}
@@ -863,8 +865,8 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
           <EventsTable events={props.events} />
 
-          <div className="" id="grants">
-            <RoadToDevconGrants pages={grantsPages} down />
+          <div className="border-t border-solid border-[#b9b9b9]" id="grants">
+            <RoadToDevconGrants pages={grantsPages} />
           </div>
         </div>
       </Page>
