@@ -115,20 +115,18 @@
   }
 
   .deva-mobile {
-    @screen md {
-      opacity: 0.15;
-    }
-
     @screen lg {
       opacity: 1;
     } 
   }
 
   .mask-image {
-    @media (max-width: 1024px) {
+    opacity: 0.15;
+    // mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%);
+    @screen md {
         // mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 100%);
-        mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%);
-        opacity: 0.15;
+        opacity: 1;
+
         // left: 20%;
     }
   }
@@ -173,4 +171,17 @@
 
 .social-col {
 
+}
+
+.glass-wrapper {
+  display: contents;
+
+  @media (min-width: 768px) and (max-width: 1000px) {
+    display: block;
+  }
+
+  padding: 16px 24px;
+  background: rgba(34, 34, 34, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
 }

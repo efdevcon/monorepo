@@ -376,15 +376,17 @@ const Hero = (props: any) => {
               alt="Colorful road to devcon header"
               className="z-1 max-w-[170px] md:max-w-[220px] mb-4"
             />
-            <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px]" />
-            <p className="text-slate-100 mt-8">
-              Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
-              wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and community.
-            </p>
-            <p className="text-slate-100 mt-4">
-              And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
-            </p>
-            <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
+            <Image src={SoutheastAsia} alt="Southeast Asia" className="max-w-[150px] md:max-w-[215px] mb-8" />
+            <div className={css['glass-wrapper']}>
+              <p className="text-slate-100">
+                Hey there, I'm Deva, the Devcon unicorn. Since the dawn of Devcon I have been a guiding light to the
+                wonderstruck wanderers of Ethereum's vast universe, supporting them to find their tribe and community.
+              </p>
+              <p className="text-slate-100 mt-4">
+                And now, the Road to Devcon calls again, inviting a diverse array of mavericks, just like you.
+              </p>
+              <p className="text-slate-100 mt-4">Follow me, and join the journey. 🦄✨</p>
+            </div>
 
             <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
           </div>
@@ -406,35 +408,37 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
-            <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
-              Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
-              kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
-              to fully understand just online.
-            </p>
-            <p className="text-slate-100 mt-4 text-sm">
-              At Devcon, we explore Ethereum together through fiery dialogues, workshops, and peer-to-peer interactions.
-              It’s where you are welcomed by a tribe that nurtures your growth, and where you build new relationships
-              and networks.
-            </p>
+          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+            <div className={css['glass-wrapper']}>
+              <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
+              <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
+                Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
+                kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
+                to fully understand just online.
+              </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                At Devcon, we explore Ethereum together through fiery dialogues, workshops, and peer-to-peer
+                interactions. It’s where you are welcomed by a tribe that nurtures your growth, and where you build new
+                relationships and networks.
+              </p>
 
-            <p className="text-slate-100 mt-4 text-sm">
-              Explore{' '}
-              <Link to="/" className="text-underline">
-                Devcon
-              </Link>
-              , or{' '}
-              <span onClick={() => goToSection(2)} className="text-underline cursor-pointer">
-                keep following me for more
-              </span>
-              . 🦄✨
-            </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                Explore{' '}
+                <Link to="/" className="text-underline">
+                  Devcon
+                </Link>
+                , or{' '}
+                <span onClick={() => goToSection(2)} className="text-underline cursor-pointer">
+                  keep following me for more
+                </span>
+                . 🦄✨
+              </p>
+            </div>
           </div>
 
-          <div className="flex w-[75vw] justify-center relative lg:contents">
+          <div className="flex w-[60vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[75vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[60vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -460,33 +464,35 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
+          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+            <div className={css['glass-wrapper']}>
+              <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
-            <p className="text-slate-100 mt-4 text-lg" ref={sections[2].ref}>
-              The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
-              organized by the active local communities in Southeast Asia.
-            </p>
-            <p className="text-slate-100 mt-4 text-sm">
-              Explorers like you are shaping the road together, diving into workshops and talks, empowered by Ethereum’s
-              promises and the motivation to bring this innovation to local communities, creating opportunities to learn
-              and connect.
-            </p>
-            <p className="text-slate-100 mt-4 text-sm">
-              <Link to="#events" className="text-underline">
-                Find the event that vibes with you
-              </Link>
-              . Or if you’re missing something…{' '}
-              <span className="text-underline cursor-pointer" onClick={() => goToSection(3)}>
-                follow me!
-              </span>{' '}
-              🦄✨
-            </p>
+              <p className="text-slate-100 mt-4 text-lg" ref={sections[2].ref}>
+                The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to
+                Devcon, organized by the active local communities in Southeast Asia.
+              </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                Explorers like you are shaping the road together, diving into workshops and talks, empowered by
+                Ethereum’s promises and the motivation to bring this innovation to local communities, creating
+                opportunities to learn and connect.
+              </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                <Link to="#events" className="text-underline">
+                  Find the event that vibes with you
+                </Link>
+                . Or if you’re missing something…{' '}
+                <span className="text-underline cursor-pointer" onClick={() => goToSection(3)}>
+                  follow me!
+                </span>{' '}
+                🦄✨
+              </p>
+            </div>
           </div>
 
-          <div className="flex w-[65vw] justify-center relative lg:contents">
+          <div className="flex w-[60vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} items-end ww-[255%] lg:w-[65vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} items-end ww-[255%] lg:w-[60vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -509,29 +515,31 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
-            <p className="text-slate-100 text-base bold lg:text-xl">
-              Become a leader: Organize an event or start a community
-            </p>
+          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
+            <div className={css['glass-wrapper']}>
+              <p className="text-slate-100 text-base bold lg:text-xl">
+                Become a leader: Organize an event or start a community
+              </p>
 
-            <p className="text-slate-100 mt-4 lg:text-lg" ref={sections[3].ref}>
-              If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to support
-              you! This is your call to adventure, to be part of something bigger, something wilder.
-            </p>
-            <p className="text-slate-100 mt-4 text-sm">
-              Imagine organizing events within your community to showcase Ethereum, or starting a new grassroots
-              community through meetups and other educational initiatives focused on Ethereum.
-            </p>
-            <p className="text-slate-100 mt-4 text-sm">
-              If a fire is ignited within you, now is the time to apply for the RTD grants and be a part of building our
-              empowered, decentralized future. 🦄✨
-            </p>
+              <p className="text-slate-100 mt-4 lg:text-lg" ref={sections[3].ref}>
+                If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to
+                support you! This is your call to adventure, to be part of something bigger, something wilder.
+              </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                Imagine organizing events within your community to showcase Ethereum, or starting a new grassroots
+                community through meetups and other educational initiatives focused on Ethereum.
+              </p>
+              <p className="text-slate-100 mt-4 text-sm">
+                If a fire is ignited within you, now is the time to apply for the RTD grants and be a part of building
+                our empowered, decentralized future. 🦄✨
+              </p>
 
-            <Link to="https://esp.ethereum.foundation/devcon-grants">
-              <Button fat color="purple-1" className="mt-8" fill>
-                Apply For a Grant →
-              </Button>
-            </Link>
+              <Link to="https://esp.ethereum.foundation/devcon-grants">
+                <Button fat color="purple-1" className="mt-8" fill>
+                  Apply For a Grant →
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </SwipeToScroll>
