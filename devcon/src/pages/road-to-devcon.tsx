@@ -70,7 +70,6 @@ const useIntersectionRatio = (options?: any) => {
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        console.log(entry.intersectionRatio, 'intersection ratio')
         setIntersectionRatio(entry.intersectionRatio)
       })
     }, observerOptions)
@@ -300,7 +299,7 @@ const Hero = (props: any) => {
         <div className="absolute left-0 h-full pointer-events-none w-[var(--window-width)]" ref={sections[0].ref} />
         <div className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}>
           {/* Desktop version first slide */}
-          <div className="relative hidden xl:block lg:w-[var(--window-width)] h-full">
+          <div className="relative hidden lg:block lg:w-[var(--window-width)] h-full">
             <div className="section h-full pt-4">
               <div className="flex no-wrap relative">
                 <div className="relative flex flex-col justify-center h-full">
@@ -371,7 +370,7 @@ const Hero = (props: any) => {
           </div>
 
           {/* Mbbile version first slide */}
-          <div className="xl:hidden flex flex-col lg:justify-center align-start h-full w-[600px] max-w-[100vw] px-[16px] xl:px-[64px] z-10">
+          <div className="lg:hidden flex flex-col lg:justify-center align-start h-full w-[600px] max-w-[100vw] px-[16px] min-[768px]:px-[64px] z-10">
             <Image
               src={WonkaFont}
               alt="Colorful road to devcon header"
@@ -390,9 +389,9 @@ const Hero = (props: any) => {
             <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
           </div>
 
-          <div className="xl:hidden flex w-[50vw] justify-center items-end relative">
+          <div className="lg:hidden flex w-[50vw] justify-center items-end relative">
             <motion.div
-              className={`flex relative left-[-60%] w-[200%] md:w-[175%] shrink-0`}
+              className={`flex ${css['deva-mobile']} relative left-[-60%] w-[200%] md:w-[175%] shrink-0`}
               // initial={{ x: 50 }}
               // whileInView={{ x: 0 }}
               viewport={{ once: true }}
@@ -407,7 +406,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
             <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
               Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
@@ -433,9 +432,9 @@ const Hero = (props: any) => {
             </p>
           </div>
 
-          <div className="flex w-[70vw] justify-center relative lg:contents">
+          <div className="flex w-[75vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[75vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -461,7 +460,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
             <p className="text-slate-100 mt-4 text-lg" ref={sections[2].ref}>
@@ -510,7 +509,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
+          <div className="flex flex-col md:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
             <p className="text-slate-100 text-base bold lg:text-xl">
               Become a leader: Organize an event or start a community
             </p>
@@ -586,6 +585,11 @@ const EventsTable = React.memo(({ events }: any) => {
           placeholder="Search Events"
         />
       </div>
+
+      <p className="mb-4">
+        The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
+        organized by the local communities in and near Southeast Asia.
+      </p>
 
       <div className="flex border-b border-solid border-[#b9b9b9]">
         <p

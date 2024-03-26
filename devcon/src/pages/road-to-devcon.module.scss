@@ -114,12 +114,15 @@
     }
   }
 
-  .image {
-    // @media (max-width: 1024px) {
-    //     left: -60%;
-    // }
-  }
+  .deva-mobile {
+    @screen md {
+      opacity: 0.15;
+    }
 
+    @screen lg {
+      opacity: 1;
+    } 
+  }
 
   .mask-image {
     @media (max-width: 1024px) {
