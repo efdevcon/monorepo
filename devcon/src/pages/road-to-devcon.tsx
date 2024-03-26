@@ -408,7 +408,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+          <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
               <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
@@ -464,7 +464,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+          <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
@@ -515,7 +515,7 @@ const Hero = (props: any) => {
             </motion.div>
           </div>
 
-          <div className="flex flex-col min-[1000px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
+          <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">
                 Become a leader: Organize an event or start a community
