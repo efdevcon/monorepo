@@ -25,16 +25,17 @@
           max-height: 65vh !important;
         }
 
-        @media (max-height: 400px) {
-            height: auto !important;
-            max-height: none !important;
-        }
+        // @media (max-height: 400px) {
+        //     height: auto !important;
+        //     max-height: none !important;
+        // }
     }
 }
 
 .horizontal-container {
     // background: linear-gradient(to right, #3E318A, #377AB9, #F794F3);
     width: max-content;
+    overflow: hidden;
 }
 
 .content {
@@ -114,9 +115,9 @@
   }
 
   .image {
-    @media (max-width: 1024px) {
-        left: -60%;
-    }
+    // @media (max-width: 1024px) {
+    //     left: -60%;
+    // }
   }
 
 
@@ -124,8 +125,8 @@
     @media (max-width: 1024px) {
         // mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 100%);
         mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%);
-        opacity: 0.3;
-        left: -60%;
+        opacity: 0.15;
+        // left: 20%;
     }
   }
 

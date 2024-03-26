@@ -37,6 +37,7 @@ import Aria from 'components/domain/road/images/rtd/aria.png'
 import AriaClouds from 'components/domain/road/images/rtd/aria-clouds.png'
 import Deva from 'components/domain/road/images/rtd/deva.png'
 import Globe from 'components/domain/road/images/rtd/deva-globe-2.png'
+// import useGetElementHeight from 'hooks/useGetElementHeight'
 
 // Custom hook to observe resize events and update a CSS variable
 const useWindowWidth = (cssVariableName: string) => {
@@ -69,6 +70,7 @@ const useIntersectionRatio = (options?: any) => {
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
+        console.log(entry.intersectionRatio, 'intersection ratio')
         setIntersectionRatio(entry.intersectionRatio)
       })
     }, observerOptions)
@@ -159,6 +161,15 @@ const tableColumns: Array<TableColumn> = [
     },
   },
   {
+    title: 'Type of Event',
+    key: 'Type of Event',
+    className: '!hidden md:!flex',
+    sort: SortVariation.basic,
+    render: item => {
+      return <p className="bolda">{item['Type of Event']}</p>
+    },
+  },
+  {
     title: 'Team',
     key: 'Team',
     sort: SortVariation.basic,
@@ -198,10 +209,6 @@ const tableColumns: Array<TableColumn> = [
   },
 ]
 
-const clamp = (number: number, min: number, max: number) => {
-  return Math.max(min, Math.min(number, max))
-}
-
 const useHorizontalParallax = (onChange: (progress: number) => void) => {
   const targetRef = useRef<any>(null)
   const anchorRef = useRef<any>(null)
@@ -232,12 +239,6 @@ const useHorizontalParallax = (onChange: (progress: number) => void) => {
       }
 
       onChange(progressAlongAnchor)
-
-      // let computedTranslate = clamp(progressAlongAnchor, transformMin, transformMax) + ''
-
-      // if (reverse) computedTranslate = `-${computedTranslate}`
-
-      // targetRef.current.style.transform = `translateX(${computedTranslate}%)`
     })
   }
 
@@ -259,67 +260,6 @@ const useHorizontalParallax = (onChange: (progress: number) => void) => {
   }
 }
 
-const ParallaxImage = ({ intersectionRatio }: any) => {
-  const targetRef = useRef<any>(null)
-  const anchorRef = useRef<any>(null)
-
-  const observerCallback = (entries: any) => {
-    entries.forEach((entry: any) => {
-      const { boundingClientRect, rootBounds } = entry
-
-      if (!rootBounds) return
-
-      const ratio = entry.intersectionRatio
-
-      // Calculate midpoint of the viewport
-      const viewportMidpoint = rootBounds.width / 2
-      // Calculate the midpoint of the element
-      const elementMidpoint = boundingClientRect.left + boundingClientRect.width / 2
-
-      // Determine if the element is past the midpoint of the viewport
-      const intersectionRatioDecreasing = viewportMidpoint >= elementMidpoint
-      let transformPercentage
-
-      if (intersectionRatioDecreasing) {
-        const ratioPastMidpoint = (1 - ratio) / 2 + 0.5
-
-        transformPercentage = ratioPastMidpoint * 100
-      } else {
-        transformPercentage = (ratio * 100) / 2
-      }
-
-      targetRef.current.style.transform = `translateX(${transformPercentage}%)`
-    })
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: new Array(101).fill(0).map((_, i) => i * 0.01),
-    })
-
-    if (anchorRef.current) {
-      observer.observe(anchorRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div className="relative h-[70%]">
-      <Image className="object-contain object-bottom w-full" src={Globe} alt="hahaha" />
-      <Image
-        className="absolute top-0 left-auto right-auto object-contain w-[70%]"
-        src={Deva}
-        ref={targetRef}
-        alt="hahaha"
-      />
-      <div ref={anchorRef} className="w-[100vw] absolute top-0 h-full pointer-events-none">
-        {/* This invisible anchor controls the animation of the plane but does not move itself */}
-      </div>
-    </div>
-  )
-}
-
 const Hero = (props: any) => {
   const { controlsRef, sections, goToSection } = props
 
@@ -333,7 +273,7 @@ const Hero = (props: any) => {
       progress / 10
     }%) translateY(14%)`
     secondParallax.targetRef.current.style.transform = `scale(${
-      80 + progress / 5
+      90 + progress / 5
     }%) translateX(-${progress}%) translateY(10%)`
   })
 
@@ -352,17 +292,15 @@ const Hero = (props: any) => {
       className={`${css['position-container']} absolute top-0 right-0 left-0 w-full h-full bottom-0 z-0`}
       id="intersection-root"
     >
-      <div className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
+      <div className="hidden md:block absolute top-0 left-0 bottom-0 right-0 pointer-events-none">
         <Fireflies id="road" />
       </div>
 
       <SwipeToScroll slideControls={controlsRef}>
-        <div
-          className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}
-          ref={sections[0].ref}
-        >
+        <div className="absolute left-0 h-full pointer-events-none w-[var(--window-width)]" ref={sections[0].ref} />
+        <div className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}>
           {/* Desktop version first slide */}
-          <div className="relative hidden lg:block lg:w-[var(--window-width)] h-full">
+          <div className="relative hidden xl:block lg:w-[var(--window-width)] h-full">
             <div className="section h-full pt-4">
               <div className="flex no-wrap relative">
                 <div className="relative flex flex-col justify-center h-full">
@@ -413,20 +351,27 @@ const Hero = (props: any) => {
                   viewport={{ once: true }}
                   transition={{ duration: 1 }}
                 >
-                  {/* <ParallaxImage intersectionRatio={sections[0].intersectionRatio} /> */}
                   <Image
                     priority
                     src={DevaGlobe}
                     alt="Deva flying across globe"
                     className="object-contain object-bottom min-h-[70%]"
                   />
+
+                  {/* <Image className="object-contain object-bottom w-full" src={Globe} alt="hahaha" />
+      <Image
+        className="absolute top-0 left-auto right-auto object-contain w-[70%]"
+        src={Deva}
+        ref={targetRef}
+        alt="hahaha"
+      /> */}
                 </motion.div>
               </div>
             </div>
           </div>
 
           {/* Mbbile version first slide */}
-          <div className="lg:hidden flex flex-col lg:justify-center align-start h-full w-[600px] max-w-[100vw] px-[16px] xl:px-[64px] z-10">
+          <div className="xl:hidden flex flex-col lg:justify-center align-start h-full w-[600px] max-w-[100vw] px-[16px] xl:px-[64px] z-10">
             <Image
               src={WonkaFont}
               alt="Colorful road to devcon header"
@@ -445,9 +390,9 @@ const Hero = (props: any) => {
             <Image src={DevaSignature} alt="Deva's signature" className="max-w-[115px] mt-4" />
           </div>
 
-          <div className="lg:hidden flex w-[50vw] justify-center items-end relative">
+          <div className="xl:hidden flex w-[50vw] justify-center items-end relative">
             <motion.div
-              className={`flex relative ${css['image']} w-[200%] shrink-0`}
+              className={`flex relative left-[-60%] w-[200%] md:w-[175%] shrink-0`}
               // initial={{ x: 50 }}
               // whileInView={{ x: 0 }}
               viewport={{ once: true }}
@@ -463,10 +408,8 @@ const Hero = (props: any) => {
           </div>
 
           <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[1].ref}>
-              Why Devcon is for You
-            </p>
-            <p className="text-slate-100 mt-4 text-lg">
+            <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
+            <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
               Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
               kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
               to fully understand just online.
@@ -492,7 +435,7 @@ const Hero = (props: any) => {
 
           <div className="flex w-[70vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -503,45 +446,25 @@ const Hero = (props: any) => {
                 priority
                 alt="Clouds"
                 ref={secondParallaxCloud}
-                className="object-contain object-bottom h-full translate-y-[12%]"
+                className="object-contain object-bottom h-full max-h-[80%] max-w-[90%] lg:max-w-none translate-y-[12%]"
               />
               <Image
-                className="absolute bottom-[-5%] left-[20%] object-contain w-[37%]"
+                className="absolute bottom-[-5%] left-[20%] max-h-full object-contain w-[37%]"
                 src={Aria}
                 ref={secondParallax.targetRef}
                 alt="Aria and cat"
               />
               <div
                 ref={secondParallax.anchorRef}
-                className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
+                className=" w-full lg:w-[100vw] absolute top-0 h-full pointer-events-none"
               ></div>
             </motion.div>
           </div>
 
-          {/* 
-          <div className="flex w-[50vw] justify-center relative lg:contents">
-            <motion.div
-              className={`flex relative items-end ${css['mask-image']} w-[220%] lg:w-[55vw] shrink-0`}
-              // initial={{ opacity: 0, x: 100 }}
-              // whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
-              <Image
-                src={GirlSchematics}
-                priority
-                alt="Girl holding Ethereum schematics"
-                className="object-contain object-bottom h-full"
-              />
-            </motion.div>
-          </div> */}
-
           <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
-            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[2].ref}>
-              What is the Road to Devcon?
-            </p>
+            <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
-            <p className="text-slate-100 mt-4 text-lg">
+            <p className="text-slate-100 mt-4 text-lg" ref={sections[2].ref}>
               The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
               organized by the active local communities in Southeast Asia.
             </p>
@@ -562,35 +485,9 @@ const Hero = (props: any) => {
             </p>
           </div>
 
-          {/* <div className="flex w-[50vw] justify-center relative lg:contents">
-            <motion.div
-              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[50vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
-              // initial={{ opacity: 0, x: 100 }}
-              // whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
-              <Image
-                src={BoyDoge}
-                priority
-                alt="Ethereum themed boy and dog"
-                className="object-contain object-bottom h-full"
-              />
-              <Image
-                className="absolute top-0 left-auto right-auto object-contain w-[70%]"
-                src={Deva}
-                ref={parallaxes[0].targetRef}
-                alt="hahaha"
-              />
-              <div ref={parallaxes[0].anchorRef} className="w-[100vw] absolute top-0 h-full pointer-events-none">
-
-              </div>
-            </motion.div>
-          </div> */}
-
           <div className="flex w-[65vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} w-[325%] lg:w-[65vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} items-end ww-[255%] lg:w-[65vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -601,30 +498,24 @@ const Hero = (props: any) => {
                 priority
                 ref={thirdParallaxCloud}
                 alt="Ethereum themed boy and dog"
-                className="object-contain object-bottom h-full translate-y-[12%]"
+                className="object-contain object-bottom max-h-[80%] h-full max-w-[90%] lg:max-w-none translate-y-[12%]"
               />
               <Image
-                className="absolute bottom-[-5%] right-0 object-contain w-[35%]"
+                className="absolute bottom-[-5%] right-0 max-h-full object-contain w-[35%]"
                 src={Lyra}
                 ref={thirdParallax.targetRef}
                 alt="Lyra and dog"
               />
-              <div
-                ref={thirdParallax.anchorRef}
-                className="w-[100vw] absolute top-0 h-full pointer-events-none bg-opacity-10"
-              ></div>
+              <div ref={thirdParallax.anchorRef} className="w-[100vw] absolute top-0 h-full pointer-events-none"></div>
             </motion.div>
           </div>
 
-          <div
-            className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10"
-            // ref={sections[3].ref}
-          >
-            <p className="text-slate-100 text-base bold lg:text-xl" ref={sections[3].ref}>
+          <div className="flex flex-col lg:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
+            <p className="text-slate-100 text-base bold lg:text-xl">
               Become a leader: Organize an event or start a community
             </p>
 
-            <p className="text-slate-100 mt-4 lg:text-lg">
+            <p className="text-slate-100 mt-4 lg:text-lg" ref={sections[3].ref}>
               If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to support
               you! This is your call to adventure, to be part of something bigger, something wilder.
             </p>
@@ -650,7 +541,6 @@ const Hero = (props: any) => {
 }
 
 const EventsTable = React.memo(({ events }: any) => {
-  // const [filter, setFilter] = React.useState<string>('all')
   const [includePastEvents, setIncludePastEvents] = React.useState(false)
   const [search, setSearch] = React.useState('')
 
@@ -796,7 +686,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
           path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Road To Devcon' }]}
           renderCustomNavigation={() => {
             return (
-              <div className="section py-2 flexw-full relative z-10">
+              <div className="section py-2 flex w-full relative z-10">
                 <div className="flex justify-between items-center lg:justify-center">
                   <div className="flex items-center justify-center bg-slate-700 lg:bg-opacity-30 rounded shadow lg:hover:bg-opacity-100 transition-all select-none">
                     <div
