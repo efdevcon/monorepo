@@ -680,8 +680,8 @@ const Gallery = React.memo(() => {
 const SlideControls = ({ sectionRefs, controlsRef, goToSection }: any) => {
   const [showDragIndicator, setShowDragIndicator] = React.useState(true)
 
-  const sections = sectionRefs.map((ref: any) => {
-    // @ts-ignore
+  const sections: any[] = sectionRefs.map((ref: any) => {
+    // eslint-disable-next-line
     return useIntersectionRatio(ref, {
       root: 'intersection-root',
     })
