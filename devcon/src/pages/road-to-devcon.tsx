@@ -63,9 +63,9 @@ const useWindowWidth = (cssVariableName: string) => {
   }, [cssVariableName])
 }
 
-const useIntersectionRatio = (options?: any) => {
+const useIntersectionRatio = (ref: any, options?: any) => {
   const [intersectionRatio, setIntersectionRatio] = useState(0)
-  const ref = useRef(null)
+  // const ref = useRef(null)
 
   useEffect(() => {
     const observerOptions = {
@@ -266,7 +266,7 @@ const useHorizontalParallax = (onChange: (progress: number) => void) => {
 }
 
 const Hero = (props: any) => {
-  const { controlsRef, sections, goToSection } = props
+  const { controlsRef, sectionRefs, goToSection } = props
 
   useWindowWidth('window-width')
 
@@ -302,7 +302,7 @@ const Hero = (props: any) => {
       </div>
 
       <SwipeToScroll slideControls={controlsRef}>
-        <div className="absolute left-0 h-full pointer-events-none w-[var(--window-width)]" ref={sections[0].ref} />
+        <div className="absolute left-0 h-full pointer-events-none w-[var(--window-width)]" ref={sectionRefs[0]} />
         <div className={`${css['horizontal-container']} pt-20 lg:pt-0 flex no-wrap h-full w-content relative`}>
           {/* Desktop version first slide */}
           <div className="relative hidden lg:block lg:w-[var(--window-width)] h-full">
@@ -417,7 +417,7 @@ const Hero = (props: any) => {
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
-              <p className="text-slate-100 mt-4 text-lg" ref={sections[1].ref}>
+              <p className="text-slate-100 mt-4 text-lg" ref={sectionRefs[1]}>
                 Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
                 kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
                 to fully understand just online.
@@ -474,7 +474,7 @@ const Hero = (props: any) => {
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
-              <p className="text-slate-100 mt-4 text-lg" ref={sections[2].ref}>
+              <p className="text-slate-100 mt-4 text-lg" ref={sectionRefs[2]}>
                 The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to
                 Devcon, organized by the active local communities in Southeast Asia.
               </p>
@@ -527,7 +527,7 @@ const Hero = (props: any) => {
                 Become a leader: Organize an event or start a community
               </p>
 
-              <p className="text-slate-100 mt-4 lg:text-lg" ref={sections[3].ref}>
+              <p className="text-slate-100 mt-4 lg:text-lg" ref={sectionRefs[3]}>
                 If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to
                 support you! This is your call to adventure, to be part of something bigger, something wilder.
               </p>
@@ -652,20 +652,24 @@ const Gallery = React.memo(() => {
         // title="ROAD TO DEVCON"
         images={[
           {
-            alt: 'About 1',
+            alt: 'Community 1',
             src: Gal1,
           },
           {
-            alt: 'About 2',
+            alt: 'Community 2',
             src: Gal2,
           },
           {
-            alt: 'About 3',
+            alt: 'Community 3',
             src: Gal3,
           },
           {
-            alt: 'About 4',
+            alt: 'Community 4',
             src: Gal4,
+          },
+          {
+            alt: 'Community 5',
+            src: Gal5,
           },
         ]}
       />
@@ -673,13 +677,14 @@ const Gallery = React.memo(() => {
   )
 })
 
-export default pageHOC(function RoadToDevcon(props: any) {
-  const { data } = useTina<PagesQuery>(props.cms)
-  const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
-  const pages = data.pages as PagesRoad_To_Devcon
-  const grantsPages = grantsData.pages as PagesIndex
-  const controlsRef = useRef<any>()
+const SlideControls = ({ sectionRefs, controlsRef, goToSection }: any) => {
   const [showDragIndicator, setShowDragIndicator] = React.useState(true)
+
+  const sections = sectionRefs.map((ref: any) => {
+    return useIntersectionRatio(ref, {
+      root: 'intersection-root',
+    })
+  })
 
   useEffect(() => {
     controlsRef.current.subscribeX((x: any) => {
@@ -691,46 +696,86 @@ export default pageHOC(function RoadToDevcon(props: any) {
     })
   }, [controlsRef.current])
 
-  const sections = [
-    useIntersectionRatio({
-      root: 'intersection-root',
-    }),
-    useIntersectionRatio({
-      root: 'intersection-root',
-    }),
-    useIntersectionRatio({
-      root: 'intersection-root',
-    }),
-    useIntersectionRatio({
-      root: 'intersection-root',
-    }),
-  ]
-
   const ratios = sections.map(section => parseFloat(section.intersectionRatio))
   const highestRatio = Math.max(...ratios)
   const currentSlide =
     highestRatio === 0 ? -1 : sections.findIndex(section => section.intersectionRatio === highestRatio)
 
-  const goToSection = (index: number) => {
-    if (!sections[index]) return
-
-    window.scrollTo(0, 0)
-
-    // We need to know how far the element is from the side of the screen to align with the rest of the content
-    // The calculations are quite complicated so we'll left curve it and look at a piece of content that respects the layout and match its padding to the side
-    const padding = (() => {
-      const randomBoundedElement = document.getElementById('dont-remove-me-the-hero-needs-me')
-
-      return randomBoundedElement?.offsetLeft || 0
-    })()
-
-    const offsetLeft = sections[index].ref.current.offsetLeft
-
-    controlsRef.current.setX(offsetLeft - padding)
-  }
-
   useKeyBinding(() => goToSection(currentSlide - 1), ['ArrowLeft'])
   useKeyBinding(() => goToSection(currentSlide + 1), ['ArrowRight'])
+
+  return (
+    <div className="section py-2 flex w-full relative z-10">
+      <div className="flex justify-between items-center lg:justify-center">
+        <div className="flex items-center justify-center bg-slate-700 lg:bg-opacity-30 rounded shadow lg:hover:bg-opacity-100 transition-all select-none">
+          <div
+            className={`text-xs cursor-pointer px-2 py-2 pr-3 ${currentSlide === 0 && 'opacity-20'}`}
+            onClick={() => goToSection(currentSlide - 1)}
+          >
+            <IconChevronLeft />
+          </div>
+
+          <p className="text-sm lg:text-base">
+            <span className="bold">0{currentSlide + 1}</span> / 0{sections.length}
+          </p>
+
+          <div
+            className={`text-xs cursor-pointer px-2 py-2 pl-3 ${currentSlide === sections.length - 1 && 'opacity-20'}`}
+            onClick={() => goToSection(currentSlide + 1)}
+          >
+            <IconChevronRight />
+          </div>
+        </div>
+
+        <motion.div
+          className={`lg:!hidden ${css['drag-to-continue']} bg-slate-700 text-sm rounded shadow py-1 px-4 self-end lg:self-start`}
+          animate={{ opacity: showDragIndicator ? '100%' : '0%', x: showDragIndicator ? '0%' : '-10%' }}
+          transition={{ bounceDamping: 100, duration: 0.8, type: 'tween' }}
+        >
+          <p className="pr-1">
+            <span>Drag or use arrow keys to continue</span>
+            <span>Swipe to continue</span>
+          </p>
+          <CircleArrowRightIcon className={`icon ${css['circle-arrow-right-icon']}`} />
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+export default pageHOC(function RoadToDevcon(props: any) {
+  const { data } = useTina<PagesQuery>(props.cms)
+  const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
+  const pages = data.pages as PagesRoad_To_Devcon
+  const grantsPages = grantsData.pages as PagesIndex
+  const controlsRef = useRef<any>()
+  const sections: any = [useRef(), useRef(), useRef(), useRef()]
+
+  const goToSection = React.useMemo(() => {
+    return (index: number) => {
+      if (!sections[index]) return
+
+      window.scrollTo(0, 0)
+
+      // We need to know how far the element is from the side of the screen to align with the rest of the content
+      // The calculations are quite complicated so we'll left curve it and look at a piece of content that respects the layout and match its padding to the side
+      const padding = (() => {
+        const randomBoundedElement = document.getElementById('dont-remove-me-the-hero-needs-me')
+
+        return randomBoundedElement?.offsetLeft || 0
+      })()
+
+      const offsetLeft = sections[index].current.offsetLeft
+
+      controlsRef.current.setX(offsetLeft - padding)
+    }
+  }, [])
+
+  const showDragIndicator = true
+
+  const SlideControlsMemo = React.useMemo(() => {
+    return () => <SlideControls sectionRefs={sections} controlsRef={controlsRef} goToSection={goToSection} />
+  }, [...sections])
 
   return (
     <>
@@ -739,47 +784,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
         <PageHero
           className={css['page-hero']}
           path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Road To Devcon' }]}
-          renderCustomNavigation={() => {
-            return (
-              <div className="section py-2 flex w-full relative z-10">
-                <div className="flex justify-between items-center lg:justify-center">
-                  <div className="flex items-center justify-center bg-slate-700 lg:bg-opacity-30 rounded shadow lg:hover:bg-opacity-100 transition-all select-none">
-                    <div
-                      className={`text-xs cursor-pointer px-2 py-2 pr-3 ${currentSlide === 0 && 'opacity-20'}`}
-                      onClick={() => goToSection(currentSlide - 1)}
-                    >
-                      <IconChevronLeft />
-                    </div>
-
-                    <p className="text-sm lg:text-base">
-                      <span className="bold">0{currentSlide + 1}</span> / 0{sections.length}
-                    </p>
-
-                    <div
-                      className={`text-xs cursor-pointer px-2 py-2 pl-3 ${
-                        currentSlide === sections.length - 1 && 'opacity-20'
-                      }`}
-                      onClick={() => goToSection(currentSlide + 1)}
-                    >
-                      <IconChevronRight />
-                    </div>
-                  </div>
-
-                  <motion.div
-                    className={`lg:!hidden ${css['drag-to-continue']} bg-slate-700 text-sm rounded shadow py-1 px-4 self-end lg:self-start`}
-                    animate={{ opacity: showDragIndicator ? '100%' : '0%', x: showDragIndicator ? '0%' : '-10%' }}
-                    transition={{ bounceDamping: 100, duration: 0.8, type: 'tween' }}
-                  >
-                    <p className="pr-1">
-                      <span>Drag or use arrow keys to continue</span>
-                      <span>Swipe to continue</span>
-                    </p>
-                    <CircleArrowRightIcon className={`icon ${css['circle-arrow-right-icon']}`} />
-                  </motion.div>
-                </div>
-              </div>
-            )
-          }}
+          renderCustomNavigation={SlideControlsMemo}
           navigation={[
             {
               title: 'Journey',
@@ -823,7 +828,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
         >
           <Hero
             controlsRef={controlsRef}
-            sections={sections}
+            sectionRefs={sections}
             showDragIndicator={showDragIndicator}
             goToSection={goToSection}
           />
