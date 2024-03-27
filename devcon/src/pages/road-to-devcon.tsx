@@ -834,7 +834,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
           <EventsTable events={props.events} />
 
-          <div className="border-t border-solid border-bottom border-[#b9b9b9]" id="grants">
+          <div className="border-t border-solid border-bottom border-[#b9b9b9] pb-4" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
           </div>
 
