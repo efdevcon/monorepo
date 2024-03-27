@@ -1,13 +1,13 @@
 import { Contributor, DIP } from 'types/DIP'
 
 const fetchContributors = () => {
-  return fetch('https://api.devcon.org/dips/contributors')
+  return fetch('https://api-devcon.onrender.com/dips/contributors')
     .then(resp => resp.json())
     .then(dips => dips.data)
 }
 
 const fetchDips = () => {
-  return fetch('https://api.devcon.org/dips')
+  return fetch('https://api-devcon.onrender.com/dips')
     .then(resp => resp.json())
     .then(dips => dips.data)
 }
