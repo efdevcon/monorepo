@@ -20,7 +20,7 @@ const fetcher = async (url: string) => {
 export const useArchiveSearch = (qs: string, params?: SearchParams): FetchedResult<PagedResult<ArchiveVideo>> => {
   const defaultData = { total: 0, currentPage: 0, items: [] }
   const [data, setData] = useState<PagedResult<ArchiveVideo>>(defaultData)
-  let uri = `https://api.devcon.org/sessions${qs}`
+  let uri = `https://api-devcon.onrender.com/sessions${qs}`
   if (!qs) uri += '?'
   if (params?.q) uri += `&q=${params.q}`
   if (params?.from) uri += `&from=${params.from}`

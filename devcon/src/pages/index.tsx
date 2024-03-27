@@ -163,7 +163,7 @@ export default pageHOC(function Index(props: any) {
               <div className="flex justify-between w-full gap-8">
                 <ImageNew src={BangkokVenue} alt="Devcon 7 Bangkok VEnue" className="max-w-[162px]" />
                 <p className="text-lg font-secondary text-[#8B6BBB] bold">
-                  QNSCC —<br className="hidden lg:inline-block" /> Queen Sirikit National{' '}
+                  QSNCC —<br className="hidden lg:inline-block" /> Queen Sirikit National{' '}
                   <br className="hidden lg:inline-block" />
                   Convention Center
                 </p>

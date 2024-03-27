@@ -30,7 +30,7 @@ export function Metadata(props: Props) {
         ],
         "uploadDate": "${date.toISOString()}",
         "duration": "${moment.duration(video.duration, 'milliseconds').toISOString()}",
-        "contentUrl": "https://ipfs.io/ipfs/${video.ipfsHash}"
+        "contentUrl": "https://cloudflare-ipfs.com/ipfs/${video.ipfsHash}"
       }`
     }
 
