@@ -681,6 +681,7 @@ const SlideControls = ({ sectionRefs, controlsRef, goToSection }: any) => {
   const [showDragIndicator, setShowDragIndicator] = React.useState(true)
 
   const sections = sectionRefs.map((ref: any) => {
+    // @ts-ignore
     return useIntersectionRatio(ref, {
       root: 'intersection-root',
     })
