@@ -20,7 +20,7 @@ export function Carousel(props: CarouselProps) {
   }
 
   return (
-    <div className={css['container']}>
+    <div className={css['container']} data-type="carousel">
       <div className="section">
         <h3>{props.title}</h3>
       </div>

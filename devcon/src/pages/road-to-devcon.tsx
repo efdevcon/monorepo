@@ -30,6 +30,13 @@ import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
 import getNotionDatabase from 'components/domain/devcon-week/getNotionDatabase'
 import moment from 'moment'
+import { Carousel } from 'components/common/carousel'
+import Gal1 from 'components/domain/road/images/gallery/gal1.jpg'
+import Gal2 from 'components/domain/road/images/gallery/gal2.jpg'
+import Gal3 from 'components/domain/road/images/gallery/gal3.jpg'
+import Gal4 from 'components/domain/road/images/gallery/gal4.jpg'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import Gal5 from 'components/domain/road/images/gallery/gal5.jpg'
 
 import Lyra from 'components/domain/road/images/rtd/lyra.png'
 import LyraClouds from 'components/domain/road/images/rtd/lyra-clouds.png'
@@ -37,7 +44,6 @@ import Aria from 'components/domain/road/images/rtd/aria.png'
 import AriaClouds from 'components/domain/road/images/rtd/aria-clouds.png'
 import Deva from 'components/domain/road/images/rtd/deva.png'
 import Globe from 'components/domain/road/images/rtd/deva-globe-2.png'
-// import useGetElementHeight from 'hooks/useGetElementHeight'
 
 // Custom hook to observe resize events and update a CSS variable
 const useWindowWidth = (cssVariableName: string) => {
@@ -65,7 +71,7 @@ const useIntersectionRatio = (options?: any) => {
     const observerOptions = {
       root: document.getElementById(options.root) || null,
       rootMargin: options.rootMargin || '0px',
-      threshold: options.threshold || new Array(101).fill(0).map((_, index) => index * 0.01),
+      threshold: options.threshold || new Array(11).fill(0).map((_, index) => index * 0.1),
     }
 
     const observer = new IntersectionObserver(entries => {
@@ -630,6 +636,43 @@ const EventsTable = React.memo(({ events }: any) => {
   )
 })
 
+const Gallery = React.memo(() => {
+  return (
+    <div id="communities" className="expand py-8 pb-16">
+      {/* <div className={`scrolling-text-background`}>
+        <InfiniteScroller nDuplications={2} reverse speed="150s">
+          <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
+        </InfiniteScroller>
+      </div> */}
+      <div className="section mb-6">
+        <p className="h2">Road to Devcon Communities</p>
+      </div>
+
+      <Carousel
+        // title="ROAD TO DEVCON"
+        images={[
+          {
+            alt: 'About 1',
+            src: Gal1,
+          },
+          {
+            alt: 'About 2',
+            src: Gal2,
+          },
+          {
+            alt: 'About 3',
+            src: Gal3,
+          },
+          {
+            alt: 'About 4',
+            src: Gal4,
+          },
+        ]}
+      />
+    </div>
+  )
+})
+
 export default pageHOC(function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
@@ -772,10 +815,10 @@ export default pageHOC(function RoadToDevcon(props: any) {
               title: 'Grants',
               to: '#grants',
             },
-            // {
-            //   title: 'Communities',
-            //   to: '#communities',
-            // },
+            {
+              title: 'Communities',
+              to: '#communities',
+            },
           ]}
         >
           <Hero
@@ -791,9 +834,11 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
           <EventsTable events={props.events} />
 
-          <div className="border-t border-solid border-[#b9b9b9]" id="grants">
+          <div className="border-t border-solid border-bottom border-[#b9b9b9]" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
           </div>
+
+          <Gallery />
         </div>
       </Page>
     </>
@@ -826,3 +871,29 @@ export async function getStaticProps(context: any) {
     revalidate: 1 * 60 * 30,
   }
 }
+
+/*
+  onDragEnd
+        if (!isDraggingRef.current) return
+
+        isDraggingRef.current = false
+
+        trackRef.current.style.transition = ''
+        trackRef.current.style.cursor = ''
+
+        const [movementX] = state.movement
+
+        const threshold: number = Math.min(pageWidth.current / 10, 100)
+
+        if (Math.abs(movementX) > pageWidth.current / 2) {
+          // If we drag more than half a slides width, we're already on the next slide, so we just have to resync at that point
+          navigationRef.current.goToSlide('syncCurrent')
+        } else if (movementX > threshold) {
+          navigationRef.current.goToSlide('prev')
+        } else if (movementX < -threshold) {
+          navigationRef.current.goToSlide('next')
+        } else {
+          navigationRef.current.goToSlide('syncCurrent')
+        }
+
+*/

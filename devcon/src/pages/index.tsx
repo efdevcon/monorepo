@@ -101,7 +101,7 @@ export const RoadToDevconGrants = ({ pages, down }: any) => {
           </Button>
         </Link>
       </div>
-      <div className="flex grow shrink-0 items-center justify-center">
+      <div className="flex grow shrink-0 items-center justify-center self-center">
         <Link to="https://esp.ethereum.foundation/devcon-grants">
           <div className={css['tilt-hover-image']}>
             <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
