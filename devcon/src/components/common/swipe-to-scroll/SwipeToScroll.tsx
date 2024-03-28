@@ -25,6 +25,7 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
   const maxScrollRef = React.useRef<number>(0)
   const isNativeScrollRef = React.useRef<any>(false)
   const onXChangeCallback = React.useRef<any>(null)
+  const xAnimationLocked = React.useRef(false)
 
   maxScrollRef.current = maxScroll
   isNativeScrollRef.current = isNativeScroll
@@ -133,6 +134,8 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
           lastX,
           maxScrollRef,
           setX: (x: any) => {
+            if (xAnimationLocked.current) return
+
             const scrollContainer = el.current!
 
             if (isNativeScrollRef.current) {
@@ -147,11 +150,13 @@ const SwipeToScroll = (props: SwipeToScrollProps) => {
 
             lastX.current = Math.min(Math.max(x, 0), maxScrollRef.current)
             scrollContainer.style.transform = `translateX(-${lastX.current}px)`
-            scrollContainer.style.transition = `all 0.4s ease-out`
+            scrollContainer.style.transition = `all 0.8s ease-out`
+            xAnimationLocked.current = true
 
             setTimeout(() => {
               scrollContainer.style.transition = `none`
-            }, 400)
+              xAnimationLocked.current = false
+            }, 800)
 
             if (onXChangeCallback.current && !isNativeScrollRef.current) onXChangeCallback.current(lastX.current)
           },
