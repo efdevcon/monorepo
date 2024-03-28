@@ -625,7 +625,7 @@ const EventsTable = React.memo(({ events }: any) => {
             setIncludePastEvents(!includePastEvents)
           }}
         >
-          Show Past Events
+          All Events
         </p>
       </div>
 
