@@ -41,6 +41,8 @@ import { generateCalendarExport } from 'lib/components/add-to-calendar'
 import { Modal, ModalContent } from 'lib/components/modal'
 import CalendarExport from 'lib/assets/images/modal-export.png'
 import moment from 'moment'
+import ChevronDown from 'assets/icons/chevron-down.svg'
+import ChevronUp from 'assets/icons/chevron-up.svg'
 
 const videos = [
   {
@@ -479,10 +481,11 @@ export default pageHOC(function Index(props: any) {
               return (
                 <div key={question} className="w-full border-[#E2E3FF] bg-[#F8F9FE] rounded-xl shadow mb-4 ">
                   <div
-                    className="w-full p-4 bold cursor-pointer select-none hover:opacity-95"
+                    className="w-full p-4 bold cursor-pointer select-none hover:opacity-70 flex justify-between items-center"
                     onClick={() => setOpenFAQ(open ? null : question)}
                   >
                     {question}
+                    <div className="flex opacity-60">{open ? <ChevronUp /> : <ChevronDown />}</div>
                   </div>
 
                   {open && (
