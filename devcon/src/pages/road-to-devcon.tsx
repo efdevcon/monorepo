@@ -153,6 +153,14 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
+      if (item.Link) {
+        return (
+          <Link className="bold" to={item.Link} indicateExternal>
+            {item.Name}
+          </Link>
+        )
+      }
+
       return <p className={`bold`}>{item.Name}</p>
     },
   },
@@ -183,20 +191,20 @@ const tableColumns: Array<TableColumn> = [
       return <p className={`${css['team-col']}`}>{item.Team}</p>
     },
   },
-  {
-    title: 'Link',
-    key: 'Link',
-    // sort: SortVariation.basic,
-    render: item => {
-      if (!item.Link) return null
+  // {
+  //   title: 'Link',
+  //   key: 'Link',
+  //   // sort: SortVariation.basic,
+  //   render: item => {
+  //     if (!item.Link) return null
 
-      return (
-        <Link className="bolda" to={item.Link} indicateExternal>
-          {item.Link}
-        </Link>
-      )
-    },
-  },
+  //     return (
+  //       <Link className="bolda" to={item.Link} indicateExternal>
+  //         {item.Link}
+  //       </Link>
+  //     )
+  //   },
+  // },
   {
     title: 'Social',
     key: 'Social',
@@ -821,10 +829,10 @@ export default pageHOC(function RoadToDevcon(props: any) {
               title: 'Grants',
               to: '#grants',
             },
-            {
-              title: 'Communities',
-              to: '#communities',
-            },
+            // {
+            //   title: 'Communities',
+            //   to: '#communities',
+            // },
           ]}
         >
           <Hero
