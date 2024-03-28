@@ -423,9 +423,10 @@ const Hero = (props: any) => {
           </div>
 
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+            <div className="h-[1px] w-full" ref={sectionRefs[1]}></div>
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">Why Devcon is for You</p>
-              <p className="text-slate-100 mt-4 text-lg" ref={sectionRefs[1]}>
+              <p className="text-slate-100 mt-4 text-lg">
                 Devcon is the Ethereum conference for developers, thinkers, and makers. You’ll meet the smartest and
                 kindest people in the Ethereum ecosystem IRL, and gain insight into a unique culture that is challenging
                 to fully understand just online.
@@ -452,7 +453,7 @@ const Hero = (props: any) => {
 
           <div className="flex w-[60vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[60vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -473,16 +474,17 @@ const Hero = (props: any) => {
               />
               <div
                 ref={secondParallax.anchorRef}
-                className=" w-full lg:w-[100vw] absolute top-0 h-full pointer-events-none"
+                className="w-full lg:w-[100vw] absolute top-0 h-full pointer-events-none"
               ></div>
             </motion.div>
           </div>
 
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 z-10">
+            <div className="h-[1px] w-full" ref={sectionRefs[2]}></div>
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">What is the Road to Devcon?</p>
 
-              <p className="text-slate-100 mt-4 text-lg" ref={sectionRefs[2]}>
+              <p className="text-slate-100 mt-4 text-lg">
                 The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to
                 Devcon, organized by the active local communities in Southeast Asia.
               </p>
@@ -530,12 +532,13 @@ const Hero = (props: any) => {
           </div>
 
           <div className="flex flex-col min-[1024px]:justify-center h-full w-[600px] max-w-[100vw] px-4 lg:px-0 lg:mr-20 z-10">
+            <div className="h-[1px] w-full" ref={sectionRefs[3]}></div>
             <div className={css['glass-wrapper']}>
               <p className="text-slate-100 text-base bold lg:text-xl">
                 Become a leader: Organize an event or start a community
               </p>
 
-              <p className="text-slate-100 mt-4 lg:text-lg" ref={sectionRefs[3]}>
+              <p className="text-slate-100 mt-4 lg:text-lg">
                 If you're in SEA, community-driven, and passionate about Ethereum's positive impact, we're here to
                 support you! This is your call to adventure, to be part of something bigger, something wilder.
               </p>
