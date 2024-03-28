@@ -644,9 +644,9 @@ const Gallery = React.memo(() => {
           <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
         </InfiniteScroller>
       </div> */}
-      <div className="section mb-6">
+      {/* <div className="section mb-6">
         <p className="h2">Road to Devcon Communities</p>
-      </div>
+      </div> */}
 
       <Carousel
         // title="ROAD TO DEVCON"
@@ -840,11 +840,12 @@ export default pageHOC(function RoadToDevcon(props: any) {
 
           <EventsTable events={props.events} />
 
-          <div className="border-t border-solid border-bottom border-[#b9b9b9] pb-4" id="grants">
+          <Gallery />
+
+          {/* <div className="border-t border-solid border-bottom border-[#b9b9b9] pb-4" id="grants"> */}
+          <div className="border-t border-solid border-[#b9b9b9] pb-4" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
           </div>
-
-          <Gallery />
         </div>
       </Page>
     </>
