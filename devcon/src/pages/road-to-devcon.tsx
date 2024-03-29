@@ -453,7 +453,7 @@ const Hero = (props: any) => {
 
           <div className="flex w-[60vw] justify-center relative lg:contents">
             <motion.div
-              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end ww-[275%] lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
+              className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
               // initial={{ opacity: 0, x: 100 }}
               // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -474,7 +474,7 @@ const Hero = (props: any) => {
               />
               <div
                 ref={secondParallax.anchorRef}
-                className="w-full lg:w-[100vw] absolute top-0 h-full pointer-events-none"
+                className="w-[70vw] absolute right-0 h-full pointer-events-none"
               ></div>
             </motion.div>
           </div>
