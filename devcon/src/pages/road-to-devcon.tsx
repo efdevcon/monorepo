@@ -35,8 +35,13 @@ import Gal1 from 'components/domain/road/images/gallery/gal1.jpg'
 import Gal2 from 'components/domain/road/images/gallery/gal2.jpg'
 import Gal3 from 'components/domain/road/images/gallery/gal3.jpg'
 import Gal4 from 'components/domain/road/images/gallery/gal4.jpg'
-import InfiniteScroller from 'lib/components/infinite-scroll'
 import Gal5 from 'components/domain/road/images/gallery/gal5.jpg'
+import Gal6 from 'components/domain/road/images/gallery/gal6.jpg'
+import Gal7 from 'components/domain/road/images/gallery/gal7.jpg'
+import Gal8 from 'components/domain/road/images/gallery/gal8.jpg'
+import Gal9 from 'components/domain/road/images/gallery/gal9.jpg'
+import Gal10 from 'components/domain/road/images/gallery/gal10.jpg'
+import Gal11 from 'components/domain/road/images/gallery/gal11.jpg'
 
 import Lyra from 'components/domain/road/images/rtd/lyra.png'
 import LyraClouds from 'components/domain/road/images/rtd/lyra-clouds.png'
@@ -278,8 +283,6 @@ const Hero = (props: any) => {
 
   useWindowWidth('window-width')
 
-  const firstParallax = useHorizontalParallax(progress => {})
-
   const secondParallaxCloud = useRef<any>()
   const secondParallax = useHorizontalParallax(progress => {
     secondParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
@@ -408,8 +411,6 @@ const Hero = (props: any) => {
           <div className="lg:hidden flex w-[50vw] justify-center items-end relative">
             <motion.div
               className={`flex ${css['deva-mobile']} relative left-[-60%] w-[200%] md:w-[175%] shrink-0`}
-              // initial={{ x: 50 }}
-              // whileInView={{ x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
@@ -454,8 +455,6 @@ const Hero = (props: any) => {
           <div className="flex w-[60vw] justify-center relative lg:contents">
             <motion.div
               className={`flex relative ${css['mask-image']} left-[20%] lg:left-0 items-end lg:w-[70vw] shrink-0 mr-4 lg:mr-20 lg:pr-0`}
-              // initial={{ opacity: 0, x: 100 }}
-              // whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
@@ -661,6 +660,7 @@ const Gallery = React.memo(() => {
 
       <Carousel
         // title="ROAD TO DEVCON"
+        speed={300}
         images={[
           {
             alt: 'Community 1',
@@ -681,6 +681,30 @@ const Gallery = React.memo(() => {
           {
             alt: 'Community 5',
             src: Gal5,
+          },
+          {
+            alt: 'Community 6',
+            src: Gal6,
+          },
+          {
+            alt: 'Community 7',
+            src: Gal7,
+          },
+          {
+            alt: 'Community 8',
+            src: Gal8,
+          },
+          {
+            alt: 'Community 9',
+            src: Gal9,
+          },
+          {
+            alt: 'Community 10',
+            src: Gal10,
+          },
+          {
+            alt: 'Community 11',
+            src: Gal11,
           },
         ]}
       />

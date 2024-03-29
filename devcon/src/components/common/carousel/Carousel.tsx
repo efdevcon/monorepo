@@ -6,6 +6,7 @@ import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 type CarouselProps = {
   title?: string
   noAnimation?: boolean
+  speed?: number
   images: {
     src: any
     alt: string
@@ -26,7 +27,7 @@ export function Carousel(props: CarouselProps) {
       </div>
 
       <div className={imagesClassName}>
-        <InfiniteScroll nDuplications={2} speed="300s" marqueeClassName="h-[38rem]">
+        <InfiniteScroll nDuplications={2} speed={`${props.speed || 300}s`} marqueeClassName="h-[19rem]">
           {props.images.map((image, index) => {
             return <Image key={index + 'first'} src={image.src} alt={image.alt} />
           })}
