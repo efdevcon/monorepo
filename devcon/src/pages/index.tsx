@@ -23,7 +23,7 @@ import { GetContentSections, GetTracks } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
-import { PagesQuery, PagesIndex } from '../../tina/__generated__/types'
+import { PagesQuery, PagesIndex, PagesFaq_General } from '../../tina/__generated__/types'
 import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
@@ -98,14 +98,14 @@ export const RoadToDevconGrants = ({ pages, down }: any) => {
       <div className="md:basis-[800px] shrink">
         <RichText content={pages.section3?.body}></RichText>
 
-        <Link to="https://esp.ethereum.foundation/devcon-grants">
+        <Link to={pages.section3?.button_info?.link}>
           <Button fat color="purple-1" className="mt-8" fill>
-            {pages.section3?.button}
+            {pages.section3?.button_info?.text}
           </Button>
         </Link>
       </div>
       <div className="flex grow shrink-0 items-center justify-center self-center">
-        <Link to="https://esp.ethereum.foundation/devcon-grants">
+        <Link to={pages.section3?.button_info?.link}>
           <div className={css['tilt-hover-image']}>
             <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
           </div>
@@ -118,6 +118,8 @@ export const RoadToDevconGrants = ({ pages, down }: any) => {
 export default pageHOC(function Index(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesIndex
+  const { data: faqData } = useTina<PagesQuery>(props.faq)
+  const faq = faqData.pages as PagesFaq_General
   const scrollRef = useRef<any>(null)
   const isInView = useInView(scrollRef, { once: true, margin: '40% 0px -20% 0px' })
   const [video, setVideo] = React.useState(videos[0])
@@ -284,9 +286,9 @@ export default pageHOC(function Index(props: any) {
               <RichText content={pages.section2?.right}></RichText>
             </div>
 
-            <Link to="https://blog.ethereum.org/2024/01/03/devcon-sea-announcement">
+            <Link to={pages.section2?.button_info?.link}>
               <Button fat color="purple-1" fill href="">
-                {pages.section2?.button}
+                {pages.section2?.button_info?.text}
               </Button>
             </Link>
           </div>
@@ -324,9 +326,9 @@ export default pageHOC(function Index(props: any) {
               <RichText content={pages.section4?.body}></RichText>
             </div>
 
-            <Link to="https://blog.ethereum.org/en/2022/11/17/devcon-vi-wrap">
+            <Link to={pages.section4?.button_info?.link}>
               <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
-                {pages.section4?.button}
+                {pages.section4?.button_info?.text}
               </Button>
             </Link>
 
@@ -421,9 +423,9 @@ export default pageHOC(function Index(props: any) {
           <div className="relative border-bottom pb-8">
             <TrackList tracks={props.tracks} />
 
-            <Link to="https://archive.devcon.org">
+            <Link to={pages.section5?.button_info?.link}>
               <Button fat color="purple-1" fill className="mt-8">
-                {pages.section5?.button}
+                {pages.section5?.button_info?.text}
               </Button>
             </Link>
 
@@ -447,36 +449,7 @@ export default pageHOC(function Index(props: any) {
         <div className="section mt-4">
           <div className="my-4 h2">Frequently Asked</div>
           <div className="flex flex-col">
-            {[
-              {
-                question: 'What is the difference between Devcon and Devconnect?',
-                answer: (
-                  <>
-                    <p className="text-sm">
-                      Devcon and Devconnect are the only two events organized by the Ethereum Foundation (yes, all the
-                      other amazing ETH events are community-run!). Both events are Ethereum-focused but serve different
-                      purposes.
-                    </p>
-                    <br />
-                    <p className="text-sm">
-                      <b>Devcon</b> is a global Ethereum family reunion, a place to celebrate success and align on
-                      updates and direction. It is our principal event, all in one place with one big venue, and talks
-                      and workshops open to all.{' '}
-                      <Link to="https://devcon.org" indicateExternal>
-                        Devcon SEA will take place in Bangkok, Thailand between 12-15 November 2024!
-                      </Link>
-                    </p>
-                    <br />
-                    <p className="text-sm">
-                      <b>Devconnect</b> on the other hand, is a week to make progress, dive deep into specific topics
-                      among fellow experts, to co-work and collaborate. It is structurally entirely different from
-                      Devcon, and consists of many individual events, organized by you the community, that each cover
-                      one topic in depth.
-                    </p>
-                  </>
-                ),
-              },
-            ].map(({ question, answer }) => {
+            {faq?.questions?.map(({ question, answer }: any) => {
               const open = question === openFAQ
 
               return (
@@ -495,7 +468,7 @@ export default pageHOC(function Index(props: any) {
                       animate={{ y: '0%', opacity: 100 }}
                       className="w-full p-4 pt-2"
                     >
-                      {answer}
+                      <RichText content={answer}></RichText>
                     </motion.div>
                   )}
                 </div>
@@ -529,6 +502,7 @@ export async function getStaticProps(context: any) {
   const tracks = GetTracks(context.locale)
 
   const content = await client.queries.pages({ relativePath: 'index.mdx' })
+  const faq = await client.queries.pages({ relativePath: 'faq.mdx' })
 
   return {
     props: {
@@ -542,6 +516,11 @@ export async function getStaticProps(context: any) {
         variables: content.variables,
         data: content.data,
         query: content.query,
+      },
+      faq: {
+        variables: faq.variables,
+        data: faq.data,
+        query: faq.query,
       },
     },
     revalidate: 1 * 60 * 30,

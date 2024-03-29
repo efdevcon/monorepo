@@ -1,4 +1,5 @@
 import { Template } from 'tinacms'
+import { button } from '../presets'
 
 const index: Template = {
   name: 'index',
@@ -54,11 +55,7 @@ const index: Template = {
           name: 'right',
           type: 'rich-text',
         },
-        {
-          label: 'button',
-          name: 'button',
-          type: 'string',
-        },
+        button('button_info')
       ],
     },
     {
@@ -71,11 +68,7 @@ const index: Template = {
           name: 'body',
           type: 'rich-text',
         },
-        {
-          label: 'button',
-          name: 'button',
-          type: 'string',
-        },
+        button('button_info')
       ],
     },
     {
@@ -88,11 +81,7 @@ const index: Template = {
           name: 'body',
           type: 'rich-text',
         },
-        {
-          label: 'button',
-          name: 'button',
-          type: 'string',
-        },
+        button('button_info')
       ],
     },
     {
@@ -110,11 +99,7 @@ const index: Template = {
           name: 'title',
           type: 'rich-text',
         },
-        {
-          label: 'Button',
-          name: 'button',
-          type: 'string',
-        },
+        button('button_info')
       ],
     },
     {
@@ -132,11 +117,7 @@ const index: Template = {
           name: 'title',
           type: 'rich-text',
         },
-        {
-          label: 'Button',
-          name: 'button',
-          type: 'string',
-        },
+        button('button_info')
       ],
     },
   ],

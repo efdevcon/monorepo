@@ -47,6 +47,9 @@ export default defineConfig({
               case 'road_to_devcon':
                 return '/road-to-devcon'
 
+              case 'faq':
+                  return '/'
+
               default:
                 return filename
             }

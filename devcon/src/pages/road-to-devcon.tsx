@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import GirlSchematics from 'components/domain/road/images/girl-schematics.png'
 import BoyDoge from 'components/domain/road/images/boy-doge.png'
+import RichText from 'lib/components/tina-cms/RichText'
 import DevaGlobe from 'components/domain/road/images/deva-globe.png'
 import WonkaFont from 'components/domain/road/images/wonka-font.png'
 import SoutheastAsia from 'components/domain/road/images/southeast-asia.png'
@@ -563,7 +564,7 @@ const Hero = (props: any) => {
   )
 }
 
-const EventsTable = React.memo(({ events }: any) => {
+const EventsTable = React.memo(({ events, pages }: any) => {
   const [includePastEvents, setIncludePastEvents] = React.useState(false)
   const [search, setSearch] = React.useState('')
 
@@ -597,6 +598,8 @@ const EventsTable = React.memo(({ events }: any) => {
     return true
   })
 
+  console.log(pages.events_table, 'pages?')
+
   return (
     <>
       <div className="flex justify-between items-center mb-4 gap-2">
@@ -610,10 +613,9 @@ const EventsTable = React.memo(({ events }: any) => {
         />
       </div>
 
-      <p className="mb-4">
-        The Road to Devcon (RTD) is a series of Ethereum events and educational initiatives leading up to Devcon,
-        organized by the local communities in and near Southeast Asia.
-      </p>
+      <div className="mb-4">
+        <RichText content={pages.events_table}></RichText>
+      </div>
 
       <div className="flex border-b border-solid border-[#b9b9b9]">
         <p
@@ -873,7 +875,7 @@ export default pageHOC(function RoadToDevcon(props: any) {
         <div className={`section ${css['content']}`} id="events">
           <div className="" id="dont-remove-me-the-hero-needs-me"></div>
 
-          <EventsTable events={props.events} />
+          <EventsTable events={props.events} pages={pages} />
 
           <Gallery />
 

@@ -16,6 +16,7 @@ const road_to_devcon: Template = {
         createRichText('section_four', { required: true }),
       ],
     },
+    createRichText('events_table')
   ],
 }
 
