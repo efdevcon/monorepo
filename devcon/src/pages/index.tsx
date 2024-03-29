@@ -43,6 +43,7 @@ import CalendarExport from 'lib/assets/images/modal-export.png'
 import moment from 'moment'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
+import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
 
 const videos = [
   {
@@ -181,59 +182,59 @@ export default pageHOC(function Index(props: any) {
               >
                 Venue Direction
               </Link>
-              <div className="hidden lg:block border-bottom my-6"></div>
-              <div className="block lg:hidden my-2"></div>
-              <div className="flex justify-between items-center">
-                <div className="font-secondary">
-                  <p className="uppercase bold leading-tight text-">BANGKOK, THAILAND</p>
-                  <p className="text-xl leading-tight">
-                    <span className="text-[#B1ABFE] bold">12—15</span> Nov, 2024
-                  </p>
-                </div>
-
-                <Button fat color="purple-1" onClick={() => setCalendarModalOpen(true)}>
-                  <span className="mr-2">Add to Calendar</span>
-                  <AddCalendarIcon className="icon" />
-                </Button>
-
-                {cal && (
-                  <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
-                    <ModalContent
-                      className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
-                      close={() => setCalendarModalOpen(false)}
-                    >
-                      <div className="relative">
-                        <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
-                        <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
-                      </div>
-                      <div className="p-4">
-                        <p className="font-bold">Add Devcon to your calendar!</p>
-
-                        <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
-
-                        <div className="flex mt-4 flex-row gap-4 items-center">
-                          <a {...cal.icsAttributes}>
-                            <Button fat color="purple-1">
-                              <span className="mr-2">Download (.ics)</span>
-                              <AddCalendarIcon className="icon" />
-                            </Button>
-                          </a>
-                          <Link to={cal.googleCalUrl} className="h-full">
-                            <Button fat color="purple-1" fill>
-                              Google Calendar
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </ModalContent>
-                  </Modal>
-                )}
-              </div>
+              {/* <div className="hidden lg:block border-bottom my-6"></div>
+              <div className="block lg:hidden my-2"></div> */}
             </div>
           </div>
 
-          <div className="relative flex flex-col items-start mb-8 pb-8 border-bottom gap-8 xl:gap-6">
+          <div className="relative flex flex-col lg:flex-row lg:items-center justify-center mb-8 pb-8 border-bottom gap-8 xl:gap-16">
             <RichText content={pages.devcon_week?.body}></RichText>
+            <div className="flex lg:justify-between items-center shrink-0 grow gap-8">
+              <div className="font-secondary">
+                <p className="uppercase bold leading-tight lg:text-xl">BANGKOK, THAILAND</p>
+                <p className="text-xl leading-tight">
+                  <span className="text-[#B1ABFE] bold">12—15</span> Nov, 2024
+                </p>
+              </div>
+
+              <Button fat color="purple-1" onClick={() => setCalendarModalOpen(true)}>
+                <span className="mr-2">Add to Calendar</span>
+                <AddCalendarIcon className="icon" />
+              </Button>
+
+              {cal && (
+                <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
+                  <ModalContent
+                    className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
+                    close={() => setCalendarModalOpen(false)}
+                  >
+                    <div className="relative">
+                      <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
+                      <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
+                    </div>
+                    <div className="p-4">
+                      <p className="font-bold">Add Devcon to your calendar!</p>
+
+                      <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
+
+                      <div className="flex mt-4 flex-row gap-4 items-center">
+                        <a {...cal.icsAttributes}>
+                          <Button fat color="purple-1">
+                            <span className="mr-2">Download (.ics)</span>
+                            <AddCalendarIcon className="icon" />
+                          </Button>
+                        </a>
+                        <Link to={cal.googleCalUrl} className="h-full">
+                          <Button fat color="purple-1" fill>
+                            Google Calendar
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </ModalContent>
+                </Modal>
+              )}
+            </div>
           </div>
 
           <div className="relative flex flex-col items-start pb-20 border-bottom gap-8 xl:gap-6">
