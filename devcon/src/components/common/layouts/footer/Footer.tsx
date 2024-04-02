@@ -63,9 +63,9 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
       <Link to="https://discord.com/invite/FhmA3KeF3B">
         <IconDiscord style={{ cursor: 'pointer' }} />
       </Link>
-      {/* <Link to="https://t.me/devcon_bogota">
+      <Link to="https://t.me/devcon_SEA">
         <IconTelegram style={{ cursor: 'pointer' }} />
-      </Link> */}
+      </Link>
       <Link to="https://github.com/efdevcon">
         <IconGithub style={{ cursor: 'pointer' }} />
       </Link>

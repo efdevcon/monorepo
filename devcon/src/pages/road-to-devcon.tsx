@@ -598,8 +598,6 @@ const EventsTable = React.memo(({ events, pages }: any) => {
     return true
   })
 
-  console.log(pages.events_table, 'pages?')
-
   return (
     <>
       <div className="flex justify-between items-center mb-4 gap-2">
