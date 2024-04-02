@@ -660,7 +660,7 @@ const Gallery = React.memo(() => {
 
       <Carousel
         // title="ROAD TO DEVCON"
-        speed={5}
+        speed={150}
         images={[
           {
             alt: 'Community 1',
