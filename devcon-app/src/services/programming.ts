@@ -13,7 +13,7 @@ import Fuse from 'fuse.js'
 require('dotenv').config()
 
 const cache = new Map()
-const baseUrl = 'https://api-devcon.onrender.com/' // 'https://speak.devcon.org/api'
+const baseUrl = 'https://speak.devcon.org/api' // 'https://speak.devcon.org/api'
 const eventName = 'devcon-6' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
 const defaultLimit = 100
 const websiteQuestionId = 29
