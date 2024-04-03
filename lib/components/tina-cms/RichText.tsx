@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import { Button } from "lib/components/button";
 import css from "./rich-text.module.scss";
+import Link from "next/link";
 
 const TwoColumns = (data: any) => {
   return (
@@ -15,12 +17,31 @@ const TwoColumns = (data: any) => {
   );
 };
 
+const Buttons = (data: any) => {
+  return (
+    <div className="flex gap-4">
+      {data.Button.map(({ text, url }: any) => {
+        if (!url || !text) return null;
+
+        return (
+          <Link href={url} key={text}>
+            <Button fat color="purple-1" fill>
+              {text}
+            </Button>
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
 export default ({ content }: { content: TinaMarkdownContent }) => {
   return (
     <div className={css["rich-text"]}>
       <TinaMarkdown
         components={{
           TwoColumns,
+          Buttons,
           img: (img: any) => {
             return (
               <div className="w-full relative">

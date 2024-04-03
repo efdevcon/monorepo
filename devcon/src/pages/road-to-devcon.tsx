@@ -284,6 +284,14 @@ const Hero = (props: any) => {
 
   useWindowWidth('window-width')
 
+  const firstParallaxGlobe = useRef<any>()
+  const firstParallax = useHorizontalParallax(progress => {
+    firstParallaxGlobe.current.style.transform = `scale(${110 - progress / 3}%) translateY(5%)`
+    firstParallax.targetRef.current.style.transform = `scale(${100 - progress / 3}%) translateX(${
+      progress / 1.5
+    }%) translateY(${progress / 8}%)`
+  })
+
   const secondParallaxCloud = useRef<any>()
   const secondParallax = useHorizontalParallax(progress => {
     secondParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
@@ -361,28 +369,25 @@ const Hero = (props: any) => {
                   </motion.div>
                 </div>
 
-                <motion.div
-                  className={`flex relative `}
-                  initial={{ x: 50 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1 }}
-                >
+                <div className={`flex relative justify-center`}>
                   <Image
-                    priority
-                    src={DevaGlobe}
-                    alt="Deva flying across globe"
-                    className="object-contain object-bottom min-h-[70%]"
+                    className="object-contain object-bottom w-full"
+                    ref={firstParallaxGlobe}
+                    src={Globe}
+                    alt="hahaha"
+                  />
+                  <Image
+                    className="absolute bottom-[12%] xl:bottom-[17%] left-auto right-auto object-contain w-2/3"
+                    src={Deva}
+                    ref={firstParallax.targetRef}
+                    alt="hahaha"
                   />
 
-                  {/* <Image className="object-contain object-bottom w-full" src={Globe} alt="hahaha" />
-      <Image
-        className="absolute top-0 left-auto right-auto object-contain w-[70%]"
-        src={Deva}
-        ref={targetRef}
-        alt="hahaha"
-      /> */}
-                </motion.div>
+                  <div
+                    ref={firstParallax.anchorRef}
+                    className="w-[100vw] absolute left-full h-full pointer-events-none"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
@@ -649,17 +654,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 const Gallery = React.memo(() => {
   return (
     <div id="communities" className="expand py-8 pb-16">
-      {/* <div className={`scrolling-text-background`}>
-        <InfiniteScroller nDuplications={2} reverse speed="150s">
-          <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
-        </InfiniteScroller>
-      </div> */}
-      {/* <div className="section mb-6">
-        <p className="h2">Road to Devcon Communities</p>
-      </div> */}
-
       <Carousel
-        // title="ROAD TO DEVCON"
         speed={150}
         images={[
           {
@@ -913,29 +908,3 @@ export async function getStaticProps(context: any) {
     revalidate: 1 * 60 * 30,
   }
 }
-
-/*
-  onDragEnd
-        if (!isDraggingRef.current) return
-
-        isDraggingRef.current = false
-
-        trackRef.current.style.transition = ''
-        trackRef.current.style.cursor = ''
-
-        const [movementX] = state.movement
-
-        const threshold: number = Math.min(pageWidth.current / 10, 100)
-
-        if (Math.abs(movementX) > pageWidth.current / 2) {
-          // If we drag more than half a slides width, we're already on the next slide, so we just have to resync at that point
-          navigationRef.current.goToSlide('syncCurrent')
-        } else if (movementX > threshold) {
-          navigationRef.current.goToSlide('prev')
-        } else if (movementX < -threshold) {
-          navigationRef.current.goToSlide('next')
-        } else {
-          navigationRef.current.goToSlide('syncCurrent')
-        }
-
-*/

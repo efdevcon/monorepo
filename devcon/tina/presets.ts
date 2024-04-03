@@ -24,6 +24,30 @@ export const createRichText = (name: string, extra?: any): RichTextType => {
           },
         ],
       },
+      {
+        name: 'Buttons',
+        label: 'Buttons',
+        fields: [
+          {
+            name: 'Button',
+            label: 'Button',
+            list: true,
+            type: 'object',
+            fields: [
+              {
+                name: 'text',
+                label: 'text',
+                type: 'string'
+              },
+              {
+                name: 'url',
+                label: 'url',
+                type: 'string'
+              },
+            ]
+          }
+        ]
+      },
     ],
   }
 }
