@@ -653,9 +653,10 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 
 const Gallery = React.memo(() => {
   return (
-    <div id="communities" className="expand py-8 pb-16">
+    <div id="communities" className="expand py-8">
       <Carousel
         speed={150}
+        marqueeClassName="h-[19rem]"
         images={[
           {
             alt: 'Community 1',
