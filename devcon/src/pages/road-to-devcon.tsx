@@ -374,18 +374,18 @@ const Hero = (props: any) => {
                     className="object-contain object-bottom w-full"
                     ref={firstParallaxGlobe}
                     src={Globe}
-                    alt="hahaha"
+                    alt="Globe with Ethereum logos"
                   />
                   <Image
                     className="absolute bottom-[12%] xl:bottom-[17%] left-auto right-auto object-contain w-2/3"
                     src={Deva}
                     ref={firstParallax.targetRef}
-                    alt="hahaha"
+                    alt="Deva"
                   />
 
                   <div
                     ref={firstParallax.anchorRef}
-                    className="w-[100vw] absolute left-full h-full pointer-events-none"
+                    className="w-[100vw] absolute left-full bottom-0 h-[1px] pointer-events-none"
                   ></div>
                 </div>
               </div>
@@ -479,7 +479,7 @@ const Hero = (props: any) => {
               />
               <div
                 ref={secondParallax.anchorRef}
-                className="w-[70vw] absolute right-0 h-full pointer-events-none"
+                className="w-[70vw] lg:w-[100vw] absolute right-0 h-full pointer-events-none"
               ></div>
             </motion.div>
           </div>
